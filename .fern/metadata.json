@@ -1,0 +1,13 @@
+{
+  "cliVersion": "5.112.0",
+  "generatorName": "fernapi/fern-java-sdk",
+  "generatorVersion": "4.13.2",
+  "generatorConfig": {
+    "package-prefix": "com.affinity.api",
+    "client-class-name": "AffinityClient"
+  },
+  "originGitCommit": "fcbfd1cc0491bb7199af4fb6db66c0455a5efe2e",
+  "originGitCommitIsDirty": true,
+  "invokedBy": "manual",
+  "requestedVersion": "0.1.0"
+}
