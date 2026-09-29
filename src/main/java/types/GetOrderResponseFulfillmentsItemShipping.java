@@ -215,4 +215,12 @@ public final class GetOrderResponseFulfillmentsItemShipping {
       return this;
     }
   }
+
+  public GetOrderResponseFulfillmentsItemShippingDestinationType destinationType() { return getDestinationType(); }
+
+  public GetOrderResponseFulfillmentsItemShippingMethod method() { return getMethod(); }
+
+  public Optional<GetOrderResponseFulfillmentsItemShippingOption> option() { return getOption(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

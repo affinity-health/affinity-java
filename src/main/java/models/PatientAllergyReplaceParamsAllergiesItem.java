@@ -1,0 +1,11 @@
+package com.affinity.api.models;
+import java.util.*;import com.fasterxml.jackson.annotation.JsonValue;
+public final class PatientAllergyReplaceParamsAllergiesItem{private final Map<String,Object> values;private PatientAllergyReplaceParamsAllergiesItem(Map<String,Object> values){this.values=Collections.unmodifiableMap(new LinkedHashMap<>(values));}@JsonValue public Map<String,Object> values(){return values;}public static Builder builder(){return new Builder();}public static final class Builder {private final Map<String,Object> values=new LinkedHashMap<>();public Builder category(String value){values.put("category",value);return this;}
+public Builder code(String value){values.put("code",value);return this;}
+public Builder codeSystem(String value){values.put("codeSystem",value);return this;}
+public Builder reactions(List<PatientAllergyReplaceParamsAllergiesItemReactionsItem> value){values.put("reactions",value);return this;}
+public Builder severity(String value){values.put("severity",value);return this;}
+public Builder source(String value){values.put("source",value);return this;}
+public Builder substance(String value){values.put("substance",value);return this;}
+public Builder type(String value){values.put("type",value);return this;}
+public Builder verificationStatus(String value){values.put("verificationStatus",value);return this;}public PatientAllergyReplaceParamsAllergiesItem build(){if(!values.containsKey("category")||values.get("category")==null)throw new IllegalArgumentException("category is required");if(!values.containsKey("reactions")||values.get("reactions")==null)throw new IllegalArgumentException("reactions is required");if(!values.containsKey("source")||values.get("source")==null)throw new IllegalArgumentException("source is required");if(!values.containsKey("substance")||values.get("substance")==null)throw new IllegalArgumentException("substance is required");if(!values.containsKey("type"))throw new IllegalArgumentException("type is required");if(!values.containsKey("verificationStatus")||values.get("verificationStatus")==null)throw new IllegalArgumentException("verificationStatus is required");return new PatientAllergyReplaceParamsAllergiesItem(values);}}}

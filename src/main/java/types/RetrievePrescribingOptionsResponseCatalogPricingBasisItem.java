@@ -149,4 +149,10 @@ public final class RetrievePrescribingOptionsResponseCatalogPricingBasisItem {
       return this;
     }
   }
+
+  public RetrievePrescribingOptionsResponseCatalogPricingBasisItemQuantity quantity() { return getQuantity(); }
+
+  public String unit() { return getUnit(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

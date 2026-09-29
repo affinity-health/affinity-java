@@ -1164,4 +1164,62 @@ public final class GetPatientResponse {
       return this;
     }
   }
+
+  public Optional<GetPatientResponseAddress> address() { return getAddress(); }
+
+  public Optional<String> defaultShippingAddressId() { return getDefaultShippingAddressId(); }
+
+  public Optional<GetPatientResponseShippingAddress> shippingAddress() { return getShippingAddress(); }
+
+  public GetPatientResponseAllergyReviewStatus allergyReviewStatus() { return getAllergyReviewStatus(); }
+
+  public List<GetPatientResponseAllergySummaryItem> allergySummary() { return getAllergySummary(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public GetPatientResponseClinicalProfile clinicalProfile() { return getClinicalProfile(); }
+
+  public String dateOfBirth() { return getDateOfBirth(); }
+
+  public Optional<String> email() { return getEmail(); }
+
+  public Optional<String> externalId() { return getExternalId(); }
+
+  public List<GetPatientResponseExternalIdentitiesItem> externalIdentities() { return getExternalIdentities(); }
+
+  public List<GetPatientResponseAddressesItem> addresses() { return getAddresses(); }
+
+  public List<GetPatientResponseEncountersItem> encounters() { return getEncounters(); }
+
+  public GetPatientResponseGender gender() { return getGender(); }
+
+  public String id() { return getId(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public GetPatientResponseLocation location() { return getLocation(); }
+
+  public String locationId() { return getLocationId(); }
+
+  public Map<String, Object> metadata() { return getMetadata(); }
+
+  public Optional<String> medicalRecordNumber() { return getMedicalRecordNumber(); }
+
+  public List<GetPatientResponseMeasurementsItem> measurements() { return getMeasurements(); }
+
+  public GetPatientResponseName name() { return getName(); }
+
+  public GetPatientResponseObject object() { return getObject(); }
+
+  public Optional<String> phone() { return getPhone(); }
+
+  public List<GetPatientResponseProgramsItem> programs() { return getPrograms(); }
+
+  public String practiceId() { return getPracticeId(); }
+
+  public GetPatientResponseStatus status() { return getStatus(); }
+
+  public String updatedAt() { return getUpdatedAt(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

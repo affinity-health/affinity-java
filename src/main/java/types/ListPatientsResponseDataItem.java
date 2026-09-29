@@ -1177,4 +1177,62 @@ public final class ListPatientsResponseDataItem {
       return this;
     }
   }
+
+  public Optional<ListPatientsResponseDataItemAddress> address() { return getAddress(); }
+
+  public Optional<String> defaultShippingAddressId() { return getDefaultShippingAddressId(); }
+
+  public Optional<ListPatientsResponseDataItemShippingAddress> shippingAddress() { return getShippingAddress(); }
+
+  public ListPatientsResponseDataItemAllergyReviewStatus allergyReviewStatus() { return getAllergyReviewStatus(); }
+
+  public List<ListPatientsResponseDataItemAllergySummaryItem> allergySummary() { return getAllergySummary(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public ListPatientsResponseDataItemClinicalProfile clinicalProfile() { return getClinicalProfile(); }
+
+  public String dateOfBirth() { return getDateOfBirth(); }
+
+  public Optional<String> email() { return getEmail(); }
+
+  public Optional<String> externalId() { return getExternalId(); }
+
+  public List<ListPatientsResponseDataItemExternalIdentitiesItem> externalIdentities() { return getExternalIdentities(); }
+
+  public List<ListPatientsResponseDataItemAddressesItem> addresses() { return getAddresses(); }
+
+  public List<ListPatientsResponseDataItemEncountersItem> encounters() { return getEncounters(); }
+
+  public ListPatientsResponseDataItemGender gender() { return getGender(); }
+
+  public String id() { return getId(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public ListPatientsResponseDataItemLocation location() { return getLocation(); }
+
+  public String locationId() { return getLocationId(); }
+
+  public Map<String, Object> metadata() { return getMetadata(); }
+
+  public Optional<String> medicalRecordNumber() { return getMedicalRecordNumber(); }
+
+  public List<ListPatientsResponseDataItemMeasurementsItem> measurements() { return getMeasurements(); }
+
+  public ListPatientsResponseDataItemName name() { return getName(); }
+
+  public ListPatientsResponseDataItemObject object() { return getObject(); }
+
+  public Optional<String> phone() { return getPhone(); }
+
+  public List<ListPatientsResponseDataItemProgramsItem> programs() { return getPrograms(); }
+
+  public String practiceId() { return getPracticeId(); }
+
+  public ListPatientsResponseDataItemStatus status() { return getStatus(); }
+
+  public String updatedAt() { return getUpdatedAt(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

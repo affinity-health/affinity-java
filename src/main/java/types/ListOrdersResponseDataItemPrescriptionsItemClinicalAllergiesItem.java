@@ -614,4 +614,22 @@ public final class ListOrdersResponseDataItemPrescriptionsItemClinicalAllergiesI
       return this;
     }
   }
+
+  public Optional<String> code() { return getCode(); }
+
+  public Optional<String> codeSystem() { return getCodeSystem(); }
+
+  public String display() { return getDisplay(); }
+
+  public Optional<String> source() { return getSource(); }
+
+  public Optional<String> category() { return getCategory(); }
+
+  public Optional<String> severity() { return getSeverity(); }
+
+  public Optional<String> type() { return getType(); }
+
+  public Optional<String> verificationStatus() { return getVerificationStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

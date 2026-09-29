@@ -216,4 +216,14 @@ public final class ListOrdersResponse {
       return this;
     }
   }
+
+  public List<ListOrdersResponseDataItem> data() { return getData(); }
+
+  public boolean hasMore() { return getHasMore(); }
+
+  public ListOrdersResponseObject object() { return getObject(); }
+
+  public ListOrdersResponseUrl url() { return getUrl(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

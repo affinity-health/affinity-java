@@ -150,4 +150,10 @@ public final class ListPracticeTeamMembersResponseDataItemAccountPrescriberConne
       return this;
     }
   }
+
+  public String status() { return getStatus(); }
+
+  public ListPracticeTeamMembersResponseDataItemAccountPrescriberConnectionProvider provider() { return getProvider(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

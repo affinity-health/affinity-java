@@ -105,4 +105,6 @@ public final class PreviewOrderResponseClinicalRequirementsItemType {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

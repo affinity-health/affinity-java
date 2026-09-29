@@ -458,4 +458,18 @@ public final class GetOrderResponsePrescriptionsItemDispensing {
       return this;
     }
   }
+
+  public boolean dispenseUponAcceptance() { return getDispenseUponAcceptance(); }
+
+  public boolean substitutionPermitted() { return getSubstitutionPermitted(); }
+
+  public Optional<String> pharmacyNotes() { return getPharmacyNotes(); }
+
+  public Optional<String> requestedFillDate() { return getRequestedFillDate(); }
+
+  public Optional<String> shippingOptionId() { return getShippingOptionId(); }
+
+  public Optional<Integer> shippingAmountCents() { return getShippingAmountCents(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

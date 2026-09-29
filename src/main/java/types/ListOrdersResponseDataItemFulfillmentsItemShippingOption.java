@@ -219,4 +219,16 @@ public final class ListOrdersResponseDataItemFulfillmentsItemShippingOption {
       return this;
     }
   }
+
+  public int amountCents() { return getAmountCents(); }
+
+  public ListOrdersResponseDataItemFulfillmentsItemShippingOptionCurrency currency() { return getCurrency(); }
+
+  public String label() { return getLabel(); }
+
+  public String serviceLevel() { return getServiceLevel(); }
+
+  public ListOrdersResponseDataItemFulfillmentsItemShippingOptionTemperature temperature() { return getTemperature(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

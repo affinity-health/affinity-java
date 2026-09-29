@@ -484,4 +484,8 @@ public final class CancelOrderResponsePrescriptionsItemClinical {
       return this;
     }
   }
+
+  public Optional<List<CancelOrderResponsePrescriptionsItemClinicalAllergiesItem>> allergies() { return getAllergies(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -74,4 +74,6 @@ public final class CancelOrderResponseMetadata {
       return this;
     }
   }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

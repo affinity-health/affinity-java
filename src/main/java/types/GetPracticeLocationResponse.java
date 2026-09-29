@@ -699,4 +699,36 @@ public final class GetPracticeLocationResponse {
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public GetPracticeLocationResponseObject object() { return getObject(); }
+
+  public String practiceId() { return getPracticeId(); }
+
+  public String name() { return getName(); }
+
+  public Optional<String> timezone() { return getTimezone(); }
+
+  public Optional<String> city() { return getCity(); }
+
+  public String country() { return getCountry(); }
+
+  public Optional<String> line1() { return getLine1(); }
+
+  public Optional<String> line2() { return getLine2(); }
+
+  public Optional<String> phone() { return getPhone(); }
+
+  public Optional<String> postalCode() { return getPostalCode(); }
+
+  public Optional<String> state() { return getState(); }
+
+  public GetPracticeLocationResponseStatus status() { return getStatus(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public String updatedAt() { return getUpdatedAt(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

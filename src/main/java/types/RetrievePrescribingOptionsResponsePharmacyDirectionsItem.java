@@ -222,4 +222,10 @@ public final class RetrievePrescribingOptionsResponsePharmacyDirectionsItem {
       return this;
     }
   }
+
+  public String directions() { return getDirections(); }
+
+  public RetrievePrescribingOptionsResponsePharmacyDirectionsItemFormat format() { return getFormat(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

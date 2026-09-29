@@ -1,0 +1,6 @@
+package com.affinity.api.models;
+import java.util.*;import com.fasterxml.jackson.annotation.JsonValue;
+public final class PatientCreateParamsClinicalProfile{private final Map<String,Object> values;private PatientCreateParamsClinicalProfile(Map<String,Object> values){this.values=Collections.unmodifiableMap(new LinkedHashMap<>(values));}@JsonValue public Map<String,Object> values(){return values;}public static Builder builder(){return new Builder();}public static final class Builder {private final Map<String,Object> values=new LinkedHashMap<>();public Builder currentMedications(List<String> value){values.put("currentMedications",value);return this;}
+public Builder heightInches(Object value){values.put("heightInches",value);return this;}
+public Builder reviewedAt(String value){values.put("reviewedAt",value);return this;}
+public Builder weightPounds(Object value){values.put("weightPounds",value);return this;}public PatientCreateParamsClinicalProfile build(){if(!values.containsKey("currentMedications")||values.get("currentMedications")==null)throw new IllegalArgumentException("currentMedications is required");return new PatientCreateParamsClinicalProfile(values);}}}

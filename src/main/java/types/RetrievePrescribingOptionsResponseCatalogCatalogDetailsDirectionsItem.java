@@ -151,4 +151,10 @@ public final class RetrievePrescribingOptionsResponseCatalogCatalogDetailsDirect
       return this;
     }
   }
+
+  public RetrievePrescribingOptionsResponseCatalogCatalogDetailsDirectionsItemKind kind() { return getKind(); }
+
+  public String text() { return getText(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

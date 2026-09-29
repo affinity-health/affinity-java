@@ -215,4 +215,16 @@ public final class RetrievePrescribingOptionsResponseMedicationRxnorm {
       return this;
     }
   }
+
+  public String code() { return getCode(); }
+
+  public String display() { return getDisplay(); }
+
+  public String doseForm() { return getDoseForm(); }
+
+  public String route() { return getRoute(); }
+
+  public RetrievePrescribingOptionsResponseMedicationRxnormSystem system() { return getSystem(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

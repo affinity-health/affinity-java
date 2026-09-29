@@ -75,4 +75,6 @@ public final class GetPracticeTeamInvitationResponseObject {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

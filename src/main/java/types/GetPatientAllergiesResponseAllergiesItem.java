@@ -516,4 +516,26 @@ public final class GetPatientAllergiesResponseAllergiesItem {
       return this;
     }
   }
+
+  public GetPatientAllergiesResponseAllergiesItemCategory category() { return getCategory(); }
+
+  public Optional<String> code() { return getCode(); }
+
+  public Optional<GetPatientAllergiesResponseAllergiesItemCodeSystem> codeSystem() { return getCodeSystem(); }
+
+  public String id() { return getId(); }
+
+  public List<GetPatientAllergiesResponseAllergiesItemReactionsItem> reactions() { return getReactions(); }
+
+  public Optional<GetPatientAllergiesResponseAllergiesItemSeverity> severity() { return getSeverity(); }
+
+  public GetPatientAllergiesResponseAllergiesItemSource source() { return getSource(); }
+
+  public String substance() { return getSubstance(); }
+
+  public Optional<GetPatientAllergiesResponseAllergiesItemType> type() { return getType(); }
+
+  public GetPatientAllergiesResponseAllergiesItemVerificationStatus verificationStatus() { return getVerificationStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

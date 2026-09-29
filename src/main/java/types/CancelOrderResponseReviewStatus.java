@@ -85,4 +85,6 @@ public final class CancelOrderResponseReviewStatus {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

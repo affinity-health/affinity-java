@@ -483,4 +483,24 @@ public final class GetPracticeTeamInvitationResponsePerson {
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public GetPracticeTeamInvitationResponsePersonObject object() { return getObject(); }
+
+  public String externalId() { return getExternalId(); }
+
+  public Optional<String> email() { return getEmail(); }
+
+  public Optional<String> name() { return getName(); }
+
+  public String status() { return getStatus(); }
+
+  public Optional<GetPracticeTeamInvitationResponsePersonInvitation> invitation() { return getInvitation(); }
+
+  public Optional<GetPracticeTeamInvitationResponsePersonAccount> account() { return getAccount(); }
+
+  public List<String> nextActions() { return getNextActions(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

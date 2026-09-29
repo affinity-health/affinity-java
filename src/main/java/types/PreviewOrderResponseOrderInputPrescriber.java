@@ -294,4 +294,14 @@ public final class PreviewOrderResponseOrderInputPrescriber {
       return this;
     }
   }
+
+  public Optional<String> id() { return getId(); }
+
+  public Optional<String> npi() { return getNpi(); }
+
+  public Optional<String> externalId() { return getExternalId(); }
+
+  public Optional<PreviewOrderResponseOrderInputPrescriberProfile> profile() { return getProfile(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

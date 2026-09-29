@@ -172,4 +172,10 @@ public final class GetPatientAllergiesResponse {
       return this;
     }
   }
+
+  public List<GetPatientAllergiesResponseAllergiesItem> allergies() { return getAllergies(); }
+
+  public GetPatientAllergiesResponseReviewStatus reviewStatus() { return getReviewStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

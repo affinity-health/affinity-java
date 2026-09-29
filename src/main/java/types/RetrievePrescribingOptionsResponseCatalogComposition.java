@@ -181,4 +181,8 @@ public final class RetrievePrescribingOptionsResponseCatalogComposition {
       return this;
     }
   }
+
+  public RetrievePrescribingOptionsResponseCatalogCompositionStatus status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -199,4 +199,12 @@ public final class ListCatalogItemsResponseDataItemMedicationGroup {
       return this;
     }
   }
+
+  public ListCatalogItemsResponseDataItemMedicationGroupOfferCount offerCount() { return getOfferCount(); }
+
+  public ListCatalogItemsResponseDataItemMedicationGroupPharmacyCount pharmacyCount() { return getPharmacyCount(); }
+
+  public List<String> strengths() { return getStrengths(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -77,4 +77,6 @@ public final class ListCatalogItemsResponseDataItemFulfillmentInclusionsItemPric
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

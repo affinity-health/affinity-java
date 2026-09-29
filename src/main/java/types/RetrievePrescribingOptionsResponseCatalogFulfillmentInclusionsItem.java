@@ -198,4 +198,12 @@ public final class RetrievePrescribingOptionsResponseCatalogFulfillmentInclusion
       return this;
     }
   }
+
+  public int amountCents() { return getAmountCents(); }
+
+  public RetrievePrescribingOptionsResponseCatalogFulfillmentInclusionsItemKind kind() { return getKind(); }
+
+  public String label() { return getLabel(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

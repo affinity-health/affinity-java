@@ -87,4 +87,6 @@ public final class RetrievePrescribingOptionsResponseCatalogMedicationGroupPharm
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

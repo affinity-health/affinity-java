@@ -92,6 +92,9 @@ public final class UpdatePracticeRequest {
     this.additionalProperties = additionalProperties;
   }
 
+  /**
+   * @return Optional in the SDK. A fresh key is generated once per call when omitted. Supply a stable key to retry across calls.
+   */
   @JsonIgnore
   public Optional<String> getIdempotencyKey() {
     return idempotencyKey;
@@ -397,6 +400,9 @@ public final class UpdatePracticeRequest {
       return this;
     }
 
+    /**
+     * <p>Optional in the SDK. A fresh key is generated once per call when omitted. Supply a stable key to retry across calls.</p>
+     */
     public Builder idempotencyKey(Optional<String> idempotencyKey) {
       this.idempotencyKey = idempotencyKey;
       return this;

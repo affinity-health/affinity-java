@@ -223,4 +223,14 @@ public final class RevokePracticeTeamInvitationResponsePersonInvitation {
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public RevokePracticeTeamInvitationResponsePersonInvitationStatus status() { return getStatus(); }
+
+  public String expiresAt() { return getExpiresAt(); }
+
+  public List<RevokePracticeTeamInvitationResponsePersonInvitationRolesItem> roles() { return getRoles(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

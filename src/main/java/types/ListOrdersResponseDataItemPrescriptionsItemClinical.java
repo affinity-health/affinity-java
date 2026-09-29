@@ -485,4 +485,6 @@ public final class ListOrdersResponseDataItemPrescriptionsItemClinical {
       return this;
     }
   }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

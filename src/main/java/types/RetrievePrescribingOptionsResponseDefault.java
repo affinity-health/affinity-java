@@ -240,4 +240,14 @@ public final class RetrievePrescribingOptionsResponseDefault {
       return this;
     }
   }
+
+  public String directions() { return getDirections(); }
+
+  public RetrievePrescribingOptionsResponseDefaultFormat format() { return getFormat(); }
+
+  public RetrievePrescribingOptionsResponseDefaultSource source() { return getSource(); }
+
+  public Optional<RetrievePrescribingOptionsResponseDefaultStructuredSig> structuredSig() { return getStructuredSig(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

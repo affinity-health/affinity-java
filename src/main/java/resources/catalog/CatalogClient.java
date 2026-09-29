@@ -5,122 +5,45 @@
 package com.affinity.api.resources.catalog;
 
 import com.affinity.api.core.ClientOptions;
-import com.affinity.api.core.RequestOptions;
-import com.affinity.api.resources.catalog.requests.ListCatalogItemsRequest;
-import com.affinity.api.resources.catalog.requests.ListPharmaciesRequest;
-import com.affinity.api.resources.catalog.requests.ListShippingOptionsRequest;
-import com.affinity.api.resources.catalog.requests.RetrievePrescribingOptionsRequest;
-import com.affinity.api.types.ListCatalogItemsResponse;
-import com.affinity.api.types.ListPharmaciesResponse;
-import com.affinity.api.types.ListShippingOptionsResponseItem;
-import com.affinity.api.types.RetrievePrescribingOptionsResponse;
-import java.lang.String;
-import java.util.List;
+import com.affinity.api.core.Suppliers;
+import com.affinity.api.resources.catalog.items.ItemsClient;
+import com.affinity.api.resources.catalog.prescribingoptions.PrescribingOptionsClient;
+import com.affinity.api.resources.catalog.sellingprices.SellingPricesClient;
+import com.affinity.api.resources.catalog.shippingoptions.ShippingOptionsClient;
+import java.util.function.Supplier;
 
 public class CatalogClient {
   protected final ClientOptions clientOptions;
 
-  private final RawCatalogClient rawClient;
+  protected final Supplier<ItemsClient> itemsClient;
+
+  protected final Supplier<ShippingOptionsClient> shippingOptionsClient;
+
+  protected final Supplier<PrescribingOptionsClient> prescribingOptionsClient;
+
+  protected final Supplier<SellingPricesClient> sellingPricesClient;
 
   public CatalogClient(ClientOptions clientOptions) {
     this.clientOptions = clientOptions;
-    this.rawClient = new RawCatalogClient(clientOptions);
+    this.itemsClient = Suppliers.memoize(() -> new ItemsClient(clientOptions));
+    this.shippingOptionsClient = Suppliers.memoize(() -> new ShippingOptionsClient(clientOptions));
+    this.prescribingOptionsClient = Suppliers.memoize(() -> new PrescribingOptionsClient(clientOptions));
+    this.sellingPricesClient = Suppliers.memoize(() -> new SellingPricesClient(clientOptions));
   }
 
-  /**
-   * Get responses with HTTP metadata like headers
-   */
-  public RawCatalogClient withRawResponse() {
-    return this.rawClient;
+  public ItemsClient items() {
+    return this.itemsClient.get();
   }
 
-  /**
-   * Lists catalog items for the authenticated account and mode. Use view=medications for priced prescription groups with offer counts, pharmacy counts, and strengths; the default view=offers returns individual offers. Use relatedToCatalogItemId to find offers for the same medication and route. When practiceId is supplied, a practice price overrides the platform price and missing overrides inherit the platform price.
-   */
-  public ListCatalogItemsResponse listCatalogItems() {
-    return this.rawClient.listCatalogItems().body();
+  public ShippingOptionsClient shippingOptions() {
+    return this.shippingOptionsClient.get();
   }
 
-  /**
-   * Lists catalog items for the authenticated account and mode. Use view=medications for priced prescription groups with offer counts, pharmacy counts, and strengths; the default view=offers returns individual offers. Use relatedToCatalogItemId to find offers for the same medication and route. When practiceId is supplied, a practice price overrides the platform price and missing overrides inherit the platform price.
-   */
-  public ListCatalogItemsResponse listCatalogItems(RequestOptions requestOptions) {
-    return this.rawClient.listCatalogItems(requestOptions).body();
+  public PrescribingOptionsClient prescribingOptions() {
+    return this.prescribingOptionsClient.get();
   }
 
-  /**
-   * Lists catalog items for the authenticated account and mode. Use view=medications for priced prescription groups with offer counts, pharmacy counts, and strengths; the default view=offers returns individual offers. Use relatedToCatalogItemId to find offers for the same medication and route. When practiceId is supplied, a practice price overrides the platform price and missing overrides inherit the platform price.
-   */
-  public ListCatalogItemsResponse listCatalogItems(ListCatalogItemsRequest request) {
-    return this.rawClient.listCatalogItems(request).body();
-  }
-
-  /**
-   * Lists catalog items for the authenticated account and mode. Use view=medications for priced prescription groups with offer counts, pharmacy counts, and strengths; the default view=offers returns individual offers. Use relatedToCatalogItemId to find offers for the same medication and route. When practiceId is supplied, a practice price overrides the platform price and missing overrides inherit the platform price.
-   */
-  public ListCatalogItemsResponse listCatalogItems(ListCatalogItemsRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.listCatalogItems(request, requestOptions).body();
-  }
-
-  /**
-   * Lists pharmacies available to the authenticated account, including approved invite-only relationships.
-   */
-  public ListPharmaciesResponse listPharmacies() {
-    return this.rawClient.listPharmacies().body();
-  }
-
-  /**
-   * Lists pharmacies available to the authenticated account, including approved invite-only relationships.
-   */
-  public ListPharmaciesResponse listPharmacies(RequestOptions requestOptions) {
-    return this.rawClient.listPharmacies(requestOptions).body();
-  }
-
-  /**
-   * Lists pharmacies available to the authenticated account, including approved invite-only relationships.
-   */
-  public ListPharmaciesResponse listPharmacies(ListPharmaciesRequest request) {
-    return this.rawClient.listPharmacies(request).body();
-  }
-
-  /**
-   * Lists pharmacies available to the authenticated account, including approved invite-only relationships.
-   */
-  public ListPharmaciesResponse listPharmacies(ListPharmaciesRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.listPharmacies(request, requestOptions).body();
-  }
-
-  /**
-   * Returns an array of at most 50 reviewed shipping services eligible for a catalog item, destination, and API mode. destinationState must be a USPS state or territory code. Each option has one temperature; pharmacy catalog summaries list all supported temperatures.
-   */
-  public List<ListShippingOptionsResponseItem> listShippingOptions(String catalogItemId,
-      ListShippingOptionsRequest request) {
-    return this.rawClient.listShippingOptions(catalogItemId, request).body();
-  }
-
-  /**
-   * Returns an array of at most 50 reviewed shipping services eligible for a catalog item, destination, and API mode. destinationState must be a USPS state or territory code. Each option has one temperature; pharmacy catalog summaries list all supported temperatures.
-   */
-  public List<ListShippingOptionsResponseItem> listShippingOptions(String catalogItemId,
-      ListShippingOptionsRequest request, RequestOptions requestOptions) {
-    return this.rawClient.listShippingOptions(catalogItemId, request, requestOptions).body();
-  }
-
-  /**
-   * Requires catalog:read. Returns reviewed SIG presets, guided patterns, quantity constraints and product requirements for a practice and mode. Revisions identify changed defaults. No patient-specific rationale or diagnosis is inferred.
-   */
-  public RetrievePrescribingOptionsResponse retrievePrescribingOptions(String catalogItemId,
-      RetrievePrescribingOptionsRequest request) {
-    return this.rawClient.retrievePrescribingOptions(catalogItemId, request).body();
-  }
-
-  /**
-   * Requires catalog:read. Returns reviewed SIG presets, guided patterns, quantity constraints and product requirements for a practice and mode. Revisions identify changed defaults. No patient-specific rationale or diagnosis is inferred.
-   */
-  public RetrievePrescribingOptionsResponse retrievePrescribingOptions(String catalogItemId,
-      RetrievePrescribingOptionsRequest request, RequestOptions requestOptions) {
-    return this.rawClient.retrievePrescribingOptions(catalogItemId, request, requestOptions).body();
+  public SellingPricesClient sellingPrices() {
+    return this.sellingPricesClient.get();
   }
 }

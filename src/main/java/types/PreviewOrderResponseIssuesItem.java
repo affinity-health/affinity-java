@@ -168,4 +168,12 @@ public final class PreviewOrderResponseIssuesItem {
       return this;
     }
   }
+
+  public String code() { return getCode(); }
+
+  public String path() { return getPath(); }
+
+  public String message() { return getMessage(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

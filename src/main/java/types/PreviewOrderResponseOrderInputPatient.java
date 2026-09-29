@@ -1023,4 +1023,36 @@ public final class PreviewOrderResponseOrderInputPatient {
       return this;
     }
   }
+
+  public Optional<PreviewOrderResponseOrderInputPatientAddress> address() { return getAddress(); }
+
+  public Optional<PreviewOrderResponseOrderInputPatientClinicalProfile> clinicalProfile() { return getClinicalProfile(); }
+
+  public String dateOfBirth() { return getDateOfBirth(); }
+
+  public Optional<String> email() { return getEmail(); }
+
+  public Optional<String> externalId() { return getExternalId(); }
+
+  public Optional<List<PreviewOrderResponseOrderInputPatientAddressesItem>> addresses() { return getAddresses(); }
+
+  public Optional<List<PreviewOrderResponseOrderInputPatientEncountersItem>> encounters() { return getEncounters(); }
+
+  public Optional<PreviewOrderResponseOrderInputPatientGender> gender() { return getGender(); }
+
+  public Optional<String> locationId() { return getLocationId(); }
+
+  public Optional<Map<String, Object>> metadata() { return getMetadata(); }
+
+  public Optional<String> medicalRecordNumber() { return getMedicalRecordNumber(); }
+
+  public Optional<List<PreviewOrderResponseOrderInputPatientMeasurementsItem>> measurements() { return getMeasurements(); }
+
+  public PreviewOrderResponseOrderInputPatientName name() { return getName(); }
+
+  public Optional<String> phone() { return getPhone(); }
+
+  public Optional<List<PreviewOrderResponseOrderInputPatientProgramsItem>> programs() { return getPrograms(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -168,4 +168,12 @@ public final class DeletePatientResponse {
       return this;
     }
   }
+
+  public boolean deleted() { return getDeleted(); }
+
+  public String id() { return getId(); }
+
+  public DeletePatientResponseObject object() { return getObject(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

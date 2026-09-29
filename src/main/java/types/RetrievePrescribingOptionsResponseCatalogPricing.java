@@ -195,4 +195,14 @@ public final class RetrievePrescribingOptionsResponseCatalogPricing {
       return this;
     }
   }
+
+  public int amountCents() { return getAmountCents(); }
+
+  public RetrievePrescribingOptionsResponseCatalogPricingBasis basis() { return getBasis(); }
+
+  public RetrievePrescribingOptionsResponseCatalogPricingCurrency currency() { return getCurrency(); }
+
+  public int medicationSubtotalCents() { return getMedicationSubtotalCents(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -75,4 +75,6 @@ public final class ListWebhookEventsResponseObject {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

@@ -86,4 +86,6 @@ public final class ListOrdersResponseDataItemFulfillmentsItemExceptionsItemSever
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

@@ -599,4 +599,24 @@ public final class PreviewOrderResponseOrderInput {
       return this;
     }
   }
+
+  public Optional<List<PreviewOrderResponseOrderInputOtcItemsItem>> otcItems() { return getOtcItems(); }
+
+  public String practiceId() { return getPracticeId(); }
+
+  public Optional<String> userId() { return getUserId(); }
+
+  public Optional<PreviewOrderResponseOrderInputPrescriber> prescriber() { return getPrescriber(); }
+
+  public Optional<String> shippingAddressId() { return getShippingAddressId(); }
+
+  public Optional<String> externalOrderId() { return getExternalOrderId(); }
+
+  public List<PreviewOrderResponseOrderInputPrescriptionsItem> prescriptions() { return getPrescriptions(); }
+
+  public Optional<String> patientId() { return getPatientId(); }
+
+  public Optional<PreviewOrderResponseOrderInputPatient> patient() { return getPatient(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

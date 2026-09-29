@@ -21,30 +21,18 @@ import com.affinity.api.errors.ServiceUnavailableError;
 import com.affinity.api.errors.TooManyRequestsError;
 import com.affinity.api.errors.UnauthorizedError;
 import com.affinity.api.errors.UnprocessableEntityError;
-import com.affinity.api.resources.orders.requests.ActOnOrderExceptionRequest;
-import com.affinity.api.resources.orders.requests.AddOrderPrescriptionRequest;
 import com.affinity.api.resources.orders.requests.CancelOrderRequest;
-import com.affinity.api.resources.orders.requests.CreateOrderBatchRequest;
 import com.affinity.api.resources.orders.requests.CreateOrderRequest;
-import com.affinity.api.resources.orders.requests.GetOrderRequest;
-import com.affinity.api.resources.orders.requests.GetOrderTestSimulationRequest;
-import com.affinity.api.resources.orders.requests.ListOrderEventsRequest;
+import com.affinity.api.resources.orders.requests.GetOrdersRequest;
 import com.affinity.api.resources.orders.requests.ListOrdersRequest;
 import com.affinity.api.resources.orders.requests.PreviewOrderRequest;
 import com.affinity.api.resources.orders.requests.RejectOrderRequest;
 import com.affinity.api.resources.orders.requests.SignAndSubmitOrderRequest;
 import com.affinity.api.resources.orders.requests.SignOrderRequest;
 import com.affinity.api.resources.orders.requests.SubmitOrderRequest;
-import com.affinity.api.resources.orders.requests.UpdateOrderPrescriptionRequest;
-import com.affinity.api.resources.orders.requests.UpdateOrderTestSimulationRequest;
-import com.affinity.api.types.ActOnOrderExceptionResponse;
-import com.affinity.api.types.AddOrderPrescriptionResponse;
 import com.affinity.api.types.CancelOrderResponse;
-import com.affinity.api.types.CreateOrderBatchResponse;
 import com.affinity.api.types.CreateOrderResponse;
 import com.affinity.api.types.GetOrderResponse;
-import com.affinity.api.types.GetOrderTestSimulationResponse;
-import com.affinity.api.types.ListOrderEventsResponse;
 import com.affinity.api.types.ListOrdersResponse;
 import com.affinity.api.types.PreviewOrderResponse;
 import com.affinity.api.types.Problem;
@@ -52,8 +40,6 @@ import com.affinity.api.types.RejectOrderResponse;
 import com.affinity.api.types.SignAndSubmitOrderResponse;
 import com.affinity.api.types.SignOrderResponse;
 import com.affinity.api.types.SubmitOrderResponse;
-import com.affinity.api.types.UpdateOrderPrescriptionResponse;
-import com.affinity.api.types.UpdateOrderTestSimulationResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
 import java.lang.Exception;
@@ -80,21 +66,21 @@ public class AsyncRawOrdersClient {
     this.clientOptions = clientOptions;
   }
 
-  public CompletableFuture<AffinityClientHttpResponse<ListOrdersResponse>> listOrders() {
-    return listOrders(ListOrdersRequest.builder().build());
+  public CompletableFuture<AffinityClientHttpResponse<ListOrdersResponse>> list() {
+    return list(ListOrdersRequest.builder().build());
   }
 
-  public CompletableFuture<AffinityClientHttpResponse<ListOrdersResponse>> listOrders(
+  public CompletableFuture<AffinityClientHttpResponse<ListOrdersResponse>> list(
       RequestOptions requestOptions) {
-    return listOrders(ListOrdersRequest.builder().build(),requestOptions);
+    return list(ListOrdersRequest.builder().build(),requestOptions);
   }
 
-  public CompletableFuture<AffinityClientHttpResponse<ListOrdersResponse>> listOrders(
+  public CompletableFuture<AffinityClientHttpResponse<ListOrdersResponse>> list(
       ListOrdersRequest request) {
-    return listOrders(request,null);
+    return list(request,null);
   }
 
-  public CompletableFuture<AffinityClientHttpResponse<ListOrdersResponse>> listOrders(
+  public CompletableFuture<AffinityClientHttpResponse<ListOrdersResponse>> list(
       ListOrdersRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -215,15 +201,15 @@ public class AsyncRawOrdersClient {
     /**
      * Creates one unsigned order with 1–20 prescriptions for one patient in one practice. Supply patientId or patient; inline patient creation requires patients:write. Prescriber is optional: select by npi, provider id, or integration-scoped externalId, or leave the draft unassigned until signing. First-use prescriber registration requires team:write. Legacy userId is supported but cannot be combined with prescriber. Idempotency-Key is required.
      */
-    public CompletableFuture<AffinityClientHttpResponse<CreateOrderResponse>> createOrder(
+    public CompletableFuture<AffinityClientHttpResponse<CreateOrderResponse>> create(
         CreateOrderRequest request) {
-      return createOrder(request,null);
+      return create(request,null);
     }
 
     /**
      * Creates one unsigned order with 1–20 prescriptions for one patient in one practice. Supply patientId or patient; inline patient creation requires patients:write. Prescriber is optional: select by npi, provider id, or integration-scoped externalId, or leave the draft unassigned until signing. First-use prescriber registration requires team:write. Legacy userId is supported but cannot be combined with prescriber. Idempotency-Key is required.
      */
-    public CompletableFuture<AffinityClientHttpResponse<CreateOrderResponse>> createOrder(
+    public CompletableFuture<AffinityClientHttpResponse<CreateOrderResponse>> create(
         CreateOrderRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -313,23 +299,22 @@ public class AsyncRawOrdersClient {
         return future;
       }
 
-      public CompletableFuture<AffinityClientHttpResponse<GetOrderResponse>> getOrder(
-          String orderId) {
-        return getOrder(orderId,GetOrderRequest.builder().build());
+      public CompletableFuture<AffinityClientHttpResponse<GetOrderResponse>> get(String orderId) {
+        return get(orderId,GetOrdersRequest.builder().build());
       }
 
-      public CompletableFuture<AffinityClientHttpResponse<GetOrderResponse>> getOrder(
-          String orderId, RequestOptions requestOptions) {
-        return getOrder(orderId,GetOrderRequest.builder().build(),requestOptions);
+      public CompletableFuture<AffinityClientHttpResponse<GetOrderResponse>> get(String orderId,
+          RequestOptions requestOptions) {
+        return get(orderId,GetOrdersRequest.builder().build(),requestOptions);
       }
 
-      public CompletableFuture<AffinityClientHttpResponse<GetOrderResponse>> getOrder(
-          String orderId, GetOrderRequest request) {
-        return getOrder(orderId,request,null);
+      public CompletableFuture<AffinityClientHttpResponse<GetOrderResponse>> get(String orderId,
+          GetOrdersRequest request) {
+        return get(orderId,request,null);
       }
 
-      public CompletableFuture<AffinityClientHttpResponse<GetOrderResponse>> getOrder(
-          String orderId, GetOrderRequest request, RequestOptions requestOptions) {
+      public CompletableFuture<AffinityClientHttpResponse<GetOrderResponse>> get(String orderId,
+          GetOrdersRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/orders")
@@ -411,15 +396,15 @@ public class AsyncRawOrdersClient {
         /**
          * Requests cancellation. HTTP 200 means the request was handled; check cancellation.status for confirmed, pending, partial, or failed. Only confirmed means the entire order is cancelled. Shipment possession makes a fulfillment cancellation too late.
          */
-        public CompletableFuture<AffinityClientHttpResponse<CancelOrderResponse>> cancelOrder(
+        public CompletableFuture<AffinityClientHttpResponse<CancelOrderResponse>> cancel(
             String orderId, CancelOrderRequest request) {
-          return cancelOrder(orderId,request,null);
+          return cancel(orderId,request,null);
         }
 
         /**
          * Requests cancellation. HTTP 200 means the request was handled; check cancellation.status for confirmed, pending, partial, or failed. Only confirmed means the entire order is cancelled. Shipment possession makes a fulfillment cancellation too late.
          */
-        public CompletableFuture<AffinityClientHttpResponse<CancelOrderResponse>> cancelOrder(
+        public CompletableFuture<AffinityClientHttpResponse<CancelOrderResponse>> cancel(
             String orderId, CancelOrderRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -510,26 +495,21 @@ public class AsyncRawOrdersClient {
           }
 
           /**
-           * Acknowledge, retry, contact, or resolve an order exception in the credential's Test/Live mode. assign_to_me requires a signed-in dashboard user; API keys receive 400 and may use acknowledge instead. Actor headers do not create a dashboard assignee.
+           * Requires orders:write and catalog:read. Supply exactly one of patientId, patientExternalId, or inline patient details. External-ID lookup additionally requires patients:read; inline details require patients:write. Resolves defaults and explicit edits for 1–20 prescriptions. Reuses stored patient details when identifiers match; otherwise previews inline details without creating a patient. Complete previews contain an orders.create input. Does not create records, reserve prices, sign, charge or transmit. No idempotency key is required. Creation and signing recheck current requirements.
            */
-          public CompletableFuture<AffinityClientHttpResponse<ActOnOrderExceptionResponse>> actOnOrderException(
-              String orderId, String exceptionId, ActOnOrderExceptionRequest request) {
-            return actOnOrderException(orderId,exceptionId,request,null);
+          public CompletableFuture<AffinityClientHttpResponse<PreviewOrderResponse>> preview(
+              PreviewOrderRequest request) {
+            return preview(request,null);
           }
 
           /**
-           * Acknowledge, retry, contact, or resolve an order exception in the credential's Test/Live mode. assign_to_me requires a signed-in dashboard user; API keys receive 400 and may use acknowledge instead. Actor headers do not create a dashboard assignee.
+           * Requires orders:write and catalog:read. Supply exactly one of patientId, patientExternalId, or inline patient details. External-ID lookup additionally requires patients:read; inline details require patients:write. Resolves defaults and explicit edits for 1–20 prescriptions. Reuses stored patient details when identifiers match; otherwise previews inline details without creating a patient. Complete previews contain an orders.create input. Does not create records, reserve prices, sign, charge or transmit. No idempotency key is required. Creation and signing recheck current requirements.
            */
-          public CompletableFuture<AffinityClientHttpResponse<ActOnOrderExceptionResponse>> actOnOrderException(
-              String orderId, String exceptionId, ActOnOrderExceptionRequest request,
-              RequestOptions requestOptions) {
+          public CompletableFuture<AffinityClientHttpResponse<PreviewOrderResponse>> preview(
+              PreviewOrderRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-              .addPathSegments("v1/orders")
-              .addPathSegment(orderId)
-              .addPathSegments("exceptions")
-              .addPathSegment(exceptionId)
-              .addPathSegments("actions");if (requestOptions != null) {
+              .addPathSegments("v1/order-previews");if (requestOptions != null) {
                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                   httpUrl.addQueryParameter(_key, _value);
                 } );
@@ -538,23 +518,16 @@ public class AsyncRawOrdersClient {
               try {
                 body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
               }
-              catch(Exception e) {
-                throw new RuntimeException(e);
+              catch(JsonProcessingException e) {
+                throw new AffinityClientException("Failed to serialize request", e);
               }
-              Request.Builder _requestBuilder = new Request.Builder()
+              Request okhttpRequest = new Request.Builder()
                 .url(httpUrl.build())
                 .method("POST", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json");
-              _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey());
-              if (request.getAffinityActorId().isPresent()) {
-                _requestBuilder.addHeader("Affinity-Actor-Id", request.getAffinityActorId().get());
-              }
-              if (request.getAffinityActorType().isPresent()) {
-                _requestBuilder.addHeader("Affinity-Actor-Type", request.getAffinityActorType().get());
-              }
-              Request okhttpRequest = _requestBuilder.build();
+                .addHeader("Accept", "application/json")
+                .build();
               OkHttpClient client = clientOptions.httpClient();
               if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
                 client = clientOptions.httpClientWithTimeout(requestOptions);
@@ -562,14 +535,14 @@ public class AsyncRawOrdersClient {
               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
               }
-              CompletableFuture<AffinityClientHttpResponse<ActOnOrderExceptionResponse>> future = new CompletableFuture<>();
+              CompletableFuture<AffinityClientHttpResponse<PreviewOrderResponse>> future = new CompletableFuture<>();
               client.newCall(okhttpRequest).enqueue(new Callback() {
                 @Override
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                   try (ResponseBody responseBody = response.body()) {
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      future.complete(new AffinityClientHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ActOnOrderExceptionResponse.class), response));
+                      future.complete(new AffinityClientHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PreviewOrderResponse.class), response));
                       return;
                     }
                     try {
@@ -583,8 +556,6 @@ public class AsyncRawOrdersClient {
                         case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
                         return;
                         case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                        return;
-                        case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
                         return;
                         case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
                         return;
@@ -613,52 +584,42 @@ public class AsyncRawOrdersClient {
               return future;
             }
 
-            public CompletableFuture<AffinityClientHttpResponse<ListOrderEventsResponse>> listOrderEvents(
-                String orderId) {
-              return listOrderEvents(orderId,ListOrderEventsRequest.builder().build());
+            /**
+             * Requires orders:sign, Idempotency-Key, signatureAttestation, and expectedRevision from the reviewed order. Existing integrations may send expectedVersions instead; supply exactly one. A stale revision returns 409 and requires renewed clinician review. Select prescriber by npi, provider id, or integration-scoped externalId, or inherit the draft's prescriber. First-use registration requires team:write. Actor headers are optional audit metadata with prescriber; legacy userId requires matching clinician actor headers. Signing does not submit to a pharmacy.
+             */
+            public CompletableFuture<AffinityClientHttpResponse<SignOrderResponse>> sign(
+                String orderId, SignOrderRequest request) {
+              return sign(orderId,request,null);
             }
 
-            public CompletableFuture<AffinityClientHttpResponse<ListOrderEventsResponse>> listOrderEvents(
-                String orderId, RequestOptions requestOptions) {
-              return listOrderEvents(orderId,ListOrderEventsRequest.builder().build(),requestOptions);
-            }
-
-            public CompletableFuture<AffinityClientHttpResponse<ListOrderEventsResponse>> listOrderEvents(
-                String orderId, ListOrderEventsRequest request) {
-              return listOrderEvents(orderId,request,null);
-            }
-
-            public CompletableFuture<AffinityClientHttpResponse<ListOrderEventsResponse>> listOrderEvents(
-                String orderId, ListOrderEventsRequest request, RequestOptions requestOptions) {
+            /**
+             * Requires orders:sign, Idempotency-Key, signatureAttestation, and expectedRevision from the reviewed order. Existing integrations may send expectedVersions instead; supply exactly one. A stale revision returns 409 and requires renewed clinician review. Select prescriber by npi, provider id, or integration-scoped externalId, or inherit the draft's prescriber. First-use registration requires team:write. Actor headers are optional audit metadata with prescriber; legacy userId requires matching clinician actor headers. Signing does not submit to a pharmacy.
+             */
+            public CompletableFuture<AffinityClientHttpResponse<SignOrderResponse>> sign(
+                String orderId, SignOrderRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                 .addPathSegments("v1/orders")
                 .addPathSegment(orderId)
-                .addPathSegments("events");if (request.getEndingBefore().isPresent()) {
-                  QueryStringMapper.addQueryParameter(httpUrl, "endingBefore", request.getEndingBefore().get(), false);
-                }
-                if (request.getLimit().isPresent()) {
-                  QueryStringMapper.addQueryParameter(httpUrl, "limit", request.getLimit().get(), false);
-                }
-                if (request.getStartingAfter().isPresent()) {
-                  QueryStringMapper.addQueryParameter(httpUrl, "startingAfter", request.getStartingAfter().get(), false);
-                }
-                if (requestOptions != null) {
+                .addPathSegments("sign");if (requestOptions != null) {
                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                     httpUrl.addQueryParameter(_key, _value);
                   } );
                 }
+                RequestBody body;
+                try {
+                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                }
+                catch(Exception e) {
+                  throw new RuntimeException(e);
+                }
                 Request.Builder _requestBuilder = new Request.Builder()
                   .url(httpUrl.build())
-                  .method("GET", null)
+                  .method("POST", body)
                   .headers(Headers.of(clientOptions.headers(requestOptions)))
+                  .addHeader("Content-Type", "application/json")
                   .addHeader("Accept", "application/json");
-                if (request.getAffinityActorId().isPresent()) {
-                  _requestBuilder.addHeader("Affinity-Actor-Id", request.getAffinityActorId().get());
-                }
-                if (request.getAffinityActorType().isPresent()) {
-                  _requestBuilder.addHeader("Affinity-Actor-Type", request.getAffinityActorType().get());
-                }
+                _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey());
                 Request okhttpRequest = _requestBuilder.build();
                 OkHttpClient client = clientOptions.httpClient();
                 if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
@@ -667,14 +628,14 @@ public class AsyncRawOrdersClient {
                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                 }
-                CompletableFuture<AffinityClientHttpResponse<ListOrderEventsResponse>> future = new CompletableFuture<>();
+                CompletableFuture<AffinityClientHttpResponse<SignOrderResponse>> future = new CompletableFuture<>();
                 client.newCall(okhttpRequest).enqueue(new Callback() {
                   @Override
                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     try (ResponseBody responseBody = response.body()) {
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        future.complete(new AffinityClientHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ListOrderEventsResponse.class), response));
+                        future.complete(new AffinityClientHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SignOrderResponse.class), response));
                         return;
                       }
                       try {
@@ -692,6 +653,8 @@ public class AsyncRawOrdersClient {
                           case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
                           return;
                           case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
+                          return;
+                          case 503:future.completeExceptionally(new ServiceUnavailableError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
                           return;
                         }
                       }
@@ -719,49 +682,42 @@ public class AsyncRawOrdersClient {
               }
 
               /**
-               * Requires orders:write. Available only in Test mode.
+               * Requires orders:sign, Idempotency-Key, signatureAttestation, and expectedRevision from the reviewed order. Existing integrations may send expectedVersions instead; supply exactly one. A stale revision returns 409 and requires renewed clinician review. Select prescriber by npi, provider id, or externalId, or inherit the draft's prescriber. First-use registration requires team:write. Actor headers are optional with prescriber; legacy userId requires matching clinician actor headers. Signs the complete order, then attempts each submission. Signing remains committed if submission fails. Replay the same key after an uncertain response; retry reported submission failures through Submit order with a new key. Submitted means queued, not pharmacy acceptance.
                */
-              public CompletableFuture<AffinityClientHttpResponse<GetOrderTestSimulationResponse>> getOrderTestSimulation(
-                  String orderId) {
-                return getOrderTestSimulation(orderId,GetOrderTestSimulationRequest.builder().build());
+              public CompletableFuture<AffinityClientHttpResponse<SignAndSubmitOrderResponse>> signAndSubmit(
+                  String orderId, SignAndSubmitOrderRequest request) {
+                return signAndSubmit(orderId,request,null);
               }
 
               /**
-               * Requires orders:write. Available only in Test mode.
+               * Requires orders:sign, Idempotency-Key, signatureAttestation, and expectedRevision from the reviewed order. Existing integrations may send expectedVersions instead; supply exactly one. A stale revision returns 409 and requires renewed clinician review. Select prescriber by npi, provider id, or externalId, or inherit the draft's prescriber. First-use registration requires team:write. Actor headers are optional with prescriber; legacy userId requires matching clinician actor headers. Signs the complete order, then attempts each submission. Signing remains committed if submission fails. Replay the same key after an uncertain response; retry reported submission failures through Submit order with a new key. Submitted means queued, not pharmacy acceptance.
                */
-              public CompletableFuture<AffinityClientHttpResponse<GetOrderTestSimulationResponse>> getOrderTestSimulation(
-                  String orderId, RequestOptions requestOptions) {
-                return getOrderTestSimulation(orderId,GetOrderTestSimulationRequest.builder().build(),requestOptions);
-              }
-
-              /**
-               * Requires orders:write. Available only in Test mode.
-               */
-              public CompletableFuture<AffinityClientHttpResponse<GetOrderTestSimulationResponse>> getOrderTestSimulation(
-                  String orderId, GetOrderTestSimulationRequest request) {
-                return getOrderTestSimulation(orderId,request,null);
-              }
-
-              /**
-               * Requires orders:write. Available only in Test mode.
-               */
-              public CompletableFuture<AffinityClientHttpResponse<GetOrderTestSimulationResponse>> getOrderTestSimulation(
-                  String orderId, GetOrderTestSimulationRequest request,
+              public CompletableFuture<AffinityClientHttpResponse<SignAndSubmitOrderResponse>> signAndSubmit(
+                  String orderId, SignAndSubmitOrderRequest request,
                   RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                   .addPathSegments("v1/orders")
                   .addPathSegment(orderId)
-                  .addPathSegments("test-simulation");if (requestOptions != null) {
+                  .addPathSegments("sign-and-submit");if (requestOptions != null) {
                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                       httpUrl.addQueryParameter(_key, _value);
                     } );
                   }
+                  RequestBody body;
+                  try {
+                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                  }
+                  catch(Exception e) {
+                    throw new RuntimeException(e);
+                  }
                   Request.Builder _requestBuilder = new Request.Builder()
                     .url(httpUrl.build())
-                    .method("GET", null)
+                    .method("POST", body)
                     .headers(Headers.of(clientOptions.headers(requestOptions)))
+                    .addHeader("Content-Type", "application/json")
                     .addHeader("Accept", "application/json");
+                  _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey());
                   Request okhttpRequest = _requestBuilder.build();
                   OkHttpClient client = clientOptions.httpClient();
                   if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
@@ -770,14 +726,14 @@ public class AsyncRawOrdersClient {
                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                   }
-                  CompletableFuture<AffinityClientHttpResponse<GetOrderTestSimulationResponse>> future = new CompletableFuture<>();
+                  CompletableFuture<AffinityClientHttpResponse<SignAndSubmitOrderResponse>> future = new CompletableFuture<>();
                   client.newCall(okhttpRequest).enqueue(new Callback() {
                     @Override
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                       try (ResponseBody responseBody = response.body()) {
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          future.complete(new AffinityClientHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GetOrderTestSimulationResponse.class), response));
+                          future.complete(new AffinityClientHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SignAndSubmitOrderResponse.class), response));
                           return;
                         }
                         try {
@@ -795,6 +751,8 @@ public class AsyncRawOrdersClient {
                             case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
                             return;
                             case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
+                            return;
+                            case 503:future.completeExceptionally(new ServiceUnavailableError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
                             return;
                           }
                         }
@@ -822,24 +780,23 @@ public class AsyncRawOrdersClient {
                 }
 
                 /**
-                 * Requires orders:write and Idempotency-Key. Configure before submission or queue a valid pharmacy event in manual mode. Events use normal order history and Test webhooks. Live requests are rejected.
+                 * Requires orders:sign and Idempotency-Key. Queues signed prescriptions after rechecking authorization, signature integrity, billing, and fulfillment eligibility. Track pharmacy acceptance through order reads and webhooks. After a partial failure, retry submission with a new idempotency key; already queued prescriptions are not duplicated.
                  */
-                public CompletableFuture<AffinityClientHttpResponse<UpdateOrderTestSimulationResponse>> updateOrderTestSimulation(
-                    String orderId, UpdateOrderTestSimulationRequest request) {
-                  return updateOrderTestSimulation(orderId,request,null);
+                public CompletableFuture<AffinityClientHttpResponse<SubmitOrderResponse>> submit(
+                    String orderId, SubmitOrderRequest request) {
+                  return submit(orderId,request,null);
                 }
 
                 /**
-                 * Requires orders:write and Idempotency-Key. Configure before submission or queue a valid pharmacy event in manual mode. Events use normal order history and Test webhooks. Live requests are rejected.
+                 * Requires orders:sign and Idempotency-Key. Queues signed prescriptions after rechecking authorization, signature integrity, billing, and fulfillment eligibility. Track pharmacy acceptance through order reads and webhooks. After a partial failure, retry submission with a new idempotency key; already queued prescriptions are not duplicated.
                  */
-                public CompletableFuture<AffinityClientHttpResponse<UpdateOrderTestSimulationResponse>> updateOrderTestSimulation(
-                    String orderId, UpdateOrderTestSimulationRequest request,
-                    RequestOptions requestOptions) {
+                public CompletableFuture<AffinityClientHttpResponse<SubmitOrderResponse>> submit(
+                    String orderId, SubmitOrderRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                     .addPathSegments("v1/orders")
                     .addPathSegment(orderId)
-                    .addPathSegments("test-simulation");if (requestOptions != null) {
+                    .addPathSegments("submit");if (requestOptions != null) {
                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                         httpUrl.addQueryParameter(_key, _value);
                       } );
@@ -853,7 +810,7 @@ public class AsyncRawOrdersClient {
                     }
                     Request.Builder _requestBuilder = new Request.Builder()
                       .url(httpUrl.build())
-                      .method("PUT", body)
+                      .method("POST", body)
                       .headers(Headers.of(clientOptions.headers(requestOptions)))
                       .addHeader("Content-Type", "application/json")
                       .addHeader("Accept", "application/json");
@@ -866,14 +823,14 @@ public class AsyncRawOrdersClient {
                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                     }
-                    CompletableFuture<AffinityClientHttpResponse<UpdateOrderTestSimulationResponse>> future = new CompletableFuture<>();
+                    CompletableFuture<AffinityClientHttpResponse<SubmitOrderResponse>> future = new CompletableFuture<>();
                     client.newCall(okhttpRequest).enqueue(new Callback() {
                       @Override
                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                         try (ResponseBody responseBody = response.body()) {
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            future.complete(new AffinityClientHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, UpdateOrderTestSimulationResponse.class), response));
+                            future.complete(new AffinityClientHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubmitOrderResponse.class), response));
                             return;
                           }
                           try {
@@ -891,6 +848,8 @@ public class AsyncRawOrdersClient {
                               case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
                               return;
                               case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
+                              return;
+                              case 503:future.completeExceptionally(new ServiceUnavailableError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
                               return;
                             }
                           }
@@ -918,21 +877,23 @@ public class AsyncRawOrdersClient {
                   }
 
                   /**
-                   * Requires orders:write and catalog:read. Supply exactly one of patientId, patientExternalId, or inline patient details. External-ID lookup additionally requires patients:read; inline details require patients:write. Resolves defaults and explicit edits for 1–20 prescriptions. Reuses stored patient details when identifiers match; otherwise previews inline details without creating a patient. Complete previews contain an orders.create input. Does not create records, reserve prices, sign, charge or transmit. No idempotency key is required. Creation and signing recheck current requirements.
+                   * Requires orders:sign and Idempotency-Key. Select a prescriber or inherit the draft's prescriber. Legacy userId requires matching clinician actor headers. Supply expectedRevision from the reviewed order, or expectedVersions for existing integrations. Permanently rejects the complete unsigned order after checking its revision.
                    */
-                  public CompletableFuture<AffinityClientHttpResponse<PreviewOrderResponse>> previewOrder(
-                      PreviewOrderRequest request) {
-                    return previewOrder(request,null);
+                  public CompletableFuture<AffinityClientHttpResponse<RejectOrderResponse>> reject(
+                      String orderId, RejectOrderRequest request) {
+                    return reject(orderId,request,null);
                   }
 
                   /**
-                   * Requires orders:write and catalog:read. Supply exactly one of patientId, patientExternalId, or inline patient details. External-ID lookup additionally requires patients:read; inline details require patients:write. Resolves defaults and explicit edits for 1–20 prescriptions. Reuses stored patient details when identifiers match; otherwise previews inline details without creating a patient. Complete previews contain an orders.create input. Does not create records, reserve prices, sign, charge or transmit. No idempotency key is required. Creation and signing recheck current requirements.
+                   * Requires orders:sign and Idempotency-Key. Select a prescriber or inherit the draft's prescriber. Legacy userId requires matching clinician actor headers. Supply expectedRevision from the reviewed order, or expectedVersions for existing integrations. Permanently rejects the complete unsigned order after checking its revision.
                    */
-                  public CompletableFuture<AffinityClientHttpResponse<PreviewOrderResponse>> previewOrder(
-                      PreviewOrderRequest request, RequestOptions requestOptions) {
+                  public CompletableFuture<AffinityClientHttpResponse<RejectOrderResponse>> reject(
+                      String orderId, RejectOrderRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                      .addPathSegments("v1/order-previews");if (requestOptions != null) {
+                      .addPathSegments("v1/orders")
+                      .addPathSegment(orderId)
+                      .addPathSegments("rejection");if (requestOptions != null) {
                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                           httpUrl.addQueryParameter(_key, _value);
                         } );
@@ -941,16 +902,17 @@ public class AsyncRawOrdersClient {
                       try {
                         body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
                       }
-                      catch(JsonProcessingException e) {
-                        throw new AffinityClientException("Failed to serialize request", e);
+                      catch(Exception e) {
+                        throw new RuntimeException(e);
                       }
-                      Request okhttpRequest = new Request.Builder()
+                      Request.Builder _requestBuilder = new Request.Builder()
                         .url(httpUrl.build())
                         .method("POST", body)
                         .headers(Headers.of(clientOptions.headers(requestOptions)))
                         .addHeader("Content-Type", "application/json")
-                        .addHeader("Accept", "application/json")
-                        .build();
+                        .addHeader("Accept", "application/json");
+                      _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey());
+                      Request okhttpRequest = _requestBuilder.build();
                       OkHttpClient client = clientOptions.httpClient();
                       if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
                         client = clientOptions.httpClientWithTimeout(requestOptions);
@@ -958,14 +920,14 @@ public class AsyncRawOrdersClient {
                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                       }
-                      CompletableFuture<AffinityClientHttpResponse<PreviewOrderResponse>> future = new CompletableFuture<>();
+                      CompletableFuture<AffinityClientHttpResponse<RejectOrderResponse>> future = new CompletableFuture<>();
                       client.newCall(okhttpRequest).enqueue(new Callback() {
                         @Override
                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                           try (ResponseBody responseBody = response.body()) {
                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                             if (response.isSuccessful()) {
-                              future.complete(new AffinityClientHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PreviewOrderResponse.class), response));
+                              future.complete(new AffinityClientHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RejectOrderResponse.class), response));
                               return;
                             }
                             try {
@@ -980,7 +942,11 @@ public class AsyncRawOrdersClient {
                                 return;
                                 case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
                                 return;
+                                case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
+                                return;
                                 case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
+                                return;
+                                case 503:future.completeExceptionally(new ServiceUnavailableError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
                                 return;
                               }
                             }
@@ -1006,708 +972,4 @@ public class AsyncRawOrdersClient {
                       });
                       return future;
                     }
-
-                    /**
-                     * Requires orders:sign, Idempotency-Key, signatureAttestation, and expectedRevision from the reviewed order. Existing integrations may send expectedVersions instead; supply exactly one. A stale revision returns 409 and requires renewed clinician review. Select prescriber by npi, provider id, or integration-scoped externalId, or inherit the draft's prescriber. First-use registration requires team:write. Actor headers are optional audit metadata with prescriber; legacy userId requires matching clinician actor headers. Signing does not submit to a pharmacy.
-                     */
-                    public CompletableFuture<AffinityClientHttpResponse<SignOrderResponse>> signOrder(
-                        String orderId, SignOrderRequest request) {
-                      return signOrder(orderId,request,null);
-                    }
-
-                    /**
-                     * Requires orders:sign, Idempotency-Key, signatureAttestation, and expectedRevision from the reviewed order. Existing integrations may send expectedVersions instead; supply exactly one. A stale revision returns 409 and requires renewed clinician review. Select prescriber by npi, provider id, or integration-scoped externalId, or inherit the draft's prescriber. First-use registration requires team:write. Actor headers are optional audit metadata with prescriber; legacy userId requires matching clinician actor headers. Signing does not submit to a pharmacy.
-                     */
-                    public CompletableFuture<AffinityClientHttpResponse<SignOrderResponse>> signOrder(
-                        String orderId, SignOrderRequest request, RequestOptions requestOptions) {
-                      HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
-
-                        .addPathSegments("v1/orders")
-                        .addPathSegment(orderId)
-                        .addPathSegments("sign");if (requestOptions != null) {
-                          requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                            httpUrl.addQueryParameter(_key, _value);
-                          } );
-                        }
-                        RequestBody body;
-                        try {
-                          body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
-                        }
-                        catch(Exception e) {
-                          throw new RuntimeException(e);
-                        }
-                        Request.Builder _requestBuilder = new Request.Builder()
-                          .url(httpUrl.build())
-                          .method("POST", body)
-                          .headers(Headers.of(clientOptions.headers(requestOptions)))
-                          .addHeader("Content-Type", "application/json")
-                          .addHeader("Accept", "application/json");
-                        _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey());
-                        Request okhttpRequest = _requestBuilder.build();
-                        OkHttpClient client = clientOptions.httpClient();
-                        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-                          client = clientOptions.httpClientWithTimeout(requestOptions);
-                        }
-                        if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
-                          okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
-                        }
-                        CompletableFuture<AffinityClientHttpResponse<SignOrderResponse>> future = new CompletableFuture<>();
-                        client.newCall(okhttpRequest).enqueue(new Callback() {
-                          @Override
-                          public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                            try (ResponseBody responseBody = response.body()) {
-                              String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-                              if (response.isSuccessful()) {
-                                future.complete(new AffinityClientHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SignOrderResponse.class), response));
-                                return;
-                              }
-                              try {
-                                switch (response.code()) {
-                                  case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                  return;
-                                  case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                  return;
-                                  case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                  return;
-                                  case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                  return;
-                                  case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                  return;
-                                  case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                  return;
-                                  case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                  return;
-                                  case 503:future.completeExceptionally(new ServiceUnavailableError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                  return;
-                                }
-                              }
-                              catch (JsonProcessingException ignored) {
-                                // unable to map error response, throwing generic error
-                              }
-                              Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-                              future.completeExceptionally(new AffinityClientApiException("Error with status code " + response.code(), response.code(), errorBody, response));
-                              return;
-                            }
-                            catch (JsonProcessingException e) {
-                              future.completeExceptionally(new AffinityClientException("Failed to deserialize response: " + e.getMessage(), e));
-                            }
-                            catch (IOException e) {
-                              future.completeExceptionally(new AffinityClientException("Network error executing HTTP request", e));
-                            }
-                          }
-
-                          @Override
-                          public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                            future.completeExceptionally(new AffinityClientException("Network error executing HTTP request", e));
-                          }
-                        });
-                        return future;
-                      }
-
-                      /**
-                       * Requires orders:sign, Idempotency-Key, signatureAttestation, and expectedRevision from the reviewed order. Existing integrations may send expectedVersions instead; supply exactly one. A stale revision returns 409 and requires renewed clinician review. Select prescriber by npi, provider id, or externalId, or inherit the draft's prescriber. First-use registration requires team:write. Actor headers are optional with prescriber; legacy userId requires matching clinician actor headers. Signs the complete order, then attempts each submission. Signing remains committed if submission fails. Replay the same key after an uncertain response; retry reported submission failures through Submit order with a new key. Submitted means queued, not pharmacy acceptance.
-                       */
-                      public CompletableFuture<AffinityClientHttpResponse<SignAndSubmitOrderResponse>> signAndSubmitOrder(
-                          String orderId, SignAndSubmitOrderRequest request) {
-                        return signAndSubmitOrder(orderId,request,null);
-                      }
-
-                      /**
-                       * Requires orders:sign, Idempotency-Key, signatureAttestation, and expectedRevision from the reviewed order. Existing integrations may send expectedVersions instead; supply exactly one. A stale revision returns 409 and requires renewed clinician review. Select prescriber by npi, provider id, or externalId, or inherit the draft's prescriber. First-use registration requires team:write. Actor headers are optional with prescriber; legacy userId requires matching clinician actor headers. Signs the complete order, then attempts each submission. Signing remains committed if submission fails. Replay the same key after an uncertain response; retry reported submission failures through Submit order with a new key. Submitted means queued, not pharmacy acceptance.
-                       */
-                      public CompletableFuture<AffinityClientHttpResponse<SignAndSubmitOrderResponse>> signAndSubmitOrder(
-                          String orderId, SignAndSubmitOrderRequest request,
-                          RequestOptions requestOptions) {
-                        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
-
-                          .addPathSegments("v1/orders")
-                          .addPathSegment(orderId)
-                          .addPathSegments("sign-and-submit");if (requestOptions != null) {
-                            requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                              httpUrl.addQueryParameter(_key, _value);
-                            } );
-                          }
-                          RequestBody body;
-                          try {
-                            body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
-                          }
-                          catch(Exception e) {
-                            throw new RuntimeException(e);
-                          }
-                          Request.Builder _requestBuilder = new Request.Builder()
-                            .url(httpUrl.build())
-                            .method("POST", body)
-                            .headers(Headers.of(clientOptions.headers(requestOptions)))
-                            .addHeader("Content-Type", "application/json")
-                            .addHeader("Accept", "application/json");
-                          _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey());
-                          Request okhttpRequest = _requestBuilder.build();
-                          OkHttpClient client = clientOptions.httpClient();
-                          if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-                            client = clientOptions.httpClientWithTimeout(requestOptions);
-                          }
-                          if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
-                            okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
-                          }
-                          CompletableFuture<AffinityClientHttpResponse<SignAndSubmitOrderResponse>> future = new CompletableFuture<>();
-                          client.newCall(okhttpRequest).enqueue(new Callback() {
-                            @Override
-                            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                              try (ResponseBody responseBody = response.body()) {
-                                String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-                                if (response.isSuccessful()) {
-                                  future.complete(new AffinityClientHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SignAndSubmitOrderResponse.class), response));
-                                  return;
-                                }
-                                try {
-                                  switch (response.code()) {
-                                    case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                    return;
-                                    case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                    return;
-                                    case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                    return;
-                                    case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                    return;
-                                    case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                    return;
-                                    case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                    return;
-                                    case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                    return;
-                                    case 503:future.completeExceptionally(new ServiceUnavailableError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                    return;
-                                  }
-                                }
-                                catch (JsonProcessingException ignored) {
-                                  // unable to map error response, throwing generic error
-                                }
-                                Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-                                future.completeExceptionally(new AffinityClientApiException("Error with status code " + response.code(), response.code(), errorBody, response));
-                                return;
-                              }
-                              catch (JsonProcessingException e) {
-                                future.completeExceptionally(new AffinityClientException("Failed to deserialize response: " + e.getMessage(), e));
-                              }
-                              catch (IOException e) {
-                                future.completeExceptionally(new AffinityClientException("Network error executing HTTP request", e));
-                              }
-                            }
-
-                            @Override
-                            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                              future.completeExceptionally(new AffinityClientException("Network error executing HTTP request", e));
-                            }
-                          });
-                          return future;
-                        }
-
-                        /**
-                         * Requires orders:sign and Idempotency-Key. Queues signed prescriptions after rechecking authorization, signature integrity, billing, and fulfillment eligibility. Track pharmacy acceptance through order reads and webhooks. After a partial failure, retry submission with a new idempotency key; already queued prescriptions are not duplicated.
-                         */
-                        public CompletableFuture<AffinityClientHttpResponse<SubmitOrderResponse>> submitOrder(
-                            String orderId, SubmitOrderRequest request) {
-                          return submitOrder(orderId,request,null);
-                        }
-
-                        /**
-                         * Requires orders:sign and Idempotency-Key. Queues signed prescriptions after rechecking authorization, signature integrity, billing, and fulfillment eligibility. Track pharmacy acceptance through order reads and webhooks. After a partial failure, retry submission with a new idempotency key; already queued prescriptions are not duplicated.
-                         */
-                        public CompletableFuture<AffinityClientHttpResponse<SubmitOrderResponse>> submitOrder(
-                            String orderId, SubmitOrderRequest request,
-                            RequestOptions requestOptions) {
-                          HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
-
-                            .addPathSegments("v1/orders")
-                            .addPathSegment(orderId)
-                            .addPathSegments("submit");if (requestOptions != null) {
-                              requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                                httpUrl.addQueryParameter(_key, _value);
-                              } );
-                            }
-                            RequestBody body;
-                            try {
-                              body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
-                            }
-                            catch(Exception e) {
-                              throw new RuntimeException(e);
-                            }
-                            Request.Builder _requestBuilder = new Request.Builder()
-                              .url(httpUrl.build())
-                              .method("POST", body)
-                              .headers(Headers.of(clientOptions.headers(requestOptions)))
-                              .addHeader("Content-Type", "application/json")
-                              .addHeader("Accept", "application/json");
-                            _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey());
-                            Request okhttpRequest = _requestBuilder.build();
-                            OkHttpClient client = clientOptions.httpClient();
-                            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-                              client = clientOptions.httpClientWithTimeout(requestOptions);
-                            }
-                            if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
-                              okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
-                            }
-                            CompletableFuture<AffinityClientHttpResponse<SubmitOrderResponse>> future = new CompletableFuture<>();
-                            client.newCall(okhttpRequest).enqueue(new Callback() {
-                              @Override
-                              public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                                try (ResponseBody responseBody = response.body()) {
-                                  String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-                                  if (response.isSuccessful()) {
-                                    future.complete(new AffinityClientHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubmitOrderResponse.class), response));
-                                    return;
-                                  }
-                                  try {
-                                    switch (response.code()) {
-                                      case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                      return;
-                                      case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                      return;
-                                      case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                      return;
-                                      case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                      return;
-                                      case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                      return;
-                                      case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                      return;
-                                      case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                      return;
-                                      case 503:future.completeExceptionally(new ServiceUnavailableError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                      return;
-                                    }
-                                  }
-                                  catch (JsonProcessingException ignored) {
-                                    // unable to map error response, throwing generic error
-                                  }
-                                  Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-                                  future.completeExceptionally(new AffinityClientApiException("Error with status code " + response.code(), response.code(), errorBody, response));
-                                  return;
-                                }
-                                catch (JsonProcessingException e) {
-                                  future.completeExceptionally(new AffinityClientException("Failed to deserialize response: " + e.getMessage(), e));
-                                }
-                                catch (IOException e) {
-                                  future.completeExceptionally(new AffinityClientException("Network error executing HTTP request", e));
-                                }
-                              }
-
-                              @Override
-                              public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                                future.completeExceptionally(new AffinityClientException("Network error executing HTTP request", e));
-                              }
-                            });
-                            return future;
-                          }
-
-                          /**
-                           * Requires orders:sign and Idempotency-Key. Select a prescriber or inherit the draft's prescriber. Legacy userId requires matching clinician actor headers. Supply expectedRevision from the reviewed order, or expectedVersions for existing integrations. Permanently rejects the complete unsigned order after checking its revision.
-                           */
-                          public CompletableFuture<AffinityClientHttpResponse<RejectOrderResponse>> rejectOrder(
-                              String orderId, RejectOrderRequest request) {
-                            return rejectOrder(orderId,request,null);
-                          }
-
-                          /**
-                           * Requires orders:sign and Idempotency-Key. Select a prescriber or inherit the draft's prescriber. Legacy userId requires matching clinician actor headers. Supply expectedRevision from the reviewed order, or expectedVersions for existing integrations. Permanently rejects the complete unsigned order after checking its revision.
-                           */
-                          public CompletableFuture<AffinityClientHttpResponse<RejectOrderResponse>> rejectOrder(
-                              String orderId, RejectOrderRequest request,
-                              RequestOptions requestOptions) {
-                            HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
-
-                              .addPathSegments("v1/orders")
-                              .addPathSegment(orderId)
-                              .addPathSegments("rejection");if (requestOptions != null) {
-                                requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                                  httpUrl.addQueryParameter(_key, _value);
-                                } );
-                              }
-                              RequestBody body;
-                              try {
-                                body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
-                              }
-                              catch(Exception e) {
-                                throw new RuntimeException(e);
-                              }
-                              Request.Builder _requestBuilder = new Request.Builder()
-                                .url(httpUrl.build())
-                                .method("POST", body)
-                                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                                .addHeader("Content-Type", "application/json")
-                                .addHeader("Accept", "application/json");
-                              _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey());
-                              Request okhttpRequest = _requestBuilder.build();
-                              OkHttpClient client = clientOptions.httpClient();
-                              if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-                                client = clientOptions.httpClientWithTimeout(requestOptions);
-                              }
-                              if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
-                                okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
-                              }
-                              CompletableFuture<AffinityClientHttpResponse<RejectOrderResponse>> future = new CompletableFuture<>();
-                              client.newCall(okhttpRequest).enqueue(new Callback() {
-                                @Override
-                                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                                  try (ResponseBody responseBody = response.body()) {
-                                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-                                    if (response.isSuccessful()) {
-                                      future.complete(new AffinityClientHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RejectOrderResponse.class), response));
-                                      return;
-                                    }
-                                    try {
-                                      switch (response.code()) {
-                                        case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                        return;
-                                        case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                        return;
-                                        case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                        return;
-                                        case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                        return;
-                                        case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                        return;
-                                        case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                        return;
-                                        case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                        return;
-                                        case 503:future.completeExceptionally(new ServiceUnavailableError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                        return;
-                                      }
-                                    }
-                                    catch (JsonProcessingException ignored) {
-                                      // unable to map error response, throwing generic error
-                                    }
-                                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-                                    future.completeExceptionally(new AffinityClientApiException("Error with status code " + response.code(), response.code(), errorBody, response));
-                                    return;
-                                  }
-                                  catch (JsonProcessingException e) {
-                                    future.completeExceptionally(new AffinityClientException("Failed to deserialize response: " + e.getMessage(), e));
-                                  }
-                                  catch (IOException e) {
-                                    future.completeExceptionally(new AffinityClientException("Network error executing HTTP request", e));
-                                  }
-                                }
-
-                                @Override
-                                public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                                  future.completeExceptionally(new AffinityClientException("Network error executing HTTP request", e));
-                                }
-                              });
-                              return future;
-                            }
-
-                            /**
-                             * Requires orders:write, Idempotency-Key and expectedRevision from the order being edited. Existing integrations may send expectedVersions instead; supply exactly one. Adds a complete prescription to an unsigned Order and returns all new versions. Omitted actor context defaults to the authenticated service account as a system actor. Patient and prescriber attribution stay fixed. Signed orders cannot be amended through this endpoint. Signing and submission require orders:sign through their separate endpoints.
-                             */
-                            public CompletableFuture<AffinityClientHttpResponse<AddOrderPrescriptionResponse>> addOrderPrescription(
-                                String orderId, AddOrderPrescriptionRequest request) {
-                              return addOrderPrescription(orderId,request,null);
-                            }
-
-                            /**
-                             * Requires orders:write, Idempotency-Key and expectedRevision from the order being edited. Existing integrations may send expectedVersions instead; supply exactly one. Adds a complete prescription to an unsigned Order and returns all new versions. Omitted actor context defaults to the authenticated service account as a system actor. Patient and prescriber attribution stay fixed. Signed orders cannot be amended through this endpoint. Signing and submission require orders:sign through their separate endpoints.
-                             */
-                            public CompletableFuture<AffinityClientHttpResponse<AddOrderPrescriptionResponse>> addOrderPrescription(
-                                String orderId, AddOrderPrescriptionRequest request,
-                                RequestOptions requestOptions) {
-                              HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
-
-                                .addPathSegments("v1/orders")
-                                .addPathSegment(orderId)
-                                .addPathSegments("prescriptions");if (requestOptions != null) {
-                                  requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                                    httpUrl.addQueryParameter(_key, _value);
-                                  } );
-                                }
-                                RequestBody body;
-                                try {
-                                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
-                                }
-                                catch(Exception e) {
-                                  throw new RuntimeException(e);
-                                }
-                                Request.Builder _requestBuilder = new Request.Builder()
-                                  .url(httpUrl.build())
-                                  .method("POST", body)
-                                  .headers(Headers.of(clientOptions.headers(requestOptions)))
-                                  .addHeader("Content-Type", "application/json")
-                                  .addHeader("Accept", "application/json");
-                                _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey());
-                                if (request.getAffinityActorId().isPresent()) {
-                                  _requestBuilder.addHeader("Affinity-Actor-Id", request.getAffinityActorId().get());
-                                }
-                                if (request.getAffinityActorType().isPresent()) {
-                                  _requestBuilder.addHeader("Affinity-Actor-Type", request.getAffinityActorType().get());
-                                }
-                                Request okhttpRequest = _requestBuilder.build();
-                                OkHttpClient client = clientOptions.httpClient();
-                                if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-                                  client = clientOptions.httpClientWithTimeout(requestOptions);
-                                }
-                                if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
-                                  okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
-                                }
-                                CompletableFuture<AffinityClientHttpResponse<AddOrderPrescriptionResponse>> future = new CompletableFuture<>();
-                                client.newCall(okhttpRequest).enqueue(new Callback() {
-                                  @Override
-                                  public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                                    try (ResponseBody responseBody = response.body()) {
-                                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-                                      if (response.isSuccessful()) {
-                                        future.complete(new AffinityClientHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AddOrderPrescriptionResponse.class), response));
-                                        return;
-                                      }
-                                      try {
-                                        switch (response.code()) {
-                                          case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                          return;
-                                          case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                          return;
-                                          case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                          return;
-                                          case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                          return;
-                                          case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                          return;
-                                          case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                          return;
-                                          case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                          return;
-                                          case 503:future.completeExceptionally(new ServiceUnavailableError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                          return;
-                                        }
-                                      }
-                                      catch (JsonProcessingException ignored) {
-                                        // unable to map error response, throwing generic error
-                                      }
-                                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-                                      future.completeExceptionally(new AffinityClientApiException("Error with status code " + response.code(), response.code(), errorBody, response));
-                                      return;
-                                    }
-                                    catch (JsonProcessingException e) {
-                                      future.completeExceptionally(new AffinityClientException("Failed to deserialize response: " + e.getMessage(), e));
-                                    }
-                                    catch (IOException e) {
-                                      future.completeExceptionally(new AffinityClientException("Network error executing HTTP request", e));
-                                    }
-                                  }
-
-                                  @Override
-                                  public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                                    future.completeExceptionally(new AffinityClientException("Network error executing HTTP request", e));
-                                  }
-                                });
-                                return future;
-                              }
-
-                              /**
-                               * Requires orders:write, Idempotency-Key and expectedRevision from the order being edited. Existing integrations may send expectedVersions instead; supply exactly one. Replaces one prescription with complete medication instructions and returns all new versions. Omitted actor context defaults to the authenticated service account as a system actor. Patient and prescriber attribution stay fixed. Signed orders cannot be amended through this endpoint. Signing and submission require orders:sign through their separate endpoints.
-                               */
-                              public CompletableFuture<AffinityClientHttpResponse<UpdateOrderPrescriptionResponse>> updateOrderPrescription(
-                                  String orderId, String prescriptionId,
-                                  UpdateOrderPrescriptionRequest request) {
-                                return updateOrderPrescription(orderId,prescriptionId,request,null);
-                              }
-
-                              /**
-                               * Requires orders:write, Idempotency-Key and expectedRevision from the order being edited. Existing integrations may send expectedVersions instead; supply exactly one. Replaces one prescription with complete medication instructions and returns all new versions. Omitted actor context defaults to the authenticated service account as a system actor. Patient and prescriber attribution stay fixed. Signed orders cannot be amended through this endpoint. Signing and submission require orders:sign through their separate endpoints.
-                               */
-                              public CompletableFuture<AffinityClientHttpResponse<UpdateOrderPrescriptionResponse>> updateOrderPrescription(
-                                  String orderId, String prescriptionId,
-                                  UpdateOrderPrescriptionRequest request,
-                                  RequestOptions requestOptions) {
-                                HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
-
-                                  .addPathSegments("v1/orders")
-                                  .addPathSegment(orderId)
-                                  .addPathSegments("prescriptions")
-                                  .addPathSegment(prescriptionId);if (requestOptions != null) {
-                                    requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                                      httpUrl.addQueryParameter(_key, _value);
-                                    } );
-                                  }
-                                  RequestBody body;
-                                  try {
-                                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
-                                  }
-                                  catch(Exception e) {
-                                    throw new RuntimeException(e);
-                                  }
-                                  Request.Builder _requestBuilder = new Request.Builder()
-                                    .url(httpUrl.build())
-                                    .method("PATCH", body)
-                                    .headers(Headers.of(clientOptions.headers(requestOptions)))
-                                    .addHeader("Content-Type", "application/json")
-                                    .addHeader("Accept", "application/json");
-                                  _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey());
-                                  if (request.getAffinityActorId().isPresent()) {
-                                    _requestBuilder.addHeader("Affinity-Actor-Id", request.getAffinityActorId().get());
-                                  }
-                                  if (request.getAffinityActorType().isPresent()) {
-                                    _requestBuilder.addHeader("Affinity-Actor-Type", request.getAffinityActorType().get());
-                                  }
-                                  Request okhttpRequest = _requestBuilder.build();
-                                  OkHttpClient client = clientOptions.httpClient();
-                                  if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-                                    client = clientOptions.httpClientWithTimeout(requestOptions);
-                                  }
-                                  if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
-                                    okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
-                                  }
-                                  CompletableFuture<AffinityClientHttpResponse<UpdateOrderPrescriptionResponse>> future = new CompletableFuture<>();
-                                  client.newCall(okhttpRequest).enqueue(new Callback() {
-                                    @Override
-                                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                                      try (ResponseBody responseBody = response.body()) {
-                                        String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-                                        if (response.isSuccessful()) {
-                                          future.complete(new AffinityClientHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, UpdateOrderPrescriptionResponse.class), response));
-                                          return;
-                                        }
-                                        try {
-                                          switch (response.code()) {
-                                            case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                            return;
-                                            case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                            return;
-                                            case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                            return;
-                                            case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                            return;
-                                            case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                            return;
-                                            case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                            return;
-                                            case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                            return;
-                                            case 503:future.completeExceptionally(new ServiceUnavailableError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                            return;
-                                          }
-                                        }
-                                        catch (JsonProcessingException ignored) {
-                                          // unable to map error response, throwing generic error
-                                        }
-                                        Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-                                        future.completeExceptionally(new AffinityClientApiException("Error with status code " + response.code(), response.code(), errorBody, response));
-                                        return;
-                                      }
-                                      catch (JsonProcessingException e) {
-                                        future.completeExceptionally(new AffinityClientException("Failed to deserialize response: " + e.getMessage(), e));
-                                      }
-                                      catch (IOException e) {
-                                        future.completeExceptionally(new AffinityClientException("Network error executing HTTP request", e));
-                                      }
-                                    }
-
-                                    @Override
-                                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                                      future.completeExceptionally(new AffinityClientException("Network error executing HTTP request", e));
-                                    }
-                                  });
-                                  return future;
-                                }
-
-                                /**
-                                 * Creates 1–20 orders for distinct patients in one practice, each with 1–20 prescriptions. Each accepts patientId or inline patient details. Orders and newly created patients commit atomically; any failure saves none. Requires orders:write and Idempotency-Key; inline patients also require patients:write. Omitted actor context defaults to the authenticated service account as a system actor. Sign and submit each resulting order separately using orders:sign.
-                                 */
-                                public CompletableFuture<AffinityClientHttpResponse<CreateOrderBatchResponse>> createOrderBatch(
-                                    CreateOrderBatchRequest request) {
-                                  return createOrderBatch(request,null);
-                                }
-
-                                /**
-                                 * Creates 1–20 orders for distinct patients in one practice, each with 1–20 prescriptions. Each accepts patientId or inline patient details. Orders and newly created patients commit atomically; any failure saves none. Requires orders:write and Idempotency-Key; inline patients also require patients:write. Omitted actor context defaults to the authenticated service account as a system actor. Sign and submit each resulting order separately using orders:sign.
-                                 */
-                                public CompletableFuture<AffinityClientHttpResponse<CreateOrderBatchResponse>> createOrderBatch(
-                                    CreateOrderBatchRequest request,
-                                    RequestOptions requestOptions) {
-                                  HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
-
-                                    .addPathSegments("v1/order-batches");if (requestOptions != null) {
-                                      requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                                        httpUrl.addQueryParameter(_key, _value);
-                                      } );
-                                    }
-                                    RequestBody body;
-                                    try {
-                                      body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
-                                    }
-                                    catch(Exception e) {
-                                      throw new RuntimeException(e);
-                                    }
-                                    Request.Builder _requestBuilder = new Request.Builder()
-                                      .url(httpUrl.build())
-                                      .method("POST", body)
-                                      .headers(Headers.of(clientOptions.headers(requestOptions)))
-                                      .addHeader("Content-Type", "application/json")
-                                      .addHeader("Accept", "application/json");
-                                    _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey());
-                                    if (request.getAffinityActorId().isPresent()) {
-                                      _requestBuilder.addHeader("Affinity-Actor-Id", request.getAffinityActorId().get());
-                                    }
-                                    if (request.getAffinityActorType().isPresent()) {
-                                      _requestBuilder.addHeader("Affinity-Actor-Type", request.getAffinityActorType().get());
-                                    }
-                                    Request okhttpRequest = _requestBuilder.build();
-                                    OkHttpClient client = clientOptions.httpClient();
-                                    if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-                                      client = clientOptions.httpClientWithTimeout(requestOptions);
-                                    }
-                                    if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
-                                      okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
-                                    }
-                                    CompletableFuture<AffinityClientHttpResponse<CreateOrderBatchResponse>> future = new CompletableFuture<>();
-                                    client.newCall(okhttpRequest).enqueue(new Callback() {
-                                      @Override
-                                      public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                                        try (ResponseBody responseBody = response.body()) {
-                                          String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-                                          if (response.isSuccessful()) {
-                                            future.complete(new AffinityClientHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CreateOrderBatchResponse.class), response));
-                                            return;
-                                          }
-                                          try {
-                                            switch (response.code()) {
-                                              case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                              return;
-                                              case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                              return;
-                                              case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                              return;
-                                              case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                              return;
-                                              case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                              return;
-                                              case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                              return;
-                                              case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                              return;
-                                              case 503:future.completeExceptionally(new ServiceUnavailableError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response));
-                                              return;
-                                            }
-                                          }
-                                          catch (JsonProcessingException ignored) {
-                                            // unable to map error response, throwing generic error
-                                          }
-                                          Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-                                          future.completeExceptionally(new AffinityClientApiException("Error with status code " + response.code(), response.code(), errorBody, response));
-                                          return;
-                                        }
-                                        catch (JsonProcessingException e) {
-                                          future.completeExceptionally(new AffinityClientException("Failed to deserialize response: " + e.getMessage(), e));
-                                        }
-                                        catch (IOException e) {
-                                          future.completeExceptionally(new AffinityClientException("Network error executing HTTP request", e));
-                                        }
-                                      }
-
-                                      @Override
-                                      public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                                        future.completeExceptionally(new AffinityClientException("Network error executing HTTP request", e));
-                                      }
-                                    });
-                                    return future;
-                                  }
-                                }
+                  }

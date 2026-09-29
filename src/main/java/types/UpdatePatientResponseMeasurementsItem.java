@@ -284,4 +284,14 @@ public final class UpdatePatientResponseMeasurementsItem {
       return this;
     }
   }
+
+  public Optional<UpdatePatientResponseMeasurementsItemHeightCentimeters> heightCentimeters() { return getHeightCentimeters(); }
+
+  public String recordedAt() { return getRecordedAt(); }
+
+  public String source() { return getSource(); }
+
+  public Optional<UpdatePatientResponseMeasurementsItemWeightKilograms> weightKilograms() { return getWeightKilograms(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

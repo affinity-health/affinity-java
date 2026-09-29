@@ -29,7 +29,7 @@ import org.jetbrains.annotations.NotNull;
     builder = CreatePracticeLocationRequest.Builder.class
 )
 public final class CreatePracticeLocationRequest {
-  private final String idempotencyKey;
+  private final Optional<String> idempotencyKey;
 
   private final Optional<String> city;
 
@@ -51,7 +51,7 @@ public final class CreatePracticeLocationRequest {
 
   private final Map<String, Object> additionalProperties;
 
-  private CreatePracticeLocationRequest(String idempotencyKey, Optional<String> city,
+  private CreatePracticeLocationRequest(Optional<String> idempotencyKey, Optional<String> city,
       Optional<String> country, Optional<String> line1, Optional<String> line2, String name,
       Optional<String> phone, Optional<String> postalCode, Optional<String> state,
       Optional<String> timezone, Map<String, Object> additionalProperties) {
@@ -68,8 +68,11 @@ public final class CreatePracticeLocationRequest {
     this.additionalProperties = additionalProperties;
   }
 
+  /**
+   * @return Optional in the SDK. A fresh key is generated once per call when omitted. Supply a stable key to retry across calls.
+   */
   @JsonIgnore
-  public String getIdempotencyKey() {
+  public Optional<String> getIdempotencyKey() {
     return idempotencyKey;
   }
 
@@ -242,18 +245,14 @@ public final class CreatePracticeLocationRequest {
     return ObjectMappers.stringify(this);
   }
 
-  public static IdempotencyKeyStage builder() {
+  public static NameStage builder() {
     return new Builder();
-  }
-
-  public interface IdempotencyKeyStage {
-    NameStage idempotencyKey(@NotNull String idempotencyKey);
-
-    Builder from(CreatePracticeLocationRequest other);
   }
 
   public interface NameStage {
     _FinalStage name(@NotNull String name);
+
+    Builder from(CreatePracticeLocationRequest other);
   }
 
   public interface _FinalStage {
@@ -262,6 +261,13 @@ public final class CreatePracticeLocationRequest {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    /**
+     * <p>Optional in the SDK. A fresh key is generated once per call when omitted. Supply a stable key to retry across calls.</p>
+     */
+    _FinalStage idempotencyKey(Optional<String> idempotencyKey);
+
+    _FinalStage idempotencyKey(String idempotencyKey);
 
     _FinalStage city(Optional<String> city);
 
@@ -318,9 +324,7 @@ public final class CreatePracticeLocationRequest {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdempotencyKeyStage, NameStage, _FinalStage {
-    private String idempotencyKey;
-
+  public static final class Builder implements NameStage, _FinalStage {
     private String name;
 
     private Optional<String> timezone = Optional.empty();
@@ -338,6 +342,8 @@ public final class CreatePracticeLocationRequest {
     private Optional<String> country = Optional.empty();
 
     private Optional<String> city = Optional.empty();
+
+    private Optional<String> idempotencyKey = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -357,12 +363,6 @@ public final class CreatePracticeLocationRequest {
       postalCode(other.getPostalCode());
       state(other.getState());
       timezone(other.getTimezone());
-      return this;
-    }
-
-    @java.lang.Override
-    public NameStage idempotencyKey(@NotNull String idempotencyKey) {
-      this.idempotencyKey = Objects.requireNonNull(idempotencyKey, "idempotencyKey must not be null");
       return this;
     }
 
@@ -621,6 +621,25 @@ public final class CreatePracticeLocationRequest {
     )
     public _FinalStage city(Optional<String> city) {
       this.city = city;
+      return this;
+    }
+
+    /**
+     * <p>Optional in the SDK. A fresh key is generated once per call when omitted. Supply a stable key to retry across calls.</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage idempotencyKey(String idempotencyKey) {
+      this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+      return this;
+    }
+
+    /**
+     * <p>Optional in the SDK. A fresh key is generated once per call when omitted. Supply a stable key to retry across calls.</p>
+     */
+    @java.lang.Override
+    public _FinalStage idempotencyKey(Optional<String> idempotencyKey) {
+      this.idempotencyKey = idempotencyKey;
       return this;
     }
 

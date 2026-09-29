@@ -127,4 +127,8 @@ public final class ListCatalogItemsResponseDataItemCompositionIngredientsItemStr
       return this;
     }
   }
+
+  public String reason() { return getReason(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

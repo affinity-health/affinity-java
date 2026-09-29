@@ -269,4 +269,14 @@ public final class GetPatientResponseEncountersItem {
       return this;
     }
   }
+
+  public Optional<String> notes() { return getNotes(); }
+
+  public String occurredAt() { return getOccurredAt(); }
+
+  public Optional<String> providerName() { return getProviderName(); }
+
+  public String type() { return getType(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -97,4 +97,6 @@ public final class CancelOrderResponsePrescriptionsItemPatientSnapshotAllergyRev
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

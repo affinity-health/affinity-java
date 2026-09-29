@@ -29,9 +29,9 @@ public class JavaSmokeTest {
         });
         server.start();
         try {
-            var client = AffinityClient.builder().apiKey("synthetic-key").affinityVersion("2026-09-28")
+            var client = AffinityClient.builder().apiKey("synthetic-key")
                 .url("http://127.0.0.1:" + server.getAddress().getPort()).maxRetries(0).build();
-            var page = client.orders().listOrders(ListOrdersRequest.builder().startingAfter("ord_cursor").limit(2).build());
+            var page = client.orders().list(ListOrdersRequest.builder().startingAfter("ord_cursor").limit(2).build());
             assertTrue(page.getData().isEmpty());
             assertFalse(page.getHasMore());
             if (failure.get() != null) throw new AssertionError(failure.get());

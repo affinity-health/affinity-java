@@ -7,7 +7,7 @@ package com.affinity.api.resources.practices;
 import com.affinity.api.core.ClientOptions;
 import com.affinity.api.core.RequestOptions;
 import com.affinity.api.resources.practices.requests.CreatePracticeRequest;
-import com.affinity.api.resources.practices.requests.GetPracticeRequest;
+import com.affinity.api.resources.practices.requests.GetPracticesRequest;
 import com.affinity.api.resources.practices.requests.ListPracticesRequest;
 import com.affinity.api.resources.practices.requests.UpdatePracticeRequest;
 import com.affinity.api.types.CreatePracticeResponse;
@@ -36,102 +36,101 @@ public class PracticesClient {
   /**
    * Returns the practices that belong to the platform. The default Affinity-Version is 2026-09-28.
    */
-  public ListPracticesResponse listPractices() {
-    return this.rawClient.listPractices().body();
+  public ListPracticesResponse list() {
+    return this.rawClient.list().body();
   }
 
   /**
    * Returns the practices that belong to the platform. The default Affinity-Version is 2026-09-28.
    */
-  public ListPracticesResponse listPractices(RequestOptions requestOptions) {
-    return this.rawClient.listPractices(requestOptions).body();
+  public ListPracticesResponse list(RequestOptions requestOptions) {
+    return this.rawClient.list(requestOptions).body();
   }
 
   /**
    * Returns the practices that belong to the platform. The default Affinity-Version is 2026-09-28.
    */
-  public ListPracticesResponse listPractices(ListPracticesRequest request) {
-    return this.rawClient.listPractices(request).body();
+  public ListPracticesResponse list(ListPracticesRequest request) {
+    return this.rawClient.list(request).body();
   }
 
   /**
    * Returns the practices that belong to the platform. The default Affinity-Version is 2026-09-28.
    */
-  public ListPracticesResponse listPractices(ListPracticesRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.listPractices(request, requestOptions).body();
+  public ListPracticesResponse list(ListPracticesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.list(request, requestOptions).body();
   }
 
   /**
    * Creates a practice owned by the platform. Set liveEnabled to true to enable Live access at creation with an approved platform and a Live request. Defaults to false. Requires practices:write. Send Idempotency-Key when you retry the same request.
    */
-  public CreatePracticeResponse createPractice(CreatePracticeRequest request) {
-    return this.rawClient.createPractice(request).body();
+  public CreatePracticeResponse create(CreatePracticeRequest request) {
+    return this.rawClient.create(request).body();
   }
 
   /**
    * Creates a practice owned by the platform. Set liveEnabled to true to enable Live access at creation with an approved platform and a Live request. Defaults to false. Requires practices:write. Send Idempotency-Key when you retry the same request.
    */
-  public CreatePracticeResponse createPractice(CreatePracticeRequest request,
+  public CreatePracticeResponse create(CreatePracticeRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.createPractice(request, requestOptions).body();
+    return this.rawClient.create(request, requestOptions).body();
   }
 
   /**
    * Returns one practice that belongs to the platform.
    */
-  public GetPracticeResponse getPractice(String practiceId) {
-    return this.rawClient.getPractice(practiceId).body();
+  public GetPracticeResponse get(String practiceId) {
+    return this.rawClient.get(practiceId).body();
   }
 
   /**
    * Returns one practice that belongs to the platform.
    */
-  public GetPracticeResponse getPractice(String practiceId, RequestOptions requestOptions) {
-    return this.rawClient.getPractice(practiceId, requestOptions).body();
+  public GetPracticeResponse get(String practiceId, RequestOptions requestOptions) {
+    return this.rawClient.get(practiceId, requestOptions).body();
   }
 
   /**
    * Returns one practice that belongs to the platform.
    */
-  public GetPracticeResponse getPractice(String practiceId, GetPracticeRequest request) {
-    return this.rawClient.getPractice(practiceId, request).body();
+  public GetPracticeResponse get(String practiceId, GetPracticesRequest request) {
+    return this.rawClient.get(practiceId, request).body();
   }
 
   /**
    * Returns one practice that belongs to the platform.
    */
-  public GetPracticeResponse getPractice(String practiceId, GetPracticeRequest request,
+  public GetPracticeResponse get(String practiceId, GetPracticesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.getPractice(practiceId, request, requestOptions).body();
+    return this.rawClient.get(practiceId, request, requestOptions).body();
   }
 
   /**
    * Updates one practice owned by the platform. Set liveEnabled to true or false to control Live access with an approved platform and a Live request. Affinity Admin decisions take precedence. Requires practices:write. Send Idempotency-Key when you retry the same request.
    */
-  public UpdatePracticeResponse updatePractice(String practiceId) {
-    return this.rawClient.updatePractice(practiceId).body();
+  public UpdatePracticeResponse update(String practiceId) {
+    return this.rawClient.update(practiceId).body();
   }
 
   /**
    * Updates one practice owned by the platform. Set liveEnabled to true or false to control Live access with an approved platform and a Live request. Affinity Admin decisions take precedence. Requires practices:write. Send Idempotency-Key when you retry the same request.
    */
-  public UpdatePracticeResponse updatePractice(String practiceId, RequestOptions requestOptions) {
-    return this.rawClient.updatePractice(practiceId, requestOptions).body();
+  public UpdatePracticeResponse update(String practiceId, RequestOptions requestOptions) {
+    return this.rawClient.update(practiceId, requestOptions).body();
   }
 
   /**
    * Updates one practice owned by the platform. Set liveEnabled to true or false to control Live access with an approved platform and a Live request. Affinity Admin decisions take precedence. Requires practices:write. Send Idempotency-Key when you retry the same request.
    */
-  public UpdatePracticeResponse updatePractice(String practiceId, UpdatePracticeRequest request) {
-    return this.rawClient.updatePractice(practiceId, request).body();
+  public UpdatePracticeResponse update(String practiceId, UpdatePracticeRequest request) {
+    return this.rawClient.update(practiceId, request).body();
   }
 
   /**
    * Updates one practice owned by the platform. Set liveEnabled to true or false to control Live access with an approved platform and a Live request. Affinity Admin decisions take precedence. Requires practices:write. Send Idempotency-Key when you retry the same request.
    */
-  public UpdatePracticeResponse updatePractice(String practiceId, UpdatePracticeRequest request,
+  public UpdatePracticeResponse update(String practiceId, UpdatePracticeRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.updatePractice(practiceId, request, requestOptions).body();
+    return this.rawClient.update(practiceId, request, requestOptions).body();
   }
 }

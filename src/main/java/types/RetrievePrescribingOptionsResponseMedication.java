@@ -189,4 +189,10 @@ public final class RetrievePrescribingOptionsResponseMedication {
       return this;
     }
   }
+
+  public String name() { return getName(); }
+
+  public Optional<RetrievePrescribingOptionsResponseMedicationRxnorm> rxnorm() { return getRxnorm(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

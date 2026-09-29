@@ -216,4 +216,6 @@ public final class RetrievePrescribingOptionsResponseCompoundingReasonCategoryDe
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

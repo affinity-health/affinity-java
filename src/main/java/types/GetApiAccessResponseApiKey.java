@@ -168,4 +168,12 @@ public final class GetApiAccessResponseApiKey {
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public String keyPrefix() { return getKeyPrefix(); }
+
+  public GetApiAccessResponseApiKeyObject object() { return getObject(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

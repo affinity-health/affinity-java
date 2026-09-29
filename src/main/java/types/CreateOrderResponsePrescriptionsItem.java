@@ -472,4 +472,32 @@ public final class CreateOrderResponsePrescriptionsItem {
       return this;
     }
   }
+
+  public String pharmacyId() { return getPharmacyId(); }
+
+  public Optional<String> externalPrescriptionId() { return getExternalPrescriptionId(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public String directions() { return getDirections(); }
+
+  public int version() { return getVersion(); }
+
+  public String id() { return getId(); }
+
+  public Optional<String> medicationId() { return getMedicationId(); }
+
+  public String medicationName() { return getMedicationName(); }
+
+  public CreateOrderResponsePrescriptionsItemObject object() { return getObject(); }
+
+  public CreateOrderResponsePrescriptionsItemQuantity quantity() { return getQuantity(); }
+
+  public String quantityUnit() { return getQuantityUnit(); }
+
+  public int refills() { return getRefills(); }
+
+  public CreateOrderResponsePrescriptionsItemStatus status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

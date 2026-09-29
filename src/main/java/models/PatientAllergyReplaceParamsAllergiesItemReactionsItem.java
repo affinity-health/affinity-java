@@ -1,0 +1,5 @@
+package com.affinity.api.models;
+import java.util.*;import com.fasterxml.jackson.annotation.JsonValue;
+public final class PatientAllergyReplaceParamsAllergiesItemReactionsItem{private final Map<String,Object> values;private PatientAllergyReplaceParamsAllergiesItemReactionsItem(Map<String,Object> values){this.values=Collections.unmodifiableMap(new LinkedHashMap<>(values));}@JsonValue public Map<String,Object> values(){return values;}public static Builder builder(){return new Builder();}public static final class Builder {private final Map<String,Object> values=new LinkedHashMap<>();public Builder code(String value){values.put("code",value);return this;}
+public Builder codeSystem(String value){values.put("codeSystem",value);return this;}
+public Builder display(String value){values.put("display",value);return this;}public PatientAllergyReplaceParamsAllergiesItemReactionsItem build(){if(!values.containsKey("display")||values.get("display")==null)throw new IllegalArgumentException("display is required");return new PatientAllergyReplaceParamsAllergiesItemReactionsItem(values);}}}

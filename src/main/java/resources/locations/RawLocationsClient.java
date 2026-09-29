@@ -19,10 +19,10 @@ import com.affinity.api.errors.ForbiddenError;
 import com.affinity.api.errors.NotFoundError;
 import com.affinity.api.errors.TooManyRequestsError;
 import com.affinity.api.errors.UnauthorizedError;
-import com.affinity.api.resources.locations.requests.ArchivePracticeLocationRequest;
+import com.affinity.api.resources.locations.requests.ArchiveLocationsRequest;
 import com.affinity.api.resources.locations.requests.CreatePracticeLocationRequest;
-import com.affinity.api.resources.locations.requests.GetPracticeLocationRequest;
-import com.affinity.api.resources.locations.requests.ListPracticeLocationsRequest;
+import com.affinity.api.resources.locations.requests.GetLocationsRequest;
+import com.affinity.api.resources.locations.requests.ListLocationsRequest;
 import com.affinity.api.resources.locations.requests.UpdatePracticeLocationRequest;
 import com.affinity.api.types.ArchivePracticeLocationResponse;
 import com.affinity.api.types.CreatePracticeLocationResponse;
@@ -54,32 +54,31 @@ public class RawLocationsClient {
   /**
    * Requires locations:read on a practice key or an authorized platform key. Lists active and archived locations by name, with cursor pagination. Use status to filter. Location records are shared between Test and Live for the same practice.
    */
-  public AffinityClientHttpResponse<ListPracticeLocationsResponse> listPracticeLocations(
-      String practiceId) {
-    return listPracticeLocations(practiceId,ListPracticeLocationsRequest.builder().build());
+  public AffinityClientHttpResponse<ListPracticeLocationsResponse> list(String practiceId) {
+    return list(practiceId,ListLocationsRequest.builder().build());
   }
 
   /**
    * Requires locations:read on a practice key or an authorized platform key. Lists active and archived locations by name, with cursor pagination. Use status to filter. Location records are shared between Test and Live for the same practice.
    */
-  public AffinityClientHttpResponse<ListPracticeLocationsResponse> listPracticeLocations(
-      String practiceId, RequestOptions requestOptions) {
-    return listPracticeLocations(practiceId,ListPracticeLocationsRequest.builder().build(),requestOptions);
+  public AffinityClientHttpResponse<ListPracticeLocationsResponse> list(String practiceId,
+      RequestOptions requestOptions) {
+    return list(practiceId,ListLocationsRequest.builder().build(),requestOptions);
   }
 
   /**
    * Requires locations:read on a practice key or an authorized platform key. Lists active and archived locations by name, with cursor pagination. Use status to filter. Location records are shared between Test and Live for the same practice.
    */
-  public AffinityClientHttpResponse<ListPracticeLocationsResponse> listPracticeLocations(
-      String practiceId, ListPracticeLocationsRequest request) {
-    return listPracticeLocations(practiceId,request,null);
+  public AffinityClientHttpResponse<ListPracticeLocationsResponse> list(String practiceId,
+      ListLocationsRequest request) {
+    return list(practiceId,request,null);
   }
 
   /**
    * Requires locations:read on a practice key or an authorized platform key. Lists active and archived locations by name, with cursor pagination. Use status to filter. Location records are shared between Test and Live for the same practice.
    */
-  public AffinityClientHttpResponse<ListPracticeLocationsResponse> listPracticeLocations(
-      String practiceId, ListPracticeLocationsRequest request, RequestOptions requestOptions) {
+  public AffinityClientHttpResponse<ListPracticeLocationsResponse> list(String practiceId,
+      ListLocationsRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/practices")
@@ -147,16 +146,16 @@ public class RawLocationsClient {
     /**
      * Requires locations:write and Idempotency-Key for API keys. Creates an active location with a unique name in this practice. Locations are shared between Test and Live. Use the returned ID for Team location access.
      */
-    public AffinityClientHttpResponse<CreatePracticeLocationResponse> createPracticeLocation(
-        String practiceId, CreatePracticeLocationRequest request) {
-      return createPracticeLocation(practiceId,request,null);
+    public AffinityClientHttpResponse<CreatePracticeLocationResponse> create(String practiceId,
+        CreatePracticeLocationRequest request) {
+      return create(practiceId,request,null);
     }
 
     /**
      * Requires locations:write and Idempotency-Key for API keys. Creates an active location with a unique name in this practice. Locations are shared between Test and Live. Use the returned ID for Team location access.
      */
-    public AffinityClientHttpResponse<CreatePracticeLocationResponse> createPracticeLocation(
-        String practiceId, CreatePracticeLocationRequest request, RequestOptions requestOptions) {
+    public AffinityClientHttpResponse<CreatePracticeLocationResponse> create(String practiceId,
+        CreatePracticeLocationRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/practices")
@@ -179,7 +178,7 @@ public class RawLocationsClient {
           .headers(Headers.of(clientOptions.headers(requestOptions)))
           .addHeader("Content-Type", "application/json")
           .addHeader("Accept", "application/json");
-        _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey());
+        _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey().orElseGet(() -> java.util.UUID.randomUUID().toString())); // affinity-sdk-auto-key
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
@@ -221,33 +220,32 @@ public class RawLocationsClient {
       /**
        * Requires locations:read. Returns one active or archived location in the authorized practice.
        */
-      public AffinityClientHttpResponse<GetPracticeLocationResponse> getPracticeLocation(
-          String practiceId, String locationId) {
-        return getPracticeLocation(practiceId,locationId,GetPracticeLocationRequest.builder().build());
+      public AffinityClientHttpResponse<GetPracticeLocationResponse> get(String practiceId,
+          String locationId) {
+        return get(practiceId,locationId,GetLocationsRequest.builder().build());
       }
 
       /**
        * Requires locations:read. Returns one active or archived location in the authorized practice.
        */
-      public AffinityClientHttpResponse<GetPracticeLocationResponse> getPracticeLocation(
-          String practiceId, String locationId, RequestOptions requestOptions) {
-        return getPracticeLocation(practiceId,locationId,GetPracticeLocationRequest.builder().build(),requestOptions);
+      public AffinityClientHttpResponse<GetPracticeLocationResponse> get(String practiceId,
+          String locationId, RequestOptions requestOptions) {
+        return get(practiceId,locationId,GetLocationsRequest.builder().build(),requestOptions);
       }
 
       /**
        * Requires locations:read. Returns one active or archived location in the authorized practice.
        */
-      public AffinityClientHttpResponse<GetPracticeLocationResponse> getPracticeLocation(
-          String practiceId, String locationId, GetPracticeLocationRequest request) {
-        return getPracticeLocation(practiceId,locationId,request,null);
+      public AffinityClientHttpResponse<GetPracticeLocationResponse> get(String practiceId,
+          String locationId, GetLocationsRequest request) {
+        return get(practiceId,locationId,request,null);
       }
 
       /**
        * Requires locations:read. Returns one active or archived location in the authorized practice.
        */
-      public AffinityClientHttpResponse<GetPracticeLocationResponse> getPracticeLocation(
-          String practiceId, String locationId, GetPracticeLocationRequest request,
-          RequestOptions requestOptions) {
+      public AffinityClientHttpResponse<GetPracticeLocationResponse> get(String practiceId,
+          String locationId, GetLocationsRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/practices")
@@ -304,16 +302,32 @@ public class RawLocationsClient {
         /**
          * Requires locations:write and Idempotency-Key for API keys. Updates only supplied fields; null clears optional contact and address fields. Archived locations cannot be updated. Changes apply to both Test and Live.
          */
-        public AffinityClientHttpResponse<UpdatePracticeLocationResponse> updatePracticeLocation(
-            String practiceId, String locationId, UpdatePracticeLocationRequest request) {
-          return updatePracticeLocation(practiceId,locationId,request,null);
+        public AffinityClientHttpResponse<UpdatePracticeLocationResponse> update(String practiceId,
+            String locationId) {
+          return update(practiceId,locationId,UpdatePracticeLocationRequest.builder().build());
         }
 
         /**
          * Requires locations:write and Idempotency-Key for API keys. Updates only supplied fields; null clears optional contact and address fields. Archived locations cannot be updated. Changes apply to both Test and Live.
          */
-        public AffinityClientHttpResponse<UpdatePracticeLocationResponse> updatePracticeLocation(
-            String practiceId, String locationId, UpdatePracticeLocationRequest request,
+        public AffinityClientHttpResponse<UpdatePracticeLocationResponse> update(String practiceId,
+            String locationId, RequestOptions requestOptions) {
+          return update(practiceId,locationId,UpdatePracticeLocationRequest.builder().build(),requestOptions);
+        }
+
+        /**
+         * Requires locations:write and Idempotency-Key for API keys. Updates only supplied fields; null clears optional contact and address fields. Archived locations cannot be updated. Changes apply to both Test and Live.
+         */
+        public AffinityClientHttpResponse<UpdatePracticeLocationResponse> update(String practiceId,
+            String locationId, UpdatePracticeLocationRequest request) {
+          return update(practiceId,locationId,request,null);
+        }
+
+        /**
+         * Requires locations:write and Idempotency-Key for API keys. Updates only supplied fields; null clears optional contact and address fields. Archived locations cannot be updated. Changes apply to both Test and Live.
+         */
+        public AffinityClientHttpResponse<UpdatePracticeLocationResponse> update(String practiceId,
+            String locationId, UpdatePracticeLocationRequest request,
             RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -338,7 +352,7 @@ public class RawLocationsClient {
               .headers(Headers.of(clientOptions.headers(requestOptions)))
               .addHeader("Content-Type", "application/json")
               .addHeader("Accept", "application/json");
-            _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey());
+            _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey().orElseGet(() -> java.util.UUID.randomUUID().toString())); // affinity-sdk-auto-key
             Request okhttpRequest = _requestBuilder.build();
             OkHttpClient client = clientOptions.httpClient();
             if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
@@ -380,16 +394,32 @@ public class RawLocationsClient {
           /**
            * Requires locations:write and Idempotency-Key for API keys. Retains the location and historical associations. Archived locations cannot receive new Team assignments. Repeating archive returns the archived location. Changes apply to both Test and Live.
            */
-          public AffinityClientHttpResponse<ArchivePracticeLocationResponse> archivePracticeLocation(
-              String practiceId, String locationId, ArchivePracticeLocationRequest request) {
-            return archivePracticeLocation(practiceId,locationId,request,null);
+          public AffinityClientHttpResponse<ArchivePracticeLocationResponse> archive(
+              String practiceId, String locationId) {
+            return archive(practiceId,locationId,ArchiveLocationsRequest.builder().build());
           }
 
           /**
            * Requires locations:write and Idempotency-Key for API keys. Retains the location and historical associations. Archived locations cannot receive new Team assignments. Repeating archive returns the archived location. Changes apply to both Test and Live.
            */
-          public AffinityClientHttpResponse<ArchivePracticeLocationResponse> archivePracticeLocation(
-              String practiceId, String locationId, ArchivePracticeLocationRequest request,
+          public AffinityClientHttpResponse<ArchivePracticeLocationResponse> archive(
+              String practiceId, String locationId, RequestOptions requestOptions) {
+            return archive(practiceId,locationId,ArchiveLocationsRequest.builder().build(),requestOptions);
+          }
+
+          /**
+           * Requires locations:write and Idempotency-Key for API keys. Retains the location and historical associations. Archived locations cannot receive new Team assignments. Repeating archive returns the archived location. Changes apply to both Test and Live.
+           */
+          public AffinityClientHttpResponse<ArchivePracticeLocationResponse> archive(
+              String practiceId, String locationId, ArchiveLocationsRequest request) {
+            return archive(practiceId,locationId,request,null);
+          }
+
+          /**
+           * Requires locations:write and Idempotency-Key for API keys. Retains the location and historical associations. Archived locations cannot receive new Team assignments. Repeating archive returns the archived location. Changes apply to both Test and Live.
+           */
+          public AffinityClientHttpResponse<ArchivePracticeLocationResponse> archive(
+              String practiceId, String locationId, ArchiveLocationsRequest request,
               RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -407,7 +437,7 @@ public class RawLocationsClient {
                 .method("POST", RequestBody.create("", null))
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Accept", "application/json");
-              _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey());
+              _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey().orElseGet(() -> java.util.UUID.randomUUID().toString())); // affinity-sdk-auto-key
               Request okhttpRequest = _requestBuilder.build();
               OkHttpClient client = clientOptions.httpClient();
               if (requestOptions != null && requestOptions.getTimeout().isPresent()) {

@@ -76,4 +76,6 @@ public final class GetPatientAllergiesResponseAllergiesItemReactionsItemCodeSyst
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

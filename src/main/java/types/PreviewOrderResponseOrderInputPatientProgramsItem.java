@@ -234,4 +234,14 @@ public final class PreviewOrderResponseOrderInputPatientProgramsItem {
       return this;
     }
   }
+
+  public Optional<String> endedAt() { return getEndedAt(); }
+
+  public String name() { return getName(); }
+
+  public String startedAt() { return getStartedAt(); }
+
+  public PreviewOrderResponseOrderInputPatientProgramsItemStatus status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

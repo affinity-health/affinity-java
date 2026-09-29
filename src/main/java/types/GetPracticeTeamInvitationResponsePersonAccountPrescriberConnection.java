@@ -150,4 +150,10 @@ public final class GetPracticeTeamInvitationResponsePersonAccountPrescriberConne
       return this;
     }
   }
+
+  public String status() { return getStatus(); }
+
+  public GetPracticeTeamInvitationResponsePersonAccountPrescriberConnectionProvider provider() { return getProvider(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

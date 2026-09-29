@@ -6,49 +6,57 @@ package com.affinity.api.resources.orders;
 
 import com.affinity.api.core.ClientOptions;
 import com.affinity.api.core.RequestOptions;
-import com.affinity.api.resources.orders.requests.ActOnOrderExceptionRequest;
-import com.affinity.api.resources.orders.requests.AddOrderPrescriptionRequest;
+import com.affinity.api.core.Suppliers;
+import com.affinity.api.resources.orders.batches.AsyncBatchesClient;
+import com.affinity.api.resources.orders.events.AsyncEventsClient;
+import com.affinity.api.resources.orders.exceptions.AsyncExceptionsClient;
+import com.affinity.api.resources.orders.prescriptions.AsyncPrescriptionsClient;
 import com.affinity.api.resources.orders.requests.CancelOrderRequest;
-import com.affinity.api.resources.orders.requests.CreateOrderBatchRequest;
 import com.affinity.api.resources.orders.requests.CreateOrderRequest;
-import com.affinity.api.resources.orders.requests.GetOrderRequest;
-import com.affinity.api.resources.orders.requests.GetOrderTestSimulationRequest;
-import com.affinity.api.resources.orders.requests.ListOrderEventsRequest;
+import com.affinity.api.resources.orders.requests.GetOrdersRequest;
 import com.affinity.api.resources.orders.requests.ListOrdersRequest;
 import com.affinity.api.resources.orders.requests.PreviewOrderRequest;
 import com.affinity.api.resources.orders.requests.RejectOrderRequest;
 import com.affinity.api.resources.orders.requests.SignAndSubmitOrderRequest;
 import com.affinity.api.resources.orders.requests.SignOrderRequest;
 import com.affinity.api.resources.orders.requests.SubmitOrderRequest;
-import com.affinity.api.resources.orders.requests.UpdateOrderPrescriptionRequest;
-import com.affinity.api.resources.orders.requests.UpdateOrderTestSimulationRequest;
-import com.affinity.api.types.ActOnOrderExceptionResponse;
-import com.affinity.api.types.AddOrderPrescriptionResponse;
+import com.affinity.api.resources.orders.testsimulation.AsyncTestSimulationClient;
 import com.affinity.api.types.CancelOrderResponse;
-import com.affinity.api.types.CreateOrderBatchResponse;
 import com.affinity.api.types.CreateOrderResponse;
 import com.affinity.api.types.GetOrderResponse;
-import com.affinity.api.types.GetOrderTestSimulationResponse;
-import com.affinity.api.types.ListOrderEventsResponse;
 import com.affinity.api.types.ListOrdersResponse;
 import com.affinity.api.types.PreviewOrderResponse;
 import com.affinity.api.types.RejectOrderResponse;
 import com.affinity.api.types.SignAndSubmitOrderResponse;
 import com.affinity.api.types.SignOrderResponse;
 import com.affinity.api.types.SubmitOrderResponse;
-import com.affinity.api.types.UpdateOrderPrescriptionResponse;
-import com.affinity.api.types.UpdateOrderTestSimulationResponse;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
 
 public class AsyncOrdersClient {
   protected final ClientOptions clientOptions;
 
   private final AsyncRawOrdersClient rawClient;
 
+  protected final Supplier<AsyncExceptionsClient> exceptionsClient;
+
+  protected final Supplier<AsyncEventsClient> eventsClient;
+
+  protected final Supplier<AsyncTestSimulationClient> testSimulationClient;
+
+  protected final Supplier<AsyncPrescriptionsClient> prescriptionsClient;
+
+  protected final Supplier<AsyncBatchesClient> batchesClient;
+
   public AsyncOrdersClient(ClientOptions clientOptions) {
     this.clientOptions = clientOptions;
     this.rawClient = new AsyncRawOrdersClient(clientOptions);
+    this.exceptionsClient = Suppliers.memoize(() -> new AsyncExceptionsClient(clientOptions));
+    this.eventsClient = Suppliers.memoize(() -> new AsyncEventsClient(clientOptions));
+    this.testSimulationClient = Suppliers.memoize(() -> new AsyncTestSimulationClient(clientOptions));
+    this.prescriptionsClient = Suppliers.memoize(() -> new AsyncPrescriptionsClient(clientOptions));
+    this.batchesClient = Suppliers.memoize(() -> new AsyncBatchesClient(clientOptions));
   }
 
   /**
@@ -58,278 +66,163 @@ public class AsyncOrdersClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<ListOrdersResponse> listOrders() {
-    return this.rawClient.listOrders().thenApply(response -> response.body());
+  public CompletableFuture<ListOrdersResponse> list() {
+    return this.rawClient.list().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<ListOrdersResponse> listOrders(RequestOptions requestOptions) {
-    return this.rawClient.listOrders(requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ListOrdersResponse> list(RequestOptions requestOptions) {
+    return this.rawClient.list(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<ListOrdersResponse> listOrders(ListOrdersRequest request) {
-    return this.rawClient.listOrders(request).thenApply(response -> response.body());
+  public CompletableFuture<ListOrdersResponse> list(ListOrdersRequest request) {
+    return this.rawClient.list(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<ListOrdersResponse> listOrders(ListOrdersRequest request,
+  public CompletableFuture<ListOrdersResponse> list(ListOrdersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.listOrders(request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.list(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Creates one unsigned order with 1–20 prescriptions for one patient in one practice. Supply patientId or patient; inline patient creation requires patients:write. Prescriber is optional: select by npi, provider id, or integration-scoped externalId, or leave the draft unassigned until signing. First-use prescriber registration requires team:write. Legacy userId is supported but cannot be combined with prescriber. Idempotency-Key is required.
    */
-  public CompletableFuture<CreateOrderResponse> createOrder(CreateOrderRequest request) {
-    return this.rawClient.createOrder(request).thenApply(response -> response.body());
+  public CompletableFuture<CreateOrderResponse> create(CreateOrderRequest request) {
+    return this.rawClient.create(request).thenApply(response -> response.body());
   }
 
   /**
    * Creates one unsigned order with 1–20 prescriptions for one patient in one practice. Supply patientId or patient; inline patient creation requires patients:write. Prescriber is optional: select by npi, provider id, or integration-scoped externalId, or leave the draft unassigned until signing. First-use prescriber registration requires team:write. Legacy userId is supported but cannot be combined with prescriber. Idempotency-Key is required.
    */
-  public CompletableFuture<CreateOrderResponse> createOrder(CreateOrderRequest request,
+  public CompletableFuture<CreateOrderResponse> create(CreateOrderRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.createOrder(request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.create(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<GetOrderResponse> getOrder(String orderId) {
-    return this.rawClient.getOrder(orderId).thenApply(response -> response.body());
+  public CompletableFuture<GetOrderResponse> get(String orderId) {
+    return this.rawClient.get(orderId).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<GetOrderResponse> getOrder(String orderId,
+  public CompletableFuture<GetOrderResponse> get(String orderId, RequestOptions requestOptions) {
+    return this.rawClient.get(orderId, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<GetOrderResponse> get(String orderId, GetOrdersRequest request) {
+    return this.rawClient.get(orderId, request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<GetOrderResponse> get(String orderId, GetOrdersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.getOrder(orderId, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<GetOrderResponse> getOrder(String orderId, GetOrderRequest request) {
-    return this.rawClient.getOrder(orderId, request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<GetOrderResponse> getOrder(String orderId, GetOrderRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.getOrder(orderId, request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.get(orderId, request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Requests cancellation. HTTP 200 means the request was handled; check cancellation.status for confirmed, pending, partial, or failed. Only confirmed means the entire order is cancelled. Shipment possession makes a fulfillment cancellation too late.
    */
-  public CompletableFuture<CancelOrderResponse> cancelOrder(String orderId,
-      CancelOrderRequest request) {
-    return this.rawClient.cancelOrder(orderId, request).thenApply(response -> response.body());
+  public CompletableFuture<CancelOrderResponse> cancel(String orderId, CancelOrderRequest request) {
+    return this.rawClient.cancel(orderId, request).thenApply(response -> response.body());
   }
 
   /**
    * Requests cancellation. HTTP 200 means the request was handled; check cancellation.status for confirmed, pending, partial, or failed. Only confirmed means the entire order is cancelled. Shipment possession makes a fulfillment cancellation too late.
    */
-  public CompletableFuture<CancelOrderResponse> cancelOrder(String orderId,
-      CancelOrderRequest request, RequestOptions requestOptions) {
-    return this.rawClient.cancelOrder(orderId, request, requestOptions).thenApply(response -> response.body());
-  }
-
-  /**
-   * Acknowledge, retry, contact, or resolve an order exception in the credential's Test/Live mode. assign_to_me requires a signed-in dashboard user; API keys receive 400 and may use acknowledge instead. Actor headers do not create a dashboard assignee.
-   */
-  public CompletableFuture<ActOnOrderExceptionResponse> actOnOrderException(String orderId,
-      String exceptionId, ActOnOrderExceptionRequest request) {
-    return this.rawClient.actOnOrderException(orderId, exceptionId, request).thenApply(response -> response.body());
-  }
-
-  /**
-   * Acknowledge, retry, contact, or resolve an order exception in the credential's Test/Live mode. assign_to_me requires a signed-in dashboard user; API keys receive 400 and may use acknowledge instead. Actor headers do not create a dashboard assignee.
-   */
-  public CompletableFuture<ActOnOrderExceptionResponse> actOnOrderException(String orderId,
-      String exceptionId, ActOnOrderExceptionRequest request, RequestOptions requestOptions) {
-    return this.rawClient.actOnOrderException(orderId, exceptionId, request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<ListOrderEventsResponse> listOrderEvents(String orderId) {
-    return this.rawClient.listOrderEvents(orderId).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<ListOrderEventsResponse> listOrderEvents(String orderId,
+  public CompletableFuture<CancelOrderResponse> cancel(String orderId, CancelOrderRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.listOrderEvents(orderId, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<ListOrderEventsResponse> listOrderEvents(String orderId,
-      ListOrderEventsRequest request) {
-    return this.rawClient.listOrderEvents(orderId, request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<ListOrderEventsResponse> listOrderEvents(String orderId,
-      ListOrderEventsRequest request, RequestOptions requestOptions) {
-    return this.rawClient.listOrderEvents(orderId, request, requestOptions).thenApply(response -> response.body());
-  }
-
-  /**
-   * Requires orders:write. Available only in Test mode.
-   */
-  public CompletableFuture<GetOrderTestSimulationResponse> getOrderTestSimulation(String orderId) {
-    return this.rawClient.getOrderTestSimulation(orderId).thenApply(response -> response.body());
-  }
-
-  /**
-   * Requires orders:write. Available only in Test mode.
-   */
-  public CompletableFuture<GetOrderTestSimulationResponse> getOrderTestSimulation(String orderId,
-      RequestOptions requestOptions) {
-    return this.rawClient.getOrderTestSimulation(orderId, requestOptions).thenApply(response -> response.body());
-  }
-
-  /**
-   * Requires orders:write. Available only in Test mode.
-   */
-  public CompletableFuture<GetOrderTestSimulationResponse> getOrderTestSimulation(String orderId,
-      GetOrderTestSimulationRequest request) {
-    return this.rawClient.getOrderTestSimulation(orderId, request).thenApply(response -> response.body());
-  }
-
-  /**
-   * Requires orders:write. Available only in Test mode.
-   */
-  public CompletableFuture<GetOrderTestSimulationResponse> getOrderTestSimulation(String orderId,
-      GetOrderTestSimulationRequest request, RequestOptions requestOptions) {
-    return this.rawClient.getOrderTestSimulation(orderId, request, requestOptions).thenApply(response -> response.body());
-  }
-
-  /**
-   * Requires orders:write and Idempotency-Key. Configure before submission or queue a valid pharmacy event in manual mode. Events use normal order history and Test webhooks. Live requests are rejected.
-   */
-  public CompletableFuture<UpdateOrderTestSimulationResponse> updateOrderTestSimulation(
-      String orderId, UpdateOrderTestSimulationRequest request) {
-    return this.rawClient.updateOrderTestSimulation(orderId, request).thenApply(response -> response.body());
-  }
-
-  /**
-   * Requires orders:write and Idempotency-Key. Configure before submission or queue a valid pharmacy event in manual mode. Events use normal order history and Test webhooks. Live requests are rejected.
-   */
-  public CompletableFuture<UpdateOrderTestSimulationResponse> updateOrderTestSimulation(
-      String orderId, UpdateOrderTestSimulationRequest request, RequestOptions requestOptions) {
-    return this.rawClient.updateOrderTestSimulation(orderId, request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.cancel(orderId, request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Requires orders:write and catalog:read. Supply exactly one of patientId, patientExternalId, or inline patient details. External-ID lookup additionally requires patients:read; inline details require patients:write. Resolves defaults and explicit edits for 1–20 prescriptions. Reuses stored patient details when identifiers match; otherwise previews inline details without creating a patient. Complete previews contain an orders.create input. Does not create records, reserve prices, sign, charge or transmit. No idempotency key is required. Creation and signing recheck current requirements.
    */
-  public CompletableFuture<PreviewOrderResponse> previewOrder(PreviewOrderRequest request) {
-    return this.rawClient.previewOrder(request).thenApply(response -> response.body());
+  public CompletableFuture<PreviewOrderResponse> preview(PreviewOrderRequest request) {
+    return this.rawClient.preview(request).thenApply(response -> response.body());
   }
 
   /**
    * Requires orders:write and catalog:read. Supply exactly one of patientId, patientExternalId, or inline patient details. External-ID lookup additionally requires patients:read; inline details require patients:write. Resolves defaults and explicit edits for 1–20 prescriptions. Reuses stored patient details when identifiers match; otherwise previews inline details without creating a patient. Complete previews contain an orders.create input. Does not create records, reserve prices, sign, charge or transmit. No idempotency key is required. Creation and signing recheck current requirements.
    */
-  public CompletableFuture<PreviewOrderResponse> previewOrder(PreviewOrderRequest request,
+  public CompletableFuture<PreviewOrderResponse> preview(PreviewOrderRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.previewOrder(request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.preview(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Requires orders:sign, Idempotency-Key, signatureAttestation, and expectedRevision from the reviewed order. Existing integrations may send expectedVersions instead; supply exactly one. A stale revision returns 409 and requires renewed clinician review. Select prescriber by npi, provider id, or integration-scoped externalId, or inherit the draft's prescriber. First-use registration requires team:write. Actor headers are optional audit metadata with prescriber; legacy userId requires matching clinician actor headers. Signing does not submit to a pharmacy.
    */
-  public CompletableFuture<SignOrderResponse> signOrder(String orderId, SignOrderRequest request) {
-    return this.rawClient.signOrder(orderId, request).thenApply(response -> response.body());
+  public CompletableFuture<SignOrderResponse> sign(String orderId, SignOrderRequest request) {
+    return this.rawClient.sign(orderId, request).thenApply(response -> response.body());
   }
 
   /**
    * Requires orders:sign, Idempotency-Key, signatureAttestation, and expectedRevision from the reviewed order. Existing integrations may send expectedVersions instead; supply exactly one. A stale revision returns 409 and requires renewed clinician review. Select prescriber by npi, provider id, or integration-scoped externalId, or inherit the draft's prescriber. First-use registration requires team:write. Actor headers are optional audit metadata with prescriber; legacy userId requires matching clinician actor headers. Signing does not submit to a pharmacy.
    */
-  public CompletableFuture<SignOrderResponse> signOrder(String orderId, SignOrderRequest request,
+  public CompletableFuture<SignOrderResponse> sign(String orderId, SignOrderRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.signOrder(orderId, request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.sign(orderId, request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Requires orders:sign, Idempotency-Key, signatureAttestation, and expectedRevision from the reviewed order. Existing integrations may send expectedVersions instead; supply exactly one. A stale revision returns 409 and requires renewed clinician review. Select prescriber by npi, provider id, or externalId, or inherit the draft's prescriber. First-use registration requires team:write. Actor headers are optional with prescriber; legacy userId requires matching clinician actor headers. Signs the complete order, then attempts each submission. Signing remains committed if submission fails. Replay the same key after an uncertain response; retry reported submission failures through Submit order with a new key. Submitted means queued, not pharmacy acceptance.
    */
-  public CompletableFuture<SignAndSubmitOrderResponse> signAndSubmitOrder(String orderId,
+  public CompletableFuture<SignAndSubmitOrderResponse> signAndSubmit(String orderId,
       SignAndSubmitOrderRequest request) {
-    return this.rawClient.signAndSubmitOrder(orderId, request).thenApply(response -> response.body());
+    return this.rawClient.signAndSubmit(orderId, request).thenApply(response -> response.body());
   }
 
   /**
    * Requires orders:sign, Idempotency-Key, signatureAttestation, and expectedRevision from the reviewed order. Existing integrations may send expectedVersions instead; supply exactly one. A stale revision returns 409 and requires renewed clinician review. Select prescriber by npi, provider id, or externalId, or inherit the draft's prescriber. First-use registration requires team:write. Actor headers are optional with prescriber; legacy userId requires matching clinician actor headers. Signs the complete order, then attempts each submission. Signing remains committed if submission fails. Replay the same key after an uncertain response; retry reported submission failures through Submit order with a new key. Submitted means queued, not pharmacy acceptance.
    */
-  public CompletableFuture<SignAndSubmitOrderResponse> signAndSubmitOrder(String orderId,
+  public CompletableFuture<SignAndSubmitOrderResponse> signAndSubmit(String orderId,
       SignAndSubmitOrderRequest request, RequestOptions requestOptions) {
-    return this.rawClient.signAndSubmitOrder(orderId, request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.signAndSubmit(orderId, request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Requires orders:sign and Idempotency-Key. Queues signed prescriptions after rechecking authorization, signature integrity, billing, and fulfillment eligibility. Track pharmacy acceptance through order reads and webhooks. After a partial failure, retry submission with a new idempotency key; already queued prescriptions are not duplicated.
    */
-  public CompletableFuture<SubmitOrderResponse> submitOrder(String orderId,
-      SubmitOrderRequest request) {
-    return this.rawClient.submitOrder(orderId, request).thenApply(response -> response.body());
+  public CompletableFuture<SubmitOrderResponse> submit(String orderId, SubmitOrderRequest request) {
+    return this.rawClient.submit(orderId, request).thenApply(response -> response.body());
   }
 
   /**
    * Requires orders:sign and Idempotency-Key. Queues signed prescriptions after rechecking authorization, signature integrity, billing, and fulfillment eligibility. Track pharmacy acceptance through order reads and webhooks. After a partial failure, retry submission with a new idempotency key; already queued prescriptions are not duplicated.
    */
-  public CompletableFuture<SubmitOrderResponse> submitOrder(String orderId,
-      SubmitOrderRequest request, RequestOptions requestOptions) {
-    return this.rawClient.submitOrder(orderId, request, requestOptions).thenApply(response -> response.body());
-  }
-
-  /**
-   * Requires orders:sign and Idempotency-Key. Select a prescriber or inherit the draft's prescriber. Legacy userId requires matching clinician actor headers. Supply expectedRevision from the reviewed order, or expectedVersions for existing integrations. Permanently rejects the complete unsigned order after checking its revision.
-   */
-  public CompletableFuture<RejectOrderResponse> rejectOrder(String orderId,
-      RejectOrderRequest request) {
-    return this.rawClient.rejectOrder(orderId, request).thenApply(response -> response.body());
-  }
-
-  /**
-   * Requires orders:sign and Idempotency-Key. Select a prescriber or inherit the draft's prescriber. Legacy userId requires matching clinician actor headers. Supply expectedRevision from the reviewed order, or expectedVersions for existing integrations. Permanently rejects the complete unsigned order after checking its revision.
-   */
-  public CompletableFuture<RejectOrderResponse> rejectOrder(String orderId,
-      RejectOrderRequest request, RequestOptions requestOptions) {
-    return this.rawClient.rejectOrder(orderId, request, requestOptions).thenApply(response -> response.body());
-  }
-
-  /**
-   * Requires orders:write, Idempotency-Key and expectedRevision from the order being edited. Existing integrations may send expectedVersions instead; supply exactly one. Adds a complete prescription to an unsigned Order and returns all new versions. Omitted actor context defaults to the authenticated service account as a system actor. Patient and prescriber attribution stay fixed. Signed orders cannot be amended through this endpoint. Signing and submission require orders:sign through their separate endpoints.
-   */
-  public CompletableFuture<AddOrderPrescriptionResponse> addOrderPrescription(String orderId,
-      AddOrderPrescriptionRequest request) {
-    return this.rawClient.addOrderPrescription(orderId, request).thenApply(response -> response.body());
-  }
-
-  /**
-   * Requires orders:write, Idempotency-Key and expectedRevision from the order being edited. Existing integrations may send expectedVersions instead; supply exactly one. Adds a complete prescription to an unsigned Order and returns all new versions. Omitted actor context defaults to the authenticated service account as a system actor. Patient and prescriber attribution stay fixed. Signed orders cannot be amended through this endpoint. Signing and submission require orders:sign through their separate endpoints.
-   */
-  public CompletableFuture<AddOrderPrescriptionResponse> addOrderPrescription(String orderId,
-      AddOrderPrescriptionRequest request, RequestOptions requestOptions) {
-    return this.rawClient.addOrderPrescription(orderId, request, requestOptions).thenApply(response -> response.body());
-  }
-
-  /**
-   * Requires orders:write, Idempotency-Key and expectedRevision from the order being edited. Existing integrations may send expectedVersions instead; supply exactly one. Replaces one prescription with complete medication instructions and returns all new versions. Omitted actor context defaults to the authenticated service account as a system actor. Patient and prescriber attribution stay fixed. Signed orders cannot be amended through this endpoint. Signing and submission require orders:sign through their separate endpoints.
-   */
-  public CompletableFuture<UpdateOrderPrescriptionResponse> updateOrderPrescription(String orderId,
-      String prescriptionId, UpdateOrderPrescriptionRequest request) {
-    return this.rawClient.updateOrderPrescription(orderId, prescriptionId, request).thenApply(response -> response.body());
-  }
-
-  /**
-   * Requires orders:write, Idempotency-Key and expectedRevision from the order being edited. Existing integrations may send expectedVersions instead; supply exactly one. Replaces one prescription with complete medication instructions and returns all new versions. Omitted actor context defaults to the authenticated service account as a system actor. Patient and prescriber attribution stay fixed. Signed orders cannot be amended through this endpoint. Signing and submission require orders:sign through their separate endpoints.
-   */
-  public CompletableFuture<UpdateOrderPrescriptionResponse> updateOrderPrescription(String orderId,
-      String prescriptionId, UpdateOrderPrescriptionRequest request,
+  public CompletableFuture<SubmitOrderResponse> submit(String orderId, SubmitOrderRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.updateOrderPrescription(orderId, prescriptionId, request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.submit(orderId, request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
-   * Creates 1–20 orders for distinct patients in one practice, each with 1–20 prescriptions. Each accepts patientId or inline patient details. Orders and newly created patients commit atomically; any failure saves none. Requires orders:write and Idempotency-Key; inline patients also require patients:write. Omitted actor context defaults to the authenticated service account as a system actor. Sign and submit each resulting order separately using orders:sign.
+   * Requires orders:sign and Idempotency-Key. Select a prescriber or inherit the draft's prescriber. Legacy userId requires matching clinician actor headers. Supply expectedRevision from the reviewed order, or expectedVersions for existing integrations. Permanently rejects the complete unsigned order after checking its revision.
    */
-  public CompletableFuture<CreateOrderBatchResponse> createOrderBatch(
-      CreateOrderBatchRequest request) {
-    return this.rawClient.createOrderBatch(request).thenApply(response -> response.body());
+  public CompletableFuture<RejectOrderResponse> reject(String orderId, RejectOrderRequest request) {
+    return this.rawClient.reject(orderId, request).thenApply(response -> response.body());
   }
 
   /**
-   * Creates 1–20 orders for distinct patients in one practice, each with 1–20 prescriptions. Each accepts patientId or inline patient details. Orders and newly created patients commit atomically; any failure saves none. Requires orders:write and Idempotency-Key; inline patients also require patients:write. Omitted actor context defaults to the authenticated service account as a system actor. Sign and submit each resulting order separately using orders:sign.
+   * Requires orders:sign and Idempotency-Key. Select a prescriber or inherit the draft's prescriber. Legacy userId requires matching clinician actor headers. Supply expectedRevision from the reviewed order, or expectedVersions for existing integrations. Permanently rejects the complete unsigned order after checking its revision.
    */
-  public CompletableFuture<CreateOrderBatchResponse> createOrderBatch(
-      CreateOrderBatchRequest request, RequestOptions requestOptions) {
-    return this.rawClient.createOrderBatch(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<RejectOrderResponse> reject(String orderId, RejectOrderRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.reject(orderId, request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public AsyncExceptionsClient exceptions() {
+    return this.exceptionsClient.get();
+  }
+
+  public AsyncEventsClient events() {
+    return this.eventsClient.get();
+  }
+
+  public AsyncTestSimulationClient testSimulation() {
+    return this.testSimulationClient.get();
+  }
+
+  public AsyncPrescriptionsClient prescriptions() {
+    return this.prescriptionsClient.get();
+  }
+
+  public AsyncBatchesClient batches() {
+    return this.batchesClient.get();
   }
 }

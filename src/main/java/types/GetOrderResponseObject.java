@@ -75,4 +75,6 @@ public final class GetOrderResponseObject {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

@@ -85,4 +85,6 @@ public final class ListOrdersResponseDataItemPrescriptionsItemDaysSupplyOne {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

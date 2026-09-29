@@ -154,4 +154,8 @@ public final class ListPracticeTeamInvitationsResponseDataItemPersonAccountPresc
       return this;
     }
   }
+
+  public String status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

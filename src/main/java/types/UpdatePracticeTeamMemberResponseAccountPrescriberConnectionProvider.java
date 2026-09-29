@@ -460,4 +460,20 @@ public final class UpdatePracticeTeamMemberResponseAccountPrescriberConnectionPr
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public String name() { return getName(); }
+
+  public String legalName() { return getLegalName(); }
+
+  public Optional<String> credentials() { return getCredentials(); }
+
+  public Optional<String> phone() { return getPhone(); }
+
+  public String npi() { return getNpi(); }
+
+  public String practiceStatus() { return getPracticeStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

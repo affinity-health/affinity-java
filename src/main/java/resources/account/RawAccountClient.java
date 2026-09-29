@@ -43,28 +43,28 @@ public class RawAccountClient {
   /**
    * Returns the platform organization, request livemode, and effective access. API keys report scopes and the service_key role; dashboard sessions report membership permissions. operatingMode describes organization Live access, not the credential's Test/Live mode.
    */
-  public AffinityClientHttpResponse<GetAccountResponse> getAccount() {
-    return getAccount(GetAccountRequest.builder().build());
+  public AffinityClientHttpResponse<GetAccountResponse> get() {
+    return get(GetAccountRequest.builder().build());
   }
 
   /**
    * Returns the platform organization, request livemode, and effective access. API keys report scopes and the service_key role; dashboard sessions report membership permissions. operatingMode describes organization Live access, not the credential's Test/Live mode.
    */
-  public AffinityClientHttpResponse<GetAccountResponse> getAccount(RequestOptions requestOptions) {
-    return getAccount(GetAccountRequest.builder().build(),requestOptions);
+  public AffinityClientHttpResponse<GetAccountResponse> get(RequestOptions requestOptions) {
+    return get(GetAccountRequest.builder().build(),requestOptions);
   }
 
   /**
    * Returns the platform organization, request livemode, and effective access. API keys report scopes and the service_key role; dashboard sessions report membership permissions. operatingMode describes organization Live access, not the credential's Test/Live mode.
    */
-  public AffinityClientHttpResponse<GetAccountResponse> getAccount(GetAccountRequest request) {
-    return getAccount(request,null);
+  public AffinityClientHttpResponse<GetAccountResponse> get(GetAccountRequest request) {
+    return get(request,null);
   }
 
   /**
    * Returns the platform organization, request livemode, and effective access. API keys report scopes and the service_key role; dashboard sessions report membership permissions. operatingMode describes organization Live access, not the credential's Test/Live mode.
    */
-  public AffinityClientHttpResponse<GetAccountResponse> getAccount(GetAccountRequest request,
+  public AffinityClientHttpResponse<GetAccountResponse> get(GetAccountRequest request,
       RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 

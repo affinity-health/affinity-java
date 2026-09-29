@@ -85,4 +85,6 @@ public final class ListOrdersResponseDataItemPrescriptionsItemQuantityOne {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

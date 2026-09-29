@@ -307,4 +307,14 @@ public final class ListPharmaciesResponseDataItemFacilityLocationsItem {
       return this;
     }
   }
+
+  public Optional<String> city() { return getCity(); }
+
+  public Optional<String> country() { return getCountry(); }
+
+  public String name() { return getName(); }
+
+  public Optional<String> state() { return getState(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

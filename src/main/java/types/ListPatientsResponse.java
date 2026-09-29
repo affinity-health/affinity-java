@@ -215,4 +215,14 @@ public final class ListPatientsResponse {
       return this;
     }
   }
+
+  public List<ListPatientsResponseDataItem> data() { return getData(); }
+
+  public boolean hasMore() { return getHasMore(); }
+
+  public ListPatientsResponseObject object() { return getObject(); }
+
+  public String url() { return getUrl(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -293,4 +293,10 @@ public final class ListCatalogItemsResponseDataItemPrescriptionRequirementsQuant
       return this;
     }
   }
+
+  public String unit() { return getUnit(); }
+
+  public ListCatalogItemsResponseDataItemPrescriptionRequirementsQuantityIncrementValue value() { return getValue(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

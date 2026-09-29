@@ -105,4 +105,6 @@ public final class ReplacePatientAllergiesResponseAllergiesItemSource {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

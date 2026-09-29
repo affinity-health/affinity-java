@@ -168,4 +168,12 @@ public final class SubmitOrderResponse {
       return this;
     }
   }
+
+  public SubmitOrderResponseObject object() { return getObject(); }
+
+  public String orderId() { return getOrderId(); }
+
+  public SubmitOrderResponseStatus status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -1,0 +1,8 @@
+package com.affinity.api.models;
+import java.util.*;import com.fasterxml.jackson.annotation.JsonValue;
+public final class OrderBatchCreateParamsOrdersItemPrescriptionsItemClinical{private final Map<String,Object> values;private OrderBatchCreateParamsOrdersItemPrescriptionsItemClinical(Map<String,Object> values){this.values=Collections.unmodifiableMap(new LinkedHashMap<>(values));}@JsonValue public Map<String,Object> values(){return values;}public static Builder builder(){return new Builder();}public static final class Builder {private final Map<String,Object> values=new LinkedHashMap<>();public Builder compoundingReason(OrderBatchCreateParamsOrdersItemPrescriptionsItemClinicalCompoundingReason value){values.put("compoundingReason",value);return this;}
+public Builder medicationReviewStatus(String value){values.put("medicationReviewStatus",value);return this;}
+public Builder diagnosisReviewStatus(String value){values.put("diagnosisReviewStatus",value);return this;}
+public Builder currentMedications(List<String> value){values.put("currentMedications",value);return this;}
+public Builder diagnoses(List<OrderBatchCreateParamsOrdersItemPrescriptionsItemClinicalDiagnosesItem> value){values.put("diagnoses",value);return this;}
+public Builder observations(List<OrderBatchCreateParamsOrdersItemPrescriptionsItemClinicalObservationsItem> value){values.put("observations",value);return this;}public OrderBatchCreateParamsOrdersItemPrescriptionsItemClinical build(){return new OrderBatchCreateParamsOrdersItemPrescriptionsItemClinical(values);}}}

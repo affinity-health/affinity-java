@@ -661,4 +661,32 @@ public final class PreviewOrderResponsePrescriptionsItem {
       return this;
     }
   }
+
+  public String medicationId() { return getMedicationId(); }
+
+  public String revision() { return getRevision(); }
+
+  public String directions() { return getDirections(); }
+
+  public Optional<PreviewOrderResponsePrescriptionsItemStructuredSig> structuredSig() { return getStructuredSig(); }
+
+  public PreviewOrderResponsePrescriptionsItemFormat format() { return getFormat(); }
+
+  public Optional<PreviewOrderResponsePrescriptionsItemQuantity> quantity() { return getQuantity(); }
+
+  public Optional<Integer> daysSupply() { return getDaysSupply(); }
+
+  public PreviewOrderResponsePrescriptionsItemDaysSupplySource daysSupplySource() { return getDaysSupplySource(); }
+
+  public int refills() { return getRefills(); }
+
+  public List<PreviewOrderResponsePrescriptionsItemShippingOptionsItem> shippingOptions() { return getShippingOptions(); }
+
+  public Optional<String> shippingOptionId() { return getShippingOptionId(); }
+
+  public Optional<Integer> medicationSubtotalCents() { return getMedicationSubtotalCents(); }
+
+  public Optional<Integer> shippingAmountCents() { return getShippingAmountCents(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

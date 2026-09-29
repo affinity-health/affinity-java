@@ -165,4 +165,6 @@ public final class GetOrderResponseFulfillmentsItemShipmentsItemStatus {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

@@ -200,4 +200,8 @@ public final class PreviewOrderResponseOrderInputPrescriptionsItemClinicalCompou
       return this;
     }
   }
+
+  public Optional<String> context() { return getContext(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -784,4 +784,36 @@ public final class ListPracticeTeamInvitationsResponseDataItem {
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public ListPracticeTeamInvitationsResponseDataItemObject object() { return getObject(); }
+
+  public String email() { return getEmail(); }
+
+  public Optional<String> name() { return getName(); }
+
+  public ListPracticeTeamInvitationsResponseDataItemStatus status() { return getStatus(); }
+
+  public List<ListPracticeTeamInvitationsResponseDataItemRolesItem> roles() { return getRoles(); }
+
+  public List<String> locationIds() { return getLocationIds(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public String expiresAt() { return getExpiresAt(); }
+
+  public Optional<String> acceptedAt() { return getAcceptedAt(); }
+
+  public Optional<String> userId() { return getUserId(); }
+
+  public Optional<String> externalId() { return getExternalId(); }
+
+  public Optional<String> memberId() { return getMemberId(); }
+
+  public Optional<String> prescriberId() { return getPrescriberId(); }
+
+  public Optional<ListPracticeTeamInvitationsResponseDataItemPerson> person() { return getPerson(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

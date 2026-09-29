@@ -383,4 +383,22 @@ public final class GetAccountResponseAccount {
       return this;
     }
   }
+
+  public List<String> allowedReturnUrls() { return getAllowedReturnUrls(); }
+
+  public String displayName() { return getDisplayName(); }
+
+  public String id() { return getId(); }
+
+  public GetAccountResponseAccountObject object() { return getObject(); }
+
+  public String slug() { return getSlug(); }
+
+  public GetAccountResponseAccountStatus status() { return getStatus(); }
+
+  public Optional<String> supportEmail() { return getSupportEmail(); }
+
+  public Optional<String> websiteUrl() { return getWebsiteUrl(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

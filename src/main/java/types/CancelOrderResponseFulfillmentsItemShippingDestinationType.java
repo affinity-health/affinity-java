@@ -85,4 +85,6 @@ public final class CancelOrderResponseFulfillmentsItemShippingDestinationType {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

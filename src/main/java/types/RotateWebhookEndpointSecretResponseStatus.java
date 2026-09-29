@@ -95,4 +95,6 @@ public final class RotateWebhookEndpointSecretResponseStatus {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

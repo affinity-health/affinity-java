@@ -86,4 +86,6 @@ public final class ReplayWebhookEventResponseDeliveriesItemAutomaticAttemptCount
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

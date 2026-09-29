@@ -126,4 +126,8 @@ public final class RetrievePrescribingOptionsResponseCatalogQuantityConstraintUn
       return this;
     }
   }
+
+  public String sourceText() { return getSourceText(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

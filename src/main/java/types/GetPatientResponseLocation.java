@@ -232,4 +232,14 @@ public final class GetPatientResponseLocation {
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public String name() { return getName(); }
+
+  public Optional<String> state() { return getState(); }
+
+  public GetPatientResponseLocationStatus status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

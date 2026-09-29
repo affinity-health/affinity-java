@@ -486,4 +486,20 @@ public final class ListOrdersResponseDataItemPrescriptionsItemPatientSnapshot {
       return this;
     }
   }
+
+  public Optional<Map<String, Object>> address() { return getAddress(); }
+
+  public String dateOfBirth() { return getDateOfBirth(); }
+
+  public Optional<String> email() { return getEmail(); }
+
+  public Optional<ListOrdersResponseDataItemPrescriptionsItemPatientSnapshotGender> gender() { return getGender(); }
+
+  public String legalName() { return getLegalName(); }
+
+  public Optional<String> phone() { return getPhone(); }
+
+  public String state() { return getState(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

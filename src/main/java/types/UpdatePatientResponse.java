@@ -1168,4 +1168,62 @@ public final class UpdatePatientResponse {
       return this;
     }
   }
+
+  public Optional<UpdatePatientResponseAddress> address() { return getAddress(); }
+
+  public Optional<String> defaultShippingAddressId() { return getDefaultShippingAddressId(); }
+
+  public Optional<UpdatePatientResponseShippingAddress> shippingAddress() { return getShippingAddress(); }
+
+  public UpdatePatientResponseAllergyReviewStatus allergyReviewStatus() { return getAllergyReviewStatus(); }
+
+  public List<UpdatePatientResponseAllergySummaryItem> allergySummary() { return getAllergySummary(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public UpdatePatientResponseClinicalProfile clinicalProfile() { return getClinicalProfile(); }
+
+  public String dateOfBirth() { return getDateOfBirth(); }
+
+  public Optional<String> email() { return getEmail(); }
+
+  public Optional<String> externalId() { return getExternalId(); }
+
+  public List<UpdatePatientResponseExternalIdentitiesItem> externalIdentities() { return getExternalIdentities(); }
+
+  public List<UpdatePatientResponseAddressesItem> addresses() { return getAddresses(); }
+
+  public List<UpdatePatientResponseEncountersItem> encounters() { return getEncounters(); }
+
+  public UpdatePatientResponseGender gender() { return getGender(); }
+
+  public String id() { return getId(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public UpdatePatientResponseLocation location() { return getLocation(); }
+
+  public String locationId() { return getLocationId(); }
+
+  public Map<String, Object> metadata() { return getMetadata(); }
+
+  public Optional<String> medicalRecordNumber() { return getMedicalRecordNumber(); }
+
+  public List<UpdatePatientResponseMeasurementsItem> measurements() { return getMeasurements(); }
+
+  public UpdatePatientResponseName name() { return getName(); }
+
+  public UpdatePatientResponseObject object() { return getObject(); }
+
+  public Optional<String> phone() { return getPhone(); }
+
+  public List<UpdatePatientResponseProgramsItem> programs() { return getPrograms(); }
+
+  public String practiceId() { return getPracticeId(); }
+
+  public UpdatePatientResponseStatus status() { return getStatus(); }
+
+  public String updatedAt() { return getUpdatedAt(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

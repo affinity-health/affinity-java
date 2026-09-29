@@ -146,4 +146,10 @@ public final class GetPracticeTeamResponsePrescribers {
       return this;
     }
   }
+
+  public GetPracticeTeamResponsePrescribersTotal total() { return getTotal(); }
+
+  public GetPracticeTeamResponsePrescribersActive active() { return getActive(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

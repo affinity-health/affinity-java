@@ -85,4 +85,6 @@ public final class CreatePatientResponseLocationStatus {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

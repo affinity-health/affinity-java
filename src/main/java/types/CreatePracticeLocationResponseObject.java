@@ -75,4 +75,6 @@ public final class CreatePracticeLocationResponseObject {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

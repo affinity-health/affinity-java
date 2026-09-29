@@ -75,4 +75,6 @@ public final class ListPharmaciesResponseDataItemObject {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

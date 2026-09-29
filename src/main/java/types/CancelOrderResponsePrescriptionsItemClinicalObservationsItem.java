@@ -235,4 +235,14 @@ public final class CancelOrderResponsePrescriptionsItemClinicalObservationsItem 
       return this;
     }
   }
+
+  public Optional<String> code() { return getCode(); }
+
+  public String display() { return getDisplay(); }
+
+  public CancelOrderResponsePrescriptionsItemClinicalObservationsItemValue value() { return getValue(); }
+
+  public String unit() { return getUnit(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

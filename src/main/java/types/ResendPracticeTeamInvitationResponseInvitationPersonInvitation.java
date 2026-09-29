@@ -225,4 +225,14 @@ public final class ResendPracticeTeamInvitationResponseInvitationPersonInvitatio
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public ResendPracticeTeamInvitationResponseInvitationPersonInvitationStatus status() { return getStatus(); }
+
+  public String expiresAt() { return getExpiresAt(); }
+
+  public List<ResendPracticeTeamInvitationResponseInvitationPersonInvitationRolesItem> roles() { return getRoles(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

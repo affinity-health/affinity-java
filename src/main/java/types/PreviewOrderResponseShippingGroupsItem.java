@@ -302,4 +302,20 @@ public final class PreviewOrderResponseShippingGroupsItem {
       return this;
     }
   }
+
+  public String key() { return getKey(); }
+
+  public String pharmacy() { return getPharmacy(); }
+
+  public String label() { return getLabel(); }
+
+  public PreviewOrderResponseShippingGroupsItemTemperature temperature() { return getTemperature(); }
+
+  public int amountCents() { return getAmountCents(); }
+
+  public int itemCount() { return getItemCount(); }
+
+  public List<Integer> prescriptionIndexes() { return getPrescriptionIndexes(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

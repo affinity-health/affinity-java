@@ -105,4 +105,6 @@ public final class PreviewOrderResponsePrescriptionsItemDaysSupplySource {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

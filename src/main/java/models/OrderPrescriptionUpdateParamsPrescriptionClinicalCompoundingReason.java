@@ -1,0 +1,4 @@
+package com.affinity.api.models;
+import java.util.*;import com.fasterxml.jackson.annotation.JsonValue;
+public final class OrderPrescriptionUpdateParamsPrescriptionClinicalCompoundingReason{private final Map<String,Object> values;private OrderPrescriptionUpdateParamsPrescriptionClinicalCompoundingReason(Map<String,Object> values){this.values=Collections.unmodifiableMap(new LinkedHashMap<>(values));}@JsonValue public Map<String,Object> values(){return values;}public static Builder builder(){return new Builder();}public static final class Builder {private final Map<String,Object> values=new LinkedHashMap<>();public Builder category(String value){values.put("category",value);return this;}
+public Builder context(String value){values.put("context",value);return this;}public OrderPrescriptionUpdateParamsPrescriptionClinicalCompoundingReason build(){return new OrderPrescriptionUpdateParamsPrescriptionClinicalCompoundingReason(values);}}}

@@ -863,4 +863,40 @@ public final class CancelOrderResponseFulfillmentsItem {
       return this;
     }
   }
+
+  public Optional<String> carrier() { return getCarrier(); }
+
+  public List<CancelOrderResponseFulfillmentsItemCancellationsItem> cancellations() { return getCancellations(); }
+
+  public Optional<String> pharmacyId() { return getPharmacyId(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public String id() { return getId(); }
+
+  public String prescriptionId() { return getPrescriptionId(); }
+
+  public String status() { return getStatus(); }
+
+  public Optional<String> trackingNumber() { return getTrackingNumber(); }
+
+  public Optional<String> trackingStatus() { return getTrackingStatus(); }
+
+  public Optional<String> shippedAt() { return getShippedAt(); }
+
+  public Optional<String> deliveredAt() { return getDeliveredAt(); }
+
+  public Optional<String> estimatedDeliveryAt() { return getEstimatedDeliveryAt(); }
+
+  public List<CancelOrderResponseFulfillmentsItemExceptionsItem> exceptions() { return getExceptions(); }
+
+  public CancelOrderResponseFulfillmentsItemShipping shipping() { return getShipping(); }
+
+  public List<CancelOrderResponseFulfillmentsItemShipmentsItem> shipments() { return getShipments(); }
+
+  public Optional<String> trackingUrl() { return getTrackingUrl(); }
+
+  public String updatedAt() { return getUpdatedAt(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

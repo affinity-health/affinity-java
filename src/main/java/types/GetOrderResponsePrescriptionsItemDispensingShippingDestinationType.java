@@ -86,4 +86,6 @@ public final class GetOrderResponsePrescriptionsItemDispensingShippingDestinatio
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

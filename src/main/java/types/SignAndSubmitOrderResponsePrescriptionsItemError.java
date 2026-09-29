@@ -170,4 +170,12 @@ public final class SignAndSubmitOrderResponsePrescriptionsItemError {
       return this;
     }
   }
+
+  public String code() { return getCode(); }
+
+  public String detail() { return getDetail(); }
+
+  public SignAndSubmitOrderResponsePrescriptionsItemErrorStatus status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

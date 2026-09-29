@@ -169,4 +169,12 @@ public final class CancelOrderResponseCancellationOutcomesItem {
       return this;
     }
   }
+
+  public String cancellationId() { return getCancellationId(); }
+
+  public String fulfillmentId() { return getFulfillmentId(); }
+
+  public CancelOrderResponseCancellationOutcomesItemStatus status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

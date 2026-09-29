@@ -146,4 +146,10 @@ public final class PreviewOrderResponsePrescriptionsItemQuantity {
       return this;
     }
   }
+
+  public double value() { return getValue(); }
+
+  public String unit() { return getUnit(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

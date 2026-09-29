@@ -315,4 +315,22 @@ public final class ListWebhookGrantsResponseDataItem {
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public ListWebhookGrantsResponseDataItemObject object() { return getObject(); }
+
+  public String organizationId() { return getOrganizationId(); }
+
+  public String platformId() { return getPlatformId(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public List<ListWebhookGrantsResponseDataItemScopesItem> scopes() { return getScopes(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public String updatedAt() { return getUpdatedAt(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

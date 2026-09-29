@@ -179,4 +179,10 @@ public final class ListCatalogItemsResponseDataItemComposition {
       return this;
     }
   }
+
+  public ListCatalogItemsResponseDataItemCompositionStatus status() { return getStatus(); }
+
+  public List<ListCatalogItemsResponseDataItemCompositionIngredientsItem> ingredients() { return getIngredients(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

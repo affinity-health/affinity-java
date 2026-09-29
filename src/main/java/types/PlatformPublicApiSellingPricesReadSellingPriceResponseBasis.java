@@ -316,4 +316,8 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponseBasis {
       return "PlatformPublicApiSellingPricesReadSellingPriceResponseBasis{" + "type: " + type + ", value: " + value + "}";
     }
   }
+
+  public Optional<PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItem> item() { return getItem(); }
+
+  public Optional<PlatformPublicApiSellingPricesReadSellingPriceResponseBasisUnit> unit() { return getUnit(); }
 }

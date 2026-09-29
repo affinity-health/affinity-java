@@ -307,4 +307,14 @@ public final class GetOrderResponsePrescriptionsItemClinicalMedicationsItem {
       return this;
     }
   }
+
+  public String display() { return getDisplay(); }
+
+  public Optional<String> ndc() { return getNdc(); }
+
+  public Optional<String> rxNormCui() { return getRxNormCui(); }
+
+  public Optional<String> source() { return getSource(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

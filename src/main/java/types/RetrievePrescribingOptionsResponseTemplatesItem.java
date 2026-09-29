@@ -214,4 +214,16 @@ public final class RetrievePrescribingOptionsResponseTemplatesItem {
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public RetrievePrescribingOptionsResponseTemplatesItemInitial initial() { return getInitial(); }
+
+  public String label() { return getLabel(); }
+
+  public String preview() { return getPreview(); }
+
+  public String revision() { return getRevision(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

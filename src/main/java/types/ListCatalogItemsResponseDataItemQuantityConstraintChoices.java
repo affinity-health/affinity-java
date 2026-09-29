@@ -130,4 +130,6 @@ public final class ListCatalogItemsResponseDataItemQuantityConstraintChoices {
       return this;
     }
   }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

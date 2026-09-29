@@ -431,4 +431,24 @@ public final class RetrievePrescribingOptionsResponsePresetsItem {
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public String revision() { return getRevision(); }
+
+  public RetrievePrescribingOptionsResponsePresetsItemSource source() { return getSource(); }
+
+  public String directions() { return getDirections(); }
+
+  public RetrievePrescribingOptionsResponsePresetsItemFormat format() { return getFormat(); }
+
+  public Optional<RetrievePrescribingOptionsResponsePresetsItemStructuredSig> structuredSig() { return getStructuredSig(); }
+
+  public Optional<RetrievePrescribingOptionsResponsePresetsItemQuantity> quantity() { return getQuantity(); }
+
+  public Optional<Integer> daysSupply() { return getDaysSupply(); }
+
+  public int refills() { return getRefills(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

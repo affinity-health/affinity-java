@@ -444,4 +444,24 @@ public final class GetPracticeTeamPrescriberResponse {
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public String name() { return getName(); }
+
+  public String legalName() { return getLegalName(); }
+
+  public Optional<String> credentials() { return getCredentials(); }
+
+  public Optional<String> phone() { return getPhone(); }
+
+  public Optional<GetPracticeTeamPrescriberResponseAddress> address() { return getAddress(); }
+
+  public String npi() { return getNpi(); }
+
+  public String practiceStatus() { return getPracticeStatus(); }
+
+  public List<GetPracticeTeamPrescriberResponseLicensesItem> licenses() { return getLicenses(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -256,4 +256,10 @@ public final class ReplacePatientAllergiesResponseAllergiesItemReactionsItem {
       return this;
     }
   }
+
+  public Optional<String> code() { return getCode(); }
+
+  public String display() { return getDisplay(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

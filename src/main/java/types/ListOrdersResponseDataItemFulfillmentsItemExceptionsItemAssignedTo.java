@@ -147,4 +147,10 @@ public final class ListOrdersResponseDataItemFulfillmentsItemExceptionsItemAssig
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public String name() { return getName(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

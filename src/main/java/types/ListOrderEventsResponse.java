@@ -215,4 +215,14 @@ public final class ListOrderEventsResponse {
       return this;
     }
   }
+
+  public List<ListOrderEventsResponseDataItem> data() { return getData(); }
+
+  public boolean hasMore() { return getHasMore(); }
+
+  public ListOrderEventsResponseObject object() { return getObject(); }
+
+  public String url() { return getUrl(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

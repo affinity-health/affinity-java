@@ -463,4 +463,34 @@ public final class ListWebhookEndpointsResponseDataItem {
       return this;
     }
   }
+
+  public String organizationId() { return getOrganizationId(); }
+
+  public List<String> practiceIds() { return getPracticeIds(); }
+
+  public String apiVersion() { return getApiVersion(); }
+
+  public int consecutiveFailures() { return getConsecutiveFailures(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public String description() { return getDescription(); }
+
+  public String id() { return getId(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public ListWebhookEndpointsResponseDataItemObject object() { return getObject(); }
+
+  public ListWebhookEndpointsResponseDataItemPayloadStyle payloadStyle() { return getPayloadStyle(); }
+
+  public ListWebhookEndpointsResponseDataItemStatus status() { return getStatus(); }
+
+  public List<String> subscribedEvents() { return getSubscribedEvents(); }
+
+  public String updatedAt() { return getUpdatedAt(); }
+
+  public String url() { return getUrl(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -86,4 +86,6 @@ public final class ListCatalogItemsResponseDataItemCompositionIngredientsItemRol
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

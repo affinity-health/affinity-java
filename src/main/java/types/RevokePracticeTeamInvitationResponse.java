@@ -782,4 +782,36 @@ public final class RevokePracticeTeamInvitationResponse {
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public RevokePracticeTeamInvitationResponseObject object() { return getObject(); }
+
+  public String email() { return getEmail(); }
+
+  public Optional<String> name() { return getName(); }
+
+  public RevokePracticeTeamInvitationResponseStatus status() { return getStatus(); }
+
+  public List<RevokePracticeTeamInvitationResponseRolesItem> roles() { return getRoles(); }
+
+  public List<String> locationIds() { return getLocationIds(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public String expiresAt() { return getExpiresAt(); }
+
+  public Optional<String> acceptedAt() { return getAcceptedAt(); }
+
+  public Optional<String> userId() { return getUserId(); }
+
+  public Optional<String> externalId() { return getExternalId(); }
+
+  public Optional<String> memberId() { return getMemberId(); }
+
+  public Optional<String> prescriberId() { return getPrescriberId(); }
+
+  public Optional<RevokePracticeTeamInvitationResponsePerson> person() { return getPerson(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

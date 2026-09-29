@@ -87,4 +87,6 @@ public final class ListCatalogItemsResponseDataItemShippingOptionsItemDestinatio
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

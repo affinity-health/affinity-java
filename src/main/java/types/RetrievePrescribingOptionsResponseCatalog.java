@@ -1232,4 +1232,62 @@ public final class RetrievePrescribingOptionsResponseCatalog {
       return this;
     }
   }
+
+  public RetrievePrescribingOptionsResponseCatalogCatalogDetails catalogDetails() { return getCatalogDetails(); }
+
+  public RetrievePrescribingOptionsResponseCatalogComposition composition() { return getComposition(); }
+
+  public List<String> allowedStates() { return getAllowedStates(); }
+
+  public RetrievePrescribingOptionsResponseCatalogAvailability availability() { return getAvailability(); }
+
+  public String catalogKind() { return getCatalogKind(); }
+
+  public RetrievePrescribingOptionsResponseCatalogOrdering ordering() { return getOrdering(); }
+
+  public Optional<String> category() { return getCategory(); }
+
+  public boolean coldShip() { return getColdShip(); }
+
+  public String pharmacyId() { return getPharmacyId(); }
+
+  public String pharmacyName() { return getPharmacyName(); }
+
+  public String description() { return getDescription(); }
+
+  public String dosageForm() { return getDosageForm(); }
+
+  public String facilityType() { return getFacilityType(); }
+
+  public String id() { return getId(); }
+
+  public Optional<String> imageUrl() { return getImageUrl(); }
+
+  public List<String> imageUrls() { return getImageUrls(); }
+
+  public Optional<RetrievePrescribingOptionsResponseCatalogMedicationGroup> medicationGroup() { return getMedicationGroup(); }
+
+  public boolean isOrderable() { return getIsOrderable(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public String name() { return getName(); }
+
+  public RetrievePrescribingOptionsResponseCatalogObject object() { return getObject(); }
+
+  public boolean patientSpecificRequired() { return getPatientSpecificRequired(); }
+
+  public Optional<RetrievePrescribingOptionsResponseCatalogPricing> pricing() { return getPricing(); }
+
+  public List<String> restrictedStates() { return getRestrictedStates(); }
+
+  public String route() { return getRoute(); }
+
+  public List<RetrievePrescribingOptionsResponseCatalogShippingOptionsItem> shippingOptions() { return getShippingOptions(); }
+
+  public Optional<String> strength() { return getStrength(); }
+
+  public Optional<String> unit() { return getUnit(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -148,4 +148,10 @@ public final class ListCatalogItemsResponseDataItemCatalogDetailsDirectionsItem 
       return this;
     }
   }
+
+  public ListCatalogItemsResponseDataItemCatalogDetailsDirectionsItemKind kind() { return getKind(); }
+
+  public String text() { return getText(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

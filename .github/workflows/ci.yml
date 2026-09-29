@@ -11,4 +11,4 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - run: mvn -B test package
+      - run: ./tests/with-fixtures.sh mvn -B test package

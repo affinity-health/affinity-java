@@ -105,4 +105,6 @@ public final class CreatePatientResponseGender {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

@@ -212,4 +212,16 @@ public final class CreateOrderResponseOtcItemsItem {
       return this;
     }
   }
+
+  public String catalogItemId() { return getCatalogItemId(); }
+
+  public String name() { return getName(); }
+
+  public int quantity() { return getQuantity(); }
+
+  public int unitPriceCents() { return getUnitPriceCents(); }
+
+  public int subtotalCents() { return getSubtotalCents(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

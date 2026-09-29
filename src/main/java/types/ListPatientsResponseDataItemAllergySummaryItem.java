@@ -188,4 +188,10 @@ public final class ListPatientsResponseDataItemAllergySummaryItem {
       return this;
     }
   }
+
+  public Optional<String> reaction() { return getReaction(); }
+
+  public String substance() { return getSubstance(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

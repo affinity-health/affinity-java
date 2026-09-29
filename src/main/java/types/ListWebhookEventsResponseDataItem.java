@@ -302,4 +302,24 @@ public final class ListWebhookEventsResponseDataItem {
       return this;
     }
   }
+
+  public String apiVersion() { return getApiVersion(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public String eventType() { return getEventType(); }
+
+  public String id() { return getId(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public ListWebhookEventsResponseDataItemObject object() { return getObject(); }
+
+  public String resourceId() { return getResourceId(); }
+
+  public String resourceType() { return getResourceType(); }
+
+  public ListWebhookEventsResponseDataItemStatus status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

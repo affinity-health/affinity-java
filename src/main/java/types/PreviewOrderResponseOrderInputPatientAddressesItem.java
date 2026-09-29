@@ -294,4 +294,16 @@ public final class PreviewOrderResponseOrderInputPatientAddressesItem {
       return this;
     }
   }
+
+  public Optional<String> id() { return getId(); }
+
+  public PreviewOrderResponseOrderInputPatientAddressesItemAddress address() { return getAddress(); }
+
+  public String label() { return getLabel(); }
+
+  public boolean preferredShipping() { return getPreferredShipping(); }
+
+  public Optional<String> recipientName() { return getRecipientName(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

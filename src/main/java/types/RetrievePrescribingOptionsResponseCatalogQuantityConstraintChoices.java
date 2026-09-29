@@ -131,4 +131,6 @@ public final class RetrievePrescribingOptionsResponseCatalogQuantityConstraintCh
       return this;
     }
   }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

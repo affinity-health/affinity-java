@@ -146,4 +146,10 @@ public final class RetrievePrescribingOptionsResponseCatalogPricingBasisPackage 
       return this;
     }
   }
+
+  public String quantity() { return getQuantity(); }
+
+  public String unit() { return getUnit(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -317,4 +317,16 @@ public final class ResendPracticeTeamInvitationResponseInvitationPersonAccount {
       return this;
     }
   }
+
+  public String accountId() { return getAccountId(); }
+
+  public boolean emailVerified() { return getEmailVerified(); }
+
+  public String membershipId() { return getMembershipId(); }
+
+  public String membershipStatus() { return getMembershipStatus(); }
+
+  public List<ResendPracticeTeamInvitationResponseInvitationPersonAccountRolesItem> roles() { return getRoles(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

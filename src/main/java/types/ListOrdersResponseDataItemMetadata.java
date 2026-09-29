@@ -74,4 +74,6 @@ public final class ListOrdersResponseDataItemMetadata {
       return this;
     }
   }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

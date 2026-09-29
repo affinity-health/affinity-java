@@ -85,4 +85,6 @@ public final class UpdatePatientResponseMeasurementsItemHeightCentimetersOne {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

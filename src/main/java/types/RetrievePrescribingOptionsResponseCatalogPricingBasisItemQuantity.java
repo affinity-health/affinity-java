@@ -76,4 +76,6 @@ public final class RetrievePrescribingOptionsResponseCatalogPricingBasisItemQuan
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

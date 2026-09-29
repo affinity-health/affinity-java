@@ -174,4 +174,12 @@ public final class PreviewOrderResponseOrderInputPrescriptionsItemClinicalObserv
       return this;
     }
   }
+
+  public String display() { return getDisplay(); }
+
+  public String unit() { return getUnit(); }
+
+  public PreviewOrderResponseOrderInputPrescriptionsItemClinicalObservationsItemValue value() { return getValue(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

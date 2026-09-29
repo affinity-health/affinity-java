@@ -194,4 +194,10 @@ public final class CreatePracticeResponseContacts {
       return this;
     }
   }
+
+  public Optional<CreatePracticeResponseContactsCompliance> compliance() { return getCompliance(); }
+
+  public Optional<CreatePracticeResponseContactsPrimary> primary() { return getPrimary(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -105,4 +105,6 @@ public final class GetOrderResponsePrescriptionsItemPatientSnapshotGender {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

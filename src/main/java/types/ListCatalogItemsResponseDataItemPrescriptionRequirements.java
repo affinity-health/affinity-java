@@ -1140,4 +1140,26 @@ public final class ListCatalogItemsResponseDataItemPrescriptionRequirements {
       return this;
     }
   }
+
+  public Optional<List<Integer>> allowedDaysSupply() { return getAllowedDaysSupply(); }
+
+  public Optional<Map<String, Optional<String>>> reasonCategoryLabels() { return getReasonCategoryLabels(); }
+
+  public Optional<Integer> defaultDaysSupply() { return getDefaultDaysSupply(); }
+
+  public Optional<List<String>> defaultSigs() { return getDefaultSigs(); }
+
+  public ListCatalogItemsResponseDataItemPrescriptionRequirementsDiagnosis diagnosis() { return getDiagnosis(); }
+
+  public Optional<Integer> maxRefills() { return getMaxRefills(); }
+
+  public Optional<List<String>> notes() { return getNotes(); }
+
+  public ListCatalogItemsResponseDataItemPrescriptionRequirementsPharmacyNotes pharmacyNotes() { return getPharmacyNotes(); }
+
+  public ListCatalogItemsResponseDataItemPrescriptionRequirementsRefills refills() { return getRefills(); }
+
+  public ListCatalogItemsResponseDataItemPrescriptionRequirementsSubstitution substitution() { return getSubstitution(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

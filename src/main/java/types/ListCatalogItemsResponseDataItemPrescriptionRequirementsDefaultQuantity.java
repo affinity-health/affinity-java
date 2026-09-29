@@ -151,4 +151,10 @@ public final class ListCatalogItemsResponseDataItemPrescriptionRequirementsDefau
       return this;
     }
   }
+
+  public String unit() { return getUnit(); }
+
+  public ListCatalogItemsResponseDataItemPrescriptionRequirementsDefaultQuantityValue value() { return getValue(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

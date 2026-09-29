@@ -216,4 +216,14 @@ public final class ListWebhookGrantsResponse {
       return this;
     }
   }
+
+  public ListWebhookGrantsResponseObject object() { return getObject(); }
+
+  public List<ListWebhookGrantsResponseDataItem> data() { return getData(); }
+
+  public boolean hasMore() { return getHasMore(); }
+
+  public ListWebhookGrantsResponseUrl url() { return getUrl(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

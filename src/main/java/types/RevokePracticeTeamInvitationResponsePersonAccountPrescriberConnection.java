@@ -152,4 +152,8 @@ public final class RevokePracticeTeamInvitationResponsePersonAccountPrescriberCo
       return this;
     }
   }
+
+  public String status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

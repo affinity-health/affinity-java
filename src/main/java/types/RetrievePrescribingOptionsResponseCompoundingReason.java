@@ -288,4 +288,16 @@ public final class RetrievePrescribingOptionsResponseCompoundingReason {
       return this;
     }
   }
+
+  public boolean required() { return getRequired(); }
+
+  public boolean categoryRequired() { return getCategoryRequired(); }
+
+  public RetrievePrescribingOptionsResponseCompoundingReasonContext context() { return getContext(); }
+
+  public Optional<String> contextPrompt() { return getContextPrompt(); }
+
+  public List<RetrievePrescribingOptionsResponseCompoundingReasonChoicesItem> choices() { return getChoices(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

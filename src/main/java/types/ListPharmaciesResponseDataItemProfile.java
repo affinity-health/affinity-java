@@ -450,4 +450,20 @@ public final class ListPharmaciesResponseDataItemProfile {
       return this;
     }
   }
+
+  public String description() { return getDescription(); }
+
+  public String effectiveAt() { return getEffectiveAt(); }
+
+  public Optional<Integer> monthlyPrescriptionVolume() { return getMonthlyPrescriptionVolume(); }
+
+  public Optional<ListPharmaciesResponseDataItemProfileRating> rating() { return getRating(); }
+
+  public Optional<String> ratingBasis() { return getRatingBasis(); }
+
+  public Optional<Integer> ratingReviewCount() { return getRatingReviewCount(); }
+
+  public Optional<Integer> recommendedRank() { return getRecommendedRank(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

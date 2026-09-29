@@ -440,4 +440,30 @@ public final class ReplayWebhookEventResponse {
       return this;
     }
   }
+
+  public String apiVersion() { return getApiVersion(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public String eventType() { return getEventType(); }
+
+  public String id() { return getId(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public ReplayWebhookEventResponseObject object() { return getObject(); }
+
+  public String resourceId() { return getResourceId(); }
+
+  public String resourceType() { return getResourceType(); }
+
+  public ReplayWebhookEventResponseStatus status() { return getStatus(); }
+
+  public List<ReplayWebhookEventResponseAttemptsItem> attempts() { return getAttempts(); }
+
+  public List<ReplayWebhookEventResponseDeliveriesItem> deliveries() { return getDeliveries(); }
+
+  public Map<String, Object> payload() { return getPayload(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

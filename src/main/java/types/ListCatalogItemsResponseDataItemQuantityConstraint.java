@@ -381,4 +381,12 @@ public final class ListCatalogItemsResponseDataItemQuantityConstraint {
       return "ListCatalogItemsResponseDataItemQuantityConstraint{" + "type: " + type + ", value: " + value + "}";
     }
   }
+
+  public Optional<ListCatalogItemsResponseDataItemQuantityConstraintFixed> fixed() { return getFixed(); }
+
+  public Optional<ListCatalogItemsResponseDataItemQuantityConstraintChoices> choices() { return getChoices(); }
+
+  public Optional<ListCatalogItemsResponseDataItemQuantityConstraintRange> range() { return getRange(); }
+
+  public Optional<ListCatalogItemsResponseDataItemQuantityConstraintUnresolved> unresolved() { return getUnresolved(); }
 }

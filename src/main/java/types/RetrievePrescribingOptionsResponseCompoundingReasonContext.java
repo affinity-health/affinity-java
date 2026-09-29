@@ -95,4 +95,6 @@ public final class RetrievePrescribingOptionsResponseCompoundingReasonContext {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

@@ -22,14 +22,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(
     builder = UpdatePracticeLocationRequest.Builder.class
 )
 public final class UpdatePracticeLocationRequest {
-  private final String idempotencyKey;
+  private final Optional<String> idempotencyKey;
 
   private final Optional<String> city;
 
@@ -51,7 +50,7 @@ public final class UpdatePracticeLocationRequest {
 
   private final Map<String, Object> additionalProperties;
 
-  private UpdatePracticeLocationRequest(String idempotencyKey, Optional<String> city,
+  private UpdatePracticeLocationRequest(Optional<String> idempotencyKey, Optional<String> city,
       Optional<String> country, Optional<String> line1, Optional<String> line2,
       Optional<String> name, Optional<String> phone, Optional<String> postalCode,
       Optional<String> state, Optional<String> timezone, Map<String, Object> additionalProperties) {
@@ -68,8 +67,11 @@ public final class UpdatePracticeLocationRequest {
     this.additionalProperties = additionalProperties;
   }
 
+  /**
+   * @return Optional in the SDK. A fresh key is generated once per call when omitted. Supply a stable key to retry across calls.
+   */
   @JsonIgnore
-  public String getIdempotencyKey() {
+  public Optional<String> getIdempotencyKey() {
     return idempotencyKey;
   }
 
@@ -254,104 +256,33 @@ public final class UpdatePracticeLocationRequest {
     return ObjectMappers.stringify(this);
   }
 
-  public static IdempotencyKeyStage builder() {
+  public static Builder builder() {
     return new Builder();
-  }
-
-  public interface IdempotencyKeyStage {
-    _FinalStage idempotencyKey(@NotNull String idempotencyKey);
-
-    Builder from(UpdatePracticeLocationRequest other);
-  }
-
-  public interface _FinalStage {
-    UpdatePracticeLocationRequest build();
-
-    _FinalStage additionalProperty(String key, Object value);
-
-    _FinalStage additionalProperties(Map<String, Object> additionalProperties);
-
-    _FinalStage city(Optional<String> city);
-
-    _FinalStage city(String city);
-
-    _FinalStage city(Nullable<String> city);
-
-    _FinalStage country(Optional<String> country);
-
-    _FinalStage country(String country);
-
-    _FinalStage country(Nullable<String> country);
-
-    _FinalStage line1(Optional<String> line1);
-
-    _FinalStage line1(String line1);
-
-    _FinalStage line1(Nullable<String> line1);
-
-    _FinalStage line2(Optional<String> line2);
-
-    _FinalStage line2(String line2);
-
-    _FinalStage line2(Nullable<String> line2);
-
-    _FinalStage name(Optional<String> name);
-
-    _FinalStage name(String name);
-
-    _FinalStage name(Nullable<String> name);
-
-    _FinalStage phone(Optional<String> phone);
-
-    _FinalStage phone(String phone);
-
-    _FinalStage phone(Nullable<String> phone);
-
-    _FinalStage postalCode(Optional<String> postalCode);
-
-    _FinalStage postalCode(String postalCode);
-
-    _FinalStage postalCode(Nullable<String> postalCode);
-
-    _FinalStage state(Optional<String> state);
-
-    _FinalStage state(String state);
-
-    _FinalStage state(Nullable<String> state);
-
-    /**
-     * <p>Optional IANA timezone override. Omit to leave unchanged; null clears it. No timezone is inferred when creating a record.</p>
-     */
-    _FinalStage timezone(Optional<String> timezone);
-
-    _FinalStage timezone(String timezone);
-
-    _FinalStage timezone(Nullable<String> timezone);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdempotencyKeyStage, _FinalStage {
-    private String idempotencyKey;
+  public static final class Builder {
+    private Optional<String> idempotencyKey = Optional.empty();
 
-    private Optional<String> timezone = Optional.empty();
-
-    private Optional<String> state = Optional.empty();
-
-    private Optional<String> postalCode = Optional.empty();
-
-    private Optional<String> phone = Optional.empty();
-
-    private Optional<String> name = Optional.empty();
-
-    private Optional<String> line2 = Optional.empty();
-
-    private Optional<String> line1 = Optional.empty();
+    private Optional<String> city = Optional.empty();
 
     private Optional<String> country = Optional.empty();
 
-    private Optional<String> city = Optional.empty();
+    private Optional<String> line1 = Optional.empty();
+
+    private Optional<String> line2 = Optional.empty();
+
+    private Optional<String> name = Optional.empty();
+
+    private Optional<String> phone = Optional.empty();
+
+    private Optional<String> postalCode = Optional.empty();
+
+    private Optional<String> state = Optional.empty();
+
+    private Optional<String> timezone = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -359,7 +290,6 @@ public final class UpdatePracticeLocationRequest {
     private Builder() {
     }
 
-    @java.lang.Override
     public Builder from(UpdatePracticeLocationRequest other) {
       idempotencyKey(other.getIdempotencyKey());
       city(other.getCity());
@@ -374,265 +304,34 @@ public final class UpdatePracticeLocationRequest {
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage idempotencyKey(@NotNull String idempotencyKey) {
-      this.idempotencyKey = Objects.requireNonNull(idempotencyKey, "idempotencyKey must not be null");
-      return this;
-    }
-
     /**
-     * <p>Optional IANA timezone override. Omit to leave unchanged; null clears it. No timezone is inferred when creating a record.</p>
-     * @return Reference to {@code this} so that method calls can be chained together.
+     * <p>Optional in the SDK. A fresh key is generated once per call when omitted. Supply a stable key to retry across calls.</p>
      */
-    @java.lang.Override
-    public _FinalStage timezone(Nullable<String> timezone) {
-      if (timezone.isNull()) {
-        this.timezone = null;
-      }
-      else if (timezone.isEmpty()) {
-        this.timezone = Optional.empty();
-      }
-      else {
-        this.timezone = Optional.of(timezone.get());
-      }
+    public Builder idempotencyKey(Optional<String> idempotencyKey) {
+      this.idempotencyKey = idempotencyKey;
       return this;
     }
 
-    /**
-     * <p>Optional IANA timezone override. Omit to leave unchanged; null clears it. No timezone is inferred when creating a record.</p>
-     * @return Reference to {@code this} so that method calls can be chained together.
-     */
-    @java.lang.Override
-    public _FinalStage timezone(String timezone) {
-      this.timezone = Optional.ofNullable(timezone);
+    public Builder idempotencyKey(String idempotencyKey) {
+      this.idempotencyKey = Optional.ofNullable(idempotencyKey);
       return this;
     }
 
-    /**
-     * <p>Optional IANA timezone override. Omit to leave unchanged; null clears it. No timezone is inferred when creating a record.</p>
-     */
-    @java.lang.Override
     @JsonSetter(
-        value = "timezone",
+        value = "city",
         nulls = Nulls.SKIP
     )
-    public _FinalStage timezone(Optional<String> timezone) {
-      this.timezone = timezone;
+    public Builder city(Optional<String> city) {
+      this.city = city;
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage state(Nullable<String> state) {
-      if (state.isNull()) {
-        this.state = null;
-      }
-      else if (state.isEmpty()) {
-        this.state = Optional.empty();
-      }
-      else {
-        this.state = Optional.of(state.get());
-      }
+    public Builder city(String city) {
+      this.city = Optional.ofNullable(city);
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage state(String state) {
-      this.state = Optional.ofNullable(state);
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter(
-        value = "state",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage state(Optional<String> state) {
-      this.state = state;
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage postalCode(Nullable<String> postalCode) {
-      if (postalCode.isNull()) {
-        this.postalCode = null;
-      }
-      else if (postalCode.isEmpty()) {
-        this.postalCode = Optional.empty();
-      }
-      else {
-        this.postalCode = Optional.of(postalCode.get());
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage postalCode(String postalCode) {
-      this.postalCode = Optional.ofNullable(postalCode);
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter(
-        value = "postalCode",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage postalCode(Optional<String> postalCode) {
-      this.postalCode = postalCode;
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage phone(Nullable<String> phone) {
-      if (phone.isNull()) {
-        this.phone = null;
-      }
-      else if (phone.isEmpty()) {
-        this.phone = Optional.empty();
-      }
-      else {
-        this.phone = Optional.of(phone.get());
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage phone(String phone) {
-      this.phone = Optional.ofNullable(phone);
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter(
-        value = "phone",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage phone(Optional<String> phone) {
-      this.phone = phone;
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage name(Nullable<String> name) {
-      if (name.isNull()) {
-        this.name = null;
-      }
-      else if (name.isEmpty()) {
-        this.name = Optional.empty();
-      }
-      else {
-        this.name = Optional.of(name.get());
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage name(String name) {
-      this.name = Optional.ofNullable(name);
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter(
-        value = "name",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage name(Optional<String> name) {
-      this.name = name;
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage line2(Nullable<String> line2) {
-      if (line2.isNull()) {
-        this.line2 = null;
-      }
-      else if (line2.isEmpty()) {
-        this.line2 = Optional.empty();
-      }
-      else {
-        this.line2 = Optional.of(line2.get());
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage line2(String line2) {
-      this.line2 = Optional.ofNullable(line2);
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter(
-        value = "line2",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage line2(Optional<String> line2) {
-      this.line2 = line2;
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage line1(Nullable<String> line1) {
-      if (line1.isNull()) {
-        this.line1 = null;
-      }
-      else if (line1.isEmpty()) {
-        this.line1 = Optional.empty();
-      }
-      else {
-        this.line1 = Optional.of(line1.get());
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage line1(String line1) {
-      this.line1 = Optional.ofNullable(line1);
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter(
-        value = "line1",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage line1(Optional<String> line1) {
-      this.line1 = line1;
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage country(Nullable<String> country) {
-      if (country.isNull()) {
-        this.country = null;
-      }
-      else if (country.isEmpty()) {
-        this.country = Optional.empty();
-      }
-      else {
-        this.country = Optional.of(country.get());
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage country(String country) {
-      this.country = Optional.ofNullable(country);
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter(
-        value = "country",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage country(Optional<String> country) {
-      this.country = country;
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage city(Nullable<String> city) {
+    public Builder city(Nullable<String> city) {
       if (city.isNull()) {
         this.city = null;
       }
@@ -645,34 +344,234 @@ public final class UpdatePracticeLocationRequest {
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage city(String city) {
-      this.city = Optional.ofNullable(city);
-      return this;
-    }
-
-    @java.lang.Override
     @JsonSetter(
-        value = "city",
+        value = "country",
         nulls = Nulls.SKIP
     )
-    public _FinalStage city(Optional<String> city) {
-      this.city = city;
+    public Builder country(Optional<String> country) {
+      this.country = country;
       return this;
     }
 
-    @java.lang.Override
+    public Builder country(String country) {
+      this.country = Optional.ofNullable(country);
+      return this;
+    }
+
+    public Builder country(Nullable<String> country) {
+      if (country.isNull()) {
+        this.country = null;
+      }
+      else if (country.isEmpty()) {
+        this.country = Optional.empty();
+      }
+      else {
+        this.country = Optional.of(country.get());
+      }
+      return this;
+    }
+
+    @JsonSetter(
+        value = "line1",
+        nulls = Nulls.SKIP
+    )
+    public Builder line1(Optional<String> line1) {
+      this.line1 = line1;
+      return this;
+    }
+
+    public Builder line1(String line1) {
+      this.line1 = Optional.ofNullable(line1);
+      return this;
+    }
+
+    public Builder line1(Nullable<String> line1) {
+      if (line1.isNull()) {
+        this.line1 = null;
+      }
+      else if (line1.isEmpty()) {
+        this.line1 = Optional.empty();
+      }
+      else {
+        this.line1 = Optional.of(line1.get());
+      }
+      return this;
+    }
+
+    @JsonSetter(
+        value = "line2",
+        nulls = Nulls.SKIP
+    )
+    public Builder line2(Optional<String> line2) {
+      this.line2 = line2;
+      return this;
+    }
+
+    public Builder line2(String line2) {
+      this.line2 = Optional.ofNullable(line2);
+      return this;
+    }
+
+    public Builder line2(Nullable<String> line2) {
+      if (line2.isNull()) {
+        this.line2 = null;
+      }
+      else if (line2.isEmpty()) {
+        this.line2 = Optional.empty();
+      }
+      else {
+        this.line2 = Optional.of(line2.get());
+      }
+      return this;
+    }
+
+    @JsonSetter(
+        value = "name",
+        nulls = Nulls.SKIP
+    )
+    public Builder name(Optional<String> name) {
+      this.name = name;
+      return this;
+    }
+
+    public Builder name(String name) {
+      this.name = Optional.ofNullable(name);
+      return this;
+    }
+
+    public Builder name(Nullable<String> name) {
+      if (name.isNull()) {
+        this.name = null;
+      }
+      else if (name.isEmpty()) {
+        this.name = Optional.empty();
+      }
+      else {
+        this.name = Optional.of(name.get());
+      }
+      return this;
+    }
+
+    @JsonSetter(
+        value = "phone",
+        nulls = Nulls.SKIP
+    )
+    public Builder phone(Optional<String> phone) {
+      this.phone = phone;
+      return this;
+    }
+
+    public Builder phone(String phone) {
+      this.phone = Optional.ofNullable(phone);
+      return this;
+    }
+
+    public Builder phone(Nullable<String> phone) {
+      if (phone.isNull()) {
+        this.phone = null;
+      }
+      else if (phone.isEmpty()) {
+        this.phone = Optional.empty();
+      }
+      else {
+        this.phone = Optional.of(phone.get());
+      }
+      return this;
+    }
+
+    @JsonSetter(
+        value = "postalCode",
+        nulls = Nulls.SKIP
+    )
+    public Builder postalCode(Optional<String> postalCode) {
+      this.postalCode = postalCode;
+      return this;
+    }
+
+    public Builder postalCode(String postalCode) {
+      this.postalCode = Optional.ofNullable(postalCode);
+      return this;
+    }
+
+    public Builder postalCode(Nullable<String> postalCode) {
+      if (postalCode.isNull()) {
+        this.postalCode = null;
+      }
+      else if (postalCode.isEmpty()) {
+        this.postalCode = Optional.empty();
+      }
+      else {
+        this.postalCode = Optional.of(postalCode.get());
+      }
+      return this;
+    }
+
+    @JsonSetter(
+        value = "state",
+        nulls = Nulls.SKIP
+    )
+    public Builder state(Optional<String> state) {
+      this.state = state;
+      return this;
+    }
+
+    public Builder state(String state) {
+      this.state = Optional.ofNullable(state);
+      return this;
+    }
+
+    public Builder state(Nullable<String> state) {
+      if (state.isNull()) {
+        this.state = null;
+      }
+      else if (state.isEmpty()) {
+        this.state = Optional.empty();
+      }
+      else {
+        this.state = Optional.of(state.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>Optional IANA timezone override. Omit to leave unchanged; null clears it. No timezone is inferred when creating a record.</p>
+     */
+    @JsonSetter(
+        value = "timezone",
+        nulls = Nulls.SKIP
+    )
+    public Builder timezone(Optional<String> timezone) {
+      this.timezone = timezone;
+      return this;
+    }
+
+    public Builder timezone(String timezone) {
+      this.timezone = Optional.ofNullable(timezone);
+      return this;
+    }
+
+    public Builder timezone(Nullable<String> timezone) {
+      if (timezone.isNull()) {
+        this.timezone = null;
+      }
+      else if (timezone.isEmpty()) {
+        this.timezone = Optional.empty();
+      }
+      else {
+        this.timezone = Optional.of(timezone.get());
+      }
+      return this;
+    }
+
     public UpdatePracticeLocationRequest build() {
       return new UpdatePracticeLocationRequest(idempotencyKey, city, country, line1, line2, name, phone, postalCode, state, timezone, additionalProperties);
     }
 
-    @java.lang.Override
     public Builder additionalProperty(String key, Object value) {
       this.additionalProperties.put(key, value);
       return this;
     }
 
-    @java.lang.Override
     public Builder additionalProperties(Map<String, Object> additionalProperties) {
       this.additionalProperties.putAll(additionalProperties);
       return this;

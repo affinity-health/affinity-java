@@ -174,4 +174,12 @@ public final class RetrievePrescribingOptionsResponseCatalogOrdering {
       return this;
     }
   }
+
+  public boolean requiresPrescription() { return getRequiresPrescription(); }
+
+  public boolean requiresAccompanyingPrescription() { return getRequiresAccompanyingPrescription(); }
+
+  public RetrievePrescribingOptionsResponseCatalogOrderingShipping shipping() { return getShipping(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

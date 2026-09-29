@@ -172,4 +172,10 @@ public final class CancelOrderResponseCancellation {
       return this;
     }
   }
+
+  public CancelOrderResponseCancellationStatus status() { return getStatus(); }
+
+  public List<CancelOrderResponseCancellationOutcomesItem> outcomes() { return getOutcomes(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

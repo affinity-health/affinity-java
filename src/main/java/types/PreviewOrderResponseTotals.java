@@ -368,4 +368,16 @@ public final class PreviewOrderResponseTotals {
       return this;
     }
   }
+
+  public PreviewOrderResponseTotalsCurrency currency() { return getCurrency(); }
+
+  public Optional<Integer> medicationSubtotalCents() { return getMedicationSubtotalCents(); }
+
+  public Optional<Integer> supplySubtotalCents() { return getSupplySubtotalCents(); }
+
+  public Optional<Integer> shippingTotalCents() { return getShippingTotalCents(); }
+
+  public Optional<Integer> estimatedTotalCents() { return getEstimatedTotalCents(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

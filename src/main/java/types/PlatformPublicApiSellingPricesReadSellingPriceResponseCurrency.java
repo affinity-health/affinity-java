@@ -76,4 +76,6 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponseCurrenc
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

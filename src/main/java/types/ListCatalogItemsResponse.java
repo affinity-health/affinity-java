@@ -238,4 +238,16 @@ public final class ListCatalogItemsResponse {
       return this;
     }
   }
+
+  public List<ListCatalogItemsResponseDataItem> data() { return getData(); }
+
+  public boolean hasMore() { return getHasMore(); }
+
+  public ListCatalogItemsResponseObject object() { return getObject(); }
+
+  public String updatedAt() { return getUpdatedAt(); }
+
+  public ListCatalogItemsResponseUrl url() { return getUrl(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

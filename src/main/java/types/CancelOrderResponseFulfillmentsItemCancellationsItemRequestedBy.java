@@ -146,4 +146,10 @@ public final class CancelOrderResponseFulfillmentsItemCancellationsItemRequested
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public String type() { return getType(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

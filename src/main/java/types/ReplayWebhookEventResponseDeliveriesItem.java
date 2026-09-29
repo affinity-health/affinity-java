@@ -378,4 +378,20 @@ public final class ReplayWebhookEventResponseDeliveriesItem {
       return this;
     }
   }
+
+  public ReplayWebhookEventResponseDeliveriesItemAutomaticAttemptCount automaticAttemptCount() { return getAutomaticAttemptCount(); }
+
+  public String endpointId() { return getEndpointId(); }
+
+  public String id() { return getId(); }
+
+  public Optional<String> lastErrorCode() { return getLastErrorCode(); }
+
+  public Optional<String> lastErrorMessage() { return getLastErrorMessage(); }
+
+  public Optional<String> nextAttemptAt() { return getNextAttemptAt(); }
+
+  public ReplayWebhookEventResponseDeliveriesItemStatus status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -215,4 +215,14 @@ public final class SignOrderResponse {
       return this;
     }
   }
+
+  public String orderId() { return getOrderId(); }
+
+  public List<String> prescriptions() { return getPrescriptions(); }
+
+  public String signedAt() { return getSignedAt(); }
+
+  public SignOrderResponseStatus status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

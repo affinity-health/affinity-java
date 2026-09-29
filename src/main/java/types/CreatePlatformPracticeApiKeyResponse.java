@@ -171,4 +171,12 @@ public final class CreatePlatformPracticeApiKeyResponse {
       return this;
     }
   }
+
+  public CreatePlatformPracticeApiKeyResponseApiKey apiKey() { return getApiKey(); }
+
+  public String secret() { return getSecret(); }
+
+  public CreatePlatformPracticeApiKeyResponseServiceAccount serviceAccount() { return getServiceAccount(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -489,4 +489,24 @@ public final class ListPracticeTeamInvitationsResponseDataItemPerson {
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public ListPracticeTeamInvitationsResponseDataItemPersonObject object() { return getObject(); }
+
+  public String externalId() { return getExternalId(); }
+
+  public Optional<String> email() { return getEmail(); }
+
+  public Optional<String> name() { return getName(); }
+
+  public String status() { return getStatus(); }
+
+  public Optional<ListPracticeTeamInvitationsResponseDataItemPersonInvitation> invitation() { return getInvitation(); }
+
+  public Optional<ListPracticeTeamInvitationsResponseDataItemPersonAccount> account() { return getAccount(); }
+
+  public List<String> nextActions() { return getNextActions(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

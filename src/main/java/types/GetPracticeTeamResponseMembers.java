@@ -169,4 +169,12 @@ public final class GetPracticeTeamResponseMembers {
       return this;
     }
   }
+
+  public GetPracticeTeamResponseMembersTotal total() { return getTotal(); }
+
+  public GetPracticeTeamResponseMembersActive active() { return getActive(); }
+
+  public GetPracticeTeamResponseMembersDisabled disabled() { return getDisabled(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

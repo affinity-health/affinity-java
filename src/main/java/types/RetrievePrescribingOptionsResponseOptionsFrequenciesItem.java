@@ -171,4 +171,12 @@ public final class RetrievePrescribingOptionsResponseOptionsFrequenciesItem {
       return this;
     }
   }
+
+  public String label() { return getLabel(); }
+
+  public RetrievePrescribingOptionsResponseOptionsFrequenciesItemSource source() { return getSource(); }
+
+  public String value() { return getValue(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

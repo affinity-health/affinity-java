@@ -190,4 +190,14 @@ public final class RejectOrderResponse {
       return this;
     }
   }
+
+  public String orderId() { return getOrderId(); }
+
+  public String rejectedAt() { return getRejectedAt(); }
+
+  public String reason() { return getReason(); }
+
+  public RejectOrderResponseStatus status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

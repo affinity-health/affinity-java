@@ -440,4 +440,30 @@ public final class GetWebhookEventResponse {
       return this;
     }
   }
+
+  public String apiVersion() { return getApiVersion(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public String eventType() { return getEventType(); }
+
+  public String id() { return getId(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public GetWebhookEventResponseObject object() { return getObject(); }
+
+  public String resourceId() { return getResourceId(); }
+
+  public String resourceType() { return getResourceType(); }
+
+  public GetWebhookEventResponseStatus status() { return getStatus(); }
+
+  public List<GetWebhookEventResponseAttemptsItem> attempts() { return getAttempts(); }
+
+  public List<GetWebhookEventResponseDeliveriesItem> deliveries() { return getDeliveries(); }
+
+  public Map<String, Object> payload() { return getPayload(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

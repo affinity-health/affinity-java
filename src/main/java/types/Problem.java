@@ -321,4 +321,24 @@ public final class Problem {
       return this;
     }
   }
+
+  public String code() { return getCode(); }
+
+  public Optional<Map<String, Object>> data() { return getData(); }
+
+  public String detail() { return getDetail(); }
+
+  public String instance() { return getInstance(); }
+
+  public String requestId() { return getRequestId(); }
+
+  public int status() { return getStatus(); }
+
+  public String title() { return getTitle(); }
+
+  public Optional<String> traceId() { return getTraceId(); }
+
+  public String type() { return getType(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

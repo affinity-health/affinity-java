@@ -233,4 +233,14 @@ public final class GetAccountResponseMembership {
       return this;
     }
   }
+
+  public List<String> permissions() { return getPermissions(); }
+
+  public GetAccountResponseMembershipRole role() { return getRole(); }
+
+  public String roleName() { return getRoleName(); }
+
+  public GetAccountResponseMembershipStatus status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

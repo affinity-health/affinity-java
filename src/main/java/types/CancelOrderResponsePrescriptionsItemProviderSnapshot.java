@@ -508,4 +508,22 @@ public final class CancelOrderResponsePrescriptionsItemProviderSnapshot {
       return this;
     }
   }
+
+  public Optional<Map<String, Object>> address() { return getAddress(); }
+
+  public Optional<String> credentials() { return getCredentials(); }
+
+  public String legalName() { return getLegalName(); }
+
+  public Optional<String> licenseNumber() { return getLicenseNumber(); }
+
+  public Optional<String> licenseState() { return getLicenseState(); }
+
+  public Optional<String> licenseExpiresAt() { return getLicenseExpiresAt(); }
+
+  public String npi() { return getNpi(); }
+
+  public Optional<String> phone() { return getPhone(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

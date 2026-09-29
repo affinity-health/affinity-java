@@ -507,4 +507,22 @@ public final class GetOrderResponseReview {
       return this;
     }
   }
+
+  public GetOrderResponseReviewStatus status() { return getStatus(); }
+
+  public Optional<String> reason() { return getReason(); }
+
+  public String requestedAt() { return getRequestedAt(); }
+
+  public Optional<String> completedAt() { return getCompletedAt(); }
+
+  public Optional<String> canceledAt() { return getCanceledAt(); }
+
+  public Optional<String> resolvedAt() { return getResolvedAt(); }
+
+  public Optional<GetOrderResponseReviewResolvedBy> resolvedBy() { return getResolvedBy(); }
+
+  public Optional<String> providerId() { return getProviderId(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

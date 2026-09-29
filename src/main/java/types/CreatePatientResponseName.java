@@ -269,4 +269,14 @@ public final class CreatePatientResponseName {
       return this;
     }
   }
+
+  public String first() { return getFirst(); }
+
+  public String last() { return getLast(); }
+
+  public Optional<String> middle() { return getMiddle(); }
+
+  public Optional<String> preferred() { return getPreferred(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

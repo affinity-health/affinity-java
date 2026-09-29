@@ -1090,4 +1090,50 @@ public final class GetOrderResponsePrescriptionsItem {
       return this;
     }
   }
+
+  public int version() { return getVersion(); }
+
+  public Optional<GetOrderResponsePrescriptionsItemDaysSupply> daysSupply() { return getDaysSupply(); }
+
+  public GetOrderResponsePrescriptionsItemPatientSnapshot patientSnapshot() { return getPatientSnapshot(); }
+
+  public Optional<Map<String, Object>> deliveryAddress() { return getDeliveryAddress(); }
+
+  public boolean deliveryAddressDiffersFromPatient() { return getDeliveryAddressDiffersFromPatient(); }
+
+  public Optional<GetOrderResponsePrescriptionsItemProviderSnapshot> providerSnapshot() { return getProviderSnapshot(); }
+
+  public Optional<GetOrderResponsePrescriptionsItemClinical> clinical() { return getClinical(); }
+
+  public Optional<GetOrderResponsePrescriptionsItemDispensing> dispensing() { return getDispensing(); }
+
+  public Optional<GetOrderResponsePrescriptionsItemStructuredSig> structuredSig() { return getStructuredSig(); }
+
+  public Optional<String> externalPrescriptionId() { return getExternalPrescriptionId(); }
+
+  public Optional<String> catalogItemId() { return getCatalogItemId(); }
+
+  public Optional<String> pharmacyId() { return getPharmacyId(); }
+
+  public Optional<String> pharmacyName() { return getPharmacyName(); }
+
+  public String directions() { return getDirections(); }
+
+  public Optional<String> dosageForm() { return getDosageForm(); }
+
+  public String id() { return getId(); }
+
+  public String medicationName() { return getMedicationName(); }
+
+  public GetOrderResponsePrescriptionsItemQuantity quantity() { return getQuantity(); }
+
+  public String quantityUnit() { return getQuantityUnit(); }
+
+  public int refills() { return getRefills(); }
+
+  public String status() { return getStatus(); }
+
+  public Optional<String> strength() { return getStrength(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

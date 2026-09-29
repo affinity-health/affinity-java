@@ -190,4 +190,14 @@ public final class RevokeWebhookGrantResponse {
       return this;
     }
   }
+
+  public RevokeWebhookGrantResponseObject object() { return getObject(); }
+
+  public String organizationId() { return getOrganizationId(); }
+
+  public String platformId() { return getPlatformId(); }
+
+  public boolean revoked() { return getRevoked(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

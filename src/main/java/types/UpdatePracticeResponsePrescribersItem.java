@@ -257,4 +257,14 @@ public final class UpdatePracticeResponsePrescribersItem {
       return this;
     }
   }
+
+  public Optional<String> credentials() { return getCredentials(); }
+
+  public List<String> licenseStates() { return getLicenseStates(); }
+
+  public String name() { return getName(); }
+
+  public String npi() { return getNpi(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

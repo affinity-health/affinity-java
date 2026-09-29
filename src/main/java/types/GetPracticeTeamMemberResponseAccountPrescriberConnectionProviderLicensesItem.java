@@ -236,4 +236,14 @@ public final class GetPracticeTeamMemberResponseAccountPrescriberConnectionProvi
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public String state() { return getState(); }
+
+  public String licenseNumber() { return getLicenseNumber(); }
+
+  public Optional<String> expiresAt() { return getExpiresAt(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

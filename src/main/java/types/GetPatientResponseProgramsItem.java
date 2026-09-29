@@ -232,4 +232,14 @@ public final class GetPatientResponseProgramsItem {
       return this;
     }
   }
+
+  public Optional<String> endedAt() { return getEndedAt(); }
+
+  public String name() { return getName(); }
+
+  public String startedAt() { return getStartedAt(); }
+
+  public GetPatientResponseProgramsItemStatus status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

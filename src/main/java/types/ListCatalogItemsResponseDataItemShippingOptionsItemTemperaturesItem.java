@@ -86,4 +86,6 @@ public final class ListCatalogItemsResponseDataItemShippingOptionsItemTemperatur
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

@@ -214,4 +214,16 @@ public final class GetApiAccessResponseServiceAccount {
       return this;
     }
   }
+
+  public GetApiAccessResponseServiceAccountApiVersion apiVersion() { return getApiVersion(); }
+
+  public String id() { return getId(); }
+
+  public GetApiAccessResponseServiceAccountObject object() { return getObject(); }
+
+  public String subjectId() { return getSubjectId(); }
+
+  public String subjectType() { return getSubjectType(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

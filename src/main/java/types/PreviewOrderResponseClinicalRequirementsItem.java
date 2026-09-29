@@ -214,4 +214,16 @@ public final class PreviewOrderResponseClinicalRequirementsItem {
       return this;
     }
   }
+
+  public String field() { return getField(); }
+
+  public String label() { return getLabel(); }
+
+  public PreviewOrderResponseClinicalRequirementsItemType type() { return getType(); }
+
+  public boolean required() { return getRequired(); }
+
+  public PreviewOrderResponseClinicalRequirementsItemStatus status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -165,4 +165,6 @@ public final class GetPatientAllergiesResponseAllergiesItemCategory {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

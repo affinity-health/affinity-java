@@ -559,4 +559,30 @@ public final class PreviewOrderResponse {
       return this;
     }
   }
+
+  public boolean clinicalRequirementsSatisfied() { return getClinicalRequirementsSatisfied(); }
+
+  public List<PreviewOrderResponseClinicalIssuesItem> clinicalIssues() { return getClinicalIssues(); }
+
+  public List<PreviewOrderResponseClinicalRequirementsItem> clinicalRequirements() { return getClinicalRequirements(); }
+
+  public List<PreviewOrderResponseOtcItemsItem> otcItems() { return getOtcItems(); }
+
+  public List<PreviewOrderResponseShippingGroupsItem> shippingGroups() { return getShippingGroups(); }
+
+  public PreviewOrderResponseTotals totals() { return getTotals(); }
+
+  public PreviewOrderResponseObject object() { return getObject(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public List<PreviewOrderResponsePrescriptionsItem> prescriptions() { return getPrescriptions(); }
+
+  public List<PreviewOrderResponseIssuesItem> issues() { return getIssues(); }
+
+  public PreviewOrderResponseStatus status() { return getStatus(); }
+
+  public Optional<PreviewOrderResponseOrderInput> orderInput() { return getOrderInput(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

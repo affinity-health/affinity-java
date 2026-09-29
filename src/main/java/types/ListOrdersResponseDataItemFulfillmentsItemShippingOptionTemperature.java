@@ -86,4 +86,6 @@ public final class ListOrdersResponseDataItemFulfillmentsItemShippingOptionTempe
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

@@ -314,4 +314,18 @@ public final class GetPatientResponseAddressesItem {
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public GetPatientResponseAddressesItemAddress address() { return getAddress(); }
+
+  public String label() { return getLabel(); }
+
+  public boolean preferredShipping() { return getPreferredShipping(); }
+
+  public Optional<String> recipientName() { return getRecipientName(); }
+
+  public Optional<String> archivedAt() { return getArchivedAt(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

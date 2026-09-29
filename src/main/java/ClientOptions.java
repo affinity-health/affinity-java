@@ -1,0 +1,3 @@
+package com.affinity.api;
+import java.net.http.HttpClient;import java.time.Duration;
+public record ClientOptions(String baseUrl,Duration timeout,int maxRetries,HttpClient httpClient){public ClientOptions(){this("https://api.joinaffinityai.com",Duration.ofSeconds(60),0,HttpClient.newHttpClient());}public ClientOptions(String baseUrl){this(baseUrl,Duration.ofSeconds(60),0,HttpClient.newHttpClient());}}

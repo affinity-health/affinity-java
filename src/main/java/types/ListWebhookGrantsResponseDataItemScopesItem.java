@@ -85,4 +85,6 @@ public final class ListWebhookGrantsResponseDataItemScopesItem {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

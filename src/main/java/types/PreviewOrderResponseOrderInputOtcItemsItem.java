@@ -146,4 +146,10 @@ public final class PreviewOrderResponseOrderInputOtcItemsItem {
       return this;
     }
   }
+
+  public String catalogItemId() { return getCatalogItemId(); }
+
+  public int quantity() { return getQuantity(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

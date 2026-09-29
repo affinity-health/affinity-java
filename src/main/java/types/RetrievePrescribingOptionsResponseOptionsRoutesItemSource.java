@@ -95,4 +95,6 @@ public final class RetrievePrescribingOptionsResponseOptionsRoutesItemSource {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

@@ -75,4 +75,6 @@ public final class CreateOrderBatchResponseOrdersItemPrescriptionsItemObject {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

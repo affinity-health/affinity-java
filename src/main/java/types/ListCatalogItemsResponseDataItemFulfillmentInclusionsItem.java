@@ -196,4 +196,12 @@ public final class ListCatalogItemsResponseDataItemFulfillmentInclusionsItem {
       return this;
     }
   }
+
+  public int amountCents() { return getAmountCents(); }
+
+  public ListCatalogItemsResponseDataItemFulfillmentInclusionsItemKind kind() { return getKind(); }
+
+  public String label() { return getLabel(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

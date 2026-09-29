@@ -124,4 +124,8 @@ public final class ListCatalogItemsResponseDataItemQuantityConstraintUnresolved 
       return this;
     }
   }
+
+  public String sourceText() { return getSourceText(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -233,4 +233,14 @@ public final class ListPatientsResponseDataItemProgramsItem {
       return this;
     }
   }
+
+  public Optional<String> endedAt() { return getEndedAt(); }
+
+  public String name() { return getName(); }
+
+  public String startedAt() { return getStartedAt(); }
+
+  public ListPatientsResponseDataItemProgramsItemStatus status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

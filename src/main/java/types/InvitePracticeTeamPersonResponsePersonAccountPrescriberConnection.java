@@ -149,4 +149,10 @@ public final class InvitePracticeTeamPersonResponsePersonAccountPrescriberConnec
       return this;
     }
   }
+
+  public String status() { return getStatus(); }
+
+  public InvitePracticeTeamPersonResponsePersonAccountPrescriberConnectionProvider provider() { return getProvider(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

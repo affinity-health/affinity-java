@@ -125,4 +125,6 @@ public final class CancelOrderResponseCancellationOutcomesItemStatus {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

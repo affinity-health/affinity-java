@@ -952,4 +952,50 @@ public final class GetOrderResponse {
       return this;
     }
   }
+
+  public String revision() { return getRevision(); }
+
+  public List<GetOrderResponseOtcItemsItem> otcItems() { return getOtcItems(); }
+
+  public Optional<Integer> practiceMedicationTotalCents() { return getPracticeMedicationTotalCents(); }
+
+  public Optional<String> externalOrderId() { return getExternalOrderId(); }
+
+  public GetOrderResponseMetadata metadata() { return getMetadata(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public List<GetOrderResponseFulfillmentsItem> fulfillments() { return getFulfillments(); }
+
+  public String id() { return getId(); }
+
+  public List<GetOrderResponseLifecycleEventsItem> lifecycleEvents() { return getLifecycleEvents(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public GetOrderResponseObject object() { return getObject(); }
+
+  public Optional<String> patientExternalId() { return getPatientExternalId(); }
+
+  public String patientId() { return getPatientId(); }
+
+  public String patientName() { return getPatientName(); }
+
+  public String patientState() { return getPatientState(); }
+
+  public String practiceId() { return getPracticeId(); }
+
+  public Optional<String> prescriberName() { return getPrescriberName(); }
+
+  public Optional<String> prescriberNpi() { return getPrescriberNpi(); }
+
+  public Optional<GetOrderResponseReview> review() { return getReview(); }
+
+  public List<GetOrderResponsePrescriptionsItem> prescriptions() { return getPrescriptions(); }
+
+  public GetOrderResponseStatus status() { return getStatus(); }
+
+  public String updatedAt() { return getUpdatedAt(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

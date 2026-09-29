@@ -320,4 +320,18 @@ public final class PreviewOrderResponseOrderInputPatientAddressesItemAddress {
       return this;
     }
   }
+
+  public String city() { return getCity(); }
+
+  public Optional<PreviewOrderResponseOrderInputPatientAddressesItemAddressCountry> country() { return getCountry(); }
+
+  public String line1() { return getLine1(); }
+
+  public Optional<String> line2() { return getLine2(); }
+
+  public String postalCode() { return getPostalCode(); }
+
+  public String state() { return getState(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

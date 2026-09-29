@@ -171,4 +171,6 @@ public final class RetrievePrescribingOptionsResponseCatalogCatalogDetails {
       return this;
     }
   }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

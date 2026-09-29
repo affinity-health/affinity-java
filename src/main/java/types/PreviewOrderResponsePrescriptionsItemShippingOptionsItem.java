@@ -426,4 +426,24 @@ public final class PreviewOrderResponsePrescriptionsItemShippingOptionsItem {
       return this;
     }
   }
+
+  public int amountCents() { return getAmountCents(); }
+
+  public Optional<String> carrier() { return getCarrier(); }
+
+  public PreviewOrderResponsePrescriptionsItemShippingOptionsItemCurrency currency() { return getCurrency(); }
+
+  public Optional<Integer> estimatedDaysMax() { return getEstimatedDaysMax(); }
+
+  public Optional<Integer> estimatedDaysMin() { return getEstimatedDaysMin(); }
+
+  public String id() { return getId(); }
+
+  public String label() { return getLabel(); }
+
+  public String serviceLevel() { return getServiceLevel(); }
+
+  public PreviewOrderResponsePrescriptionsItemShippingOptionsItemTemperature temperature() { return getTemperature(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

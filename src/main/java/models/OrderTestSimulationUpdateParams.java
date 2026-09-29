@@ -1,0 +1,5 @@
+package com.affinity.api.models;
+import java.util.*;import com.fasterxml.jackson.annotation.JsonValue;
+public final class OrderTestSimulationUpdateParams{private final Map<String,Object> values;private OrderTestSimulationUpdateParams(Map<String,Object> values){this.values=Collections.unmodifiableMap(new LinkedHashMap<>(values));}@JsonValue public Map<String,Object> values(){return values;}public static Builder builder(){return new Builder();}public static final class Builder {private final Map<String,Object> values=new LinkedHashMap<>();public Builder mode(String value){values.put("mode",value);return this;}
+public Builder scenario(String value){values.put("scenario",value);return this;}
+public Builder action(String value){values.put("action",value);return this;}public OrderTestSimulationUpdateParams build(){if(!values.containsKey("mode")||values.get("mode")==null)throw new IllegalArgumentException("mode is required");if(!values.containsKey("scenario")||values.get("scenario")==null)throw new IllegalArgumentException("scenario is required");return new OrderTestSimulationUpdateParams(values);}}}

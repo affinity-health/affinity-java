@@ -211,4 +211,12 @@ public final class UpdateOrderPrescriptionResponsePrescriptionsItem {
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public Optional<String> externalPrescriptionId() { return getExternalPrescriptionId(); }
+
+  public int version() { return getVersion(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

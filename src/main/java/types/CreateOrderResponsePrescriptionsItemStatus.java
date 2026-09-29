@@ -75,4 +75,6 @@ public final class CreateOrderResponsePrescriptionsItemStatus {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

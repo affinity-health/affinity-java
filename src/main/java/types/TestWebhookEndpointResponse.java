@@ -123,4 +123,8 @@ public final class TestWebhookEndpointResponse {
       return this;
     }
   }
+
+  public String eventId() { return getEventId(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

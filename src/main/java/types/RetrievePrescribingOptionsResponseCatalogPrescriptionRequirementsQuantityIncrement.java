@@ -296,4 +296,8 @@ public final class RetrievePrescribingOptionsResponseCatalogPrescriptionRequirem
       return this;
     }
   }
+
+  public String unit() { return getUnit(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

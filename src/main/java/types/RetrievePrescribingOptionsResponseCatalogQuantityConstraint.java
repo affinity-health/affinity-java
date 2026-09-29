@@ -384,4 +384,10 @@ public final class RetrievePrescribingOptionsResponseCatalogQuantityConstraint {
       return "RetrievePrescribingOptionsResponseCatalogQuantityConstraint{" + "type: " + type + ", value: " + value + "}";
     }
   }
+
+  public Optional<RetrievePrescribingOptionsResponseCatalogQuantityConstraintFixed> fixed() { return getFixed(); }
+
+  public Optional<RetrievePrescribingOptionsResponseCatalogQuantityConstraintChoices> choices() { return getChoices(); }
+
+  public Optional<RetrievePrescribingOptionsResponseCatalogQuantityConstraintRange> range() { return getRange(); }
 }

@@ -480,4 +480,12 @@ public final class GetOrderResponsePrescriptionsItemClinical {
       return this;
     }
   }
+
+  public Optional<List<GetOrderResponsePrescriptionsItemClinicalAllergiesItem>> allergies() { return getAllergies(); }
+
+  public Optional<List<GetOrderResponsePrescriptionsItemClinicalConditionsItem>> conditions() { return getConditions(); }
+
+  public Optional<List<GetOrderResponsePrescriptionsItemClinicalMedicationsItem>> medications() { return getMedications(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

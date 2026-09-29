@@ -216,4 +216,14 @@ public final class ListPracticeTeamMembersResponse {
       return this;
     }
   }
+
+  public List<ListPracticeTeamMembersResponseDataItem> data() { return getData(); }
+
+  public boolean hasMore() { return getHasMore(); }
+
+  public ListPracticeTeamMembersResponseObject object() { return getObject(); }
+
+  public String url() { return getUrl(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

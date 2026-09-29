@@ -238,4 +238,16 @@ public final class GetApiAccessResponse {
       return this;
     }
   }
+
+  public GetApiAccessResponseApiKey apiKey() { return getApiKey(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public GetApiAccessResponseObject object() { return getObject(); }
+
+  public List<String> scopes() { return getScopes(); }
+
+  public GetApiAccessResponseServiceAccount serviceAccount() { return getServiceAccount(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -116,4 +116,6 @@ public final class ListOrdersResponseDataItemFulfillmentsItemCancellationsItemSo
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

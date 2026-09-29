@@ -236,4 +236,14 @@ public final class RetrievePrescribingOptionsResponseCompoundingReasonChoicesIte
       return this;
     }
   }
+
+  public RetrievePrescribingOptionsResponseCompoundingReasonChoicesItemCategory category() { return getCategory(); }
+
+  public String label() { return getLabel(); }
+
+  public boolean contextRequired() { return getContextRequired(); }
+
+  public Optional<String> contextPrompt() { return getContextPrompt(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

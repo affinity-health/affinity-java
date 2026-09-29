@@ -127,4 +127,8 @@ public final class RetrievePrescribingOptionsResponseCatalogQuantityConstraintFi
       return this;
     }
   }
+
+  public RetrievePrescribingOptionsResponseCatalogQuantityConstraintFixedQuantity quantity() { return getQuantity(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

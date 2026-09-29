@@ -247,4 +247,12 @@ public final class ListCatalogItemsResponseDataItemCompositionIngredientsItem {
       return this;
     }
   }
+
+  public String name() { return getName(); }
+
+  public ListCatalogItemsResponseDataItemCompositionIngredientsItemRole role() { return getRole(); }
+
+  public ListCatalogItemsResponseDataItemCompositionIngredientsItemStrength strength() { return getStrength(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

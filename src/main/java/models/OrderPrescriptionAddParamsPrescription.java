@@ -1,0 +1,13 @@
+package com.affinity.api.models;
+import java.util.*;import com.fasterxml.jackson.annotation.JsonValue;
+public final class OrderPrescriptionAddParamsPrescription{private final Map<String,Object> values;private OrderPrescriptionAddParamsPrescription(Map<String,Object> values){this.values=Collections.unmodifiableMap(new LinkedHashMap<>(values));}@JsonValue public Map<String,Object> values(){return values;}public static Builder builder(){return new Builder();}public static final class Builder {private final Map<String,Object> values=new LinkedHashMap<>();public Builder externalPrescriptionId(String value){values.put("externalPrescriptionId",value);return this;}
+public Builder clinical(OrderPrescriptionAddParamsPrescriptionClinical value){values.put("clinical",value);return this;}
+public Builder pharmacyId(String value){values.put("pharmacyId",value);return this;}
+public Builder daysSupply(Integer value){values.put("daysSupply",value);return this;}
+public Builder dispensing(OrderPrescriptionAddParamsPrescriptionDispensing value){values.put("dispensing",value);return this;}
+public Builder directions(String value){values.put("directions",value);return this;}
+public Builder medicationId(String value){values.put("medicationId",value);return this;}
+public Builder quantity(Object value){values.put("quantity",value);return this;}
+public Builder quantityUnit(String value){values.put("quantityUnit",value);return this;}
+public Builder refills(Integer value){values.put("refills",value);return this;}
+public Builder structuredSig(OrderPrescriptionAddParamsPrescriptionStructuredSig value){values.put("structuredSig",value);return this;}public OrderPrescriptionAddParamsPrescription build(){if(!values.containsKey("daysSupply")||values.get("daysSupply")==null)throw new IllegalArgumentException("daysSupply is required");if(!values.containsKey("dispensing")||values.get("dispensing")==null)throw new IllegalArgumentException("dispensing is required");if(!values.containsKey("directions")||values.get("directions")==null)throw new IllegalArgumentException("directions is required");if(!values.containsKey("medicationId")||values.get("medicationId")==null)throw new IllegalArgumentException("medicationId is required");if(!values.containsKey("quantity")||values.get("quantity")==null)throw new IllegalArgumentException("quantity is required");if(!values.containsKey("quantityUnit")||values.get("quantityUnit")==null)throw new IllegalArgumentException("quantityUnit is required");if(!values.containsKey("refills")||values.get("refills")==null)throw new IllegalArgumentException("refills is required");return new OrderPrescriptionAddParamsPrescription(values);}}}

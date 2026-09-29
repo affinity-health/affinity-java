@@ -493,4 +493,24 @@ public final class PreviewOrderResponseOrderInputPrescriptionsItemStructuredSig 
       return this;
     }
   }
+
+  public String dose() { return getDose(); }
+
+  public String doseUnit() { return getDoseUnit(); }
+
+  public Optional<String> duration() { return getDuration(); }
+
+  public String frequency() { return getFrequency(); }
+
+  public Optional<String> indication() { return getIndication(); }
+
+  public Optional<String> maxDailyUse() { return getMaxDailyUse(); }
+
+  public Optional<Boolean> prn() { return getPrn(); }
+
+  public String route() { return getRoute(); }
+
+  public Optional<String> titrationSchedule() { return getTitrationSchedule(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

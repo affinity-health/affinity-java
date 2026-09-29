@@ -75,4 +75,6 @@ public final class ReplayWebhookEventResponseObject {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

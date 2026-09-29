@@ -318,4 +318,22 @@ public final class CreatePlatformPracticeApiKeyResponseServiceAccount {
       return this;
     }
   }
+
+  public CreatePlatformPracticeApiKeyResponseServiceAccountApiVersion apiVersion() { return getApiVersion(); }
+
+  public String displayName() { return getDisplayName(); }
+
+  public String id() { return getId(); }
+
+  public List<CreatePlatformPracticeApiKeyResponseServiceAccountMaxScopesItem> maxScopes() { return getMaxScopes(); }
+
+  public String organizationId() { return getOrganizationId(); }
+
+  public CreatePlatformPracticeApiKeyResponseServiceAccountStatus status() { return getStatus(); }
+
+  public String subjectId() { return getSubjectId(); }
+
+  public CreatePlatformPracticeApiKeyResponseServiceAccountSubjectType subjectType() { return getSubjectType(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

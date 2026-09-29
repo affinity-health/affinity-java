@@ -212,4 +212,12 @@ public final class ResendPracticeTeamInvitationResponseInvitationPersonAccountRo
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public String name() { return getName(); }
+
+  public Optional<String> key() { return getKey(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

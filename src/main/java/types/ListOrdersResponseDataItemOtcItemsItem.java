@@ -235,4 +235,18 @@ public final class ListOrdersResponseDataItemOtcItemsItem {
       return this;
     }
   }
+
+  public String catalogItemId() { return getCatalogItemId(); }
+
+  public String prescriptionId() { return getPrescriptionId(); }
+
+  public String name() { return getName(); }
+
+  public int quantity() { return getQuantity(); }
+
+  public int unitPriceCents() { return getUnitPriceCents(); }
+
+  public int subtotalCents() { return getSubtotalCents(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

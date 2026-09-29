@@ -31,7 +31,7 @@ public class AffinityClientBuilder {
 
   private String apiKey = null;
 
-  private String affinityVersion = null;
+  private String affinityVersion = "2026-09-28";
 
   private Environment environment = Environment.PRODUCTION;
 

@@ -1142,4 +1142,22 @@ public final class RetrievePrescribingOptionsResponseCatalogPrescriptionRequirem
       return this;
     }
   }
+
+  public Optional<List<Integer>> allowedDaysSupply() { return getAllowedDaysSupply(); }
+
+  public Optional<Map<String, Optional<String>>> reasonCategoryLabels() { return getReasonCategoryLabels(); }
+
+  public Optional<Integer> defaultDaysSupply() { return getDefaultDaysSupply(); }
+
+  public Optional<List<String>> defaultSigs() { return getDefaultSigs(); }
+
+  public RetrievePrescribingOptionsResponseCatalogPrescriptionRequirementsDiagnosis diagnosis() { return getDiagnosis(); }
+
+  public Optional<Integer> maxRefills() { return getMaxRefills(); }
+
+  public Optional<List<String>> notes() { return getNotes(); }
+
+  public RetrievePrescribingOptionsResponseCatalogPrescriptionRequirementsRefills refills() { return getRefills(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

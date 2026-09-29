@@ -286,4 +286,14 @@ public final class GetPatientResponseClinicalProfile {
       return this;
     }
   }
+
+  public List<String> currentMedications() { return getCurrentMedications(); }
+
+  public Optional<GetPatientResponseClinicalProfileHeightInches> heightInches() { return getHeightInches(); }
+
+  public Optional<String> reviewedAt() { return getReviewedAt(); }
+
+  public Optional<GetPatientResponseClinicalProfileWeightPounds> weightPounds() { return getWeightPounds(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

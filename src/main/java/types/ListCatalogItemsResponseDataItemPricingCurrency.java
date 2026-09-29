@@ -75,4 +75,6 @@ public final class ListCatalogItemsResponseDataItemPricingCurrency {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

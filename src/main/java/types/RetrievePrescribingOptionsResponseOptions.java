@@ -239,4 +239,14 @@ public final class RetrievePrescribingOptionsResponseOptions {
       return this;
     }
   }
+
+  public List<RetrievePrescribingOptionsResponseOptionsDoseUnitsItem> doseUnits() { return getDoseUnits(); }
+
+  public List<RetrievePrescribingOptionsResponseOptionsDosesItem> doses() { return getDoses(); }
+
+  public List<RetrievePrescribingOptionsResponseOptionsFrequenciesItem> frequencies() { return getFrequencies(); }
+
+  public List<RetrievePrescribingOptionsResponseOptionsRoutesItem> routes() { return getRoutes(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

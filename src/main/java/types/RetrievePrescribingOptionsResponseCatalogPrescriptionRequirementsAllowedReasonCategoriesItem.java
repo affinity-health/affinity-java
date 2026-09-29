@@ -217,4 +217,6 @@ public final class RetrievePrescribingOptionsResponseCatalogPrescriptionRequirem
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

@@ -1,0 +1,7 @@
+package com.affinity.api.models;
+import java.util.*;import com.fasterxml.jackson.annotation.JsonValue;
+public final class OrderPreviewParamsPrescriptionsItem{private final Map<String,Object> values;private OrderPreviewParamsPrescriptionsItem(Map<String,Object> values){this.values=Collections.unmodifiableMap(new LinkedHashMap<>(values));}@JsonValue public Map<String,Object> values(){return values;}public static Builder builder(){return new Builder();}public static final class Builder {private final Map<String,Object> values=new LinkedHashMap<>();public Builder medicationId(String value){values.put("medicationId",value);return this;}
+public Builder externalPrescriptionId(String value){values.put("externalPrescriptionId",value);return this;}
+public Builder preset(String value){values.put("preset",value);return this;}
+public Builder expectedRevision(String value){values.put("expectedRevision",value);return this;}
+public Builder overrides(OrderPreviewParamsPrescriptionsItemOverrides value){values.put("overrides",value);return this;}public OrderPreviewParamsPrescriptionsItem build(){if(!values.containsKey("medicationId")||values.get("medicationId")==null)throw new IllegalArgumentException("medicationId is required");return new OrderPreviewParamsPrescriptionsItem(values);}}}

@@ -977,4 +977,52 @@ public final class CancelOrderResponse {
       return this;
     }
   }
+
+  public String revision() { return getRevision(); }
+
+  public List<CancelOrderResponseOtcItemsItem> otcItems() { return getOtcItems(); }
+
+  public Optional<Integer> practiceMedicationTotalCents() { return getPracticeMedicationTotalCents(); }
+
+  public Optional<String> externalOrderId() { return getExternalOrderId(); }
+
+  public CancelOrderResponseMetadata metadata() { return getMetadata(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public List<CancelOrderResponseFulfillmentsItem> fulfillments() { return getFulfillments(); }
+
+  public String id() { return getId(); }
+
+  public List<CancelOrderResponseLifecycleEventsItem> lifecycleEvents() { return getLifecycleEvents(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public CancelOrderResponseObject object() { return getObject(); }
+
+  public Optional<String> patientExternalId() { return getPatientExternalId(); }
+
+  public String patientId() { return getPatientId(); }
+
+  public String patientName() { return getPatientName(); }
+
+  public String patientState() { return getPatientState(); }
+
+  public String practiceId() { return getPracticeId(); }
+
+  public Optional<String> prescriberName() { return getPrescriberName(); }
+
+  public Optional<String> prescriberNpi() { return getPrescriberNpi(); }
+
+  public Optional<CancelOrderResponseReview> review() { return getReview(); }
+
+  public List<CancelOrderResponsePrescriptionsItem> prescriptions() { return getPrescriptions(); }
+
+  public CancelOrderResponseStatus status() { return getStatus(); }
+
+  public String updatedAt() { return getUpdatedAt(); }
+
+  public CancelOrderResponseCancellation cancellation() { return getCancellation(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -149,4 +149,10 @@ public final class ResendPracticeTeamInvitationResponse {
       return this;
     }
   }
+
+  public ResendPracticeTeamInvitationResponseInvitation invitation() { return getInvitation(); }
+
+  public ResendPracticeTeamInvitationResponseDelivery delivery() { return getDelivery(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

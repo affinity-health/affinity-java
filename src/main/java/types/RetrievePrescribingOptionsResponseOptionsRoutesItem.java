@@ -170,4 +170,12 @@ public final class RetrievePrescribingOptionsResponseOptionsRoutesItem {
       return this;
     }
   }
+
+  public String label() { return getLabel(); }
+
+  public RetrievePrescribingOptionsResponseOptionsRoutesItemSource source() { return getSource(); }
+
+  public String value() { return getValue(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

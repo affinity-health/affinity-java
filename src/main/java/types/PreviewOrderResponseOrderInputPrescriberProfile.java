@@ -192,4 +192,10 @@ public final class PreviewOrderResponseOrderInputPrescriberProfile {
       return this;
     }
   }
+
+  public Optional<String> email() { return getEmail(); }
+
+  public Optional<String> phone() { return getPhone(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

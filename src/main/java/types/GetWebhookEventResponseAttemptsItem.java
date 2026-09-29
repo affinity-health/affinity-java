@@ -546,4 +546,28 @@ public final class GetWebhookEventResponseAttemptsItem {
       return this;
     }
   }
+
+  public String deliveryId() { return getDeliveryId(); }
+
+  public String endpointId() { return getEndpointId(); }
+
+  public int attemptNumber() { return getAttemptNumber(); }
+
+  public Optional<String> completedAt() { return getCompletedAt(); }
+
+  public Optional<GetWebhookEventResponseAttemptsItemDurationMs> durationMs() { return getDurationMs(); }
+
+  public Optional<String> errorCode() { return getErrorCode(); }
+
+  public Optional<String> errorMessage() { return getErrorMessage(); }
+
+  public String id() { return getId(); }
+
+  public String requestedAt() { return getRequestedAt(); }
+
+  public Optional<GetWebhookEventResponseAttemptsItemResponseStatus> responseStatus() { return getResponseStatus(); }
+
+  public GetWebhookEventResponseAttemptsItemTrigger trigger() { return getTrigger(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

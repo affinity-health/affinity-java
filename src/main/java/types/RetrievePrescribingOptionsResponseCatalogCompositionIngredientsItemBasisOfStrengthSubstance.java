@@ -129,4 +129,8 @@ public final class RetrievePrescribingOptionsResponseCatalogCompositionIngredien
       return this;
     }
   }
+
+  public String name() { return getName(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

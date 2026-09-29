@@ -308,4 +308,14 @@ public final class GetOrderResponsePrescriptionsItemClinicalAllergiesItemReactio
       return this;
     }
   }
+
+  public Optional<String> code() { return getCode(); }
+
+  public Optional<String> codeSystem() { return getCodeSystem(); }
+
+  public String display() { return getDisplay(); }
+
+  public Optional<String> source() { return getSource(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

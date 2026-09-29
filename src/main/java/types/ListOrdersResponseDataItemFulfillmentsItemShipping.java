@@ -218,4 +218,12 @@ public final class ListOrdersResponseDataItemFulfillmentsItemShipping {
       return this;
     }
   }
+
+  public ListOrdersResponseDataItemFulfillmentsItemShippingDestinationType destinationType() { return getDestinationType(); }
+
+  public ListOrdersResponseDataItemFulfillmentsItemShippingMethod method() { return getMethod(); }
+
+  public Optional<ListOrdersResponseDataItemFulfillmentsItemShippingOption> option() { return getOption(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

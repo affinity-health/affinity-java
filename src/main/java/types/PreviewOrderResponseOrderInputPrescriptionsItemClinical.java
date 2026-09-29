@@ -424,4 +424,8 @@ public final class PreviewOrderResponseOrderInputPrescriptionsItemClinical {
       return this;
     }
   }
+
+  public Optional<List<String>> currentMedications() { return getCurrentMedications(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

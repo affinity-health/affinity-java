@@ -148,4 +148,10 @@ public final class ListCatalogItemsResponseDataItemPricingBasisUnit {
       return this;
     }
   }
+
+  public ListCatalogItemsResponseDataItemPricingBasisUnitQuantity quantity() { return getQuantity(); }
+
+  public String unit() { return getUnit(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

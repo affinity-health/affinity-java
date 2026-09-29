@@ -75,4 +75,6 @@ public final class GetOrderResponseFulfillmentsItemShippingOptionCurrency {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

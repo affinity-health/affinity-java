@@ -39,7 +39,7 @@ import org.jetbrains.annotations.NotNull;
     builder = CreatePatientRequest.Builder.class
 )
 public final class CreatePatientRequest {
-  private final String idempotencyKey;
+  private final Optional<String> idempotencyKey;
 
   private final Optional<String> affinityActorId;
 
@@ -79,7 +79,7 @@ public final class CreatePatientRequest {
 
   private final Map<String, Object> additionalProperties;
 
-  private CreatePatientRequest(String idempotencyKey, Optional<String> affinityActorId,
+  private CreatePatientRequest(Optional<String> idempotencyKey, Optional<String> affinityActorId,
       Optional<String> affinityActorType, Optional<CreatePatientRequestAddress> address,
       Optional<CreatePatientRequestClinicalProfile> clinicalProfile, String dateOfBirth,
       Optional<String> email, Optional<String> externalId,
@@ -114,8 +114,11 @@ public final class CreatePatientRequest {
     this.additionalProperties = additionalProperties;
   }
 
+  /**
+   * @return Optional in the SDK. A fresh key is generated once per call when omitted. Supply a stable key to retry across calls.
+   */
   @JsonIgnore
-  public String getIdempotencyKey() {
+  public Optional<String> getIdempotencyKey() {
     return idempotencyKey;
   }
 
@@ -408,18 +411,14 @@ public final class CreatePatientRequest {
     return ObjectMappers.stringify(this);
   }
 
-  public static IdempotencyKeyStage builder() {
+  public static DateOfBirthStage builder() {
     return new Builder();
-  }
-
-  public interface IdempotencyKeyStage {
-    DateOfBirthStage idempotencyKey(@NotNull String idempotencyKey);
-
-    Builder from(CreatePatientRequest other);
   }
 
   public interface DateOfBirthStage {
     NameStage dateOfBirth(@NotNull String dateOfBirth);
+
+    Builder from(CreatePatientRequest other);
   }
 
   public interface NameStage {
@@ -432,6 +431,13 @@ public final class CreatePatientRequest {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    /**
+     * <p>Optional in the SDK. A fresh key is generated once per call when omitted. Supply a stable key to retry across calls.</p>
+     */
+    _FinalStage idempotencyKey(Optional<String> idempotencyKey);
+
+    _FinalStage idempotencyKey(String idempotencyKey);
 
     /**
      * <p>Required for user actors and optional for system actors. Omit both actor headers to use the authenticated service account as a system actor.</p>
@@ -538,9 +544,7 @@ public final class CreatePatientRequest {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdempotencyKeyStage, DateOfBirthStage, NameStage, _FinalStage {
-    private String idempotencyKey;
-
+  public static final class Builder implements DateOfBirthStage, NameStage, _FinalStage {
     private String dateOfBirth;
 
     private CreatePatientRequestName name;
@@ -577,6 +581,8 @@ public final class CreatePatientRequest {
 
     private Optional<String> affinityActorId = Optional.empty();
 
+    private Optional<String> idempotencyKey = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -604,12 +610,6 @@ public final class CreatePatientRequest {
       name(other.getName());
       phone(other.getPhone());
       programs(other.getPrograms());
-      return this;
-    }
-
-    @java.lang.Override
-    public DateOfBirthStage idempotencyKey(@NotNull String idempotencyKey) {
-      this.idempotencyKey = Objects.requireNonNull(idempotencyKey, "idempotencyKey must not be null");
       return this;
     }
 
@@ -1089,6 +1089,25 @@ public final class CreatePatientRequest {
     @java.lang.Override
     public _FinalStage affinityActorId(Optional<String> affinityActorId) {
       this.affinityActorId = affinityActorId;
+      return this;
+    }
+
+    /**
+     * <p>Optional in the SDK. A fresh key is generated once per call when omitted. Supply a stable key to retry across calls.</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage idempotencyKey(String idempotencyKey) {
+      this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+      return this;
+    }
+
+    /**
+     * <p>Optional in the SDK. A fresh key is generated once per call when omitted. Supply a stable key to retry across calls.</p>
+     */
+    @java.lang.Override
+    public _FinalStage idempotencyKey(Optional<String> idempotencyKey) {
+      this.idempotencyKey = idempotencyKey;
       return this;
     }
 

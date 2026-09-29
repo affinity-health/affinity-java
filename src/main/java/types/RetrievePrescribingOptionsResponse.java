@@ -793,4 +793,38 @@ public final class RetrievePrescribingOptionsResponse {
       return this;
     }
   }
+
+  public RetrievePrescribingOptionsResponseCompoundingReason compoundingReason() { return getCompoundingReason(); }
+
+  public Optional<String> compoundingReasonDefault() { return getCompoundingReasonDefault(); }
+
+  public Optional<RetrievePrescribingOptionsResponseFormulationDefault> formulationDefault() { return getFormulationDefault(); }
+
+  public RetrievePrescribingOptionsResponseInitial initial() { return getInitial(); }
+
+  public RetrievePrescribingOptionsResponseMedication medication() { return getMedication(); }
+
+  public RetrievePrescribingOptionsResponseOptions options() { return getOptions(); }
+
+  public List<RetrievePrescribingOptionsResponsePharmacyDirectionsItem> pharmacyDirections() { return getPharmacyDirections(); }
+
+  public List<RetrievePrescribingOptionsResponseTemplatesItem> templates() { return getTemplates(); }
+
+  public RetrievePrescribingOptionsResponseObject object() { return getObject(); }
+
+  public String catalogItemId() { return getCatalogItemId(); }
+
+  public String practiceId() { return getPracticeId(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public String revision() { return getRevision(); }
+
+  public RetrievePrescribingOptionsResponseCatalog catalog() { return getCatalog(); }
+
+  public Optional<String> defaultPresetId() { return getDefaultPresetId(); }
+
+  public List<RetrievePrescribingOptionsResponsePresetsItem> presets() { return getPresets(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

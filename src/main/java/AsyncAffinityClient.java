@@ -12,7 +12,7 @@ import com.affinity.api.resources.catalog.AsyncCatalogClient;
 import com.affinity.api.resources.locations.AsyncLocationsClient;
 import com.affinity.api.resources.orders.AsyncOrdersClient;
 import com.affinity.api.resources.patients.AsyncPatientsClient;
-import com.affinity.api.resources.platformpricing.AsyncPlatformPricingClient;
+import com.affinity.api.resources.pharmacies.AsyncPharmaciesClient;
 import com.affinity.api.resources.practices.AsyncPracticesClient;
 import com.affinity.api.resources.team.AsyncTeamClient;
 import com.affinity.api.resources.webhooks.AsyncWebhooksClient;
@@ -27,32 +27,32 @@ public class AsyncAffinityClient {
 
   protected final Supplier<AsyncAccountClient> accountClient;
 
-  protected final Supplier<AsyncCatalogClient> catalogClient;
+  protected final Supplier<AsyncPharmaciesClient> pharmaciesClient;
 
   protected final Supplier<AsyncOrdersClient> ordersClient;
 
-  protected final Supplier<AsyncWebhooksClient> webhooksClient;
-
   protected final Supplier<AsyncTeamClient> teamClient;
-
-  protected final Supplier<AsyncPatientsClient> patientsClient;
 
   protected final Supplier<AsyncPracticesClient> practicesClient;
 
-  protected final Supplier<AsyncPlatformPricingClient> platformPricingClient;
+  protected final Supplier<AsyncPatientsClient> patientsClient;
+
+  protected final Supplier<AsyncCatalogClient> catalogClient;
+
+  protected final Supplier<AsyncWebhooksClient> webhooksClient;
 
   public AsyncAffinityClient(ClientOptions clientOptions) {
     this.clientOptions = clientOptions;
     this.locationsClient = Suppliers.memoize(() -> new AsyncLocationsClient(clientOptions));
     this.apiKeysClient = Suppliers.memoize(() -> new AsyncApiKeysClient(clientOptions));
     this.accountClient = Suppliers.memoize(() -> new AsyncAccountClient(clientOptions));
-    this.catalogClient = Suppliers.memoize(() -> new AsyncCatalogClient(clientOptions));
+    this.pharmaciesClient = Suppliers.memoize(() -> new AsyncPharmaciesClient(clientOptions));
     this.ordersClient = Suppliers.memoize(() -> new AsyncOrdersClient(clientOptions));
-    this.webhooksClient = Suppliers.memoize(() -> new AsyncWebhooksClient(clientOptions));
     this.teamClient = Suppliers.memoize(() -> new AsyncTeamClient(clientOptions));
-    this.patientsClient = Suppliers.memoize(() -> new AsyncPatientsClient(clientOptions));
     this.practicesClient = Suppliers.memoize(() -> new AsyncPracticesClient(clientOptions));
-    this.platformPricingClient = Suppliers.memoize(() -> new AsyncPlatformPricingClient(clientOptions));
+    this.patientsClient = Suppliers.memoize(() -> new AsyncPatientsClient(clientOptions));
+    this.catalogClient = Suppliers.memoize(() -> new AsyncCatalogClient(clientOptions));
+    this.webhooksClient = Suppliers.memoize(() -> new AsyncWebhooksClient(clientOptions));
   }
 
   public AsyncLocationsClient locations() {
@@ -67,32 +67,32 @@ public class AsyncAffinityClient {
     return this.accountClient.get();
   }
 
-  public AsyncCatalogClient catalog() {
-    return this.catalogClient.get();
+  public AsyncPharmaciesClient pharmacies() {
+    return this.pharmaciesClient.get();
   }
 
   public AsyncOrdersClient orders() {
     return this.ordersClient.get();
   }
 
-  public AsyncWebhooksClient webhooks() {
-    return this.webhooksClient.get();
-  }
-
   public AsyncTeamClient team() {
     return this.teamClient.get();
-  }
-
-  public AsyncPatientsClient patients() {
-    return this.patientsClient.get();
   }
 
   public AsyncPracticesClient practices() {
     return this.practicesClient.get();
   }
 
-  public AsyncPlatformPricingClient platformPricing() {
-    return this.platformPricingClient.get();
+  public AsyncPatientsClient patients() {
+    return this.patientsClient.get();
+  }
+
+  public AsyncCatalogClient catalog() {
+    return this.catalogClient.get();
+  }
+
+  public AsyncWebhooksClient webhooks() {
+    return this.webhooksClient.get();
   }
 
   public static AsyncAffinityClientBuilder builder() {

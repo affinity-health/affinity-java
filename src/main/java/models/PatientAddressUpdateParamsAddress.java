@@ -1,0 +1,8 @@
+package com.affinity.api.models;
+import java.util.*;import com.fasterxml.jackson.annotation.JsonValue;
+public final class PatientAddressUpdateParamsAddress{private final Map<String,Object> values;private PatientAddressUpdateParamsAddress(Map<String,Object> values){this.values=Collections.unmodifiableMap(new LinkedHashMap<>(values));}@JsonValue public Map<String,Object> values(){return values;}public static Builder builder(){return new Builder();}public static final class Builder {private final Map<String,Object> values=new LinkedHashMap<>();public Builder city(String value){values.put("city",value);return this;}
+public Builder country(String value){values.put("country",value);return this;}
+public Builder line1(String value){values.put("line1",value);return this;}
+public Builder line2(String value){values.put("line2",value);return this;}
+public Builder postalCode(String value){values.put("postalCode",value);return this;}
+public Builder state(String value){values.put("state",value);return this;}public PatientAddressUpdateParamsAddress build(){if(!values.containsKey("city")||values.get("city")==null)throw new IllegalArgumentException("city is required");if(!values.containsKey("line1")||values.get("line1")==null)throw new IllegalArgumentException("line1 is required");if(!values.containsKey("postalCode")||values.get("postalCode")==null)throw new IllegalArgumentException("postalCode is required");if(!values.containsKey("state")||values.get("state")==null)throw new IllegalArgumentException("state is required");return new PatientAddressUpdateParamsAddress(values);}}}

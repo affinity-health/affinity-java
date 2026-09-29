@@ -75,4 +75,6 @@ public final class ListCatalogItemsResponseObject {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

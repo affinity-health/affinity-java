@@ -147,4 +147,10 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponseBasisPa
       return this;
     }
   }
+
+  public String quantity() { return getQuantity(); }
+
+  public String unit() { return getUnit(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

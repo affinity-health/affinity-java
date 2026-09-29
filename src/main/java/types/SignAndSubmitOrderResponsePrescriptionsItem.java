@@ -271,4 +271,14 @@ public final class SignAndSubmitOrderResponsePrescriptionsItem {
       return this;
     }
   }
+
+  public String prescriptionId() { return getPrescriptionId(); }
+
+  public SignAndSubmitOrderResponsePrescriptionsItemStatus status() { return getStatus(); }
+
+  public Optional<String> fulfillmentOrderId() { return getFulfillmentOrderId(); }
+
+  public Optional<SignAndSubmitOrderResponsePrescriptionsItemError> error() { return getError(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

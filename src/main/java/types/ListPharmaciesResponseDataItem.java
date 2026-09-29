@@ -598,4 +598,34 @@ public final class ListPharmaciesResponseDataItem {
       return this;
     }
   }
+
+  public ListPharmaciesResponseDataItemAccess access() { return getAccess(); }
+
+  public int catalogItemCount() { return getCatalogItemCount(); }
+
+  public String facilityType() { return getFacilityType(); }
+
+  public List<ListPharmaciesResponseDataItemFacilityLocationsItem> facilityLocations() { return getFacilityLocations(); }
+
+  public String id() { return getId(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public Optional<String> logoUrl() { return getLogoUrl(); }
+
+  public String name() { return getName(); }
+
+  public ListPharmaciesResponseDataItemObject object() { return getObject(); }
+
+  public int prescriptionsLast30Days() { return getPrescriptionsLast30Days(); }
+
+  public Optional<ListPharmaciesResponseDataItemProfile> profile() { return getProfile(); }
+
+  public List<String> restrictedStates() { return getRestrictedStates(); }
+
+  public List<ListPharmaciesResponseDataItemShippingOptionsItem> shippingOptions() { return getShippingOptions(); }
+
+  public List<String> supportedStates() { return getSupportedStates(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

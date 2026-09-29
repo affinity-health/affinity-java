@@ -311,4 +311,16 @@ public final class UpdatePracticeTeamMemberResponseAccount {
       return this;
     }
   }
+
+  public String accountId() { return getAccountId(); }
+
+  public boolean emailVerified() { return getEmailVerified(); }
+
+  public String membershipId() { return getMembershipId(); }
+
+  public String membershipStatus() { return getMembershipStatus(); }
+
+  public List<UpdatePracticeTeamMemberResponseAccountRolesItem> roles() { return getRoles(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -33,14 +33,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(
     builder = UpdatePatientRequest.Builder.class
 )
 public final class UpdatePatientRequest {
-  private final String idempotencyKey;
+  private final Optional<String> idempotencyKey;
 
   private final Optional<String> affinityActorId;
 
@@ -82,7 +81,7 @@ public final class UpdatePatientRequest {
 
   private final Map<String, Object> additionalProperties;
 
-  private UpdatePatientRequest(String idempotencyKey, Optional<String> affinityActorId,
+  private UpdatePatientRequest(Optional<String> idempotencyKey, Optional<String> affinityActorId,
       Optional<String> affinityActorType, Optional<UpdatePatientRequestAddress> address,
       Optional<UpdatePatientRequestClinicalProfile> clinicalProfile, Optional<String> dateOfBirth,
       Optional<String> email, Optional<String> externalId,
@@ -118,8 +117,11 @@ public final class UpdatePatientRequest {
     this.additionalProperties = additionalProperties;
   }
 
+  /**
+   * @return Optional in the SDK. A fresh key is generated once per call when omitted. Supply a stable key to retry across calls.
+   */
   @JsonIgnore
-  public String getIdempotencyKey() {
+  public Optional<String> getIdempotencyKey() {
     return idempotencyKey;
   }
 
@@ -453,186 +455,53 @@ public final class UpdatePatientRequest {
     return ObjectMappers.stringify(this);
   }
 
-  public static IdempotencyKeyStage builder() {
+  public static Builder builder() {
     return new Builder();
-  }
-
-  public interface IdempotencyKeyStage {
-    _FinalStage idempotencyKey(@NotNull String idempotencyKey);
-
-    Builder from(UpdatePatientRequest other);
-  }
-
-  public interface _FinalStage {
-    UpdatePatientRequest build();
-
-    _FinalStage additionalProperty(String key, Object value);
-
-    _FinalStage additionalProperties(Map<String, Object> additionalProperties);
-
-    /**
-     * <p>Required for user actors and optional for system actors. Omit both actor headers to use the authenticated service account as a system actor.</p>
-     */
-    _FinalStage affinityActorId(Optional<String> affinityActorId);
-
-    _FinalStage affinityActorId(String affinityActorId);
-
-    /**
-     * <p>Use user when a person initiated the action and system for autonomous work. Omit both actor headers to default to system.</p>
-     */
-    _FinalStage affinityActorType(Optional<String> affinityActorType);
-
-    _FinalStage affinityActorType(String affinityActorType);
-
-    _FinalStage address(Optional<UpdatePatientRequestAddress> address);
-
-    _FinalStage address(UpdatePatientRequestAddress address);
-
-    _FinalStage address(Nullable<UpdatePatientRequestAddress> address);
-
-    _FinalStage clinicalProfile(Optional<UpdatePatientRequestClinicalProfile> clinicalProfile);
-
-    _FinalStage clinicalProfile(UpdatePatientRequestClinicalProfile clinicalProfile);
-
-    _FinalStage clinicalProfile(Nullable<UpdatePatientRequestClinicalProfile> clinicalProfile);
-
-    _FinalStage dateOfBirth(Optional<String> dateOfBirth);
-
-    _FinalStage dateOfBirth(String dateOfBirth);
-
-    _FinalStage dateOfBirth(Nullable<String> dateOfBirth);
-
-    _FinalStage email(Optional<String> email);
-
-    _FinalStage email(String email);
-
-    _FinalStage email(Nullable<String> email);
-
-    _FinalStage externalId(Optional<String> externalId);
-
-    _FinalStage externalId(String externalId);
-
-    _FinalStage externalId(Nullable<String> externalId);
-
-    _FinalStage externalIdentities(
-        Optional<List<UpdatePatientRequestExternalIdentitiesItem>> externalIdentities);
-
-    _FinalStage externalIdentities(
-        List<UpdatePatientRequestExternalIdentitiesItem> externalIdentities);
-
-    _FinalStage externalIdentities(
-        Nullable<List<UpdatePatientRequestExternalIdentitiesItem>> externalIdentities);
-
-    _FinalStage addresses(Optional<List<UpdatePatientRequestAddressesItem>> addresses);
-
-    _FinalStage addresses(List<UpdatePatientRequestAddressesItem> addresses);
-
-    _FinalStage addresses(Nullable<List<UpdatePatientRequestAddressesItem>> addresses);
-
-    _FinalStage encounters(Optional<List<UpdatePatientRequestEncountersItem>> encounters);
-
-    _FinalStage encounters(List<UpdatePatientRequestEncountersItem> encounters);
-
-    _FinalStage encounters(Nullable<List<UpdatePatientRequestEncountersItem>> encounters);
-
-    _FinalStage gender(Optional<UpdatePatientRequestGender> gender);
-
-    _FinalStage gender(UpdatePatientRequestGender gender);
-
-    _FinalStage gender(Nullable<UpdatePatientRequestGender> gender);
-
-    _FinalStage locationId(Optional<String> locationId);
-
-    _FinalStage locationId(String locationId);
-
-    _FinalStage locationId(Nullable<String> locationId);
-
-    _FinalStage metadata(Optional<Map<String, Object>> metadata);
-
-    _FinalStage metadata(Map<String, Object> metadata);
-
-    _FinalStage metadata(Nullable<Map<String, Object>> metadata);
-
-    _FinalStage medicalRecordNumber(Optional<String> medicalRecordNumber);
-
-    _FinalStage medicalRecordNumber(String medicalRecordNumber);
-
-    _FinalStage medicalRecordNumber(Nullable<String> medicalRecordNumber);
-
-    _FinalStage measurements(Optional<List<UpdatePatientRequestMeasurementsItem>> measurements);
-
-    _FinalStage measurements(List<UpdatePatientRequestMeasurementsItem> measurements);
-
-    _FinalStage measurements(Nullable<List<UpdatePatientRequestMeasurementsItem>> measurements);
-
-    _FinalStage name(Optional<UpdatePatientRequestName> name);
-
-    _FinalStage name(UpdatePatientRequestName name);
-
-    _FinalStage name(Nullable<UpdatePatientRequestName> name);
-
-    _FinalStage programs(Optional<List<UpdatePatientRequestProgramsItem>> programs);
-
-    _FinalStage programs(List<UpdatePatientRequestProgramsItem> programs);
-
-    _FinalStage programs(Nullable<List<UpdatePatientRequestProgramsItem>> programs);
-
-    _FinalStage phone(Optional<String> phone);
-
-    _FinalStage phone(String phone);
-
-    _FinalStage phone(Nullable<String> phone);
-
-    _FinalStage status(Optional<UpdatePatientRequestStatus> status);
-
-    _FinalStage status(UpdatePatientRequestStatus status);
-
-    _FinalStage status(Nullable<UpdatePatientRequestStatus> status);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdempotencyKeyStage, _FinalStage {
-    private String idempotencyKey;
+  public static final class Builder {
+    private Optional<String> idempotencyKey = Optional.empty();
 
-    private Optional<UpdatePatientRequestStatus> status = Optional.empty();
-
-    private Optional<String> phone = Optional.empty();
-
-    private Optional<List<UpdatePatientRequestProgramsItem>> programs = Optional.empty();
-
-    private Optional<UpdatePatientRequestName> name = Optional.empty();
-
-    private Optional<List<UpdatePatientRequestMeasurementsItem>> measurements = Optional.empty();
-
-    private Optional<String> medicalRecordNumber = Optional.empty();
-
-    private Optional<Map<String, Object>> metadata = Optional.empty();
-
-    private Optional<String> locationId = Optional.empty();
-
-    private Optional<UpdatePatientRequestGender> gender = Optional.empty();
-
-    private Optional<List<UpdatePatientRequestEncountersItem>> encounters = Optional.empty();
-
-    private Optional<List<UpdatePatientRequestAddressesItem>> addresses = Optional.empty();
-
-    private Optional<List<UpdatePatientRequestExternalIdentitiesItem>> externalIdentities = Optional.empty();
-
-    private Optional<String> externalId = Optional.empty();
-
-    private Optional<String> email = Optional.empty();
-
-    private Optional<String> dateOfBirth = Optional.empty();
-
-    private Optional<UpdatePatientRequestClinicalProfile> clinicalProfile = Optional.empty();
-
-    private Optional<UpdatePatientRequestAddress> address = Optional.empty();
+    private Optional<String> affinityActorId = Optional.empty();
 
     private Optional<String> affinityActorType = Optional.empty();
 
-    private Optional<String> affinityActorId = Optional.empty();
+    private Optional<UpdatePatientRequestAddress> address = Optional.empty();
+
+    private Optional<UpdatePatientRequestClinicalProfile> clinicalProfile = Optional.empty();
+
+    private Optional<String> dateOfBirth = Optional.empty();
+
+    private Optional<String> email = Optional.empty();
+
+    private Optional<String> externalId = Optional.empty();
+
+    private Optional<List<UpdatePatientRequestExternalIdentitiesItem>> externalIdentities = Optional.empty();
+
+    private Optional<List<UpdatePatientRequestAddressesItem>> addresses = Optional.empty();
+
+    private Optional<List<UpdatePatientRequestEncountersItem>> encounters = Optional.empty();
+
+    private Optional<UpdatePatientRequestGender> gender = Optional.empty();
+
+    private Optional<String> locationId = Optional.empty();
+
+    private Optional<Map<String, Object>> metadata = Optional.empty();
+
+    private Optional<String> medicalRecordNumber = Optional.empty();
+
+    private Optional<List<UpdatePatientRequestMeasurementsItem>> measurements = Optional.empty();
+
+    private Optional<UpdatePatientRequestName> name = Optional.empty();
+
+    private Optional<List<UpdatePatientRequestProgramsItem>> programs = Optional.empty();
+
+    private Optional<String> phone = Optional.empty();
+
+    private Optional<UpdatePatientRequestStatus> status = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -640,7 +509,6 @@ public final class UpdatePatientRequest {
     private Builder() {
     }
 
-    @java.lang.Override
     public Builder from(UpdatePatientRequest other) {
       idempotencyKey(other.getIdempotencyKey());
       affinityActorId(other.getAffinityActorId());
@@ -665,346 +533,197 @@ public final class UpdatePatientRequest {
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage idempotencyKey(@NotNull String idempotencyKey) {
-      this.idempotencyKey = Objects.requireNonNull(idempotencyKey, "idempotencyKey must not be null");
+    /**
+     * <p>Optional in the SDK. A fresh key is generated once per call when omitted. Supply a stable key to retry across calls.</p>
+     */
+    public Builder idempotencyKey(Optional<String> idempotencyKey) {
+      this.idempotencyKey = idempotencyKey;
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage status(Nullable<UpdatePatientRequestStatus> status) {
-      if (status.isNull()) {
-        this.status = null;
-      }
-      else if (status.isEmpty()) {
-        this.status = Optional.empty();
-      }
-      else {
-        this.status = Optional.of(status.get());
-      }
+    public Builder idempotencyKey(String idempotencyKey) {
+      this.idempotencyKey = Optional.ofNullable(idempotencyKey);
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage status(UpdatePatientRequestStatus status) {
-      this.status = Optional.ofNullable(status);
+    /**
+     * <p>Required for user actors and optional for system actors. Omit both actor headers to use the authenticated service account as a system actor.</p>
+     */
+    public Builder affinityActorId(Optional<String> affinityActorId) {
+      this.affinityActorId = affinityActorId;
       return this;
     }
 
-    @java.lang.Override
+    public Builder affinityActorId(String affinityActorId) {
+      this.affinityActorId = Optional.ofNullable(affinityActorId);
+      return this;
+    }
+
+    /**
+     * <p>Use user when a person initiated the action and system for autonomous work. Omit both actor headers to default to system.</p>
+     */
+    public Builder affinityActorType(Optional<String> affinityActorType) {
+      this.affinityActorType = affinityActorType;
+      return this;
+    }
+
+    public Builder affinityActorType(String affinityActorType) {
+      this.affinityActorType = Optional.ofNullable(affinityActorType);
+      return this;
+    }
+
     @JsonSetter(
-        value = "status",
+        value = "address",
         nulls = Nulls.SKIP
     )
-    public _FinalStage status(Optional<UpdatePatientRequestStatus> status) {
-      this.status = status;
+    public Builder address(Optional<UpdatePatientRequestAddress> address) {
+      this.address = address;
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage phone(Nullable<String> phone) {
-      if (phone.isNull()) {
-        this.phone = null;
-      }
-      else if (phone.isEmpty()) {
-        this.phone = Optional.empty();
-      }
-      else {
-        this.phone = Optional.of(phone.get());
-      }
+    public Builder address(UpdatePatientRequestAddress address) {
+      this.address = Optional.ofNullable(address);
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage phone(String phone) {
-      this.phone = Optional.ofNullable(phone);
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter(
-        value = "phone",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage phone(Optional<String> phone) {
-      this.phone = phone;
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage programs(Nullable<List<UpdatePatientRequestProgramsItem>> programs) {
-      if (programs.isNull()) {
-        this.programs = null;
+    public Builder address(Nullable<UpdatePatientRequestAddress> address) {
+      if (address.isNull()) {
+        this.address = null;
       }
-      else if (programs.isEmpty()) {
-        this.programs = Optional.empty();
+      else if (address.isEmpty()) {
+        this.address = Optional.empty();
       }
       else {
-        this.programs = Optional.of(programs.get());
+        this.address = Optional.of(address.get());
       }
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage programs(List<UpdatePatientRequestProgramsItem> programs) {
-      this.programs = Optional.ofNullable(programs);
-      return this;
-    }
-
-    @java.lang.Override
     @JsonSetter(
-        value = "programs",
+        value = "clinicalProfile",
         nulls = Nulls.SKIP
     )
-    public _FinalStage programs(Optional<List<UpdatePatientRequestProgramsItem>> programs) {
-      this.programs = programs;
+    public Builder clinicalProfile(Optional<UpdatePatientRequestClinicalProfile> clinicalProfile) {
+      this.clinicalProfile = clinicalProfile;
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage name(Nullable<UpdatePatientRequestName> name) {
-      if (name.isNull()) {
-        this.name = null;
+    public Builder clinicalProfile(UpdatePatientRequestClinicalProfile clinicalProfile) {
+      this.clinicalProfile = Optional.ofNullable(clinicalProfile);
+      return this;
+    }
+
+    public Builder clinicalProfile(Nullable<UpdatePatientRequestClinicalProfile> clinicalProfile) {
+      if (clinicalProfile.isNull()) {
+        this.clinicalProfile = null;
       }
-      else if (name.isEmpty()) {
-        this.name = Optional.empty();
+      else if (clinicalProfile.isEmpty()) {
+        this.clinicalProfile = Optional.empty();
       }
       else {
-        this.name = Optional.of(name.get());
+        this.clinicalProfile = Optional.of(clinicalProfile.get());
       }
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage name(UpdatePatientRequestName name) {
-      this.name = Optional.ofNullable(name);
-      return this;
-    }
-
-    @java.lang.Override
     @JsonSetter(
-        value = "name",
+        value = "dateOfBirth",
         nulls = Nulls.SKIP
     )
-    public _FinalStage name(Optional<UpdatePatientRequestName> name) {
-      this.name = name;
+    public Builder dateOfBirth(Optional<String> dateOfBirth) {
+      this.dateOfBirth = dateOfBirth;
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage measurements(
-        Nullable<List<UpdatePatientRequestMeasurementsItem>> measurements) {
-      if (measurements.isNull()) {
-        this.measurements = null;
+    public Builder dateOfBirth(String dateOfBirth) {
+      this.dateOfBirth = Optional.ofNullable(dateOfBirth);
+      return this;
+    }
+
+    public Builder dateOfBirth(Nullable<String> dateOfBirth) {
+      if (dateOfBirth.isNull()) {
+        this.dateOfBirth = null;
       }
-      else if (measurements.isEmpty()) {
-        this.measurements = Optional.empty();
+      else if (dateOfBirth.isEmpty()) {
+        this.dateOfBirth = Optional.empty();
       }
       else {
-        this.measurements = Optional.of(measurements.get());
+        this.dateOfBirth = Optional.of(dateOfBirth.get());
       }
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage measurements(List<UpdatePatientRequestMeasurementsItem> measurements) {
-      this.measurements = Optional.ofNullable(measurements);
-      return this;
-    }
-
-    @java.lang.Override
     @JsonSetter(
-        value = "measurements",
+        value = "email",
         nulls = Nulls.SKIP
     )
-    public _FinalStage measurements(
-        Optional<List<UpdatePatientRequestMeasurementsItem>> measurements) {
-      this.measurements = measurements;
+    public Builder email(Optional<String> email) {
+      this.email = email;
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage medicalRecordNumber(Nullable<String> medicalRecordNumber) {
-      if (medicalRecordNumber.isNull()) {
-        this.medicalRecordNumber = null;
+    public Builder email(String email) {
+      this.email = Optional.ofNullable(email);
+      return this;
+    }
+
+    public Builder email(Nullable<String> email) {
+      if (email.isNull()) {
+        this.email = null;
       }
-      else if (medicalRecordNumber.isEmpty()) {
-        this.medicalRecordNumber = Optional.empty();
+      else if (email.isEmpty()) {
+        this.email = Optional.empty();
       }
       else {
-        this.medicalRecordNumber = Optional.of(medicalRecordNumber.get());
+        this.email = Optional.of(email.get());
       }
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage medicalRecordNumber(String medicalRecordNumber) {
-      this.medicalRecordNumber = Optional.ofNullable(medicalRecordNumber);
-      return this;
-    }
-
-    @java.lang.Override
     @JsonSetter(
-        value = "medicalRecordNumber",
+        value = "externalId",
         nulls = Nulls.SKIP
     )
-    public _FinalStage medicalRecordNumber(Optional<String> medicalRecordNumber) {
-      this.medicalRecordNumber = medicalRecordNumber;
+    public Builder externalId(Optional<String> externalId) {
+      this.externalId = externalId;
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage metadata(Nullable<Map<String, Object>> metadata) {
-      if (metadata.isNull()) {
-        this.metadata = null;
+    public Builder externalId(String externalId) {
+      this.externalId = Optional.ofNullable(externalId);
+      return this;
+    }
+
+    public Builder externalId(Nullable<String> externalId) {
+      if (externalId.isNull()) {
+        this.externalId = null;
       }
-      else if (metadata.isEmpty()) {
-        this.metadata = Optional.empty();
+      else if (externalId.isEmpty()) {
+        this.externalId = Optional.empty();
       }
       else {
-        this.metadata = Optional.of(metadata.get());
+        this.externalId = Optional.of(externalId.get());
       }
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage metadata(Map<String, Object> metadata) {
-      this.metadata = Optional.ofNullable(metadata);
-      return this;
-    }
-
-    @java.lang.Override
     @JsonSetter(
-        value = "metadata",
+        value = "externalIdentities",
         nulls = Nulls.SKIP
     )
-    public _FinalStage metadata(Optional<Map<String, Object>> metadata) {
-      this.metadata = metadata;
+    public Builder externalIdentities(
+        Optional<List<UpdatePatientRequestExternalIdentitiesItem>> externalIdentities) {
+      this.externalIdentities = externalIdentities;
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage locationId(Nullable<String> locationId) {
-      if (locationId.isNull()) {
-        this.locationId = null;
-      }
-      else if (locationId.isEmpty()) {
-        this.locationId = Optional.empty();
-      }
-      else {
-        this.locationId = Optional.of(locationId.get());
-      }
+    public Builder externalIdentities(
+        List<UpdatePatientRequestExternalIdentitiesItem> externalIdentities) {
+      this.externalIdentities = Optional.ofNullable(externalIdentities);
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage locationId(String locationId) {
-      this.locationId = Optional.ofNullable(locationId);
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter(
-        value = "locationId",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage locationId(Optional<String> locationId) {
-      this.locationId = locationId;
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage gender(Nullable<UpdatePatientRequestGender> gender) {
-      if (gender.isNull()) {
-        this.gender = null;
-      }
-      else if (gender.isEmpty()) {
-        this.gender = Optional.empty();
-      }
-      else {
-        this.gender = Optional.of(gender.get());
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage gender(UpdatePatientRequestGender gender) {
-      this.gender = Optional.ofNullable(gender);
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter(
-        value = "gender",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage gender(Optional<UpdatePatientRequestGender> gender) {
-      this.gender = gender;
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage encounters(Nullable<List<UpdatePatientRequestEncountersItem>> encounters) {
-      if (encounters.isNull()) {
-        this.encounters = null;
-      }
-      else if (encounters.isEmpty()) {
-        this.encounters = Optional.empty();
-      }
-      else {
-        this.encounters = Optional.of(encounters.get());
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage encounters(List<UpdatePatientRequestEncountersItem> encounters) {
-      this.encounters = Optional.ofNullable(encounters);
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter(
-        value = "encounters",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage encounters(Optional<List<UpdatePatientRequestEncountersItem>> encounters) {
-      this.encounters = encounters;
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage addresses(Nullable<List<UpdatePatientRequestAddressesItem>> addresses) {
-      if (addresses.isNull()) {
-        this.addresses = null;
-      }
-      else if (addresses.isEmpty()) {
-        this.addresses = Optional.empty();
-      }
-      else {
-        this.addresses = Optional.of(addresses.get());
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage addresses(List<UpdatePatientRequestAddressesItem> addresses) {
-      this.addresses = Optional.ofNullable(addresses);
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter(
-        value = "addresses",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage addresses(Optional<List<UpdatePatientRequestAddressesItem>> addresses) {
-      this.addresses = addresses;
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage externalIdentities(
+    public Builder externalIdentities(
         Nullable<List<UpdatePatientRequestExternalIdentitiesItem>> externalIdentities) {
       if (externalIdentities.isNull()) {
         this.externalIdentities = null;
@@ -1018,226 +737,312 @@ public final class UpdatePatientRequest {
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage externalIdentities(
-        List<UpdatePatientRequestExternalIdentitiesItem> externalIdentities) {
-      this.externalIdentities = Optional.ofNullable(externalIdentities);
-      return this;
-    }
-
-    @java.lang.Override
     @JsonSetter(
-        value = "externalIdentities",
+        value = "addresses",
         nulls = Nulls.SKIP
     )
-    public _FinalStage externalIdentities(
-        Optional<List<UpdatePatientRequestExternalIdentitiesItem>> externalIdentities) {
-      this.externalIdentities = externalIdentities;
+    public Builder addresses(Optional<List<UpdatePatientRequestAddressesItem>> addresses) {
+      this.addresses = addresses;
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage externalId(Nullable<String> externalId) {
-      if (externalId.isNull()) {
-        this.externalId = null;
+    public Builder addresses(List<UpdatePatientRequestAddressesItem> addresses) {
+      this.addresses = Optional.ofNullable(addresses);
+      return this;
+    }
+
+    public Builder addresses(Nullable<List<UpdatePatientRequestAddressesItem>> addresses) {
+      if (addresses.isNull()) {
+        this.addresses = null;
       }
-      else if (externalId.isEmpty()) {
-        this.externalId = Optional.empty();
+      else if (addresses.isEmpty()) {
+        this.addresses = Optional.empty();
       }
       else {
-        this.externalId = Optional.of(externalId.get());
+        this.addresses = Optional.of(addresses.get());
       }
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage externalId(String externalId) {
-      this.externalId = Optional.ofNullable(externalId);
-      return this;
-    }
-
-    @java.lang.Override
     @JsonSetter(
-        value = "externalId",
+        value = "encounters",
         nulls = Nulls.SKIP
     )
-    public _FinalStage externalId(Optional<String> externalId) {
-      this.externalId = externalId;
+    public Builder encounters(Optional<List<UpdatePatientRequestEncountersItem>> encounters) {
+      this.encounters = encounters;
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage email(Nullable<String> email) {
-      if (email.isNull()) {
-        this.email = null;
+    public Builder encounters(List<UpdatePatientRequestEncountersItem> encounters) {
+      this.encounters = Optional.ofNullable(encounters);
+      return this;
+    }
+
+    public Builder encounters(Nullable<List<UpdatePatientRequestEncountersItem>> encounters) {
+      if (encounters.isNull()) {
+        this.encounters = null;
       }
-      else if (email.isEmpty()) {
-        this.email = Optional.empty();
+      else if (encounters.isEmpty()) {
+        this.encounters = Optional.empty();
       }
       else {
-        this.email = Optional.of(email.get());
+        this.encounters = Optional.of(encounters.get());
       }
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage email(String email) {
-      this.email = Optional.ofNullable(email);
-      return this;
-    }
-
-    @java.lang.Override
     @JsonSetter(
-        value = "email",
+        value = "gender",
         nulls = Nulls.SKIP
     )
-    public _FinalStage email(Optional<String> email) {
-      this.email = email;
+    public Builder gender(Optional<UpdatePatientRequestGender> gender) {
+      this.gender = gender;
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage dateOfBirth(Nullable<String> dateOfBirth) {
-      if (dateOfBirth.isNull()) {
-        this.dateOfBirth = null;
+    public Builder gender(UpdatePatientRequestGender gender) {
+      this.gender = Optional.ofNullable(gender);
+      return this;
+    }
+
+    public Builder gender(Nullable<UpdatePatientRequestGender> gender) {
+      if (gender.isNull()) {
+        this.gender = null;
       }
-      else if (dateOfBirth.isEmpty()) {
-        this.dateOfBirth = Optional.empty();
+      else if (gender.isEmpty()) {
+        this.gender = Optional.empty();
       }
       else {
-        this.dateOfBirth = Optional.of(dateOfBirth.get());
+        this.gender = Optional.of(gender.get());
       }
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage dateOfBirth(String dateOfBirth) {
-      this.dateOfBirth = Optional.ofNullable(dateOfBirth);
-      return this;
-    }
-
-    @java.lang.Override
     @JsonSetter(
-        value = "dateOfBirth",
+        value = "locationId",
         nulls = Nulls.SKIP
     )
-    public _FinalStage dateOfBirth(Optional<String> dateOfBirth) {
-      this.dateOfBirth = dateOfBirth;
+    public Builder locationId(Optional<String> locationId) {
+      this.locationId = locationId;
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage clinicalProfile(
-        Nullable<UpdatePatientRequestClinicalProfile> clinicalProfile) {
-      if (clinicalProfile.isNull()) {
-        this.clinicalProfile = null;
+    public Builder locationId(String locationId) {
+      this.locationId = Optional.ofNullable(locationId);
+      return this;
+    }
+
+    public Builder locationId(Nullable<String> locationId) {
+      if (locationId.isNull()) {
+        this.locationId = null;
       }
-      else if (clinicalProfile.isEmpty()) {
-        this.clinicalProfile = Optional.empty();
+      else if (locationId.isEmpty()) {
+        this.locationId = Optional.empty();
       }
       else {
-        this.clinicalProfile = Optional.of(clinicalProfile.get());
+        this.locationId = Optional.of(locationId.get());
       }
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage clinicalProfile(UpdatePatientRequestClinicalProfile clinicalProfile) {
-      this.clinicalProfile = Optional.ofNullable(clinicalProfile);
-      return this;
-    }
-
-    @java.lang.Override
     @JsonSetter(
-        value = "clinicalProfile",
+        value = "metadata",
         nulls = Nulls.SKIP
     )
-    public _FinalStage clinicalProfile(
-        Optional<UpdatePatientRequestClinicalProfile> clinicalProfile) {
-      this.clinicalProfile = clinicalProfile;
+    public Builder metadata(Optional<Map<String, Object>> metadata) {
+      this.metadata = metadata;
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage address(Nullable<UpdatePatientRequestAddress> address) {
-      if (address.isNull()) {
-        this.address = null;
+    public Builder metadata(Map<String, Object> metadata) {
+      this.metadata = Optional.ofNullable(metadata);
+      return this;
+    }
+
+    public Builder metadata(Nullable<Map<String, Object>> metadata) {
+      if (metadata.isNull()) {
+        this.metadata = null;
       }
-      else if (address.isEmpty()) {
-        this.address = Optional.empty();
+      else if (metadata.isEmpty()) {
+        this.metadata = Optional.empty();
       }
       else {
-        this.address = Optional.of(address.get());
+        this.metadata = Optional.of(metadata.get());
       }
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage address(UpdatePatientRequestAddress address) {
-      this.address = Optional.ofNullable(address);
-      return this;
-    }
-
-    @java.lang.Override
     @JsonSetter(
-        value = "address",
+        value = "medicalRecordNumber",
         nulls = Nulls.SKIP
     )
-    public _FinalStage address(Optional<UpdatePatientRequestAddress> address) {
-      this.address = address;
+    public Builder medicalRecordNumber(Optional<String> medicalRecordNumber) {
+      this.medicalRecordNumber = medicalRecordNumber;
       return this;
     }
 
-    /**
-     * <p>Use user when a person initiated the action and system for autonomous work. Omit both actor headers to default to system.</p>
-     * @return Reference to {@code this} so that method calls can be chained together.
-     */
-    @java.lang.Override
-    public _FinalStage affinityActorType(String affinityActorType) {
-      this.affinityActorType = Optional.ofNullable(affinityActorType);
+    public Builder medicalRecordNumber(String medicalRecordNumber) {
+      this.medicalRecordNumber = Optional.ofNullable(medicalRecordNumber);
       return this;
     }
 
-    /**
-     * <p>Use user when a person initiated the action and system for autonomous work. Omit both actor headers to default to system.</p>
-     */
-    @java.lang.Override
-    public _FinalStage affinityActorType(Optional<String> affinityActorType) {
-      this.affinityActorType = affinityActorType;
+    public Builder medicalRecordNumber(Nullable<String> medicalRecordNumber) {
+      if (medicalRecordNumber.isNull()) {
+        this.medicalRecordNumber = null;
+      }
+      else if (medicalRecordNumber.isEmpty()) {
+        this.medicalRecordNumber = Optional.empty();
+      }
+      else {
+        this.medicalRecordNumber = Optional.of(medicalRecordNumber.get());
+      }
       return this;
     }
 
-    /**
-     * <p>Required for user actors and optional for system actors. Omit both actor headers to use the authenticated service account as a system actor.</p>
-     * @return Reference to {@code this} so that method calls can be chained together.
-     */
-    @java.lang.Override
-    public _FinalStage affinityActorId(String affinityActorId) {
-      this.affinityActorId = Optional.ofNullable(affinityActorId);
+    @JsonSetter(
+        value = "measurements",
+        nulls = Nulls.SKIP
+    )
+    public Builder measurements(Optional<List<UpdatePatientRequestMeasurementsItem>> measurements) {
+      this.measurements = measurements;
       return this;
     }
 
-    /**
-     * <p>Required for user actors and optional for system actors. Omit both actor headers to use the authenticated service account as a system actor.</p>
-     */
-    @java.lang.Override
-    public _FinalStage affinityActorId(Optional<String> affinityActorId) {
-      this.affinityActorId = affinityActorId;
+    public Builder measurements(List<UpdatePatientRequestMeasurementsItem> measurements) {
+      this.measurements = Optional.ofNullable(measurements);
       return this;
     }
 
-    @java.lang.Override
+    public Builder measurements(Nullable<List<UpdatePatientRequestMeasurementsItem>> measurements) {
+      if (measurements.isNull()) {
+        this.measurements = null;
+      }
+      else if (measurements.isEmpty()) {
+        this.measurements = Optional.empty();
+      }
+      else {
+        this.measurements = Optional.of(measurements.get());
+      }
+      return this;
+    }
+
+    @JsonSetter(
+        value = "name",
+        nulls = Nulls.SKIP
+    )
+    public Builder name(Optional<UpdatePatientRequestName> name) {
+      this.name = name;
+      return this;
+    }
+
+    public Builder name(UpdatePatientRequestName name) {
+      this.name = Optional.ofNullable(name);
+      return this;
+    }
+
+    public Builder name(Nullable<UpdatePatientRequestName> name) {
+      if (name.isNull()) {
+        this.name = null;
+      }
+      else if (name.isEmpty()) {
+        this.name = Optional.empty();
+      }
+      else {
+        this.name = Optional.of(name.get());
+      }
+      return this;
+    }
+
+    @JsonSetter(
+        value = "programs",
+        nulls = Nulls.SKIP
+    )
+    public Builder programs(Optional<List<UpdatePatientRequestProgramsItem>> programs) {
+      this.programs = programs;
+      return this;
+    }
+
+    public Builder programs(List<UpdatePatientRequestProgramsItem> programs) {
+      this.programs = Optional.ofNullable(programs);
+      return this;
+    }
+
+    public Builder programs(Nullable<List<UpdatePatientRequestProgramsItem>> programs) {
+      if (programs.isNull()) {
+        this.programs = null;
+      }
+      else if (programs.isEmpty()) {
+        this.programs = Optional.empty();
+      }
+      else {
+        this.programs = Optional.of(programs.get());
+      }
+      return this;
+    }
+
+    @JsonSetter(
+        value = "phone",
+        nulls = Nulls.SKIP
+    )
+    public Builder phone(Optional<String> phone) {
+      this.phone = phone;
+      return this;
+    }
+
+    public Builder phone(String phone) {
+      this.phone = Optional.ofNullable(phone);
+      return this;
+    }
+
+    public Builder phone(Nullable<String> phone) {
+      if (phone.isNull()) {
+        this.phone = null;
+      }
+      else if (phone.isEmpty()) {
+        this.phone = Optional.empty();
+      }
+      else {
+        this.phone = Optional.of(phone.get());
+      }
+      return this;
+    }
+
+    @JsonSetter(
+        value = "status",
+        nulls = Nulls.SKIP
+    )
+    public Builder status(Optional<UpdatePatientRequestStatus> status) {
+      this.status = status;
+      return this;
+    }
+
+    public Builder status(UpdatePatientRequestStatus status) {
+      this.status = Optional.ofNullable(status);
+      return this;
+    }
+
+    public Builder status(Nullable<UpdatePatientRequestStatus> status) {
+      if (status.isNull()) {
+        this.status = null;
+      }
+      else if (status.isEmpty()) {
+        this.status = Optional.empty();
+      }
+      else {
+        this.status = Optional.of(status.get());
+      }
+      return this;
+    }
+
     public UpdatePatientRequest build() {
       return new UpdatePatientRequest(idempotencyKey, affinityActorId, affinityActorType, address, clinicalProfile, dateOfBirth, email, externalId, externalIdentities, addresses, encounters, gender, locationId, metadata, medicalRecordNumber, measurements, name, programs, phone, status, additionalProperties);
     }
 
-    @java.lang.Override
     public Builder additionalProperty(String key, Object value) {
       this.additionalProperties.put(key, value);
       return this;
     }
 
-    @java.lang.Override
     public Builder additionalProperties(Map<String, Object> additionalProperties) {
       this.additionalProperties.putAll(additionalProperties);
       return this;

@@ -307,4 +307,14 @@ public final class ListCatalogItemsResponseDataItemQuantityConstraintRange {
       return this;
     }
   }
+
+  public String unit() { return getUnit(); }
+
+  public Optional<String> minimum() { return getMinimum(); }
+
+  public Optional<String> maximum() { return getMaximum(); }
+
+  public Optional<String> increment() { return getIncrement(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

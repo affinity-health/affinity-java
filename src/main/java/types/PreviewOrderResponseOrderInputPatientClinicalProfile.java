@@ -292,4 +292,10 @@ public final class PreviewOrderResponseOrderInputPatientClinicalProfile {
       return this;
     }
   }
+
+  public List<String> currentMedications() { return getCurrentMedications(); }
+
+  public Optional<String> reviewedAt() { return getReviewedAt(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

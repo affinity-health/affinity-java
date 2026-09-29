@@ -1,0 +1,6 @@
+package com.affinity.api.models;
+import java.util.*;import com.fasterxml.jackson.annotation.JsonValue;
+public final class PracticeUpdateParamsPrescribersItem{private final Map<String,Object> values;private PracticeUpdateParamsPrescribersItem(Map<String,Object> values){this.values=Collections.unmodifiableMap(new LinkedHashMap<>(values));}@JsonValue public Map<String,Object> values(){return values;}public static Builder builder(){return new Builder();}public static final class Builder {private final Map<String,Object> values=new LinkedHashMap<>();public Builder credentials(String value){values.put("credentials",value);return this;}
+public Builder licenseStates(List<String> value){values.put("licenseStates",value);return this;}
+public Builder name(String value){values.put("name",value);return this;}
+public Builder npi(String value){values.put("npi",value);return this;}public PracticeUpdateParamsPrescribersItem build(){if(!values.containsKey("licenseStates")||values.get("licenseStates")==null)throw new IllegalArgumentException("licenseStates is required");if(!values.containsKey("name")||values.get("name")==null)throw new IllegalArgumentException("name is required");if(!values.containsKey("npi")||values.get("npi")==null)throw new IllegalArgumentException("npi is required");return new PracticeUpdateParamsPrescribersItem(values);}}}

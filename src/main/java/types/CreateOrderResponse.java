@@ -528,4 +528,32 @@ public final class CreateOrderResponse {
       return this;
     }
   }
+
+  public String revision() { return getRevision(); }
+
+  public List<CreateOrderResponseOtcItemsItem> otcItems() { return getOtcItems(); }
+
+  public Optional<String> externalOrderId() { return getExternalOrderId(); }
+
+  public CreateOrderResponseMetadata metadata() { return getMetadata(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public String id() { return getId(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public CreateOrderResponseObject object() { return getObject(); }
+
+  public String patientId() { return getPatientId(); }
+
+  public String practiceId() { return getPracticeId(); }
+
+  public List<CreateOrderResponsePrescriptionsItem> prescriptions() { return getPrescriptions(); }
+
+  public Optional<String> userId() { return getUserId(); }
+
+  public CreateOrderResponseStatus status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

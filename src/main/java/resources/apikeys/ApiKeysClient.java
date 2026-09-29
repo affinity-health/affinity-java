@@ -31,30 +31,30 @@ public class ApiKeysClient {
   /**
    * Creates a practice API key for a connected practice. Requires a platform key with service_keys:write and every requested scope. The practice key uses the platform key's Test or Live mode and cannot outlive it. Requires Idempotency-Key for safe retries; the secret is returned in the encrypted replay response for 24 hours.
    */
-  public CreatePlatformPracticeApiKeyResponse createPlatformPracticeApiKey(String practiceId,
+  public CreatePlatformPracticeApiKeyResponse create(String practiceId,
       CreatePlatformPracticeApiKeyRequest request) {
-    return this.rawClient.createPlatformPracticeApiKey(practiceId, request).body();
+    return this.rawClient.create(practiceId, request).body();
   }
 
   /**
    * Creates a practice API key for a connected practice. Requires a platform key with service_keys:write and every requested scope. The practice key uses the platform key's Test or Live mode and cannot outlive it. Requires Idempotency-Key for safe retries; the secret is returned in the encrypted replay response for 24 hours.
    */
-  public CreatePlatformPracticeApiKeyResponse createPlatformPracticeApiKey(String practiceId,
+  public CreatePlatformPracticeApiKeyResponse create(String practiceId,
       CreatePlatformPracticeApiKeyRequest request, RequestOptions requestOptions) {
-    return this.rawClient.createPlatformPracticeApiKey(practiceId, request, requestOptions).body();
+    return this.rawClient.create(practiceId, request, requestOptions).body();
   }
 
   /**
    * Returns the subject, mode, and scopes for the API key.
    */
-  public GetApiAccessResponse getApiAccess() {
-    return this.rawClient.getApiAccess().body();
+  public GetApiAccessResponse getAccess() {
+    return this.rawClient.getAccess().body();
   }
 
   /**
    * Returns the subject, mode, and scopes for the API key.
    */
-  public GetApiAccessResponse getApiAccess(RequestOptions requestOptions) {
-    return this.rawClient.getApiAccess(requestOptions).body();
+  public GetApiAccessResponse getAccess(RequestOptions requestOptions) {
+    return this.rawClient.getAccess(requestOptions).body();
   }
 }

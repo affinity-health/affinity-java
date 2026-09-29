@@ -125,4 +125,6 @@ public final class GetOrderResponseLifecycleEventsItemSource {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

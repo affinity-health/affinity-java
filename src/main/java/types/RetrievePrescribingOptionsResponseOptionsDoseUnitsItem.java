@@ -170,4 +170,12 @@ public final class RetrievePrescribingOptionsResponseOptionsDoseUnitsItem {
       return this;
     }
   }
+
+  public String label() { return getLabel(); }
+
+  public RetrievePrescribingOptionsResponseOptionsDoseUnitsItemSource source() { return getSource(); }
+
+  public String value() { return getValue(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -150,4 +150,10 @@ public final class RetrievePrescribingOptionsResponseCatalogQuantityConstraintCh
       return this;
     }
   }
+
+  public String value() { return getValue(); }
+
+  public String unit() { return getUnit(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

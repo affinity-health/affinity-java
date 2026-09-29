@@ -146,4 +146,10 @@ public final class InvitePracticeTeamPersonResponse {
       return this;
     }
   }
+
+  public InvitePracticeTeamPersonResponsePerson person() { return getPerson(); }
+
+  public InvitePracticeTeamPersonResponseDelivery delivery() { return getDelivery(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

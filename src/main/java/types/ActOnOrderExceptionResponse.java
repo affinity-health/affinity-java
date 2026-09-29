@@ -168,4 +168,12 @@ public final class ActOnOrderExceptionResponse {
       return this;
     }
   }
+
+  public String action() { return getAction(); }
+
+  public String exceptionId() { return getExceptionId(); }
+
+  public ActOnOrderExceptionResponseStatus status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

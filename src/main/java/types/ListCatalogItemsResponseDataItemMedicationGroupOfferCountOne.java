@@ -85,4 +85,6 @@ public final class ListCatalogItemsResponseDataItemMedicationGroupOfferCountOne 
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

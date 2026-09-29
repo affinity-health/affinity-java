@@ -190,4 +190,10 @@ public final class ListOrdersResponseDataItemPrescriptionsItemClinicalCompoundin
       return this;
     }
   }
+
+  public Optional<String> category() { return getCategory(); }
+
+  public String context() { return getContext(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

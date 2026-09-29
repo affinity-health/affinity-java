@@ -216,4 +216,14 @@ public final class ListPracticeLocationsResponse {
       return this;
     }
   }
+
+  public List<ListPracticeLocationsResponseDataItem> data() { return getData(); }
+
+  public ListPracticeLocationsResponseObject object() { return getObject(); }
+
+  public boolean hasMore() { return getHasMore(); }
+
+  public String url() { return getUrl(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

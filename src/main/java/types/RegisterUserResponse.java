@@ -299,4 +299,20 @@ public final class RegisterUserResponse {
       return this;
     }
   }
+
+  public RegisterUserResponseObject object() { return getObject(); }
+
+  public String id() { return getId(); }
+
+  public String practiceId() { return getPracticeId(); }
+
+  public String memberId() { return getMemberId(); }
+
+  public Optional<String> prescriberId() { return getPrescriberId(); }
+
+  public String externalId() { return getExternalId(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -146,4 +146,10 @@ public final class GetPatientResponseExternalIdentitiesItem {
       return this;
     }
   }
+
+  public String source() { return getSource(); }
+
+  public String value() { return getValue(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

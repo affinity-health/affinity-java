@@ -173,4 +173,12 @@ public final class ListCatalogItemsResponseDataItemOrdering {
       return this;
     }
   }
+
+  public boolean requiresPrescription() { return getRequiresPrescription(); }
+
+  public boolean requiresAccompanyingPrescription() { return getRequiresAccompanyingPrescription(); }
+
+  public ListCatalogItemsResponseDataItemOrderingShipping shipping() { return getShipping(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

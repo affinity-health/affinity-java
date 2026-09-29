@@ -316,4 +316,8 @@ public final class ListCatalogItemsResponseDataItemPricingBasis {
       return "ListCatalogItemsResponseDataItemPricingBasis{" + "type: " + type + ", value: " + value + "}";
     }
   }
+
+  public Optional<ListCatalogItemsResponseDataItemPricingBasisItem> item() { return getItem(); }
+
+  public Optional<ListCatalogItemsResponseDataItemPricingBasisUnit> unit() { return getUnit(); }
 }

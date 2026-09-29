@@ -146,4 +146,10 @@ public final class GetPracticeTeamResponseInvitations {
       return this;
     }
   }
+
+  public GetPracticeTeamResponseInvitationsPending pending() { return getPending(); }
+
+  public GetPracticeTeamResponseInvitationsExpired expired() { return getExpired(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

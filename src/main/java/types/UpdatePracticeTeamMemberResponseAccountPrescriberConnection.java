@@ -149,4 +149,10 @@ public final class UpdatePracticeTeamMemberResponseAccountPrescriberConnection {
       return this;
     }
   }
+
+  public String status() { return getStatus(); }
+
+  public UpdatePracticeTeamMemberResponseAccountPrescriberConnectionProvider provider() { return getProvider(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

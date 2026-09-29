@@ -7,7 +7,7 @@ package com.affinity.api.resources.practices;
 import com.affinity.api.core.ClientOptions;
 import com.affinity.api.core.RequestOptions;
 import com.affinity.api.resources.practices.requests.CreatePracticeRequest;
-import com.affinity.api.resources.practices.requests.GetPracticeRequest;
+import com.affinity.api.resources.practices.requests.GetPracticesRequest;
 import com.affinity.api.resources.practices.requests.ListPracticesRequest;
 import com.affinity.api.resources.practices.requests.UpdatePracticeRequest;
 import com.affinity.api.types.CreatePracticeResponse;
@@ -37,106 +37,106 @@ public class AsyncPracticesClient {
   /**
    * Returns the practices that belong to the platform. The default Affinity-Version is 2026-09-28.
    */
-  public CompletableFuture<ListPracticesResponse> listPractices() {
-    return this.rawClient.listPractices().thenApply(response -> response.body());
+  public CompletableFuture<ListPracticesResponse> list() {
+    return this.rawClient.list().thenApply(response -> response.body());
   }
 
   /**
    * Returns the practices that belong to the platform. The default Affinity-Version is 2026-09-28.
    */
-  public CompletableFuture<ListPracticesResponse> listPractices(RequestOptions requestOptions) {
-    return this.rawClient.listPractices(requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ListPracticesResponse> list(RequestOptions requestOptions) {
+    return this.rawClient.list(requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Returns the practices that belong to the platform. The default Affinity-Version is 2026-09-28.
    */
-  public CompletableFuture<ListPracticesResponse> listPractices(ListPracticesRequest request) {
-    return this.rawClient.listPractices(request).thenApply(response -> response.body());
+  public CompletableFuture<ListPracticesResponse> list(ListPracticesRequest request) {
+    return this.rawClient.list(request).thenApply(response -> response.body());
   }
 
   /**
    * Returns the practices that belong to the platform. The default Affinity-Version is 2026-09-28.
    */
-  public CompletableFuture<ListPracticesResponse> listPractices(ListPracticesRequest request,
+  public CompletableFuture<ListPracticesResponse> list(ListPracticesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.listPractices(request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.list(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Creates a practice owned by the platform. Set liveEnabled to true to enable Live access at creation with an approved platform and a Live request. Defaults to false. Requires practices:write. Send Idempotency-Key when you retry the same request.
    */
-  public CompletableFuture<CreatePracticeResponse> createPractice(CreatePracticeRequest request) {
-    return this.rawClient.createPractice(request).thenApply(response -> response.body());
+  public CompletableFuture<CreatePracticeResponse> create(CreatePracticeRequest request) {
+    return this.rawClient.create(request).thenApply(response -> response.body());
   }
 
   /**
    * Creates a practice owned by the platform. Set liveEnabled to true to enable Live access at creation with an approved platform and a Live request. Defaults to false. Requires practices:write. Send Idempotency-Key when you retry the same request.
    */
-  public CompletableFuture<CreatePracticeResponse> createPractice(CreatePracticeRequest request,
+  public CompletableFuture<CreatePracticeResponse> create(CreatePracticeRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.createPractice(request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.create(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Returns one practice that belongs to the platform.
    */
-  public CompletableFuture<GetPracticeResponse> getPractice(String practiceId) {
-    return this.rawClient.getPractice(practiceId).thenApply(response -> response.body());
+  public CompletableFuture<GetPracticeResponse> get(String practiceId) {
+    return this.rawClient.get(practiceId).thenApply(response -> response.body());
   }
 
   /**
    * Returns one practice that belongs to the platform.
    */
-  public CompletableFuture<GetPracticeResponse> getPractice(String practiceId,
+  public CompletableFuture<GetPracticeResponse> get(String practiceId,
       RequestOptions requestOptions) {
-    return this.rawClient.getPractice(practiceId, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.get(practiceId, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Returns one practice that belongs to the platform.
    */
-  public CompletableFuture<GetPracticeResponse> getPractice(String practiceId,
-      GetPracticeRequest request) {
-    return this.rawClient.getPractice(practiceId, request).thenApply(response -> response.body());
+  public CompletableFuture<GetPracticeResponse> get(String practiceId,
+      GetPracticesRequest request) {
+    return this.rawClient.get(practiceId, request).thenApply(response -> response.body());
   }
 
   /**
    * Returns one practice that belongs to the platform.
    */
-  public CompletableFuture<GetPracticeResponse> getPractice(String practiceId,
-      GetPracticeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.getPractice(practiceId, request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<GetPracticeResponse> get(String practiceId, GetPracticesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.get(practiceId, request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Updates one practice owned by the platform. Set liveEnabled to true or false to control Live access with an approved platform and a Live request. Affinity Admin decisions take precedence. Requires practices:write. Send Idempotency-Key when you retry the same request.
    */
-  public CompletableFuture<UpdatePracticeResponse> updatePractice(String practiceId) {
-    return this.rawClient.updatePractice(practiceId).thenApply(response -> response.body());
+  public CompletableFuture<UpdatePracticeResponse> update(String practiceId) {
+    return this.rawClient.update(practiceId).thenApply(response -> response.body());
   }
 
   /**
    * Updates one practice owned by the platform. Set liveEnabled to true or false to control Live access with an approved platform and a Live request. Affinity Admin decisions take precedence. Requires practices:write. Send Idempotency-Key when you retry the same request.
    */
-  public CompletableFuture<UpdatePracticeResponse> updatePractice(String practiceId,
+  public CompletableFuture<UpdatePracticeResponse> update(String practiceId,
       RequestOptions requestOptions) {
-    return this.rawClient.updatePractice(practiceId, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.update(practiceId, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Updates one practice owned by the platform. Set liveEnabled to true or false to control Live access with an approved platform and a Live request. Affinity Admin decisions take precedence. Requires practices:write. Send Idempotency-Key when you retry the same request.
    */
-  public CompletableFuture<UpdatePracticeResponse> updatePractice(String practiceId,
+  public CompletableFuture<UpdatePracticeResponse> update(String practiceId,
       UpdatePracticeRequest request) {
-    return this.rawClient.updatePractice(practiceId, request).thenApply(response -> response.body());
+    return this.rawClient.update(practiceId, request).thenApply(response -> response.body());
   }
 
   /**
    * Updates one practice owned by the platform. Set liveEnabled to true or false to control Live access with an approved platform and a Live request. Affinity Admin decisions take precedence. Requires practices:write. Send Idempotency-Key when you retry the same request.
    */
-  public CompletableFuture<UpdatePracticeResponse> updatePractice(String practiceId,
+  public CompletableFuture<UpdatePracticeResponse> update(String practiceId,
       UpdatePracticeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.updatePractice(practiceId, request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.update(practiceId, request, requestOptions).thenApply(response -> response.body());
   }
 }

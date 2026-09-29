@@ -115,4 +115,6 @@ public final class ListOrdersResponseDataItemFulfillmentsItemShippingMethod {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

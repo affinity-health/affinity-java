@@ -115,4 +115,6 @@ public final class RevokePracticeTeamInvitationResponsePersonInvitationStatus {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

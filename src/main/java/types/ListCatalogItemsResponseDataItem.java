@@ -1224,4 +1224,66 @@ public final class ListCatalogItemsResponseDataItem {
       return this;
     }
   }
+
+  public ListCatalogItemsResponseDataItemCatalogDetails catalogDetails() { return getCatalogDetails(); }
+
+  public ListCatalogItemsResponseDataItemComposition composition() { return getComposition(); }
+
+  public List<String> allowedStates() { return getAllowedStates(); }
+
+  public ListCatalogItemsResponseDataItemAvailability availability() { return getAvailability(); }
+
+  public String catalogKind() { return getCatalogKind(); }
+
+  public ListCatalogItemsResponseDataItemOrdering ordering() { return getOrdering(); }
+
+  public Optional<String> category() { return getCategory(); }
+
+  public boolean coldShip() { return getColdShip(); }
+
+  public String pharmacyId() { return getPharmacyId(); }
+
+  public String pharmacyName() { return getPharmacyName(); }
+
+  public String description() { return getDescription(); }
+
+  public String dosageForm() { return getDosageForm(); }
+
+  public String facilityType() { return getFacilityType(); }
+
+  public String id() { return getId(); }
+
+  public Optional<String> imageUrl() { return getImageUrl(); }
+
+  public List<String> imageUrls() { return getImageUrls(); }
+
+  public Optional<ListCatalogItemsResponseDataItemMedicationGroup> medicationGroup() { return getMedicationGroup(); }
+
+  public boolean isOrderable() { return getIsOrderable(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public String name() { return getName(); }
+
+  public ListCatalogItemsResponseDataItemObject object() { return getObject(); }
+
+  public boolean patientSpecificRequired() { return getPatientSpecificRequired(); }
+
+  public Optional<ListCatalogItemsResponseDataItemQuantityConstraint> quantityConstraint() { return getQuantityConstraint(); }
+
+  public ListCatalogItemsResponseDataItemPrescriptionRequirements prescriptionRequirements() { return getPrescriptionRequirements(); }
+
+  public Optional<ListCatalogItemsResponseDataItemPricing> pricing() { return getPricing(); }
+
+  public List<String> restrictedStates() { return getRestrictedStates(); }
+
+  public String route() { return getRoute(); }
+
+  public List<ListCatalogItemsResponseDataItemShippingOptionsItem> shippingOptions() { return getShippingOptions(); }
+
+  public Optional<String> strength() { return getStrength(); }
+
+  public Optional<String> unit() { return getUnit(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

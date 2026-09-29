@@ -199,4 +199,12 @@ public final class RetrievePrescribingOptionsResponseCatalogMedicationGroup {
       return this;
     }
   }
+
+  public RetrievePrescribingOptionsResponseCatalogMedicationGroupOfferCount offerCount() { return getOfferCount(); }
+
+  public RetrievePrescribingOptionsResponseCatalogMedicationGroupPharmacyCount pharmacyCount() { return getPharmacyCount(); }
+
+  public List<String> strengths() { return getStrengths(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

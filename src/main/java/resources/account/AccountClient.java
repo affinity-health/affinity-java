@@ -29,28 +29,28 @@ public class AccountClient {
   /**
    * Returns the platform organization, request livemode, and effective access. API keys report scopes and the service_key role; dashboard sessions report membership permissions. operatingMode describes organization Live access, not the credential's Test/Live mode.
    */
-  public GetAccountResponse getAccount() {
-    return this.rawClient.getAccount().body();
+  public GetAccountResponse get() {
+    return this.rawClient.get().body();
   }
 
   /**
    * Returns the platform organization, request livemode, and effective access. API keys report scopes and the service_key role; dashboard sessions report membership permissions. operatingMode describes organization Live access, not the credential's Test/Live mode.
    */
-  public GetAccountResponse getAccount(RequestOptions requestOptions) {
-    return this.rawClient.getAccount(requestOptions).body();
+  public GetAccountResponse get(RequestOptions requestOptions) {
+    return this.rawClient.get(requestOptions).body();
   }
 
   /**
    * Returns the platform organization, request livemode, and effective access. API keys report scopes and the service_key role; dashboard sessions report membership permissions. operatingMode describes organization Live access, not the credential's Test/Live mode.
    */
-  public GetAccountResponse getAccount(GetAccountRequest request) {
-    return this.rawClient.getAccount(request).body();
+  public GetAccountResponse get(GetAccountRequest request) {
+    return this.rawClient.get(request).body();
   }
 
   /**
    * Returns the platform organization, request livemode, and effective access. API keys report scopes and the service_key role; dashboard sessions report membership permissions. operatingMode describes organization Live access, not the credential's Test/Live mode.
    */
-  public GetAccountResponse getAccount(GetAccountRequest request, RequestOptions requestOptions) {
-    return this.rawClient.getAccount(request, requestOptions).body();
+  public GetAccountResponse get(GetAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.get(request, requestOptions).body();
   }
 }

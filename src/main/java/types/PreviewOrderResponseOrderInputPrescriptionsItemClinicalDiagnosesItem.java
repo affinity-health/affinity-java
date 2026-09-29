@@ -148,4 +148,10 @@ public final class PreviewOrderResponseOrderInputPrescriptionsItemClinicalDiagno
       return this;
     }
   }
+
+  public String code() { return getCode(); }
+
+  public String display() { return getDisplay(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

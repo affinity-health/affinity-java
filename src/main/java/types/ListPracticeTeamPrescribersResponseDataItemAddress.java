@@ -277,4 +277,18 @@ public final class ListPracticeTeamPrescribersResponseDataItemAddress {
       return this;
     }
   }
+
+  public String line1() { return getLine1(); }
+
+  public Optional<String> line2() { return getLine2(); }
+
+  public String city() { return getCity(); }
+
+  public String state() { return getState(); }
+
+  public String postalCode() { return getPostalCode(); }
+
+  public String country() { return getCountry(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

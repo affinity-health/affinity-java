@@ -721,4 +721,36 @@ public final class CreatePracticeResponse {
       return this;
     }
   }
+
+  public Optional<CreatePracticeResponseAddress> address() { return getAddress(); }
+
+  public CreatePracticeResponseContacts contacts() { return getContacts(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public Optional<String> externalId() { return getExternalId(); }
+
+  public String id() { return getId(); }
+
+  public Optional<String> legalName() { return getLegalName(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public Map<String, Object> metadata() { return getMetadata(); }
+
+  public String name() { return getName(); }
+
+  public CreatePracticeResponseObject object() { return getObject(); }
+
+  public List<CreatePracticeResponsePrescribersItem> prescribers() { return getPrescribers(); }
+
+  public boolean liveEnabled() { return getLiveEnabled(); }
+
+  public Optional<String> supportEmail() { return getSupportEmail(); }
+
+  public Optional<String> supportPhone() { return getSupportPhone(); }
+
+  public Optional<String> timezone() { return getTimezone(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

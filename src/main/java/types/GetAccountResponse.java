@@ -316,4 +316,18 @@ public final class GetAccountResponse {
       return this;
     }
   }
+
+  public GetAccountResponseAccount account() { return getAccount(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public Optional<List<String>> scopes() { return getScopes(); }
+
+  public GetAccountResponseMembership membership() { return getMembership(); }
+
+  public GetAccountResponseOperatingMode operatingMode() { return getOperatingMode(); }
+
+  public GetAccountResponseUser user() { return getUser(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

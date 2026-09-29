@@ -400,4 +400,20 @@ public final class UpdatePracticeTeamMemberResponse {
       return this;
     }
   }
+
+  public String id() { return getId(); }
+
+  public Optional<String> externalId() { return getExternalId(); }
+
+  public String name() { return getName(); }
+
+  public Optional<String> email() { return getEmail(); }
+
+  public List<String> locationIds() { return getLocationIds(); }
+
+  public UpdatePracticeTeamMemberResponseAccount account() { return getAccount(); }
+
+  public List<String> nextActions() { return getNextActions(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

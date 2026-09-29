@@ -216,4 +216,14 @@ public final class ListWebhookEndpointsResponse {
       return this;
     }
   }
+
+  public List<ListWebhookEndpointsResponseDataItem> data() { return getData(); }
+
+  public boolean hasMore() { return getHasMore(); }
+
+  public ListWebhookEndpointsResponseObject object() { return getObject(); }
+
+  public ListWebhookEndpointsResponseUrl url() { return getUrl(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -221,4 +221,10 @@ public final class RetrievePrescribingOptionsResponseFormulationDefault {
       return this;
     }
   }
+
+  public String directions() { return getDirections(); }
+
+  public RetrievePrescribingOptionsResponseFormulationDefaultFormat format() { return getFormat(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

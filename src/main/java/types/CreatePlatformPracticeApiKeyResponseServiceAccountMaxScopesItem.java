@@ -286,4 +286,6 @@ public final class CreatePlatformPracticeApiKeyResponseServiceAccountMaxScopesIt
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

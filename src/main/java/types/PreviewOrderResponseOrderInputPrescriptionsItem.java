@@ -515,4 +515,28 @@ public final class PreviewOrderResponseOrderInputPrescriptionsItem {
       return this;
     }
   }
+
+  public Optional<String> externalPrescriptionId() { return getExternalPrescriptionId(); }
+
+  public Optional<PreviewOrderResponseOrderInputPrescriptionsItemClinical> clinical() { return getClinical(); }
+
+  public Optional<String> pharmacyId() { return getPharmacyId(); }
+
+  public int daysSupply() { return getDaysSupply(); }
+
+  public PreviewOrderResponseOrderInputPrescriptionsItemDispensing dispensing() { return getDispensing(); }
+
+  public String directions() { return getDirections(); }
+
+  public String medicationId() { return getMedicationId(); }
+
+  public double quantity() { return getQuantity(); }
+
+  public String quantityUnit() { return getQuantityUnit(); }
+
+  public int refills() { return getRefills(); }
+
+  public Optional<PreviewOrderResponseOrderInputPrescriptionsItemStructuredSig> structuredSig() { return getStructuredSig(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

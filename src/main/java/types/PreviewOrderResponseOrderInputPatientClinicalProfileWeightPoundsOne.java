@@ -86,4 +86,6 @@ public final class PreviewOrderResponseOrderInputPatientClinicalProfileWeightPou
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

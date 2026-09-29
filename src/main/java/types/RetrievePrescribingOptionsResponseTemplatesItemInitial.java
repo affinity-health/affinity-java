@@ -445,4 +445,20 @@ public final class RetrievePrescribingOptionsResponseTemplatesItemInitial {
       return this;
     }
   }
+
+  public Optional<String> dose() { return getDose(); }
+
+  public Optional<String> doseUnit() { return getDoseUnit(); }
+
+  public Optional<String> duration() { return getDuration(); }
+
+  public Optional<String> frequency() { return getFrequency(); }
+
+  public Optional<String> maxDailyUse() { return getMaxDailyUse(); }
+
+  public Optional<Boolean> prn() { return getPrn(); }
+
+  public Optional<String> route() { return getRoute(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

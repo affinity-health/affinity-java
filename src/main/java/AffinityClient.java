@@ -12,7 +12,7 @@ import com.affinity.api.resources.catalog.CatalogClient;
 import com.affinity.api.resources.locations.LocationsClient;
 import com.affinity.api.resources.orders.OrdersClient;
 import com.affinity.api.resources.patients.PatientsClient;
-import com.affinity.api.resources.platformpricing.PlatformPricingClient;
+import com.affinity.api.resources.pharmacies.PharmaciesClient;
 import com.affinity.api.resources.practices.PracticesClient;
 import com.affinity.api.resources.team.TeamClient;
 import com.affinity.api.resources.webhooks.WebhooksClient;
@@ -27,32 +27,32 @@ public class AffinityClient {
 
   protected final Supplier<AccountClient> accountClient;
 
-  protected final Supplier<CatalogClient> catalogClient;
+  protected final Supplier<PharmaciesClient> pharmaciesClient;
 
   protected final Supplier<OrdersClient> ordersClient;
 
-  protected final Supplier<WebhooksClient> webhooksClient;
-
   protected final Supplier<TeamClient> teamClient;
-
-  protected final Supplier<PatientsClient> patientsClient;
 
   protected final Supplier<PracticesClient> practicesClient;
 
-  protected final Supplier<PlatformPricingClient> platformPricingClient;
+  protected final Supplier<PatientsClient> patientsClient;
+
+  protected final Supplier<CatalogClient> catalogClient;
+
+  protected final Supplier<WebhooksClient> webhooksClient;
 
   public AffinityClient(ClientOptions clientOptions) {
     this.clientOptions = clientOptions;
     this.locationsClient = Suppliers.memoize(() -> new LocationsClient(clientOptions));
     this.apiKeysClient = Suppliers.memoize(() -> new ApiKeysClient(clientOptions));
     this.accountClient = Suppliers.memoize(() -> new AccountClient(clientOptions));
-    this.catalogClient = Suppliers.memoize(() -> new CatalogClient(clientOptions));
+    this.pharmaciesClient = Suppliers.memoize(() -> new PharmaciesClient(clientOptions));
     this.ordersClient = Suppliers.memoize(() -> new OrdersClient(clientOptions));
-    this.webhooksClient = Suppliers.memoize(() -> new WebhooksClient(clientOptions));
     this.teamClient = Suppliers.memoize(() -> new TeamClient(clientOptions));
-    this.patientsClient = Suppliers.memoize(() -> new PatientsClient(clientOptions));
     this.practicesClient = Suppliers.memoize(() -> new PracticesClient(clientOptions));
-    this.platformPricingClient = Suppliers.memoize(() -> new PlatformPricingClient(clientOptions));
+    this.patientsClient = Suppliers.memoize(() -> new PatientsClient(clientOptions));
+    this.catalogClient = Suppliers.memoize(() -> new CatalogClient(clientOptions));
+    this.webhooksClient = Suppliers.memoize(() -> new WebhooksClient(clientOptions));
   }
 
   public LocationsClient locations() {
@@ -67,32 +67,32 @@ public class AffinityClient {
     return this.accountClient.get();
   }
 
-  public CatalogClient catalog() {
-    return this.catalogClient.get();
+  public PharmaciesClient pharmacies() {
+    return this.pharmaciesClient.get();
   }
 
   public OrdersClient orders() {
     return this.ordersClient.get();
   }
 
-  public WebhooksClient webhooks() {
-    return this.webhooksClient.get();
-  }
-
   public TeamClient team() {
     return this.teamClient.get();
-  }
-
-  public PatientsClient patients() {
-    return this.patientsClient.get();
   }
 
   public PracticesClient practices() {
     return this.practicesClient.get();
   }
 
-  public PlatformPricingClient platformPricing() {
-    return this.platformPricingClient.get();
+  public PatientsClient patients() {
+    return this.patientsClient.get();
+  }
+
+  public CatalogClient catalog() {
+    return this.catalogClient.get();
+  }
+
+  public WebhooksClient webhooks() {
+    return this.webhooksClient.get();
   }
 
   public static AffinityClientBuilder builder() {

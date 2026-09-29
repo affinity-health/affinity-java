@@ -216,4 +216,14 @@ public final class ListPharmaciesResponse {
       return this;
     }
   }
+
+  public List<ListPharmaciesResponseDataItem> data() { return getData(); }
+
+  public boolean hasMore() { return getHasMore(); }
+
+  public ListPharmaciesResponseObject object() { return getObject(); }
+
+  public ListPharmaciesResponseUrl url() { return getUrl(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

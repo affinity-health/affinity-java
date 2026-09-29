@@ -32,31 +32,30 @@ public class AsyncApiKeysClient {
   /**
    * Creates a practice API key for a connected practice. Requires a platform key with service_keys:write and every requested scope. The practice key uses the platform key's Test or Live mode and cannot outlive it. Requires Idempotency-Key for safe retries; the secret is returned in the encrypted replay response for 24 hours.
    */
-  public CompletableFuture<CreatePlatformPracticeApiKeyResponse> createPlatformPracticeApiKey(
-      String practiceId, CreatePlatformPracticeApiKeyRequest request) {
-    return this.rawClient.createPlatformPracticeApiKey(practiceId, request).thenApply(response -> response.body());
+  public CompletableFuture<CreatePlatformPracticeApiKeyResponse> create(String practiceId,
+      CreatePlatformPracticeApiKeyRequest request) {
+    return this.rawClient.create(practiceId, request).thenApply(response -> response.body());
   }
 
   /**
    * Creates a practice API key for a connected practice. Requires a platform key with service_keys:write and every requested scope. The practice key uses the platform key's Test or Live mode and cannot outlive it. Requires Idempotency-Key for safe retries; the secret is returned in the encrypted replay response for 24 hours.
    */
-  public CompletableFuture<CreatePlatformPracticeApiKeyResponse> createPlatformPracticeApiKey(
-      String practiceId, CreatePlatformPracticeApiKeyRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.createPlatformPracticeApiKey(practiceId, request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<CreatePlatformPracticeApiKeyResponse> create(String practiceId,
+      CreatePlatformPracticeApiKeyRequest request, RequestOptions requestOptions) {
+    return this.rawClient.create(practiceId, request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Returns the subject, mode, and scopes for the API key.
    */
-  public CompletableFuture<GetApiAccessResponse> getApiAccess() {
-    return this.rawClient.getApiAccess().thenApply(response -> response.body());
+  public CompletableFuture<GetApiAccessResponse> getAccess() {
+    return this.rawClient.getAccess().thenApply(response -> response.body());
   }
 
   /**
    * Returns the subject, mode, and scopes for the API key.
    */
-  public CompletableFuture<GetApiAccessResponse> getApiAccess(RequestOptions requestOptions) {
-    return this.rawClient.getApiAccess(requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<GetApiAccessResponse> getAccess(RequestOptions requestOptions) {
+    return this.rawClient.getAccess(requestOptions).thenApply(response -> response.body());
   }
 }

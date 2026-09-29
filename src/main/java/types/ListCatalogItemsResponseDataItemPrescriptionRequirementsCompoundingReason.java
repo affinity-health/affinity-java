@@ -97,4 +97,6 @@ public final class ListCatalogItemsResponseDataItemPrescriptionRequirementsCompo
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

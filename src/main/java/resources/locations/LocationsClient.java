@@ -6,10 +6,10 @@ package com.affinity.api.resources.locations;
 
 import com.affinity.api.core.ClientOptions;
 import com.affinity.api.core.RequestOptions;
-import com.affinity.api.resources.locations.requests.ArchivePracticeLocationRequest;
+import com.affinity.api.resources.locations.requests.ArchiveLocationsRequest;
 import com.affinity.api.resources.locations.requests.CreatePracticeLocationRequest;
-import com.affinity.api.resources.locations.requests.GetPracticeLocationRequest;
-import com.affinity.api.resources.locations.requests.ListPracticeLocationsRequest;
+import com.affinity.api.resources.locations.requests.GetLocationsRequest;
+import com.affinity.api.resources.locations.requests.ListLocationsRequest;
 import com.affinity.api.resources.locations.requests.UpdatePracticeLocationRequest;
 import com.affinity.api.types.ArchivePracticeLocationResponse;
 import com.affinity.api.types.CreatePracticeLocationResponse;
@@ -38,110 +38,138 @@ public class LocationsClient {
   /**
    * Requires locations:read on a practice key or an authorized platform key. Lists active and archived locations by name, with cursor pagination. Use status to filter. Location records are shared between Test and Live for the same practice.
    */
-  public ListPracticeLocationsResponse listPracticeLocations(String practiceId) {
-    return this.rawClient.listPracticeLocations(practiceId).body();
+  public ListPracticeLocationsResponse list(String practiceId) {
+    return this.rawClient.list(practiceId).body();
   }
 
   /**
    * Requires locations:read on a practice key or an authorized platform key. Lists active and archived locations by name, with cursor pagination. Use status to filter. Location records are shared between Test and Live for the same practice.
    */
-  public ListPracticeLocationsResponse listPracticeLocations(String practiceId,
+  public ListPracticeLocationsResponse list(String practiceId, RequestOptions requestOptions) {
+    return this.rawClient.list(practiceId, requestOptions).body();
+  }
+
+  /**
+   * Requires locations:read on a practice key or an authorized platform key. Lists active and archived locations by name, with cursor pagination. Use status to filter. Location records are shared between Test and Live for the same practice.
+   */
+  public ListPracticeLocationsResponse list(String practiceId, ListLocationsRequest request) {
+    return this.rawClient.list(practiceId, request).body();
+  }
+
+  /**
+   * Requires locations:read on a practice key or an authorized platform key. Lists active and archived locations by name, with cursor pagination. Use status to filter. Location records are shared between Test and Live for the same practice.
+   */
+  public ListPracticeLocationsResponse list(String practiceId, ListLocationsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.listPracticeLocations(practiceId, requestOptions).body();
-  }
-
-  /**
-   * Requires locations:read on a practice key or an authorized platform key. Lists active and archived locations by name, with cursor pagination. Use status to filter. Location records are shared between Test and Live for the same practice.
-   */
-  public ListPracticeLocationsResponse listPracticeLocations(String practiceId,
-      ListPracticeLocationsRequest request) {
-    return this.rawClient.listPracticeLocations(practiceId, request).body();
-  }
-
-  /**
-   * Requires locations:read on a practice key or an authorized platform key. Lists active and archived locations by name, with cursor pagination. Use status to filter. Location records are shared between Test and Live for the same practice.
-   */
-  public ListPracticeLocationsResponse listPracticeLocations(String practiceId,
-      ListPracticeLocationsRequest request, RequestOptions requestOptions) {
-    return this.rawClient.listPracticeLocations(practiceId, request, requestOptions).body();
+    return this.rawClient.list(practiceId, request, requestOptions).body();
   }
 
   /**
    * Requires locations:write and Idempotency-Key for API keys. Creates an active location with a unique name in this practice. Locations are shared between Test and Live. Use the returned ID for Team location access.
    */
-  public CreatePracticeLocationResponse createPracticeLocation(String practiceId,
+  public CreatePracticeLocationResponse create(String practiceId,
       CreatePracticeLocationRequest request) {
-    return this.rawClient.createPracticeLocation(practiceId, request).body();
+    return this.rawClient.create(practiceId, request).body();
   }
 
   /**
    * Requires locations:write and Idempotency-Key for API keys. Creates an active location with a unique name in this practice. Locations are shared between Test and Live. Use the returned ID for Team location access.
    */
-  public CreatePracticeLocationResponse createPracticeLocation(String practiceId,
+  public CreatePracticeLocationResponse create(String practiceId,
       CreatePracticeLocationRequest request, RequestOptions requestOptions) {
-    return this.rawClient.createPracticeLocation(practiceId, request, requestOptions).body();
+    return this.rawClient.create(practiceId, request, requestOptions).body();
   }
 
   /**
    * Requires locations:read. Returns one active or archived location in the authorized practice.
    */
-  public GetPracticeLocationResponse getPracticeLocation(String practiceId, String locationId) {
-    return this.rawClient.getPracticeLocation(practiceId, locationId).body();
+  public GetPracticeLocationResponse get(String practiceId, String locationId) {
+    return this.rawClient.get(practiceId, locationId).body();
   }
 
   /**
    * Requires locations:read. Returns one active or archived location in the authorized practice.
    */
-  public GetPracticeLocationResponse getPracticeLocation(String practiceId, String locationId,
+  public GetPracticeLocationResponse get(String practiceId, String locationId,
       RequestOptions requestOptions) {
-    return this.rawClient.getPracticeLocation(practiceId, locationId, requestOptions).body();
+    return this.rawClient.get(practiceId, locationId, requestOptions).body();
   }
 
   /**
    * Requires locations:read. Returns one active or archived location in the authorized practice.
    */
-  public GetPracticeLocationResponse getPracticeLocation(String practiceId, String locationId,
-      GetPracticeLocationRequest request) {
-    return this.rawClient.getPracticeLocation(practiceId, locationId, request).body();
+  public GetPracticeLocationResponse get(String practiceId, String locationId,
+      GetLocationsRequest request) {
+    return this.rawClient.get(practiceId, locationId, request).body();
   }
 
   /**
    * Requires locations:read. Returns one active or archived location in the authorized practice.
    */
-  public GetPracticeLocationResponse getPracticeLocation(String practiceId, String locationId,
-      GetPracticeLocationRequest request, RequestOptions requestOptions) {
-    return this.rawClient.getPracticeLocation(practiceId, locationId, request, requestOptions).body();
+  public GetPracticeLocationResponse get(String practiceId, String locationId,
+      GetLocationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.get(practiceId, locationId, request, requestOptions).body();
   }
 
   /**
    * Requires locations:write and Idempotency-Key for API keys. Updates only supplied fields; null clears optional contact and address fields. Archived locations cannot be updated. Changes apply to both Test and Live.
    */
-  public UpdatePracticeLocationResponse updatePracticeLocation(String practiceId, String locationId,
+  public UpdatePracticeLocationResponse update(String practiceId, String locationId) {
+    return this.rawClient.update(practiceId, locationId).body();
+  }
+
+  /**
+   * Requires locations:write and Idempotency-Key for API keys. Updates only supplied fields; null clears optional contact and address fields. Archived locations cannot be updated. Changes apply to both Test and Live.
+   */
+  public UpdatePracticeLocationResponse update(String practiceId, String locationId,
+      RequestOptions requestOptions) {
+    return this.rawClient.update(practiceId, locationId, requestOptions).body();
+  }
+
+  /**
+   * Requires locations:write and Idempotency-Key for API keys. Updates only supplied fields; null clears optional contact and address fields. Archived locations cannot be updated. Changes apply to both Test and Live.
+   */
+  public UpdatePracticeLocationResponse update(String practiceId, String locationId,
       UpdatePracticeLocationRequest request) {
-    return this.rawClient.updatePracticeLocation(practiceId, locationId, request).body();
+    return this.rawClient.update(practiceId, locationId, request).body();
   }
 
   /**
    * Requires locations:write and Idempotency-Key for API keys. Updates only supplied fields; null clears optional contact and address fields. Archived locations cannot be updated. Changes apply to both Test and Live.
    */
-  public UpdatePracticeLocationResponse updatePracticeLocation(String practiceId, String locationId,
+  public UpdatePracticeLocationResponse update(String practiceId, String locationId,
       UpdatePracticeLocationRequest request, RequestOptions requestOptions) {
-    return this.rawClient.updatePracticeLocation(practiceId, locationId, request, requestOptions).body();
+    return this.rawClient.update(practiceId, locationId, request, requestOptions).body();
   }
 
   /**
    * Requires locations:write and Idempotency-Key for API keys. Retains the location and historical associations. Archived locations cannot receive new Team assignments. Repeating archive returns the archived location. Changes apply to both Test and Live.
    */
-  public ArchivePracticeLocationResponse archivePracticeLocation(String practiceId,
-      String locationId, ArchivePracticeLocationRequest request) {
-    return this.rawClient.archivePracticeLocation(practiceId, locationId, request).body();
+  public ArchivePracticeLocationResponse archive(String practiceId, String locationId) {
+    return this.rawClient.archive(practiceId, locationId).body();
   }
 
   /**
    * Requires locations:write and Idempotency-Key for API keys. Retains the location and historical associations. Archived locations cannot receive new Team assignments. Repeating archive returns the archived location. Changes apply to both Test and Live.
    */
-  public ArchivePracticeLocationResponse archivePracticeLocation(String practiceId,
-      String locationId, ArchivePracticeLocationRequest request, RequestOptions requestOptions) {
-    return this.rawClient.archivePracticeLocation(practiceId, locationId, request, requestOptions).body();
+  public ArchivePracticeLocationResponse archive(String practiceId, String locationId,
+      RequestOptions requestOptions) {
+    return this.rawClient.archive(practiceId, locationId, requestOptions).body();
+  }
+
+  /**
+   * Requires locations:write and Idempotency-Key for API keys. Retains the location and historical associations. Archived locations cannot receive new Team assignments. Repeating archive returns the archived location. Changes apply to both Test and Live.
+   */
+  public ArchivePracticeLocationResponse archive(String practiceId, String locationId,
+      ArchiveLocationsRequest request) {
+    return this.rawClient.archive(practiceId, locationId, request).body();
+  }
+
+  /**
+   * Requires locations:write and Idempotency-Key for API keys. Retains the location and historical associations. Archived locations cannot receive new Team assignments. Repeating archive returns the archived location. Changes apply to both Test and Live.
+   */
+  public ArchivePracticeLocationResponse archive(String practiceId, String locationId,
+      ArchiveLocationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.archive(practiceId, locationId, request, requestOptions).body();
   }
 }

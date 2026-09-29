@@ -546,4 +546,28 @@ public final class ReplayWebhookEventResponseAttemptsItem {
       return this;
     }
   }
+
+  public String deliveryId() { return getDeliveryId(); }
+
+  public String endpointId() { return getEndpointId(); }
+
+  public int attemptNumber() { return getAttemptNumber(); }
+
+  public Optional<String> completedAt() { return getCompletedAt(); }
+
+  public Optional<ReplayWebhookEventResponseAttemptsItemDurationMs> durationMs() { return getDurationMs(); }
+
+  public Optional<String> errorCode() { return getErrorCode(); }
+
+  public Optional<String> errorMessage() { return getErrorMessage(); }
+
+  public String id() { return getId(); }
+
+  public String requestedAt() { return getRequestedAt(); }
+
+  public Optional<ReplayWebhookEventResponseAttemptsItemResponseStatus> responseStatus() { return getResponseStatus(); }
+
+  public ReplayWebhookEventResponseAttemptsItemTrigger trigger() { return getTrigger(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

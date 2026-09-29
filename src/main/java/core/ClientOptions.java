@@ -118,7 +118,7 @@ public final class ClientOptions {
 
     private final Map<String, Supplier<String>> headerSuppliers = new HashMap<>();
 
-    private int maxRetries = 2;
+    private int maxRetries = 0;
 
     private Optional<Long> initialRetryDelayMillis = Optional.empty();
 

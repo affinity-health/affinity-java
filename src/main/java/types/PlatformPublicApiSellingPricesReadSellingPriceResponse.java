@@ -283,4 +283,18 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponse {
       return this;
     }
   }
+
+  public Optional<Integer> amountCents() { return getAmountCents(); }
+
+  public int version() { return getVersion(); }
+
+  public PlatformPublicApiSellingPricesReadSellingPriceResponseCurrency currency() { return getCurrency(); }
+
+  public PlatformPublicApiSellingPricesReadSellingPriceResponseBasis basis() { return getBasis(); }
+
+  public int purchaseAmountCents() { return getPurchaseAmountCents(); }
+
+  public boolean requiresReview() { return getRequiresReview(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

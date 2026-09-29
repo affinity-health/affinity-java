@@ -312,4 +312,16 @@ public final class GetPracticeTeamInvitationResponsePersonAccount {
       return this;
     }
   }
+
+  public String accountId() { return getAccountId(); }
+
+  public boolean emailVerified() { return getEmailVerified(); }
+
+  public String membershipId() { return getMembershipId(); }
+
+  public String membershipStatus() { return getMembershipStatus(); }
+
+  public List<GetPracticeTeamInvitationResponsePersonAccountRolesItem> roles() { return getRoles(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

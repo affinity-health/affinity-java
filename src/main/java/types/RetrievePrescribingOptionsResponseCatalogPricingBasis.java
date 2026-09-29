@@ -316,4 +316,8 @@ public final class RetrievePrescribingOptionsResponseCatalogPricingBasis {
       return "RetrievePrescribingOptionsResponseCatalogPricingBasis{" + "type: " + type + ", value: " + value + "}";
     }
   }
+
+  public Optional<RetrievePrescribingOptionsResponseCatalogPricingBasisItem> item() { return getItem(); }
+
+  public Optional<RetrievePrescribingOptionsResponseCatalogPricingBasisUnit> unit() { return getUnit(); }
 }

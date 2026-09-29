@@ -288,4 +288,10 @@ public final class ListPatientsResponseDataItemMeasurementsItem {
       return this;
     }
   }
+
+  public String recordedAt() { return getRecordedAt(); }
+
+  public String source() { return getSource(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -553,4 +553,32 @@ public final class GetOrderResponseFulfillmentsItemExceptionsItem {
       return this;
     }
   }
+
+  public boolean actionable() { return getActionable(); }
+
+  public Optional<GetOrderResponseFulfillmentsItemExceptionsItemAssignedTo> assignedTo() { return getAssignedTo(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public Optional<String> dueAt() { return getDueAt(); }
+
+  public String id() { return getId(); }
+
+  public String kind() { return getKind(); }
+
+  public Optional<String> resolution() { return getResolution(); }
+
+  public Optional<String> resolvedAt() { return getResolvedAt(); }
+
+  public boolean retryable() { return getRetryable(); }
+
+  public GetOrderResponseFulfillmentsItemExceptionsItemSeverity severity() { return getSeverity(); }
+
+  public GetOrderResponseFulfillmentsItemExceptionsItemStatus status() { return getStatus(); }
+
+  public String summary() { return getSummary(); }
+
+  public String updatedAt() { return getUpdatedAt(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

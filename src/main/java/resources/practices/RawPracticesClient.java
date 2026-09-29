@@ -21,7 +21,7 @@ import com.affinity.api.errors.TooManyRequestsError;
 import com.affinity.api.errors.UnauthorizedError;
 import com.affinity.api.errors.UnprocessableEntityError;
 import com.affinity.api.resources.practices.requests.CreatePracticeRequest;
-import com.affinity.api.resources.practices.requests.GetPracticeRequest;
+import com.affinity.api.resources.practices.requests.GetPracticesRequest;
 import com.affinity.api.resources.practices.requests.ListPracticesRequest;
 import com.affinity.api.resources.practices.requests.UpdatePracticeRequest;
 import com.affinity.api.types.CreatePracticeResponse;
@@ -53,31 +53,29 @@ public class RawPracticesClient {
   /**
    * Returns the practices that belong to the platform. The default Affinity-Version is 2026-09-28.
    */
-  public AffinityClientHttpResponse<ListPracticesResponse> listPractices() {
-    return listPractices(ListPracticesRequest.builder().build());
+  public AffinityClientHttpResponse<ListPracticesResponse> list() {
+    return list(ListPracticesRequest.builder().build());
   }
 
   /**
    * Returns the practices that belong to the platform. The default Affinity-Version is 2026-09-28.
    */
-  public AffinityClientHttpResponse<ListPracticesResponse> listPractices(
+  public AffinityClientHttpResponse<ListPracticesResponse> list(RequestOptions requestOptions) {
+    return list(ListPracticesRequest.builder().build(),requestOptions);
+  }
+
+  /**
+   * Returns the practices that belong to the platform. The default Affinity-Version is 2026-09-28.
+   */
+  public AffinityClientHttpResponse<ListPracticesResponse> list(ListPracticesRequest request) {
+    return list(request,null);
+  }
+
+  /**
+   * Returns the practices that belong to the platform. The default Affinity-Version is 2026-09-28.
+   */
+  public AffinityClientHttpResponse<ListPracticesResponse> list(ListPracticesRequest request,
       RequestOptions requestOptions) {
-    return listPractices(ListPracticesRequest.builder().build(),requestOptions);
-  }
-
-  /**
-   * Returns the practices that belong to the platform. The default Affinity-Version is 2026-09-28.
-   */
-  public AffinityClientHttpResponse<ListPracticesResponse> listPractices(
-      ListPracticesRequest request) {
-    return listPractices(request,null);
-  }
-
-  /**
-   * Returns the practices that belong to the platform. The default Affinity-Version is 2026-09-28.
-   */
-  public AffinityClientHttpResponse<ListPracticesResponse> listPractices(
-      ListPracticesRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/practices");if (request.getSearch().isPresent()) {
@@ -144,16 +142,16 @@ public class RawPracticesClient {
     /**
      * Creates a practice owned by the platform. Set liveEnabled to true to enable Live access at creation with an approved platform and a Live request. Defaults to false. Requires practices:write. Send Idempotency-Key when you retry the same request.
      */
-    public AffinityClientHttpResponse<CreatePracticeResponse> createPractice(
+    public AffinityClientHttpResponse<CreatePracticeResponse> create(
         CreatePracticeRequest request) {
-      return createPractice(request,null);
+      return create(request,null);
     }
 
     /**
      * Creates a practice owned by the platform. Set liveEnabled to true to enable Live access at creation with an approved platform and a Live request. Defaults to false. Requires practices:write. Send Idempotency-Key when you retry the same request.
      */
-    public AffinityClientHttpResponse<CreatePracticeResponse> createPractice(
-        CreatePracticeRequest request, RequestOptions requestOptions) {
+    public AffinityClientHttpResponse<CreatePracticeResponse> create(CreatePracticeRequest request,
+        RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/practices");if (requestOptions != null) {
@@ -219,31 +217,31 @@ public class RawPracticesClient {
       /**
        * Returns one practice that belongs to the platform.
        */
-      public AffinityClientHttpResponse<GetPracticeResponse> getPractice(String practiceId) {
-        return getPractice(practiceId,GetPracticeRequest.builder().build());
+      public AffinityClientHttpResponse<GetPracticeResponse> get(String practiceId) {
+        return get(practiceId,GetPracticesRequest.builder().build());
       }
 
       /**
        * Returns one practice that belongs to the platform.
        */
-      public AffinityClientHttpResponse<GetPracticeResponse> getPractice(String practiceId,
+      public AffinityClientHttpResponse<GetPracticeResponse> get(String practiceId,
           RequestOptions requestOptions) {
-        return getPractice(practiceId,GetPracticeRequest.builder().build(),requestOptions);
+        return get(practiceId,GetPracticesRequest.builder().build(),requestOptions);
       }
 
       /**
        * Returns one practice that belongs to the platform.
        */
-      public AffinityClientHttpResponse<GetPracticeResponse> getPractice(String practiceId,
-          GetPracticeRequest request) {
-        return getPractice(practiceId,request,null);
+      public AffinityClientHttpResponse<GetPracticeResponse> get(String practiceId,
+          GetPracticesRequest request) {
+        return get(practiceId,request,null);
       }
 
       /**
        * Returns one practice that belongs to the platform.
        */
-      public AffinityClientHttpResponse<GetPracticeResponse> getPractice(String practiceId,
-          GetPracticeRequest request, RequestOptions requestOptions) {
+      public AffinityClientHttpResponse<GetPracticeResponse> get(String practiceId,
+          GetPracticesRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/practices")
@@ -299,31 +297,30 @@ public class RawPracticesClient {
         /**
          * Updates one practice owned by the platform. Set liveEnabled to true or false to control Live access with an approved platform and a Live request. Affinity Admin decisions take precedence. Requires practices:write. Send Idempotency-Key when you retry the same request.
          */
-        public AffinityClientHttpResponse<UpdatePracticeResponse> updatePractice(
-            String practiceId) {
-          return updatePractice(practiceId,UpdatePracticeRequest.builder().build());
+        public AffinityClientHttpResponse<UpdatePracticeResponse> update(String practiceId) {
+          return update(practiceId,UpdatePracticeRequest.builder().build());
         }
 
         /**
          * Updates one practice owned by the platform. Set liveEnabled to true or false to control Live access with an approved platform and a Live request. Affinity Admin decisions take precedence. Requires practices:write. Send Idempotency-Key when you retry the same request.
          */
-        public AffinityClientHttpResponse<UpdatePracticeResponse> updatePractice(String practiceId,
+        public AffinityClientHttpResponse<UpdatePracticeResponse> update(String practiceId,
             RequestOptions requestOptions) {
-          return updatePractice(practiceId,UpdatePracticeRequest.builder().build(),requestOptions);
+          return update(practiceId,UpdatePracticeRequest.builder().build(),requestOptions);
         }
 
         /**
          * Updates one practice owned by the platform. Set liveEnabled to true or false to control Live access with an approved platform and a Live request. Affinity Admin decisions take precedence. Requires practices:write. Send Idempotency-Key when you retry the same request.
          */
-        public AffinityClientHttpResponse<UpdatePracticeResponse> updatePractice(String practiceId,
+        public AffinityClientHttpResponse<UpdatePracticeResponse> update(String practiceId,
             UpdatePracticeRequest request) {
-          return updatePractice(practiceId,request,null);
+          return update(practiceId,request,null);
         }
 
         /**
          * Updates one practice owned by the platform. Set liveEnabled to true or false to control Live access with an approved platform and a Live request. Affinity Admin decisions take precedence. Requires practices:write. Send Idempotency-Key when you retry the same request.
          */
-        public AffinityClientHttpResponse<UpdatePracticeResponse> updatePractice(String practiceId,
+        public AffinityClientHttpResponse<UpdatePracticeResponse> update(String practiceId,
             UpdatePracticeRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -346,9 +343,7 @@ public class RawPracticesClient {
               .headers(Headers.of(clientOptions.headers(requestOptions)))
               .addHeader("Content-Type", "application/json")
               .addHeader("Accept", "application/json");
-            if (request.getIdempotencyKey().isPresent()) {
-              _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey().get());
-            }
+            _requestBuilder.addHeader("Idempotency-Key", request.getIdempotencyKey().orElseGet(() -> java.util.UUID.randomUUID().toString())); // affinity-sdk-auto-key
             Request okhttpRequest = _requestBuilder.build();
             OkHttpClient client = clientOptions.httpClient();
             if (requestOptions != null && requestOptions.getTimeout().isPresent()) {

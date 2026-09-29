@@ -352,4 +352,18 @@ public final class GetAccountResponseUser {
       return this;
     }
   }
+
+  public String email() { return getEmail(); }
+
+  public Optional<Boolean> emailVerified() { return getEmailVerified(); }
+
+  public Optional<String> image() { return getImage(); }
+
+  public String name() { return getName(); }
+
+  public Optional<Boolean> twoFactorEnabled() { return getTwoFactorEnabled(); }
+
+  public String userId() { return getUserId(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -75,4 +75,6 @@ public final class RetrievePrescribingOptionsResponseCatalogObject {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

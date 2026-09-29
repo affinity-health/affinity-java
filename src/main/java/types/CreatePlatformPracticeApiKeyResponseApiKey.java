@@ -511,4 +511,28 @@ public final class CreatePlatformPracticeApiKeyResponseApiKey {
       return this;
     }
   }
+
+  public List<String> allowedIps() { return getAllowedIps(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public Optional<String> expiresAt() { return getExpiresAt(); }
+
+  public String id() { return getId(); }
+
+  public String keyPrefix() { return getKeyPrefix(); }
+
+  public Optional<String> lastUsedAt() { return getLastUsedAt(); }
+
+  public CreatePlatformPracticeApiKeyResponseApiKeyMode mode() { return getMode(); }
+
+  public String name() { return getName(); }
+
+  public Optional<String> revokedAt() { return getRevokedAt(); }
+
+  public List<CreatePlatformPracticeApiKeyResponseApiKeyScopesItem> scopes() { return getScopes(); }
+
+  public CreatePlatformPracticeApiKeyResponseApiKeyStatus status() { return getStatus(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

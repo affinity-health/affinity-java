@@ -259,4 +259,18 @@ public final class ListOrderEventsResponseDataItem {
       return this;
     }
   }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public String eventType() { return getEventType(); }
+
+  public String id() { return getId(); }
+
+  public String message() { return getMessage(); }
+
+  public Map<String, Object> metadata() { return getMetadata(); }
+
+  public ListOrderEventsResponseDataItemObject object() { return getObject(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

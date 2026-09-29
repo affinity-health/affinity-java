@@ -1,0 +1,4 @@
+package com.affinity.api.models;
+import java.util.*;import com.fasterxml.jackson.annotation.JsonValue;
+public final class ShippingOptionListParams{private final Map<String,Object> values;private ShippingOptionListParams(Map<String,Object> values){this.values=Collections.unmodifiableMap(new LinkedHashMap<>(values));}@JsonValue public Map<String,Object> values(){return values;}public static Builder builder(){return new Builder();}public static final class Builder {private final Map<String,Object> values=new LinkedHashMap<>();public Builder destinationState(String value){values.put("destinationState",value);return this;}
+public Builder destinationType(String value){values.put("destinationType",value);return this;}public ShippingOptionListParams build(){if(!values.containsKey("destinationState")||values.get("destinationState")==null)throw new IllegalArgumentException("destinationState is required");return new ShippingOptionListParams(values);}}}

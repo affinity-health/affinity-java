@@ -149,4 +149,10 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponseBasisUn
       return this;
     }
   }
+
+  public PlatformPublicApiSellingPricesReadSellingPriceResponseBasisUnitQuantity quantity() { return getQuantity(); }
+
+  public String unit() { return getUnit(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

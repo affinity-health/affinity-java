@@ -1,0 +1,5 @@
+package com.affinity.api.models;
+import java.util.*;import com.fasterxml.jackson.annotation.JsonValue;
+public final class PracticeCreateParamsComplianceContact{private final Map<String,Object> values;private PracticeCreateParamsComplianceContact(Map<String,Object> values){this.values=Collections.unmodifiableMap(new LinkedHashMap<>(values));}@JsonValue public Map<String,Object> values(){return values;}public static Builder builder(){return new Builder();}public static final class Builder {private final Map<String,Object> values=new LinkedHashMap<>();public Builder email(String value){values.put("email",value);return this;}
+public Builder name(String value){values.put("name",value);return this;}
+public Builder phone(String value){values.put("phone",value);return this;}public PracticeCreateParamsComplianceContact build(){if(!values.containsKey("email")||values.get("email")==null)throw new IllegalArgumentException("email is required");if(!values.containsKey("name")||values.get("name")==null)throw new IllegalArgumentException("name is required");return new PracticeCreateParamsComplianceContact(values);}}}

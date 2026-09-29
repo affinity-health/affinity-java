@@ -75,4 +75,6 @@ public final class ListPracticeTeamInvitationsResponseDataItemPersonObject {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

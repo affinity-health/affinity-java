@@ -135,4 +135,6 @@ public final class UpdateOrderTestSimulationResponseAvailableActionsItem {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

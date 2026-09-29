@@ -242,4 +242,12 @@ public final class RetrievePrescribingOptionsResponseCatalogPrescriptionRequirem
       return this;
     }
   }
+
+  public Optional<Integer> daysSupply() { return getDaysSupply(); }
+
+  public String label() { return getLabel(); }
+
+  public String unit() { return getUnit(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

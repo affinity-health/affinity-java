@@ -170,4 +170,8 @@ public final class ListCatalogItemsResponseDataItemCatalogDetails {
       return this;
     }
   }
+
+  public List<ListCatalogItemsResponseDataItemCatalogDetailsDirectionsItem> directions() { return getDirections(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -1,0 +1,5 @@
+package com.affinity.api.models;
+import java.util.*;import com.fasterxml.jackson.annotation.JsonValue;
+public final class TeamPrescriberLicenseUpdateParams{private final Map<String,Object> values;private TeamPrescriberLicenseUpdateParams(Map<String,Object> values){this.values=Collections.unmodifiableMap(new LinkedHashMap<>(values));}@JsonValue public Map<String,Object> values(){return values;}public static Builder builder(){return new Builder();}public static final class Builder {private final Map<String,Object> values=new LinkedHashMap<>();public Builder state(String value){values.put("state",value);return this;}
+public Builder licenseNumber(String value){values.put("licenseNumber",value);return this;}
+public Builder expiresAt(String value){values.put("expiresAt",value);return this;}public TeamPrescriberLicenseUpdateParams build(){return new TeamPrescriberLicenseUpdateParams(values);}}}

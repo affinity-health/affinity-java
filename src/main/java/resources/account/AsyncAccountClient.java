@@ -30,29 +30,29 @@ public class AsyncAccountClient {
   /**
    * Returns the platform organization, request livemode, and effective access. API keys report scopes and the service_key role; dashboard sessions report membership permissions. operatingMode describes organization Live access, not the credential's Test/Live mode.
    */
-  public CompletableFuture<GetAccountResponse> getAccount() {
-    return this.rawClient.getAccount().thenApply(response -> response.body());
+  public CompletableFuture<GetAccountResponse> get() {
+    return this.rawClient.get().thenApply(response -> response.body());
   }
 
   /**
    * Returns the platform organization, request livemode, and effective access. API keys report scopes and the service_key role; dashboard sessions report membership permissions. operatingMode describes organization Live access, not the credential's Test/Live mode.
    */
-  public CompletableFuture<GetAccountResponse> getAccount(RequestOptions requestOptions) {
-    return this.rawClient.getAccount(requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<GetAccountResponse> get(RequestOptions requestOptions) {
+    return this.rawClient.get(requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Returns the platform organization, request livemode, and effective access. API keys report scopes and the service_key role; dashboard sessions report membership permissions. operatingMode describes organization Live access, not the credential's Test/Live mode.
    */
-  public CompletableFuture<GetAccountResponse> getAccount(GetAccountRequest request) {
-    return this.rawClient.getAccount(request).thenApply(response -> response.body());
+  public CompletableFuture<GetAccountResponse> get(GetAccountRequest request) {
+    return this.rawClient.get(request).thenApply(response -> response.body());
   }
 
   /**
    * Returns the platform organization, request livemode, and effective access. API keys report scopes and the service_key role; dashboard sessions report membership permissions. operatingMode describes organization Live access, not the credential's Test/Live mode.
    */
-  public CompletableFuture<GetAccountResponse> getAccount(GetAccountRequest request,
+  public CompletableFuture<GetAccountResponse> get(GetAccountRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.getAccount(request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.get(request, requestOptions).thenApply(response -> response.body());
   }
 }

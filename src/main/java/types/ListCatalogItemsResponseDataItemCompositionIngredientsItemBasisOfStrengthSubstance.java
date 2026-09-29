@@ -128,4 +128,8 @@ public final class ListCatalogItemsResponseDataItemCompositionIngredientsItemBas
       return this;
     }
   }
+
+  public String name() { return getName(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

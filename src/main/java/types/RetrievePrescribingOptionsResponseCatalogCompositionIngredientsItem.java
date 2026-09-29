@@ -248,4 +248,12 @@ public final class RetrievePrescribingOptionsResponseCatalogCompositionIngredien
       return this;
     }
   }
+
+  public String name() { return getName(); }
+
+  public RetrievePrescribingOptionsResponseCatalogCompositionIngredientsItemRole role() { return getRole(); }
+
+  public RetrievePrescribingOptionsResponseCatalogCompositionIngredientsItemStrength strength() { return getStrength(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

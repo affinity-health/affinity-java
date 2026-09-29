@@ -5,242 +5,37 @@
 package com.affinity.api.resources.webhooks;
 
 import com.affinity.api.core.ClientOptions;
-import com.affinity.api.core.RequestOptions;
-import com.affinity.api.resources.webhooks.requests.CreateWebhookEndpointRequest;
-import com.affinity.api.resources.webhooks.requests.DeleteWebhookEndpointRequest;
-import com.affinity.api.resources.webhooks.requests.GetWebhookEventRequest;
-import com.affinity.api.resources.webhooks.requests.ListWebhookEndpointsRequest;
-import com.affinity.api.resources.webhooks.requests.ListWebhookEventsRequest;
-import com.affinity.api.resources.webhooks.requests.ListWebhookGrantsRequest;
-import com.affinity.api.resources.webhooks.requests.ReplayWebhookEventRequest;
-import com.affinity.api.resources.webhooks.requests.RevokeWebhookGrantRequest;
-import com.affinity.api.resources.webhooks.requests.RotateWebhookEndpointSecretRequest;
-import com.affinity.api.resources.webhooks.requests.SaveWebhookGrantRequest;
-import com.affinity.api.resources.webhooks.requests.TestWebhookEndpointRequest;
-import com.affinity.api.resources.webhooks.requests.UpdateWebhookEndpointRequest;
-import com.affinity.api.types.CreateWebhookEndpointResponse;
-import com.affinity.api.types.DeleteWebhookEndpointResponse;
-import com.affinity.api.types.GetWebhookEventResponse;
-import com.affinity.api.types.ListWebhookEndpointsResponse;
-import com.affinity.api.types.ListWebhookEventsResponse;
-import com.affinity.api.types.ListWebhookGrantsResponse;
-import com.affinity.api.types.ReplayWebhookEventResponse;
-import com.affinity.api.types.RevokeWebhookGrantResponse;
-import com.affinity.api.types.RotateWebhookEndpointSecretResponse;
-import com.affinity.api.types.SaveWebhookGrantResponse;
-import com.affinity.api.types.TestWebhookEndpointResponse;
-import com.affinity.api.types.UpdateWebhookEndpointResponse;
-import java.lang.String;
+import com.affinity.api.core.Suppliers;
+import com.affinity.api.resources.webhooks.endpoints.EndpointsClient;
+import com.affinity.api.resources.webhooks.events.EventsClient;
+import com.affinity.api.resources.webhooks.grants.GrantsClient;
+import java.util.function.Supplier;
 
 public class WebhooksClient {
   protected final ClientOptions clientOptions;
 
-  private final RawWebhooksClient rawClient;
+  protected final Supplier<EndpointsClient> endpointsClient;
+
+  protected final Supplier<EventsClient> eventsClient;
+
+  protected final Supplier<GrantsClient> grantsClient;
 
   public WebhooksClient(ClientOptions clientOptions) {
     this.clientOptions = clientOptions;
-    this.rawClient = new RawWebhooksClient(clientOptions);
+    this.endpointsClient = Suppliers.memoize(() -> new EndpointsClient(clientOptions));
+    this.eventsClient = Suppliers.memoize(() -> new EventsClient(clientOptions));
+    this.grantsClient = Suppliers.memoize(() -> new GrantsClient(clientOptions));
   }
 
-  /**
-   * Get responses with HTTP metadata like headers
-   */
-  public RawWebhooksClient withRawResponse() {
-    return this.rawClient;
+  public EndpointsClient endpoints() {
+    return this.endpointsClient.get();
   }
 
-  /**
-   * Requires webhooks:read. Returns endpoints owned by the key organization, or the organization selected with X-Affinity-Organization-Id. Platform delegation requires a webhook grant in the key's mode.
-   */
-  public ListWebhookEndpointsResponse listWebhookEndpoints() {
-    return this.rawClient.listWebhookEndpoints().body();
+  public EventsClient events() {
+    return this.eventsClient.get();
   }
 
-  /**
-   * Requires webhooks:read. Returns endpoints owned by the key organization, or the organization selected with X-Affinity-Organization-Id. Platform delegation requires a webhook grant in the key's mode.
-   */
-  public ListWebhookEndpointsResponse listWebhookEndpoints(RequestOptions requestOptions) {
-    return this.rawClient.listWebhookEndpoints(requestOptions).body();
-  }
-
-  /**
-   * Requires webhooks:read. Returns endpoints owned by the key organization, or the organization selected with X-Affinity-Organization-Id. Platform delegation requires a webhook grant in the key's mode.
-   */
-  public ListWebhookEndpointsResponse listWebhookEndpoints(ListWebhookEndpointsRequest request) {
-    return this.rawClient.listWebhookEndpoints(request).body();
-  }
-
-  /**
-   * Requires webhooks:read. Returns endpoints owned by the key organization, or the organization selected with X-Affinity-Organization-Id. Platform delegation requires a webhook grant in the key's mode.
-   */
-  public ListWebhookEndpointsResponse listWebhookEndpoints(ListWebhookEndpointsRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.listWebhookEndpoints(request, requestOptions).body();
-  }
-
-  /**
-   * Requires webhooks:write and Idempotency-Key. Defaults to the API key organization. A platform can select a practice or pharmacy owner with X-Affinity-Organization-Id and an explicit webhook grant. For platform-owned endpoints, practiceIds narrows delivery to selected connected practices. An empty filter receives all otherwise-authorized events.
-   */
-  public CreateWebhookEndpointResponse createWebhookEndpoint(CreateWebhookEndpointRequest request) {
-    return this.rawClient.createWebhookEndpoint(request).body();
-  }
-
-  /**
-   * Requires webhooks:write and Idempotency-Key. Defaults to the API key organization. A platform can select a practice or pharmacy owner with X-Affinity-Organization-Id and an explicit webhook grant. For platform-owned endpoints, practiceIds narrows delivery to selected connected practices. An empty filter receives all otherwise-authorized events.
-   */
-  public CreateWebhookEndpointResponse createWebhookEndpoint(CreateWebhookEndpointRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.createWebhookEndpoint(request, requestOptions).body();
-  }
-
-  public DeleteWebhookEndpointResponse deleteWebhookEndpoint(String endpointId,
-      DeleteWebhookEndpointRequest request) {
-    return this.rawClient.deleteWebhookEndpoint(endpointId, request).body();
-  }
-
-  public DeleteWebhookEndpointResponse deleteWebhookEndpoint(String endpointId,
-      DeleteWebhookEndpointRequest request, RequestOptions requestOptions) {
-    return this.rawClient.deleteWebhookEndpoint(endpointId, request, requestOptions).body();
-  }
-
-  /**
-   * Requires webhooks:write and Idempotency-Key. Updates an endpoint in the selected organization and mode. Omitted practiceIds preserves the filter; an empty array removes the practice filter. Subscription changes apply to newly generated events.
-   */
-  public UpdateWebhookEndpointResponse updateWebhookEndpoint(String endpointId,
-      UpdateWebhookEndpointRequest request) {
-    return this.rawClient.updateWebhookEndpoint(endpointId, request).body();
-  }
-
-  /**
-   * Requires webhooks:write and Idempotency-Key. Updates an endpoint in the selected organization and mode. Omitted practiceIds preserves the filter; an empty array removes the practice filter. Subscription changes apply to newly generated events.
-   */
-  public UpdateWebhookEndpointResponse updateWebhookEndpoint(String endpointId,
-      UpdateWebhookEndpointRequest request, RequestOptions requestOptions) {
-    return this.rawClient.updateWebhookEndpoint(endpointId, request, requestOptions).body();
-  }
-
-  public RotateWebhookEndpointSecretResponse rotateWebhookEndpointSecret(String endpointId,
-      RotateWebhookEndpointSecretRequest request) {
-    return this.rawClient.rotateWebhookEndpointSecret(endpointId, request).body();
-  }
-
-  public RotateWebhookEndpointSecretResponse rotateWebhookEndpointSecret(String endpointId,
-      RotateWebhookEndpointSecretRequest request, RequestOptions requestOptions) {
-    return this.rawClient.rotateWebhookEndpointSecret(endpointId, request, requestOptions).body();
-  }
-
-  public TestWebhookEndpointResponse testWebhookEndpoint(String endpointId,
-      TestWebhookEndpointRequest request) {
-    return this.rawClient.testWebhookEndpoint(endpointId, request).body();
-  }
-
-  public TestWebhookEndpointResponse testWebhookEndpoint(String endpointId,
-      TestWebhookEndpointRequest request, RequestOptions requestOptions) {
-    return this.rawClient.testWebhookEndpoint(endpointId, request, requestOptions).body();
-  }
-
-  public ListWebhookEventsResponse listWebhookEvents() {
-    return this.rawClient.listWebhookEvents().body();
-  }
-
-  public ListWebhookEventsResponse listWebhookEvents(RequestOptions requestOptions) {
-    return this.rawClient.listWebhookEvents(requestOptions).body();
-  }
-
-  public ListWebhookEventsResponse listWebhookEvents(ListWebhookEventsRequest request) {
-    return this.rawClient.listWebhookEvents(request).body();
-  }
-
-  public ListWebhookEventsResponse listWebhookEvents(ListWebhookEventsRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.listWebhookEvents(request, requestOptions).body();
-  }
-
-  public GetWebhookEventResponse getWebhookEvent(String eventId) {
-    return this.rawClient.getWebhookEvent(eventId).body();
-  }
-
-  public GetWebhookEventResponse getWebhookEvent(String eventId, RequestOptions requestOptions) {
-    return this.rawClient.getWebhookEvent(eventId, requestOptions).body();
-  }
-
-  public GetWebhookEventResponse getWebhookEvent(String eventId, GetWebhookEventRequest request) {
-    return this.rawClient.getWebhookEvent(eventId, request).body();
-  }
-
-  public GetWebhookEventResponse getWebhookEvent(String eventId, GetWebhookEventRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.getWebhookEvent(eventId, request, requestOptions).body();
-  }
-
-  public ReplayWebhookEventResponse replayWebhookEvent(String eventId,
-      ReplayWebhookEventRequest request) {
-    return this.rawClient.replayWebhookEvent(eventId, request).body();
-  }
-
-  public ReplayWebhookEventResponse replayWebhookEvent(String eventId,
-      ReplayWebhookEventRequest request, RequestOptions requestOptions) {
-    return this.rawClient.replayWebhookEvent(eventId, request, requestOptions).body();
-  }
-
-  /**
-   * Requires webhooks:read on the owning practice or pharmacy key. Lists platform webhook grants in the key's mode. Platforms cannot list or grant themselves delegated access.
-   */
-  public ListWebhookGrantsResponse listWebhookGrants() {
-    return this.rawClient.listWebhookGrants().body();
-  }
-
-  /**
-   * Requires webhooks:read on the owning practice or pharmacy key. Lists platform webhook grants in the key's mode. Platforms cannot list or grant themselves delegated access.
-   */
-  public ListWebhookGrantsResponse listWebhookGrants(RequestOptions requestOptions) {
-    return this.rawClient.listWebhookGrants(requestOptions).body();
-  }
-
-  /**
-   * Requires webhooks:read on the owning practice or pharmacy key. Lists platform webhook grants in the key's mode. Platforms cannot list or grant themselves delegated access.
-   */
-  public ListWebhookGrantsResponse listWebhookGrants(ListWebhookGrantsRequest request) {
-    return this.rawClient.listWebhookGrants(request).body();
-  }
-
-  /**
-   * Requires webhooks:read on the owning practice or pharmacy key. Lists platform webhook grants in the key's mode. Platforms cannot list or grant themselves delegated access.
-   */
-  public ListWebhookGrantsResponse listWebhookGrants(ListWebhookGrantsRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.listWebhookGrants(request, requestOptions).body();
-  }
-
-  /**
-   * Requires webhooks:write on the owning practice or pharmacy key and Idempotency-Key. Grants or replaces a platform's webhook permissions in this mode. A practice must already be connected to that platform. The grant does not give the platform access to other API resources.
-   */
-  public SaveWebhookGrantResponse saveWebhookGrant(String platformId,
-      SaveWebhookGrantRequest request) {
-    return this.rawClient.saveWebhookGrant(platformId, request).body();
-  }
-
-  /**
-   * Requires webhooks:write on the owning practice or pharmacy key and Idempotency-Key. Grants or replaces a platform's webhook permissions in this mode. A practice must already be connected to that platform. The grant does not give the platform access to other API resources.
-   */
-  public SaveWebhookGrantResponse saveWebhookGrant(String platformId,
-      SaveWebhookGrantRequest request, RequestOptions requestOptions) {
-    return this.rawClient.saveWebhookGrant(platformId, request, requestOptions).body();
-  }
-
-  /**
-   * Requires webhooks:write on the owning practice or pharmacy key and Idempotency-Key. Removes platform webhook access in this mode. Existing endpoints remain owned by the practice or pharmacy and continue operating.
-   */
-  public RevokeWebhookGrantResponse revokeWebhookGrant(String platformId,
-      RevokeWebhookGrantRequest request) {
-    return this.rawClient.revokeWebhookGrant(platformId, request).body();
-  }
-
-  /**
-   * Requires webhooks:write on the owning practice or pharmacy key and Idempotency-Key. Removes platform webhook access in this mode. Existing endpoints remain owned by the practice or pharmacy and continue operating.
-   */
-  public RevokeWebhookGrantResponse revokeWebhookGrant(String platformId,
-      RevokeWebhookGrantRequest request, RequestOptions requestOptions) {
-    return this.rawClient.revokeWebhookGrant(platformId, request, requestOptions).body();
+  public GrantsClient grants() {
+    return this.grantsClient.get();
   }
 }

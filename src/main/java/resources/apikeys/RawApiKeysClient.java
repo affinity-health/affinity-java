@@ -46,17 +46,16 @@ public class RawApiKeysClient {
   /**
    * Creates a practice API key for a connected practice. Requires a platform key with service_keys:write and every requested scope. The practice key uses the platform key's Test or Live mode and cannot outlive it. Requires Idempotency-Key for safe retries; the secret is returned in the encrypted replay response for 24 hours.
    */
-  public AffinityClientHttpResponse<CreatePlatformPracticeApiKeyResponse> createPlatformPracticeApiKey(
-      String practiceId, CreatePlatformPracticeApiKeyRequest request) {
-    return createPlatformPracticeApiKey(practiceId,request,null);
+  public AffinityClientHttpResponse<CreatePlatformPracticeApiKeyResponse> create(String practiceId,
+      CreatePlatformPracticeApiKeyRequest request) {
+    return create(practiceId,request,null);
   }
 
   /**
    * Creates a practice API key for a connected practice. Requires a platform key with service_keys:write and every requested scope. The practice key uses the platform key's Test or Live mode and cannot outlive it. Requires Idempotency-Key for safe retries; the secret is returned in the encrypted replay response for 24 hours.
    */
-  public AffinityClientHttpResponse<CreatePlatformPracticeApiKeyResponse> createPlatformPracticeApiKey(
-      String practiceId, CreatePlatformPracticeApiKeyRequest request,
-      RequestOptions requestOptions) {
+  public AffinityClientHttpResponse<CreatePlatformPracticeApiKeyResponse> create(String practiceId,
+      CreatePlatformPracticeApiKeyRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/practices")
@@ -121,14 +120,14 @@ public class RawApiKeysClient {
     /**
      * Returns the subject, mode, and scopes for the API key.
      */
-    public AffinityClientHttpResponse<GetApiAccessResponse> getApiAccess() {
-      return getApiAccess(null);
+    public AffinityClientHttpResponse<GetApiAccessResponse> getAccess() {
+      return getAccess(null);
     }
 
     /**
      * Returns the subject, mode, and scopes for the API key.
      */
-    public AffinityClientHttpResponse<GetApiAccessResponse> getApiAccess(
+    public AffinityClientHttpResponse<GetApiAccessResponse> getAccess(
         RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 

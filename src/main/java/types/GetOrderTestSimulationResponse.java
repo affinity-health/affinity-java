@@ -347,4 +347,18 @@ public final class GetOrderTestSimulationResponse {
       return this;
     }
   }
+
+  public GetOrderTestSimulationResponseMode mode() { return getMode(); }
+
+  public GetOrderTestSimulationResponseScenario scenario() { return getScenario(); }
+
+  public Optional<String> pendingAction() { return getPendingAction(); }
+
+  public Optional<String> lastError() { return getLastError(); }
+
+  public List<GetOrderTestSimulationResponseAvailableActionsItem> availableActions() { return getAvailableActions(); }
+
+  public boolean scenarioEditable() { return getScenarioEditable(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

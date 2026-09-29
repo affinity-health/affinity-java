@@ -836,4 +836,38 @@ public final class GetOrderResponseFulfillmentsItemShipmentsItem {
       return this;
     }
   }
+
+  public Optional<String> carrier() { return getCarrier(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public Optional<String> deliveredAt() { return getDeliveredAt(); }
+
+  public Optional<String> estimatedDeliveryAt() { return getEstimatedDeliveryAt(); }
+
+  public String id() { return getId(); }
+
+  public boolean isActive() { return getIsActive(); }
+
+  public Optional<String> providerStatus() { return getProviderStatus(); }
+
+  public Optional<String> replacedAt() { return getReplacedAt(); }
+
+  public Optional<String> replacesShipmentId() { return getReplacesShipmentId(); }
+
+  public Optional<String> shippedAt() { return getShippedAt(); }
+
+  public GetOrderResponseFulfillmentsItemShipmentsItemSource source() { return getSource(); }
+
+  public GetOrderResponseFulfillmentsItemShipmentsItemStatus status() { return getStatus(); }
+
+  public Optional<String> trackingNumber() { return getTrackingNumber(); }
+
+  public Optional<String> trackingUrl() { return getTrackingUrl(); }
+
+  public String updatedAt() { return getUpdatedAt(); }
+
+  public Optional<String> voidedAt() { return getVoidedAt(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

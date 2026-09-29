@@ -672,4 +672,36 @@ public final class ListOrdersResponseDataItemFulfillmentsItemCancellationsItem {
       return this;
     }
   }
+
+  public int attempts() { return getAttempts(); }
+
+  public Optional<String> confirmedAt() { return getConfirmedAt(); }
+
+  public String createdAt() { return getCreatedAt(); }
+
+  public Optional<String> errorCode() { return getErrorCode(); }
+
+  public Optional<String> errorMessage() { return getErrorMessage(); }
+
+  public String id() { return getId(); }
+
+  public Optional<String> providerStatus() { return getProviderStatus(); }
+
+  public String reason() { return getReason(); }
+
+  public String requestedAt() { return getRequestedAt(); }
+
+  public ListOrdersResponseDataItemFulfillmentsItemCancellationsItemRequestedBy requestedBy() { return getRequestedBy(); }
+
+  public Optional<String> resolvedAt() { return getResolvedAt(); }
+
+  public Optional<String> sentAt() { return getSentAt(); }
+
+  public ListOrdersResponseDataItemFulfillmentsItemCancellationsItemSource source() { return getSource(); }
+
+  public ListOrdersResponseDataItemFulfillmentsItemCancellationsItemStatus status() { return getStatus(); }
+
+  public String updatedAt() { return getUpdatedAt(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

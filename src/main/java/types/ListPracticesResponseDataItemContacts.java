@@ -196,4 +196,10 @@ public final class ListPracticesResponseDataItemContacts {
       return this;
     }
   }
+
+  public Optional<ListPracticesResponseDataItemContactsCompliance> compliance() { return getCompliance(); }
+
+  public Optional<ListPracticesResponseDataItemContactsPrimary> primary() { return getPrimary(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

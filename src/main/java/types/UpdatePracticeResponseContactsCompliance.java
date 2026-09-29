@@ -210,4 +210,12 @@ public final class UpdatePracticeResponseContactsCompliance {
       return this;
     }
   }
+
+  public String email() { return getEmail(); }
+
+  public String name() { return getName(); }
+
+  public Optional<String> phone() { return getPhone(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -135,4 +135,6 @@ public final class GetAccountResponseMembershipRole {
 
     T visitUnknown(String unknownType);
   }
+
+  public Value enumValue() { return getEnumValue(); }
 }

@@ -339,4 +339,20 @@ public final class AddOrderPrescriptionResponse {
       return this;
     }
   }
+
+  public String revision() { return getRevision(); }
+
+  public AddOrderPrescriptionResponseObject object() { return getObject(); }
+
+  public Optional<String> externalOrderId() { return getExternalOrderId(); }
+
+  public AddOrderPrescriptionResponseMetadata metadata() { return getMetadata(); }
+
+  public String orderId() { return getOrderId(); }
+
+  public String prescriptionId() { return getPrescriptionId(); }
+
+  public List<AddOrderPrescriptionResponsePrescriptionsItem> prescriptions() { return getPrescriptions(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

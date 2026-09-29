@@ -194,4 +194,14 @@ public final class ListCatalogItemsResponseDataItemPricing {
       return this;
     }
   }
+
+  public int amountCents() { return getAmountCents(); }
+
+  public ListCatalogItemsResponseDataItemPricingBasis basis() { return getBasis(); }
+
+  public ListCatalogItemsResponseDataItemPricingCurrency currency() { return getCurrency(); }
+
+  public int medicationSubtotalCents() { return getMedicationSubtotalCents(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

@@ -213,4 +213,16 @@ public final class GetPracticeTeamResponse {
       return this;
     }
   }
+
+  public GetPracticeTeamResponseObject object() { return getObject(); }
+
+  public String practiceId() { return getPracticeId(); }
+
+  public GetPracticeTeamResponseMembers members() { return getMembers(); }
+
+  public GetPracticeTeamResponseInvitations invitations() { return getInvitations(); }
+
+  public GetPracticeTeamResponsePrescribers prescribers() { return getPrescribers(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

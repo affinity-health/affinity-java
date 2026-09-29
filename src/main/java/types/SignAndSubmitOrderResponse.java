@@ -242,4 +242,16 @@ public final class SignAndSubmitOrderResponse {
       return this;
     }
   }
+
+  public SignAndSubmitOrderResponseObject object() { return getObject(); }
+
+  public String orderId() { return getOrderId(); }
+
+  public String signedAt() { return getSignedAt(); }
+
+  public SignAndSubmitOrderResponseStatus status() { return getStatus(); }
+
+  public List<SignAndSubmitOrderResponsePrescriptionsItem> prescriptions() { return getPrescriptions(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

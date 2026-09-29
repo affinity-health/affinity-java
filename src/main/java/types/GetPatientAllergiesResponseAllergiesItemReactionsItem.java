@@ -255,4 +255,12 @@ public final class GetPatientAllergiesResponseAllergiesItemReactionsItem {
       return this;
     }
   }
+
+  public Optional<String> code() { return getCode(); }
+
+  public Optional<GetPatientAllergiesResponseAllergiesItemReactionsItemCodeSystem> codeSystem() { return getCodeSystem(); }
+
+  public String display() { return getDisplay(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

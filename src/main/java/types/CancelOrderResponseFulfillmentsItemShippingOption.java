@@ -218,4 +218,16 @@ public final class CancelOrderResponseFulfillmentsItemShippingOption {
       return this;
     }
   }
+
+  public int amountCents() { return getAmountCents(); }
+
+  public CancelOrderResponseFulfillmentsItemShippingOptionCurrency currency() { return getCurrency(); }
+
+  public String label() { return getLabel(); }
+
+  public String serviceLevel() { return getServiceLevel(); }
+
+  public CancelOrderResponseFulfillmentsItemShippingOptionTemperature temperature() { return getTemperature(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

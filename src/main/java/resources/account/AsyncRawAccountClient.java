@@ -48,30 +48,30 @@ public class AsyncRawAccountClient {
   /**
    * Returns the platform organization, request livemode, and effective access. API keys report scopes and the service_key role; dashboard sessions report membership permissions. operatingMode describes organization Live access, not the credential's Test/Live mode.
    */
-  public CompletableFuture<AffinityClientHttpResponse<GetAccountResponse>> getAccount() {
-    return getAccount(GetAccountRequest.builder().build());
+  public CompletableFuture<AffinityClientHttpResponse<GetAccountResponse>> get() {
+    return get(GetAccountRequest.builder().build());
   }
 
   /**
    * Returns the platform organization, request livemode, and effective access. API keys report scopes and the service_key role; dashboard sessions report membership permissions. operatingMode describes organization Live access, not the credential's Test/Live mode.
    */
-  public CompletableFuture<AffinityClientHttpResponse<GetAccountResponse>> getAccount(
+  public CompletableFuture<AffinityClientHttpResponse<GetAccountResponse>> get(
       RequestOptions requestOptions) {
-    return getAccount(GetAccountRequest.builder().build(),requestOptions);
+    return get(GetAccountRequest.builder().build(),requestOptions);
   }
 
   /**
    * Returns the platform organization, request livemode, and effective access. API keys report scopes and the service_key role; dashboard sessions report membership permissions. operatingMode describes organization Live access, not the credential's Test/Live mode.
    */
-  public CompletableFuture<AffinityClientHttpResponse<GetAccountResponse>> getAccount(
+  public CompletableFuture<AffinityClientHttpResponse<GetAccountResponse>> get(
       GetAccountRequest request) {
-    return getAccount(request,null);
+    return get(request,null);
   }
 
   /**
    * Returns the platform organization, request livemode, and effective access. API keys report scopes and the service_key role; dashboard sessions report membership permissions. operatingMode describes organization Live access, not the credential's Test/Live mode.
    */
-  public CompletableFuture<AffinityClientHttpResponse<GetAccountResponse>> getAccount(
+  public CompletableFuture<AffinityClientHttpResponse<GetAccountResponse>> get(
       GetAccountRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 

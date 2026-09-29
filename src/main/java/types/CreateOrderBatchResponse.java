@@ -279,4 +279,16 @@ public final class CreateOrderBatchResponse {
       return this;
     }
   }
+
+  public CreateOrderBatchResponseObject object() { return getObject(); }
+
+  public String practiceId() { return getPracticeId(); }
+
+  public Optional<String> userId() { return getUserId(); }
+
+  public boolean livemode() { return getLivemode(); }
+
+  public List<CreateOrderBatchResponseOrdersItem> orders() { return getOrders(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

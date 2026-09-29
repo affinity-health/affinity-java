@@ -127,4 +127,8 @@ public final class ListCatalogItemsResponseDataItemQuantityConstraintFixed {
       return this;
     }
   }
+
+  public ListCatalogItemsResponseDataItemQuantityConstraintFixedQuantity quantity() { return getQuantity(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

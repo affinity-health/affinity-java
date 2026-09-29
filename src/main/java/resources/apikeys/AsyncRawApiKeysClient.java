@@ -51,15 +51,15 @@ public class AsyncRawApiKeysClient {
   /**
    * Creates a practice API key for a connected practice. Requires a platform key with service_keys:write and every requested scope. The practice key uses the platform key's Test or Live mode and cannot outlive it. Requires Idempotency-Key for safe retries; the secret is returned in the encrypted replay response for 24 hours.
    */
-  public CompletableFuture<AffinityClientHttpResponse<CreatePlatformPracticeApiKeyResponse>> createPlatformPracticeApiKey(
+  public CompletableFuture<AffinityClientHttpResponse<CreatePlatformPracticeApiKeyResponse>> create(
       String practiceId, CreatePlatformPracticeApiKeyRequest request) {
-    return createPlatformPracticeApiKey(practiceId,request,null);
+    return create(practiceId,request,null);
   }
 
   /**
    * Creates a practice API key for a connected practice. Requires a platform key with service_keys:write and every requested scope. The practice key uses the platform key's Test or Live mode and cannot outlive it. Requires Idempotency-Key for safe retries; the secret is returned in the encrypted replay response for 24 hours.
    */
-  public CompletableFuture<AffinityClientHttpResponse<CreatePlatformPracticeApiKeyResponse>> createPlatformPracticeApiKey(
+  public CompletableFuture<AffinityClientHttpResponse<CreatePlatformPracticeApiKeyResponse>> create(
       String practiceId, CreatePlatformPracticeApiKeyRequest request,
       RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -145,14 +145,14 @@ public class AsyncRawApiKeysClient {
     /**
      * Returns the subject, mode, and scopes for the API key.
      */
-    public CompletableFuture<AffinityClientHttpResponse<GetApiAccessResponse>> getApiAccess() {
-      return getApiAccess(null);
+    public CompletableFuture<AffinityClientHttpResponse<GetApiAccessResponse>> getAccess() {
+      return getAccess(null);
     }
 
     /**
      * Returns the subject, mode, and scopes for the API key.
      */
-    public CompletableFuture<AffinityClientHttpResponse<GetApiAccessResponse>> getApiAccess(
+    public CompletableFuture<AffinityClientHttpResponse<GetApiAccessResponse>> getAccess(
         RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 

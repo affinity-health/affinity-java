@@ -237,4 +237,14 @@ public final class ListOrdersResponseDataItemPrescriptionsItemClinicalObservatio
       return this;
     }
   }
+
+  public Optional<String> code() { return getCode(); }
+
+  public String display() { return getDisplay(); }
+
+  public ListOrdersResponseDataItemPrescriptionsItemClinicalObservationsItemValue value() { return getValue(); }
+
+  public String unit() { return getUnit(); }
+
+  public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }
