@@ -5,7 +5,7 @@
   current release. Package versions and migration steps will follow approval.
 
 
-Java server applications. Put request statements inside a method. [Source repository](https://github.com/affinity-health/affinity-java) · [All SDKs](https://docs.joinaffinityai.com/guides/reference/sdks/) · [Shared conventions](https://docs.joinaffinityai.com/guides/reference/sdks/methods/)
+Java server applications. Put request statements inside a method. [Source repository](https://github.com/affinity-health/affinity-java) · [All SDKs](https://docs.joinaffinityai.com/guides/reference/sdks/)
 
 ## Connect
 
@@ -38,7 +38,11 @@ Pass the target practice with each practice-scoped request. Keep record data sep
 
 ```java
 var options = RequestOptions.builder().practiceId(practiceId).build();
-var patients = api.patients().list(PatientListParams.builder().limit(20).build(), options);
+var patients = api.patients().list(
+    PatientListParams.builder().limit(20).build(),
+    options
+);
+
 var patient = api.patients().get(patientId, options);
 
 api.patients().update(
@@ -49,6 +53,7 @@ api.patients().update(
 
         .build()
 );
+
 ```
 
 ## Scope a workflow once
@@ -60,7 +65,10 @@ A conflicting practice ID produces an error. Scoping never grants access to anot
 var practice = api.forPractice(practiceId);
 
 var patients = practice.patients().list(PatientListParams.builder().limit(20).build());
-var items = practice.catalog().items().list(CatalogItemListParams.builder().limit(20).build());
+var items = practice.catalog().items().list(
+    CatalogItemListParams.builder().limit(20).build()
+);
+
 ```
 
 The following examples use this scoped client. A practice-key client supports the same calls without the scoping step.
@@ -101,8 +109,12 @@ It shows a platform call without a scoped client: practice context and the persi
 var order = api.orders().create(
     OrderCreateParams.builder()
         .patientId(patientId).prescriptions(draft.prescriptions()).build(),
-    RequestOptions.builder().practiceId(practiceId).idempotencyKey(job.createOrderKey()).build()
+    RequestOptions.builder()
+        .practiceId(practiceId)
+        .idempotencyKey(job.createOrderKey())
+        .build()
 );
+
 ```
 
 ## Sign and submit
@@ -146,7 +158,11 @@ if (page.hasMore() && !page.data().isEmpty()) {
         .limit(20).startingAfter(last.id()).build());
 }
 
-for (var patient : practice.patients().iterate(PatientListParams.builder().limit(100).build())) {
+var patients = practice.patients().iterate(
+    PatientListParams.builder().limit(100).build()
+);
+
+for (var patient : patients) {
     syncPatient(patient);
 }
 ```
@@ -178,10 +194,13 @@ The webhook list belongs to the platform itself. Access to another organization'
 ```java
 var practices = api.practices().list(PracticeListParams.builder().limit(20).build());
 var selected = api.practices().get(practiceId);
-var endpoints = api.webhooks().endpoints().list(WebhookEndpointListParams.builder().limit(20).build());
+var endpoints = api.webhooks().endpoints().list(
+    WebhookEndpointListParams.builder().limit(20).build()
+);
+
 ```
 
 ## More resources
 
 Use the same conventions for addresses, allergies, locations, team members, and nested order resources.
-[Resource directory](https://docs.joinaffinityai.com/guides/reference/sdks/methods/) · [API reference](https://docs.joinaffinityai.com/api/) · [Webhooks](https://docs.joinaffinityai.com/guides/webhooks/)
+[API reference](https://docs.joinaffinityai.com/api/) · [Webhooks](https://docs.joinaffinityai.com/guides/webhooks/)
