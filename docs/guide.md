@@ -17,9 +17,7 @@ import com.affinity.api.AffinityException;
 import com.affinity.api.RequestOptions;
 import com.affinity.api.models.*;
 
-var api = Affinity.builder()
-    .apiKey(System.getenv("AFFINITY_API_KEY"))
-    .build();
+var api = new Affinity(System.getenv("AFFINITY_API_KEY"));
 ```
 
 ## With a practice key
@@ -34,20 +32,9 @@ var patient = api.patients().get(patientId);
 var items = api.catalog().items().list(CatalogItemListParams.builder().limit(20).build());
 ```
 
-For a recoverable update, pass your persisted key without a practice ID. `job` is your application's saved workflow record.
-
-```java
-api.patients().update(
-    patientId,
-    PatientUpdateParams.builder().email("alex@example.com").build(),
-    RequestOptions.builder().idempotencyKey(job.updatePatientKey()).build()
-);
-```
-
 ## With a platform key
 
 Pass the target practice with each practice-scoped request. Keep record data separate from request context and idempotency options.
-The update key below comes from your persisted workflow job.
 
 ```java
 var options = RequestOptions.builder().practiceId(practiceId).build();
@@ -59,7 +46,7 @@ api.patients().update(
     PatientUpdateParams.builder().email("alex@example.com").build(),
     RequestOptions.builder()
         .practiceId(practiceId)
-        .idempotencyKey(job.updatePatientKey())
+
         .build()
 );
 ```
@@ -71,6 +58,7 @@ A conflicting practice ID produces an error. Scoping never grants access to anot
 
 ```java
 var practice = api.forPractice(practiceId);
+
 var patients = practice.patients().list(PatientListParams.builder().limit(20).build());
 var items = practice.catalog().items().list(CatalogItemListParams.builder().limit(20).build());
 ```
@@ -87,6 +75,7 @@ var patient = practice.patients().create(PatientCreateParams.builder()
     .name(PatientName.builder().first("Alex").last("Example").build())
     .dateOfBirth("1990-01-01")
     .build());
+
 var saved = practice.patients().get(patient.id());
 practice.patients().update(patient.id(), PatientUpdateParams.builder()
     .email("alex@example.com").build());
@@ -94,25 +83,25 @@ practice.patients().update(patient.id(), PatientUpdateParams.builder()
     .status("archived").build());
 ```
 
-Archive patients whose records you need to retain. Permanent deletion is available only for patients without order history and requires an explicit key.
+Archive patients whose records you need to retain. Permanent deletion is available only for patients without order history. No explicit idempotency key is needed.
 
 ```java
-practice.patients().delete(patientId, RequestOptions.builder()
-    .idempotencyKey(job.deletePatientKey()).build());
+practice.patients().delete(patientId);
 ```
 
 ## Create an order draft
 
 `draft` is your application's prepared prescription data, using catalog and prescribing options from this practice.
 An order contains 1–20 complete prescriptions for one patient. This example creates an unsigned draft.
+It shows a platform call without a scoped client: practice context and the persisted key belong together in request options.
 
 `job` is your persisted workflow record. Generate and save a unique key for each action before making its first request.
 
 ```java
-var order = practice.orders().create(
+var order = api.orders().create(
     OrderCreateParams.builder()
         .patientId(patientId).prescriptions(draft.prescriptions()).build(),
-    RequestOptions.builder().idempotencyKey(job.createOrderKey()).build()
+    RequestOptions.builder().practiceId(practiceId).idempotencyKey(job.createOrderKey()).build()
 );
 ```
 
@@ -132,6 +121,7 @@ practice.orders().sign(
         .build(),
     RequestOptions.builder().idempotencyKey(job.signOrderKey()).build()
 );
+
 var submission = practice.orders().submit(orderId,
     RequestOptions.builder().idempotencyKey(job.submitOrderKey()).build());
 ```
