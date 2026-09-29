@@ -27,9 +27,18 @@ The resource IDs below come from records in that practice.
 Each section is a separate usage example, not one script to concatenate.
 
 ```java
-var patients = api.patients().list(PatientListParams.builder().limit(20).build());
+PatientListParams patientParams = PatientListParams.builder()
+    .limit(20)
+    .build();
+
+var patients = api.patients().list(patientParams);
 var patient = api.patients().get(patientId);
-var items = api.catalog().items().list(CatalogItemListParams.builder().limit(20).build());
+
+CatalogItemListParams itemParams = CatalogItemListParams.builder()
+    .limit(20)
+    .build();
+
+var items = api.catalog().items().list(itemParams);
 ```
 
 ## With a platform key
@@ -37,23 +46,22 @@ var items = api.catalog().items().list(CatalogItemListParams.builder().limit(20)
 Pass the target practice with each practice-scoped request. Keep record data separate from request context and idempotency options.
 
 ```java
-var options = RequestOptions.builder().practiceId(practiceId).build();
-var patients = api.patients().list(
-    PatientListParams.builder().limit(20).build(),
-    options
-);
+RequestOptions options = RequestOptions.builder()
+    .practiceId(practiceId)
+    .build();
 
+PatientListParams listParams = PatientListParams.builder()
+    .limit(20)
+    .build();
+
+var patients = api.patients().list(listParams, options);
 var patient = api.patients().get(patientId, options);
 
-api.patients().update(
-    patientId,
-    PatientUpdateParams.builder().email("alex@example.com").build(),
-    RequestOptions.builder()
-        .practiceId(practiceId)
+PatientUpdateParams updateParams = PatientUpdateParams.builder()
+    .email("alex@example.com")
+    .build();
 
-        .build()
-);
-
+api.patients().update(patientId, updateParams, options);
 ```
 
 ## Scope a workflow once
@@ -64,11 +72,17 @@ A conflicting practice ID produces an error. Scoping never grants access to anot
 ```java
 var practice = api.forPractice(practiceId);
 
-var patients = practice.patients().list(PatientListParams.builder().limit(20).build());
-var items = practice.catalog().items().list(
-    CatalogItemListParams.builder().limit(20).build()
-);
+PatientListParams patientParams = PatientListParams.builder()
+    .limit(20)
+    .build();
 
+var patients = practice.patients().list(patientParams);
+
+CatalogItemListParams itemParams = CatalogItemListParams.builder()
+    .limit(20)
+    .build();
+
+var items = practice.catalog().items().list(itemParams);
 ```
 
 The following examples use this scoped client. A practice-key client supports the same calls without the scoping step.
@@ -79,16 +93,31 @@ Use synthetic Test data. Routine writes generate a fresh idempotency key per cal
 Supply your own persisted key when retrying across calls or process restarts.
 
 ```java
-var patient = practice.patients().create(PatientCreateParams.builder()
-    .name(PatientName.builder().first("Alex").last("Example").build())
+PatientName name = PatientName.builder()
+    .first("Alex")
+    .last("Example")
+    .build();
+
+PatientCreateParams params = PatientCreateParams.builder()
+    .name(name)
     .dateOfBirth("1990-01-01")
-    .build());
+    .build();
+
+var patient = practice.patients().create(params);
 
 var saved = practice.patients().get(patient.id());
-practice.patients().update(patient.id(), PatientUpdateParams.builder()
-    .email("alex@example.com").build());
-practice.patients().update(patient.id(), PatientUpdateParams.builder()
-    .status("archived").build());
+
+PatientUpdateParams updateParams = PatientUpdateParams.builder()
+    .email("alex@example.com")
+    .build();
+
+practice.patients().update(patient.id(), updateParams);
+
+PatientUpdateParams archiveParams = PatientUpdateParams.builder()
+    .status("archived")
+    .build();
+
+practice.patients().update(patient.id(), archiveParams);
 ```
 
 Archive patients whose records you need to retain. Permanent deletion is available only for patients without order history. No explicit idempotency key is needed.
@@ -106,15 +135,17 @@ It shows a platform call without a scoped client: practice context and the persi
 `job` is your persisted workflow record. Generate and save a unique key for each action before making its first request.
 
 ```java
-var order = api.orders().create(
-    OrderCreateParams.builder()
-        .patientId(patientId).prescriptions(draft.prescriptions()).build(),
-    RequestOptions.builder()
-        .practiceId(practiceId)
-        .idempotencyKey(job.createOrderKey())
-        .build()
-);
+OrderCreateParams params = OrderCreateParams.builder()
+    .patientId(patientId)
+    .prescriptions(draft.prescriptions())
+    .build();
 
+RequestOptions options = RequestOptions.builder()
+    .practiceId(practiceId)
+    .idempotencyKey(job.createOrderKey())
+    .build();
+
+var order = api.orders().create(params, options);
 ```
 
 ## Sign and submit
@@ -124,18 +155,27 @@ Store the reviewed revision, authorized prescriber ID, and explicit attestation 
 Your API key needs `orders:sign`. Never infer consent or automatically replace a stale revision.
 
 ```java
-practice.orders().sign(
-    orderId,
-    OrderSignParams.builder()
-        .prescriber(PrescriberSelector.builder().id(review.prescriberId()).build())
-        .expectedRevision(review.orderRevision())
-        .signatureAttestation(review.signatureAttestation())
-        .build(),
-    RequestOptions.builder().idempotencyKey(job.signOrderKey()).build()
-);
+PrescriberSelector prescriber = PrescriberSelector.builder()
+    .id(review.prescriberId())
+    .build();
 
-var submission = practice.orders().submit(orderId,
-    RequestOptions.builder().idempotencyKey(job.submitOrderKey()).build());
+OrderSignParams params = OrderSignParams.builder()
+    .prescriber(prescriber)
+    .expectedRevision(review.orderRevision())
+    .signatureAttestation(review.signatureAttestation())
+    .build();
+
+RequestOptions signOptions = RequestOptions.builder()
+    .idempotencyKey(job.signOrderKey())
+    .build();
+
+practice.orders().sign(orderId, params, signOptions);
+
+RequestOptions submitOptions = RequestOptions.builder()
+    .idempotencyKey(job.submitOrderKey())
+    .build();
+
+var submission = practice.orders().submit(orderId, submitOptions);
 ```
 
 Use separate keys for creating, signing, and submitting. After an uncertain response, retry the same action with the same key and unchanged data.
@@ -151,16 +191,27 @@ The iterator fetches pages as you consume records; it does not load the full col
 `syncPatient` or its language equivalent represents your application's record handler.
 
 ```java
-var page = practice.patients().list(PatientListParams.builder().limit(20).build());
+PatientListParams params = PatientListParams.builder()
+    .limit(20)
+    .build();
+
+var page = practice.patients().list(params);
+
 if (page.hasMore() && !page.data().isEmpty()) {
     var last = page.data().get(page.data().size() - 1);
-    var next = practice.patients().list(PatientListParams.builder()
-        .limit(20).startingAfter(last.id()).build());
+    PatientListParams nextParams = PatientListParams.builder()
+        .limit(20)
+        .startingAfter(last.id())
+        .build();
+
+    var next = practice.patients().list(nextParams);
 }
 
-var patients = practice.patients().iterate(
-    PatientListParams.builder().limit(100).build()
-);
+PatientListParams syncParams = PatientListParams.builder()
+    .limit(100)
+    .build();
+
+var patients = practice.patients().iterate(syncParams);
 
 for (var patient : patients) {
     syncPatient(patient);
@@ -192,12 +243,18 @@ Use the root platform client to list its practices and webhook endpoints. These 
 The webhook list belongs to the platform itself. Access to another organization's endpoints still requires an explicit grant.
 
 ```java
-var practices = api.practices().list(PracticeListParams.builder().limit(20).build());
-var selected = api.practices().get(practiceId);
-var endpoints = api.webhooks().endpoints().list(
-    WebhookEndpointListParams.builder().limit(20).build()
-);
+PracticeListParams practiceParams = PracticeListParams.builder()
+    .limit(20)
+    .build();
 
+var practices = api.practices().list(practiceParams);
+var selected = api.practices().get(practiceId);
+
+WebhookEndpointListParams endpointParams = WebhookEndpointListParams.builder()
+    .limit(20)
+    .build();
+
+var endpoints = api.webhooks().endpoints().list(endpointParams);
 ```
 
 ## More resources
