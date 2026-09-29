@@ -1,11 +1,16 @@
 # Java SDK guide
 
-> **Unreleased SDK update.**
-  These examples match the new SDK implementation in the repository. They are not available in the
-  current published release yet. Release versions and installation updates will follow.
-
-
 Java server applications. Put request statements inside a method. [Source repository](https://github.com/affinity-health/affinity-java) · [All SDKs](https://docs.joinaffinityai.com/guides/reference/sdks/)
+
+## Install
+
+Build the package into your local Maven repository.
+
+```sh
+git clone https://github.com/affinity-health/affinity-java.git
+cd affinity-java
+./tests/with-fixtures.sh mvn install
+```
 
 ## Connect
 
