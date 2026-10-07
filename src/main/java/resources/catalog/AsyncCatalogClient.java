@@ -8,6 +8,7 @@ import com.affinity.api.core.ClientOptions;
 import com.affinity.api.core.Suppliers;
 import com.affinity.api.resources.catalog.items.AsyncItemsClient;
 import com.affinity.api.resources.catalog.prescribingoptions.AsyncPrescribingOptionsClient;
+import com.affinity.api.resources.catalog.presentationprices.AsyncPresentationPricesClient;
 import com.affinity.api.resources.catalog.sellingprices.AsyncSellingPricesClient;
 import com.affinity.api.resources.catalog.shippingoptions.AsyncShippingOptionsClient;
 import java.util.function.Supplier;
@@ -23,12 +24,15 @@ public class AsyncCatalogClient {
 
   protected final Supplier<AsyncSellingPricesClient> sellingPricesClient;
 
+  protected final Supplier<AsyncPresentationPricesClient> presentationPricesClient;
+
   public AsyncCatalogClient(ClientOptions clientOptions) {
     this.clientOptions = clientOptions;
     this.itemsClient = Suppliers.memoize(() -> new AsyncItemsClient(clientOptions));
     this.shippingOptionsClient = Suppliers.memoize(() -> new AsyncShippingOptionsClient(clientOptions));
     this.prescribingOptionsClient = Suppliers.memoize(() -> new AsyncPrescribingOptionsClient(clientOptions));
     this.sellingPricesClient = Suppliers.memoize(() -> new AsyncSellingPricesClient(clientOptions));
+    this.presentationPricesClient = Suppliers.memoize(() -> new AsyncPresentationPricesClient(clientOptions));
   }
 
   public AsyncItemsClient items() {
@@ -45,5 +49,9 @@ public class AsyncCatalogClient {
 
   public AsyncSellingPricesClient sellingPrices() {
     return this.sellingPricesClient.get();
+  }
+
+  public AsyncPresentationPricesClient presentationPrices() {
+    return this.presentationPricesClient.get();
   }
 }

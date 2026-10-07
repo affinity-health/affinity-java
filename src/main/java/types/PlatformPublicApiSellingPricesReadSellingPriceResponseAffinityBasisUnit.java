@@ -21,17 +21,17 @@ import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(
-    builder = PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnit.Builder.class
+    builder = PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnit.Builder.class
 )
-public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnit {
-  private final PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnitQuantity quantity;
+public final class PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnit {
+  private final PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnitQuantity quantity;
 
   private final String unit;
 
   private final Map<String, Object> additionalProperties;
 
-  private PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnit(
-      PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnitQuantity quantity,
+  private PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnit(
+      PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnitQuantity quantity,
       String unit, Map<String, Object> additionalProperties) {
     this.quantity = quantity;
     this.unit = unit;
@@ -39,7 +39,8 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
   }
 
   @JsonProperty("quantity")
-  public PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnitQuantity getQuantity() {
+  public PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnitQuantity getQuantity(
+      ) {
     return quantity;
   }
 
@@ -51,7 +52,7 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
-    return other instanceof PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnit && equalTo((PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnit) other);
+    return other instanceof PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnit && equalTo((PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnit) other);
   }
 
   @JsonAnyGetter
@@ -59,7 +60,8 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
     return this.additionalProperties;
   }
 
-  private boolean equalTo(PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnit other) {
+  private boolean equalTo(
+      PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnit other) {
     return quantity.equals(other.quantity) && unit.equals(other.unit);
   }
 
@@ -79,9 +81,9 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
 
   public interface QuantityStage {
     UnitStage quantity(
-        @NotNull PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnitQuantity quantity);
+        @NotNull PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnitQuantity quantity);
 
-    Builder from(PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnit other);
+    Builder from(PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnit other);
   }
 
   public interface UnitStage {
@@ -89,7 +91,7 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
   }
 
   public interface _FinalStage {
-    PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnit build();
+    PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnit build();
 
     _FinalStage additionalProperty(String key, Object value);
 
@@ -100,7 +102,7 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
       ignoreUnknown = true
   )
   public static final class Builder implements QuantityStage, UnitStage, _FinalStage {
-    private PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnitQuantity quantity;
+    private PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnitQuantity quantity;
 
     private String unit;
 
@@ -111,7 +113,8 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
     }
 
     @java.lang.Override
-    public Builder from(PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnit other) {
+    public Builder from(
+        PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnit other) {
       quantity(other.getQuantity());
       unit(other.getUnit());
       return this;
@@ -120,7 +123,7 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
     @java.lang.Override
     @JsonSetter("quantity")
     public UnitStage quantity(
-        @NotNull PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnitQuantity quantity) {
+        @NotNull PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnitQuantity quantity) {
       this.quantity = Objects.requireNonNull(quantity, "quantity must not be null");
       return this;
     }
@@ -133,8 +136,8 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
     }
 
     @java.lang.Override
-    public PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnit build() {
-      return new PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnit(quantity, unit, additionalProperties);
+    public PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnit build() {
+      return new PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnit(quantity, unit, additionalProperties);
     }
 
     @java.lang.Override
@@ -149,8 +152,6 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
       return this;
     }
   }
-
-  public PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnitQuantity quantity() { return getQuantity(); }
 
   public String unit() { return getUnit(); }
 

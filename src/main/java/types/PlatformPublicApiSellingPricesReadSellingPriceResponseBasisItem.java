@@ -4,19 +4,25 @@
 
 package com.affinity.api.types;
 
+import com.affinity.api.core.Nullable;
+import com.affinity.api.core.NullableNonemptyFilter;
 import com.affinity.api.core.ObjectMappers;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -28,13 +34,17 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponseBasisIt
 
   private final String unit;
 
+  private final Optional<List<PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItemQuantityPricesItem>> quantityPrices;
+
   private final Map<String, Object> additionalProperties;
 
   private PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItem(
       PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItemQuantity quantity, String unit,
+      Optional<List<PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItemQuantityPricesItem>> quantityPrices,
       Map<String, Object> additionalProperties) {
     this.quantity = quantity;
     this.unit = unit;
+    this.quantityPrices = quantityPrices;
     this.additionalProperties = additionalProperties;
   }
 
@@ -46,6 +56,25 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponseBasisIt
   @JsonProperty("unit")
   public String getUnit() {
     return unit;
+  }
+
+  @JsonIgnore
+  public Optional<List<PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItemQuantityPricesItem>> getQuantityPrices(
+      ) {
+    if (quantityPrices == null) {
+      return Optional.empty();
+    }
+    return quantityPrices;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("quantityPrices")
+  private Optional<List<PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItemQuantityPricesItem>> _getQuantityPrices(
+      ) {
+    return quantityPrices;
   }
 
   @java.lang.Override
@@ -60,12 +89,12 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponseBasisIt
   }
 
   private boolean equalTo(PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItem other) {
-    return quantity.equals(other.quantity) && unit.equals(other.unit);
+    return quantity.equals(other.quantity) && unit.equals(other.unit) && quantityPrices.equals(other.quantityPrices);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.quantity, this.unit);
+    return Objects.hash(this.quantity, this.unit, this.quantityPrices);
   }
 
   @java.lang.Override
@@ -94,6 +123,15 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponseBasisIt
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage quantityPrices(
+        Optional<List<PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItemQuantityPricesItem>> quantityPrices);
+
+    _FinalStage quantityPrices(
+        List<PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItemQuantityPricesItem> quantityPrices);
+
+    _FinalStage quantityPrices(
+        Nullable<List<PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItemQuantityPricesItem>> quantityPrices);
   }
 
   @JsonIgnoreProperties(
@@ -103,6 +141,8 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponseBasisIt
     private PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItemQuantity quantity;
 
     private String unit;
+
+    private Optional<List<PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItemQuantityPricesItem>> quantityPrices = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -114,6 +154,7 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponseBasisIt
     public Builder from(PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItem other) {
       quantity(other.getQuantity());
       unit(other.getUnit());
+      quantityPrices(other.getQuantityPrices());
       return this;
     }
 
@@ -133,8 +174,41 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponseBasisIt
     }
 
     @java.lang.Override
+    public _FinalStage quantityPrices(
+        Nullable<List<PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItemQuantityPricesItem>> quantityPrices) {
+      if (quantityPrices.isNull()) {
+        this.quantityPrices = null;
+      }
+      else if (quantityPrices.isEmpty()) {
+        this.quantityPrices = Optional.empty();
+      }
+      else {
+        this.quantityPrices = Optional.of(quantityPrices.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage quantityPrices(
+        List<PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItemQuantityPricesItem> quantityPrices) {
+      this.quantityPrices = Optional.ofNullable(quantityPrices);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "quantityPrices",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage quantityPrices(
+        Optional<List<PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItemQuantityPricesItem>> quantityPrices) {
+      this.quantityPrices = quantityPrices;
+      return this;
+    }
+
+    @java.lang.Override
     public PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItem build() {
-      return new PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItem(quantity, unit, additionalProperties);
+      return new PlatformPublicApiSellingPricesReadSellingPriceResponseBasisItem(quantity, unit, quantityPrices, additionalProperties);
     }
 
     @java.lang.Override

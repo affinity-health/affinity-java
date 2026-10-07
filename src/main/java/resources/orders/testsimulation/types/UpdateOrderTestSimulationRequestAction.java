@@ -101,13 +101,13 @@ public final class UpdateOrderTestSimulationRequestAction {
   }
 
   public enum Value {
-    ACCEPT,
-
-    PROCESS,
-
     SHIP,
 
     DELIVER,
+
+    ACCEPT,
+
+    PROCESS,
 
     REJECT,
 
@@ -119,13 +119,13 @@ public final class UpdateOrderTestSimulationRequestAction {
   }
 
   public interface Visitor<T> {
-    T visitAccept();
-
-    T visitProcess();
-
     T visitShip();
 
     T visitDeliver();
+
+    T visitAccept();
+
+    T visitProcess();
 
     T visitReject();
 

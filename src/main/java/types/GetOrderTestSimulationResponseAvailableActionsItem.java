@@ -10,19 +10,9 @@ import java.lang.Object;
 import java.lang.String;
 
 public final class GetOrderTestSimulationResponseAvailableActionsItem {
-  public static final GetOrderTestSimulationResponseAvailableActionsItem REJECT = new GetOrderTestSimulationResponseAvailableActionsItem(Value.REJECT, "reject");
-
-  public static final GetOrderTestSimulationResponseAvailableActionsItem ACCEPT = new GetOrderTestSimulationResponseAvailableActionsItem(Value.ACCEPT, "accept");
-
-  public static final GetOrderTestSimulationResponseAvailableActionsItem DECLINE_CANCELLATION = new GetOrderTestSimulationResponseAvailableActionsItem(Value.DECLINE_CANCELLATION, "decline_cancellation");
-
   public static final GetOrderTestSimulationResponseAvailableActionsItem SHIP = new GetOrderTestSimulationResponseAvailableActionsItem(Value.SHIP, "ship");
 
   public static final GetOrderTestSimulationResponseAvailableActionsItem DELIVER = new GetOrderTestSimulationResponseAvailableActionsItem(Value.DELIVER, "deliver");
-
-  public static final GetOrderTestSimulationResponseAvailableActionsItem PROCESS = new GetOrderTestSimulationResponseAvailableActionsItem(Value.PROCESS, "process");
-
-  public static final GetOrderTestSimulationResponseAvailableActionsItem CONFIRM_CANCELLATION = new GetOrderTestSimulationResponseAvailableActionsItem(Value.CONFIRM_CANCELLATION, "confirm_cancellation");
 
   private final Value value;
 
@@ -56,20 +46,10 @@ public final class GetOrderTestSimulationResponseAvailableActionsItem {
 
   public <T> T visit(Visitor<T> visitor) {
     switch (value) {
-      case REJECT:
-        return visitor.visitReject();
-      case ACCEPT:
-        return visitor.visitAccept();
-      case DECLINE_CANCELLATION:
-        return visitor.visitDeclineCancellation();
       case SHIP:
         return visitor.visitShip();
       case DELIVER:
         return visitor.visitDeliver();
-      case PROCESS:
-        return visitor.visitProcess();
-      case CONFIRM_CANCELLATION:
-        return visitor.visitConfirmCancellation();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -81,57 +61,27 @@ public final class GetOrderTestSimulationResponseAvailableActionsItem {
   )
   public static GetOrderTestSimulationResponseAvailableActionsItem valueOf(String value) {
     switch (value) {
-      case "reject":
-        return REJECT;
-      case "accept":
-        return ACCEPT;
-      case "decline_cancellation":
-        return DECLINE_CANCELLATION;
       case "ship":
         return SHIP;
       case "deliver":
         return DELIVER;
-      case "process":
-        return PROCESS;
-      case "confirm_cancellation":
-        return CONFIRM_CANCELLATION;
       default:
         return new GetOrderTestSimulationResponseAvailableActionsItem(Value.UNKNOWN, value);
     }
   }
 
   public enum Value {
-    ACCEPT,
-
-    PROCESS,
-
     SHIP,
 
     DELIVER,
-
-    REJECT,
-
-    CONFIRM_CANCELLATION,
-
-    DECLINE_CANCELLATION,
 
     UNKNOWN
   }
 
   public interface Visitor<T> {
-    T visitAccept();
-
-    T visitProcess();
-
     T visitShip();
 
     T visitDeliver();
-
-    T visitReject();
-
-    T visitConfirmCancellation();
-
-    T visitDeclineCancellation();
 
     T visitUnknown(String unknownType);
   }

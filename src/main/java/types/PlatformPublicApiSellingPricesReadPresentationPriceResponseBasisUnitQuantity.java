@@ -9,14 +9,14 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.Object;
 import java.lang.String;
 
-public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnitQuantity {
-  public static final PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnitQuantity ONE = new PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnitQuantity(Value.ONE, "1");
+public final class PlatformPublicApiSellingPricesReadPresentationPriceResponseBasisUnitQuantity {
+  public static final PlatformPublicApiSellingPricesReadPresentationPriceResponseBasisUnitQuantity ONE = new PlatformPublicApiSellingPricesReadPresentationPriceResponseBasisUnitQuantity(Value.ONE, "1");
 
   private final Value value;
 
   private final String string;
 
-  PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnitQuantity(Value value,
+  PlatformPublicApiSellingPricesReadPresentationPriceResponseBasisUnitQuantity(Value value,
       String string) {
     this.value = value;
     this.string = string;
@@ -35,7 +35,7 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
   @java.lang.Override
   public boolean equals(Object other) {
     return (this == other) 
-      || (other instanceof PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnitQuantity && this.string.equals(((PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnitQuantity) other).string));
+      || (other instanceof PlatformPublicApiSellingPricesReadPresentationPriceResponseBasisUnitQuantity && this.string.equals(((PlatformPublicApiSellingPricesReadPresentationPriceResponseBasisUnitQuantity) other).string));
   }
 
   @java.lang.Override
@@ -56,13 +56,13 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
   @JsonCreator(
       mode = JsonCreator.Mode.DELEGATING
   )
-  public static PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnitQuantity valueOf(
+  public static PlatformPublicApiSellingPricesReadPresentationPriceResponseBasisUnitQuantity valueOf(
       String value) {
     switch (value) {
       case "1":
         return ONE;
       default:
-        return new PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnitQuantity(Value.UNKNOWN, value);
+        return new PlatformPublicApiSellingPricesReadPresentationPriceResponseBasisUnitQuantity(Value.UNKNOWN, value);
     }
   }
 

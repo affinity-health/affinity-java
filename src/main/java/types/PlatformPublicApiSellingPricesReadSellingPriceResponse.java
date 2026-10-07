@@ -36,6 +36,10 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponse {
 
   private final PlatformPublicApiSellingPricesReadSellingPriceResponseCurrency currency;
 
+  private final Optional<Integer> affinityPriceCents;
+
+  private final Optional<PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis> affinityBasis;
+
   private final PlatformPublicApiSellingPricesReadSellingPriceResponseBasis basis;
 
   private final int purchaseAmountCents;
@@ -46,11 +50,15 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponse {
 
   private PlatformPublicApiSellingPricesReadSellingPriceResponse(Optional<Integer> amountCents,
       int version, PlatformPublicApiSellingPricesReadSellingPriceResponseCurrency currency,
+      Optional<Integer> affinityPriceCents,
+      Optional<PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis> affinityBasis,
       PlatformPublicApiSellingPricesReadSellingPriceResponseBasis basis, int purchaseAmountCents,
       boolean requiresReview, Map<String, Object> additionalProperties) {
     this.amountCents = amountCents;
     this.version = version;
     this.currency = currency;
+    this.affinityPriceCents = affinityPriceCents;
+    this.affinityBasis = affinityBasis;
     this.basis = basis;
     this.purchaseAmountCents = purchaseAmountCents;
     this.requiresReview = requiresReview;
@@ -73,6 +81,23 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponse {
   @JsonProperty("currency")
   public PlatformPublicApiSellingPricesReadSellingPriceResponseCurrency getCurrency() {
     return currency;
+  }
+
+  @JsonIgnore
+  public Optional<Integer> getAffinityPriceCents() {
+    if (affinityPriceCents == null) {
+      return Optional.empty();
+    }
+    return affinityPriceCents;
+  }
+
+  @JsonIgnore
+  public Optional<PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis> getAffinityBasis(
+      ) {
+    if (affinityBasis == null) {
+      return Optional.empty();
+    }
+    return affinityBasis;
   }
 
   @JsonProperty("basis")
@@ -99,6 +124,25 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponse {
     return amountCents;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("affinityPriceCents")
+  private Optional<Integer> _getAffinityPriceCents() {
+    return affinityPriceCents;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("affinityBasis")
+  private Optional<PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis> _getAffinityBasis(
+      ) {
+    return affinityBasis;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -111,12 +155,12 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponse {
   }
 
   private boolean equalTo(PlatformPublicApiSellingPricesReadSellingPriceResponse other) {
-    return amountCents.equals(other.amountCents) && version == other.version && currency.equals(other.currency) && basis.equals(other.basis) && purchaseAmountCents == other.purchaseAmountCents && requiresReview == other.requiresReview;
+    return amountCents.equals(other.amountCents) && version == other.version && currency.equals(other.currency) && affinityPriceCents.equals(other.affinityPriceCents) && affinityBasis.equals(other.affinityBasis) && basis.equals(other.basis) && purchaseAmountCents == other.purchaseAmountCents && requiresReview == other.requiresReview;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.amountCents, this.version, this.currency, this.basis, this.purchaseAmountCents, this.requiresReview);
+    return Objects.hash(this.amountCents, this.version, this.currency, this.affinityPriceCents, this.affinityBasis, this.basis, this.purchaseAmountCents, this.requiresReview);
   }
 
   @java.lang.Override
@@ -164,6 +208,21 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponse {
     _FinalStage amountCents(Integer amountCents);
 
     _FinalStage amountCents(Nullable<Integer> amountCents);
+
+    _FinalStage affinityPriceCents(Optional<Integer> affinityPriceCents);
+
+    _FinalStage affinityPriceCents(Integer affinityPriceCents);
+
+    _FinalStage affinityPriceCents(Nullable<Integer> affinityPriceCents);
+
+    _FinalStage affinityBasis(
+        Optional<PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis> affinityBasis);
+
+    _FinalStage affinityBasis(
+        PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis affinityBasis);
+
+    _FinalStage affinityBasis(
+        Nullable<PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis> affinityBasis);
   }
 
   @JsonIgnoreProperties(
@@ -180,6 +239,10 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponse {
 
     private boolean requiresReview;
 
+    private Optional<PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis> affinityBasis = Optional.empty();
+
+    private Optional<Integer> affinityPriceCents = Optional.empty();
+
     private Optional<Integer> amountCents = Optional.empty();
 
     @JsonAnySetter
@@ -193,6 +256,8 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponse {
       amountCents(other.getAmountCents());
       version(other.getVersion());
       currency(other.getCurrency());
+      affinityPriceCents(other.getAffinityPriceCents());
+      affinityBasis(other.getAffinityBasis());
       basis(other.getBasis());
       purchaseAmountCents(other.getPurchaseAmountCents());
       requiresReview(other.getRequiresReview());
@@ -237,6 +302,69 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponse {
     }
 
     @java.lang.Override
+    public _FinalStage affinityBasis(
+        Nullable<PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis> affinityBasis) {
+      if (affinityBasis.isNull()) {
+        this.affinityBasis = null;
+      }
+      else if (affinityBasis.isEmpty()) {
+        this.affinityBasis = Optional.empty();
+      }
+      else {
+        this.affinityBasis = Optional.of(affinityBasis.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage affinityBasis(
+        PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis affinityBasis) {
+      this.affinityBasis = Optional.ofNullable(affinityBasis);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "affinityBasis",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage affinityBasis(
+        Optional<PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis> affinityBasis) {
+      this.affinityBasis = affinityBasis;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage affinityPriceCents(Nullable<Integer> affinityPriceCents) {
+      if (affinityPriceCents.isNull()) {
+        this.affinityPriceCents = null;
+      }
+      else if (affinityPriceCents.isEmpty()) {
+        this.affinityPriceCents = Optional.empty();
+      }
+      else {
+        this.affinityPriceCents = Optional.of(affinityPriceCents.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage affinityPriceCents(Integer affinityPriceCents) {
+      this.affinityPriceCents = Optional.ofNullable(affinityPriceCents);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "affinityPriceCents",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage affinityPriceCents(Optional<Integer> affinityPriceCents) {
+      this.affinityPriceCents = affinityPriceCents;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage amountCents(Nullable<Integer> amountCents) {
       if (amountCents.isNull()) {
         this.amountCents = null;
@@ -268,7 +396,7 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponse {
 
     @java.lang.Override
     public PlatformPublicApiSellingPricesReadSellingPriceResponse build() {
-      return new PlatformPublicApiSellingPricesReadSellingPriceResponse(amountCents, version, currency, basis, purchaseAmountCents, requiresReview, additionalProperties);
+      return new PlatformPublicApiSellingPricesReadSellingPriceResponse(amountCents, version, currency, affinityPriceCents, affinityBasis, basis, purchaseAmountCents, requiresReview, additionalProperties);
     }
 
     @java.lang.Override
@@ -289,6 +417,8 @@ public final class PlatformPublicApiSellingPricesReadSellingPriceResponse {
   public int version() { return getVersion(); }
 
   public PlatformPublicApiSellingPricesReadSellingPriceResponseCurrency currency() { return getCurrency(); }
+
+  public Optional<Integer> affinityPriceCents() { return getAffinityPriceCents(); }
 
   public PlatformPublicApiSellingPricesReadSellingPriceResponseBasis basis() { return getBasis(); }
 

@@ -9,15 +9,14 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.Object;
 import java.lang.String;
 
-public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItemQuantity {
-  public static final PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItemQuantity ONE = new PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItemQuantity(Value.ONE, "1");
+public final class PlatformPublicApiSellingPricesReadPresentationPriceResponseCurrency {
+  public static final PlatformPublicApiSellingPricesReadPresentationPriceResponseCurrency USD = new PlatformPublicApiSellingPricesReadPresentationPriceResponseCurrency(Value.USD, "USD");
 
   private final Value value;
 
   private final String string;
 
-  PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItemQuantity(Value value,
-      String string) {
+  PlatformPublicApiSellingPricesReadPresentationPriceResponseCurrency(Value value, String string) {
     this.value = value;
     this.string = string;
   }
@@ -35,7 +34,7 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
   @java.lang.Override
   public boolean equals(Object other) {
     return (this == other) 
-      || (other instanceof PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItemQuantity && this.string.equals(((PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItemQuantity) other).string));
+      || (other instanceof PlatformPublicApiSellingPricesReadPresentationPriceResponseCurrency && this.string.equals(((PlatformPublicApiSellingPricesReadPresentationPriceResponseCurrency) other).string));
   }
 
   @java.lang.Override
@@ -45,8 +44,8 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
 
   public <T> T visit(Visitor<T> visitor) {
     switch (value) {
-      case ONE:
-        return visitor.visitOne();
+      case USD:
+        return visitor.visitUsd();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -56,24 +55,24 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
   @JsonCreator(
       mode = JsonCreator.Mode.DELEGATING
   )
-  public static PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItemQuantity valueOf(
+  public static PlatformPublicApiSellingPricesReadPresentationPriceResponseCurrency valueOf(
       String value) {
     switch (value) {
-      case "1":
-        return ONE;
+      case "USD":
+        return USD;
       default:
-        return new PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItemQuantity(Value.UNKNOWN, value);
+        return new PlatformPublicApiSellingPricesReadPresentationPriceResponseCurrency(Value.UNKNOWN, value);
     }
   }
 
   public enum Value {
-    ONE,
+    USD,
 
     UNKNOWN
   }
 
   public interface Visitor<T> {
-    T visitOne();
+    T visitUsd();
 
     T visitUnknown(String unknownType);
   }

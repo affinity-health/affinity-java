@@ -7,9 +7,7 @@ package com.affinity.api.resources.catalog.sellingprices;
 import com.affinity.api.core.ClientOptions;
 import com.affinity.api.core.RequestOptions;
 import com.affinity.api.resources.catalog.sellingprices.requests.GetSellingPricesRequest;
-import com.affinity.api.resources.catalog.sellingprices.requests.PlatformPublicApiSellingPricesUpdateSellingPriceRequest;
 import com.affinity.api.types.PlatformPublicApiSellingPricesReadSellingPriceResponse;
-import com.affinity.api.types.PlatformPublicApiSellingPricesUpdateSellingPriceResponse;
 import java.lang.String;
 
 public class SellingPricesClient {
@@ -30,14 +28,14 @@ public class SellingPricesClient {
   }
 
   /**
-   * Requires selling_prices:read. Omit practiceId for the platform default, or supply a managed practice. A null amount inherits the next applicable price. Amounts use the catalog pricing basis, in USD cents. purchaseAmountCents is the platform's Affinity purchase price for that same basis. requiresReview indicates changed product pricing terms, not a below-purchase-price discount.
+   * Requires selling_prices:read. Reads the Affinity-managed purchase-price override inherited by this platform's practices unless Affinity sets a practice override. Use the practice-scoped catalog for effective practice prices and presentation-price when an Affinity default may be absent. Platforms cannot edit purchase prices.
    */
   public PlatformPublicApiSellingPricesReadSellingPriceResponse get(String catalogItemId) {
     return this.rawClient.get(catalogItemId).body();
   }
 
   /**
-   * Requires selling_prices:read. Omit practiceId for the platform default, or supply a managed practice. A null amount inherits the next applicable price. Amounts use the catalog pricing basis, in USD cents. purchaseAmountCents is the platform's Affinity purchase price for that same basis. requiresReview indicates changed product pricing terms, not a below-purchase-price discount.
+   * Requires selling_prices:read. Reads the Affinity-managed purchase-price override inherited by this platform's practices unless Affinity sets a practice override. Use the practice-scoped catalog for effective practice prices and presentation-price when an Affinity default may be absent. Platforms cannot edit purchase prices.
    */
   public PlatformPublicApiSellingPricesReadSellingPriceResponse get(String catalogItemId,
       RequestOptions requestOptions) {
@@ -45,7 +43,7 @@ public class SellingPricesClient {
   }
 
   /**
-   * Requires selling_prices:read. Omit practiceId for the platform default, or supply a managed practice. A null amount inherits the next applicable price. Amounts use the catalog pricing basis, in USD cents. purchaseAmountCents is the platform's Affinity purchase price for that same basis. requiresReview indicates changed product pricing terms, not a below-purchase-price discount.
+   * Requires selling_prices:read. Reads the Affinity-managed purchase-price override inherited by this platform's practices unless Affinity sets a practice override. Use the practice-scoped catalog for effective practice prices and presentation-price when an Affinity default may be absent. Platforms cannot edit purchase prices.
    */
   public PlatformPublicApiSellingPricesReadSellingPriceResponse get(String catalogItemId,
       GetSellingPricesRequest request) {
@@ -53,27 +51,10 @@ public class SellingPricesClient {
   }
 
   /**
-   * Requires selling_prices:read. Omit practiceId for the platform default, or supply a managed practice. A null amount inherits the next applicable price. Amounts use the catalog pricing basis, in USD cents. purchaseAmountCents is the platform's Affinity purchase price for that same basis. requiresReview indicates changed product pricing terms, not a below-purchase-price discount.
+   * Requires selling_prices:read. Reads the Affinity-managed purchase-price override inherited by this platform's practices unless Affinity sets a practice override. Use the practice-scoped catalog for effective practice prices and presentation-price when an Affinity default may be absent. Platforms cannot edit purchase prices.
    */
   public PlatformPublicApiSellingPricesReadSellingPriceResponse get(String catalogItemId,
       GetSellingPricesRequest request, RequestOptions requestOptions) {
     return this.rawClient.get(catalogItemId, request, requestOptions).body();
-  }
-
-  /**
-   * Requires selling_prices:write. Sets a platform default or managed practice override in the current Test/Live mode. Send baseVersion from Read selling price. Null removes the override. Prices use the catalog pricing basis. Intentional discounts below purchaseAmountCents are allowed; compare these amounts to warn about selling below your Affinity purchase price. This does not change the platform's Affinity purchase price or collect practice payments.
-   */
-  public PlatformPublicApiSellingPricesUpdateSellingPriceResponse update(String catalogItemId,
-      PlatformPublicApiSellingPricesUpdateSellingPriceRequest request) {
-    return this.rawClient.update(catalogItemId, request).body();
-  }
-
-  /**
-   * Requires selling_prices:write. Sets a platform default or managed practice override in the current Test/Live mode. Send baseVersion from Read selling price. Null removes the override. Prices use the catalog pricing basis. Intentional discounts below purchaseAmountCents are allowed; compare these amounts to warn about selling below your Affinity purchase price. This does not change the platform's Affinity purchase price or collect practice payments.
-   */
-  public PlatformPublicApiSellingPricesUpdateSellingPriceResponse update(String catalogItemId,
-      PlatformPublicApiSellingPricesUpdateSellingPriceRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.update(catalogItemId, request, requestOptions).body();
   }
 }

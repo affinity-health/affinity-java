@@ -4,9 +4,12 @@
 
 package com.affinity.api.types;
 
+import com.affinity.api.core.Nullable;
+import com.affinity.api.core.NullableNonemptyFilter;
 import com.affinity.api.core.ObjectMappers;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -21,12 +24,15 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(
     builder = ListCatalogItemsResponseDataItemCatalogDetails.Builder.class
 )
 public final class ListCatalogItemsResponseDataItemCatalogDetails {
+  private final Optional<List<ListCatalogItemsResponseDataItemCatalogDetailsPackageComponentsItem>> packageComponents;
+
   private final Map<String, ListCatalogItemsResponseDataItemCatalogDetailsAttributesValue> attributes;
 
   private final List<ListCatalogItemsResponseDataItemCatalogDetailsDirectionsItem> directions;
@@ -34,12 +40,26 @@ public final class ListCatalogItemsResponseDataItemCatalogDetails {
   private final Map<String, Object> additionalProperties;
 
   private ListCatalogItemsResponseDataItemCatalogDetails(
+      Optional<List<ListCatalogItemsResponseDataItemCatalogDetailsPackageComponentsItem>> packageComponents,
       Map<String, ListCatalogItemsResponseDataItemCatalogDetailsAttributesValue> attributes,
       List<ListCatalogItemsResponseDataItemCatalogDetailsDirectionsItem> directions,
       Map<String, Object> additionalProperties) {
+    this.packageComponents = packageComponents;
     this.attributes = attributes;
     this.directions = directions;
     this.additionalProperties = additionalProperties;
+  }
+
+  /**
+   * @return Confirmed physical containers and contents. Empty or absent means container count cannot be inferred from dispense quantity.
+   */
+  @JsonIgnore
+  public Optional<List<ListCatalogItemsResponseDataItemCatalogDetailsPackageComponentsItem>> getPackageComponents(
+      ) {
+    if (packageComponents == null) {
+      return Optional.empty();
+    }
+    return packageComponents;
   }
 
   @JsonProperty("attributes")
@@ -51,6 +71,16 @@ public final class ListCatalogItemsResponseDataItemCatalogDetails {
   @JsonProperty("directions")
   public List<ListCatalogItemsResponseDataItemCatalogDetailsDirectionsItem> getDirections() {
     return directions;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("packageComponents")
+  private Optional<List<ListCatalogItemsResponseDataItemCatalogDetailsPackageComponentsItem>> _getPackageComponents(
+      ) {
+    return packageComponents;
   }
 
   @java.lang.Override
@@ -65,12 +95,12 @@ public final class ListCatalogItemsResponseDataItemCatalogDetails {
   }
 
   private boolean equalTo(ListCatalogItemsResponseDataItemCatalogDetails other) {
-    return attributes.equals(other.attributes) && directions.equals(other.directions);
+    return packageComponents.equals(other.packageComponents) && attributes.equals(other.attributes) && directions.equals(other.directions);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.attributes, this.directions);
+    return Objects.hash(this.packageComponents, this.attributes, this.directions);
   }
 
   @java.lang.Override
@@ -86,6 +116,8 @@ public final class ListCatalogItemsResponseDataItemCatalogDetails {
       ignoreUnknown = true
   )
   public static final class Builder {
+    private Optional<List<ListCatalogItemsResponseDataItemCatalogDetailsPackageComponentsItem>> packageComponents = Optional.empty();
+
     private Map<String, ListCatalogItemsResponseDataItemCatalogDetailsAttributesValue> attributes = new LinkedHashMap<>();
 
     private List<ListCatalogItemsResponseDataItemCatalogDetailsDirectionsItem> directions = new ArrayList<>();
@@ -97,8 +129,42 @@ public final class ListCatalogItemsResponseDataItemCatalogDetails {
     }
 
     public Builder from(ListCatalogItemsResponseDataItemCatalogDetails other) {
+      packageComponents(other.getPackageComponents());
       attributes(other.getAttributes());
       directions(other.getDirections());
+      return this;
+    }
+
+    /**
+     * <p>Confirmed physical containers and contents. Empty or absent means container count cannot be inferred from dispense quantity.</p>
+     */
+    @JsonSetter(
+        value = "packageComponents",
+        nulls = Nulls.SKIP
+    )
+    public Builder packageComponents(
+        Optional<List<ListCatalogItemsResponseDataItemCatalogDetailsPackageComponentsItem>> packageComponents) {
+      this.packageComponents = packageComponents;
+      return this;
+    }
+
+    public Builder packageComponents(
+        List<ListCatalogItemsResponseDataItemCatalogDetailsPackageComponentsItem> packageComponents) {
+      this.packageComponents = Optional.ofNullable(packageComponents);
+      return this;
+    }
+
+    public Builder packageComponents(
+        Nullable<List<ListCatalogItemsResponseDataItemCatalogDetailsPackageComponentsItem>> packageComponents) {
+      if (packageComponents.isNull()) {
+        this.packageComponents = null;
+      }
+      else if (packageComponents.isEmpty()) {
+        this.packageComponents = Optional.empty();
+      }
+      else {
+        this.packageComponents = Optional.of(packageComponents.get());
+      }
       return this;
     }
 
@@ -157,7 +223,7 @@ public final class ListCatalogItemsResponseDataItemCatalogDetails {
     }
 
     public ListCatalogItemsResponseDataItemCatalogDetails build() {
-      return new ListCatalogItemsResponseDataItemCatalogDetails(attributes, directions, additionalProperties);
+      return new ListCatalogItemsResponseDataItemCatalogDetails(packageComponents, attributes, directions, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

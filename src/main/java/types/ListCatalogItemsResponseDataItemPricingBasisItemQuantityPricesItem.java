@@ -21,37 +21,36 @@ import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(
-    builder = PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItem.Builder.class
+    builder = ListCatalogItemsResponseDataItemPricingBasisItemQuantityPricesItem.Builder.class
 )
-public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItem {
-  private final PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItemQuantity quantity;
+public final class ListCatalogItemsResponseDataItemPricingBasisItemQuantityPricesItem {
+  private final String quantity;
 
-  private final String unit;
+  private final int amountCents;
 
   private final Map<String, Object> additionalProperties;
 
-  private PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItem(
-      PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItemQuantity quantity,
-      String unit, Map<String, Object> additionalProperties) {
+  private ListCatalogItemsResponseDataItemPricingBasisItemQuantityPricesItem(String quantity,
+      int amountCents, Map<String, Object> additionalProperties) {
     this.quantity = quantity;
-    this.unit = unit;
+    this.amountCents = amountCents;
     this.additionalProperties = additionalProperties;
   }
 
   @JsonProperty("quantity")
-  public PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItemQuantity getQuantity() {
+  public String getQuantity() {
     return quantity;
   }
 
-  @JsonProperty("unit")
-  public String getUnit() {
-    return unit;
+  @JsonProperty("amountCents")
+  public int getAmountCents() {
+    return amountCents;
   }
 
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
-    return other instanceof PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItem && equalTo((PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItem) other);
+    return other instanceof ListCatalogItemsResponseDataItemPricingBasisItemQuantityPricesItem && equalTo((ListCatalogItemsResponseDataItemPricingBasisItemQuantityPricesItem) other);
   }
 
   @JsonAnyGetter
@@ -59,13 +58,14 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
     return this.additionalProperties;
   }
 
-  private boolean equalTo(PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItem other) {
-    return quantity.equals(other.quantity) && unit.equals(other.unit);
+  private boolean equalTo(
+      ListCatalogItemsResponseDataItemPricingBasisItemQuantityPricesItem other) {
+    return quantity.equals(other.quantity) && amountCents == other.amountCents;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.quantity, this.unit);
+    return Objects.hash(this.quantity, this.amountCents);
   }
 
   @java.lang.Override
@@ -78,18 +78,17 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
   }
 
   public interface QuantityStage {
-    UnitStage quantity(
-        @NotNull PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItemQuantity quantity);
+    AmountCentsStage quantity(@NotNull String quantity);
 
-    Builder from(PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItem other);
+    Builder from(ListCatalogItemsResponseDataItemPricingBasisItemQuantityPricesItem other);
   }
 
-  public interface UnitStage {
-    _FinalStage unit(@NotNull String unit);
+  public interface AmountCentsStage {
+    _FinalStage amountCents(int amountCents);
   }
 
   public interface _FinalStage {
-    PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItem build();
+    ListCatalogItemsResponseDataItemPricingBasisItemQuantityPricesItem build();
 
     _FinalStage additionalProperty(String key, Object value);
 
@@ -99,10 +98,10 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements QuantityStage, UnitStage, _FinalStage {
-    private PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItemQuantity quantity;
+  public static final class Builder implements QuantityStage, AmountCentsStage, _FinalStage {
+    private String quantity;
 
-    private String unit;
+    private int amountCents;
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -111,30 +110,29 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
     }
 
     @java.lang.Override
-    public Builder from(PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItem other) {
+    public Builder from(ListCatalogItemsResponseDataItemPricingBasisItemQuantityPricesItem other) {
       quantity(other.getQuantity());
-      unit(other.getUnit());
+      amountCents(other.getAmountCents());
       return this;
     }
 
     @java.lang.Override
     @JsonSetter("quantity")
-    public UnitStage quantity(
-        @NotNull PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItemQuantity quantity) {
+    public AmountCentsStage quantity(@NotNull String quantity) {
       this.quantity = Objects.requireNonNull(quantity, "quantity must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("unit")
-    public _FinalStage unit(@NotNull String unit) {
-      this.unit = Objects.requireNonNull(unit, "unit must not be null");
+    @JsonSetter("amountCents")
+    public _FinalStage amountCents(int amountCents) {
+      this.amountCents = amountCents;
       return this;
     }
 
     @java.lang.Override
-    public PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItem build() {
-      return new PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItem(quantity, unit, additionalProperties);
+    public ListCatalogItemsResponseDataItemPricingBasisItemQuantityPricesItem build() {
+      return new ListCatalogItemsResponseDataItemPricingBasisItemQuantityPricesItem(quantity, amountCents, additionalProperties);
     }
 
     @java.lang.Override
@@ -150,9 +148,9 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
     }
   }
 
-  public PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItemQuantity quantity() { return getQuantity(); }
+  public String quantity() { return getQuantity(); }
 
-  public String unit() { return getUnit(); }
+  public int amountCents() { return getAmountCents(); }
 
   public Map<String, Object> additionalProperties() { return getAdditionalProperties(); }
 }

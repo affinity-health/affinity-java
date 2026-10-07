@@ -18,13 +18,13 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis {
+public final class PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis {
   private final Value value;
 
   @JsonCreator(
       mode = JsonCreator.Mode.DELEGATING
   )
-  private PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis(Value value) {
+  private PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis(Value value) {
     this.value = value;
   }
 
@@ -32,19 +32,19 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
     return value.visit(visitor);
   }
 
-  public static PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis item(
-      PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItem value) {
-    return new PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis(new ItemValue(value));
+  public static PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis item(
+      PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisItem value) {
+    return new PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis(new ItemValue(value));
   }
 
-  public static PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis package_(
-      PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisPackage value) {
-    return new PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis(new PackageValue(value));
+  public static PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis package_(
+      PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisPackage value) {
+    return new PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis(new PackageValue(value));
   }
 
-  public static PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis unit(
-      PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnit value) {
-    return new PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis(new UnitValue(value));
+  public static PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis unit(
+      PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnit value) {
+    return new PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis(new UnitValue(value));
   }
 
   public boolean isItem() {
@@ -63,14 +63,15 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
     return value instanceof _UnknownValue;
   }
 
-  public Optional<PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItem> getItem() {
+  public Optional<PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisItem> getItem(
+      ) {
     if (isItem()) {
       return Optional.of(((ItemValue) value).value);
     }
     return Optional.empty();
   }
 
-  public Optional<PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisPackage> getPackage(
+  public Optional<PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisPackage> getPackage(
       ) {
     if (isPackage()) {
       return Optional.of(((PackageValue) value).value);
@@ -78,7 +79,8 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
     return Optional.empty();
   }
 
-  public Optional<PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnit> getUnit() {
+  public Optional<PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnit> getUnit(
+      ) {
     if (isUnit()) {
       return Optional.of(((UnitValue) value).value);
     }
@@ -95,7 +97,7 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
   @Override
   public boolean equals(Object other) {
     if (this == other) return true;
-    return other instanceof PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis && value.equals(((PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis) other).value);
+    return other instanceof PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis && value.equals(((PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis) other).value);
   }
 
   @Override
@@ -114,11 +116,12 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
   }
 
   public interface Visitor<T> {
-    T visitItem(PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItem item);
+    T visitItem(PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisItem item);
 
-    T visitPackage(PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisPackage package_);
+    T visitPackage(
+        PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisPackage package_);
 
-    T visitUnit(PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnit unit);
+    T visitUnit(PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnit unit);
 
     T _visitUnknown(Object unknownType);
   }
@@ -149,7 +152,7 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
         value = "kind",
         allowSetters = true
     )
-    private PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItem value;
+    private PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisItem value;
 
     @JsonCreator(
         mode = JsonCreator.Mode.PROPERTIES
@@ -157,7 +160,8 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
     private ItemValue() {
     }
 
-    private ItemValue(PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItem value) {
+    private ItemValue(
+        PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisItem value) {
       this.value = value;
     }
 
@@ -183,7 +187,7 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
 
     @java.lang.Override
     public String toString() {
-      return "PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis{" + "value: " + value + "}";
+      return "PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis{" + "value: " + value + "}";
     }
   }
 
@@ -195,7 +199,7 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
         value = "kind",
         allowSetters = true
     )
-    private PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisPackage value;
+    private PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisPackage value;
 
     @JsonCreator(
         mode = JsonCreator.Mode.PROPERTIES
@@ -204,7 +208,7 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
     }
 
     private PackageValue(
-        PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisPackage value) {
+        PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisPackage value) {
       this.value = value;
     }
 
@@ -230,7 +234,7 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
 
     @java.lang.Override
     public String toString() {
-      return "PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis{" + "value: " + value + "}";
+      return "PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis{" + "value: " + value + "}";
     }
   }
 
@@ -242,7 +246,7 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
         value = "kind",
         allowSetters = true
     )
-    private PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnit value;
+    private PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnit value;
 
     @JsonCreator(
         mode = JsonCreator.Mode.PROPERTIES
@@ -250,7 +254,8 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
     private UnitValue() {
     }
 
-    private UnitValue(PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnit value) {
+    private UnitValue(
+        PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasisUnit value) {
       this.value = value;
     }
 
@@ -276,7 +281,7 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
 
     @java.lang.Override
     public String toString() {
-      return "PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis{" + "value: " + value + "}";
+      return "PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis{" + "value: " + value + "}";
     }
   }
 
@@ -315,11 +320,7 @@ public final class PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis
 
     @java.lang.Override
     public String toString() {
-      return "PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasis{" + "type: " + type + ", value: " + value + "}";
+      return "PlatformPublicApiSellingPricesReadSellingPriceResponseAffinityBasis{" + "type: " + type + ", value: " + value + "}";
     }
   }
-
-  public Optional<PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisItem> item() { return getItem(); }
-
-  public Optional<PlatformPublicApiSellingPricesUpdateSellingPriceResponseBasisUnit> unit() { return getUnit(); }
 }

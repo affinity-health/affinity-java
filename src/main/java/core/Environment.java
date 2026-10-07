@@ -7,7 +7,7 @@ package com.affinity.api.core;
 import java.lang.String;
 
 public final class Environment {
-  public static final Environment PRODUCTION = new Environment("https://api.joinaffinityai.com");
+  public static final Environment PRODUCTION = new Environment("https://api.affinityrx.com");
 
   private final String url;
 

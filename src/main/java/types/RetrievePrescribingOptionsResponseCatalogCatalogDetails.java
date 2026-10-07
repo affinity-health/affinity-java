@@ -4,9 +4,12 @@
 
 package com.affinity.api.types;
 
+import com.affinity.api.core.Nullable;
+import com.affinity.api.core.NullableNonemptyFilter;
 import com.affinity.api.core.ObjectMappers;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -21,12 +24,15 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(
     builder = RetrievePrescribingOptionsResponseCatalogCatalogDetails.Builder.class
 )
 public final class RetrievePrescribingOptionsResponseCatalogCatalogDetails {
+  private final Optional<List<RetrievePrescribingOptionsResponseCatalogCatalogDetailsPackageComponentsItem>> packageComponents;
+
   private final Map<String, RetrievePrescribingOptionsResponseCatalogCatalogDetailsAttributesValue> attributes;
 
   private final List<RetrievePrescribingOptionsResponseCatalogCatalogDetailsDirectionsItem> directions;
@@ -34,12 +40,26 @@ public final class RetrievePrescribingOptionsResponseCatalogCatalogDetails {
   private final Map<String, Object> additionalProperties;
 
   private RetrievePrescribingOptionsResponseCatalogCatalogDetails(
+      Optional<List<RetrievePrescribingOptionsResponseCatalogCatalogDetailsPackageComponentsItem>> packageComponents,
       Map<String, RetrievePrescribingOptionsResponseCatalogCatalogDetailsAttributesValue> attributes,
       List<RetrievePrescribingOptionsResponseCatalogCatalogDetailsDirectionsItem> directions,
       Map<String, Object> additionalProperties) {
+    this.packageComponents = packageComponents;
     this.attributes = attributes;
     this.directions = directions;
     this.additionalProperties = additionalProperties;
+  }
+
+  /**
+   * @return Confirmed physical containers and contents. Empty or absent means container count cannot be inferred from dispense quantity.
+   */
+  @JsonIgnore
+  public Optional<List<RetrievePrescribingOptionsResponseCatalogCatalogDetailsPackageComponentsItem>> getPackageComponents(
+      ) {
+    if (packageComponents == null) {
+      return Optional.empty();
+    }
+    return packageComponents;
   }
 
   @JsonProperty("attributes")
@@ -54,6 +74,16 @@ public final class RetrievePrescribingOptionsResponseCatalogCatalogDetails {
     return directions;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("packageComponents")
+  private Optional<List<RetrievePrescribingOptionsResponseCatalogCatalogDetailsPackageComponentsItem>> _getPackageComponents(
+      ) {
+    return packageComponents;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -66,12 +96,12 @@ public final class RetrievePrescribingOptionsResponseCatalogCatalogDetails {
   }
 
   private boolean equalTo(RetrievePrescribingOptionsResponseCatalogCatalogDetails other) {
-    return attributes.equals(other.attributes) && directions.equals(other.directions);
+    return packageComponents.equals(other.packageComponents) && attributes.equals(other.attributes) && directions.equals(other.directions);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.attributes, this.directions);
+    return Objects.hash(this.packageComponents, this.attributes, this.directions);
   }
 
   @java.lang.Override
@@ -87,6 +117,8 @@ public final class RetrievePrescribingOptionsResponseCatalogCatalogDetails {
       ignoreUnknown = true
   )
   public static final class Builder {
+    private Optional<List<RetrievePrescribingOptionsResponseCatalogCatalogDetailsPackageComponentsItem>> packageComponents = Optional.empty();
+
     private Map<String, RetrievePrescribingOptionsResponseCatalogCatalogDetailsAttributesValue> attributes = new LinkedHashMap<>();
 
     private List<RetrievePrescribingOptionsResponseCatalogCatalogDetailsDirectionsItem> directions = new ArrayList<>();
@@ -98,8 +130,42 @@ public final class RetrievePrescribingOptionsResponseCatalogCatalogDetails {
     }
 
     public Builder from(RetrievePrescribingOptionsResponseCatalogCatalogDetails other) {
+      packageComponents(other.getPackageComponents());
       attributes(other.getAttributes());
       directions(other.getDirections());
+      return this;
+    }
+
+    /**
+     * <p>Confirmed physical containers and contents. Empty or absent means container count cannot be inferred from dispense quantity.</p>
+     */
+    @JsonSetter(
+        value = "packageComponents",
+        nulls = Nulls.SKIP
+    )
+    public Builder packageComponents(
+        Optional<List<RetrievePrescribingOptionsResponseCatalogCatalogDetailsPackageComponentsItem>> packageComponents) {
+      this.packageComponents = packageComponents;
+      return this;
+    }
+
+    public Builder packageComponents(
+        List<RetrievePrescribingOptionsResponseCatalogCatalogDetailsPackageComponentsItem> packageComponents) {
+      this.packageComponents = Optional.ofNullable(packageComponents);
+      return this;
+    }
+
+    public Builder packageComponents(
+        Nullable<List<RetrievePrescribingOptionsResponseCatalogCatalogDetailsPackageComponentsItem>> packageComponents) {
+      if (packageComponents.isNull()) {
+        this.packageComponents = null;
+      }
+      else if (packageComponents.isEmpty()) {
+        this.packageComponents = Optional.empty();
+      }
+      else {
+        this.packageComponents = Optional.of(packageComponents.get());
+      }
       return this;
     }
 
@@ -158,7 +224,7 @@ public final class RetrievePrescribingOptionsResponseCatalogCatalogDetails {
     }
 
     public RetrievePrescribingOptionsResponseCatalogCatalogDetails build() {
-      return new RetrievePrescribingOptionsResponseCatalogCatalogDetails(attributes, directions, additionalProperties);
+      return new RetrievePrescribingOptionsResponseCatalogCatalogDetails(packageComponents, attributes, directions, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

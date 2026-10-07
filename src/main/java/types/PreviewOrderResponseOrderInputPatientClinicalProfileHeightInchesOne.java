@@ -72,17 +72,17 @@ public final class PreviewOrderResponseOrderInputPatientClinicalProfileHeightInc
   }
 
   public enum Value {
-    INFINITY,
-
     NA_N,
+
+    INFINITY,
 
     UNKNOWN
   }
 
   public interface Visitor<T> {
-    T visitInfinity();
-
     T visitNaN();
+
+    T visitInfinity();
 
     T visitUnknown(String unknownType);
   }

@@ -21,6 +21,7 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -40,7 +41,7 @@ public final class GetOrderResponse {
 
   private final Optional<String> externalOrderId;
 
-  private final GetOrderResponseMetadata metadata;
+  private final Map<String, Optional<GetOrderResponseMetadataValue>> metadata;
 
   private final String createdAt;
 
@@ -80,7 +81,7 @@ public final class GetOrderResponse {
 
   private GetOrderResponse(String revision, List<GetOrderResponseOtcItemsItem> otcItems,
       Optional<Integer> practiceMedicationTotalCents, Optional<String> externalOrderId,
-      GetOrderResponseMetadata metadata, String createdAt,
+      Map<String, Optional<GetOrderResponseMetadataValue>> metadata, String createdAt,
       List<GetOrderResponseFulfillmentsItem> fulfillments, String id,
       List<GetOrderResponseLifecycleEventsItem> lifecycleEvents, boolean livemode,
       GetOrderResponseObject object, Optional<String> patientExternalId, String patientId,
@@ -146,7 +147,7 @@ public final class GetOrderResponse {
   }
 
   @JsonProperty("metadata")
-  public GetOrderResponseMetadata getMetadata() {
+  public Map<String, Optional<GetOrderResponseMetadataValue>> getMetadata() {
     return metadata;
   }
 
@@ -337,13 +338,9 @@ public final class GetOrderResponse {
     /**
      * <p>Opaque revision of the complete order prescription set. Send the revision you reviewed as expectedRevision; never replace it automatically after a conflict.</p>
      */
-    MetadataStage revision(@NotNull String revision);
+    CreatedAtStage revision(@NotNull String revision);
 
     Builder from(GetOrderResponse other);
-  }
-
-  public interface MetadataStage {
-    CreatedAtStage metadata(@NotNull GetOrderResponseMetadata metadata);
   }
 
   public interface CreatedAtStage {
@@ -417,6 +414,12 @@ public final class GetOrderResponse {
 
     _FinalStage externalOrderId(Nullable<String> externalOrderId);
 
+    _FinalStage metadata(Map<String, Optional<GetOrderResponseMetadataValue>> metadata);
+
+    _FinalStage putAllMetadata(Map<String, Optional<GetOrderResponseMetadataValue>> metadata);
+
+    _FinalStage metadata(String key, Optional<GetOrderResponseMetadataValue> value);
+
     _FinalStage fulfillments(List<GetOrderResponseFulfillmentsItem> fulfillments);
 
     _FinalStage addFulfillments(GetOrderResponseFulfillmentsItem fulfillments);
@@ -463,10 +466,8 @@ public final class GetOrderResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements RevisionStage, MetadataStage, CreatedAtStage, IdStage, LivemodeStage, ObjectStage, PatientIdStage, PatientNameStage, PatientStateStage, PracticeIdStage, StatusStage, UpdatedAtStage, _FinalStage {
+  public static final class Builder implements RevisionStage, CreatedAtStage, IdStage, LivemodeStage, ObjectStage, PatientIdStage, PatientNameStage, PatientStateStage, PracticeIdStage, StatusStage, UpdatedAtStage, _FinalStage {
     private String revision;
-
-    private GetOrderResponseMetadata metadata;
 
     private String createdAt;
 
@@ -501,6 +502,8 @@ public final class GetOrderResponse {
     private List<GetOrderResponseLifecycleEventsItem> lifecycleEvents = new ArrayList<>();
 
     private List<GetOrderResponseFulfillmentsItem> fulfillments = new ArrayList<>();
+
+    private Map<String, Optional<GetOrderResponseMetadataValue>> metadata = new LinkedHashMap<>();
 
     private Optional<String> externalOrderId = Optional.empty();
 
@@ -547,15 +550,8 @@ public final class GetOrderResponse {
      */
     @java.lang.Override
     @JsonSetter("revision")
-    public MetadataStage revision(@NotNull String revision) {
+    public CreatedAtStage revision(@NotNull String revision) {
       this.revision = Objects.requireNonNull(revision, "revision must not be null");
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter("metadata")
-    public CreatedAtStage metadata(@NotNull GetOrderResponseMetadata metadata) {
-      this.metadata = Objects.requireNonNull(metadata, "metadata must not be null");
       return this;
     }
 
@@ -836,6 +832,34 @@ public final class GetOrderResponse {
     }
 
     @java.lang.Override
+    public _FinalStage metadata(String key, Optional<GetOrderResponseMetadataValue> value) {
+      this.metadata.put(key, value);
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage putAllMetadata(
+        Map<String, Optional<GetOrderResponseMetadataValue>> metadata) {
+      if (metadata != null) {
+        this.metadata.putAll(metadata);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "metadata",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage metadata(Map<String, Optional<GetOrderResponseMetadataValue>> metadata) {
+      this.metadata.clear();
+      if (metadata != null) {
+        this.metadata.putAll(metadata);
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage externalOrderId(Nullable<String> externalOrderId) {
       if (externalOrderId.isNull()) {
         this.externalOrderId = null;
@@ -961,7 +985,7 @@ public final class GetOrderResponse {
 
   public Optional<String> externalOrderId() { return getExternalOrderId(); }
 
-  public GetOrderResponseMetadata metadata() { return getMetadata(); }
+  public Map<String, Optional<GetOrderResponseMetadataValue>> metadata() { return getMetadata(); }
 
   public String createdAt() { return getCreatedAt(); }
 

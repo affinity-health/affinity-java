@@ -8,6 +8,7 @@ import com.affinity.api.core.ClientOptions;
 import com.affinity.api.core.Suppliers;
 import com.affinity.api.resources.catalog.items.ItemsClient;
 import com.affinity.api.resources.catalog.prescribingoptions.PrescribingOptionsClient;
+import com.affinity.api.resources.catalog.presentationprices.PresentationPricesClient;
 import com.affinity.api.resources.catalog.sellingprices.SellingPricesClient;
 import com.affinity.api.resources.catalog.shippingoptions.ShippingOptionsClient;
 import java.util.function.Supplier;
@@ -23,12 +24,15 @@ public class CatalogClient {
 
   protected final Supplier<SellingPricesClient> sellingPricesClient;
 
+  protected final Supplier<PresentationPricesClient> presentationPricesClient;
+
   public CatalogClient(ClientOptions clientOptions) {
     this.clientOptions = clientOptions;
     this.itemsClient = Suppliers.memoize(() -> new ItemsClient(clientOptions));
     this.shippingOptionsClient = Suppliers.memoize(() -> new ShippingOptionsClient(clientOptions));
     this.prescribingOptionsClient = Suppliers.memoize(() -> new PrescribingOptionsClient(clientOptions));
     this.sellingPricesClient = Suppliers.memoize(() -> new SellingPricesClient(clientOptions));
+    this.presentationPricesClient = Suppliers.memoize(() -> new PresentationPricesClient(clientOptions));
   }
 
   public ItemsClient items() {
@@ -45,5 +49,9 @@ public class CatalogClient {
 
   public SellingPricesClient sellingPrices() {
     return this.sellingPricesClient.get();
+  }
+
+  public PresentationPricesClient presentationPrices() {
+    return this.presentationPricesClient.get();
   }
 }

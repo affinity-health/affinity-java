@@ -20,6 +20,7 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -37,7 +38,7 @@ public final class AddOrderPrescriptionResponse {
 
   private final Optional<String> externalOrderId;
 
-  private final AddOrderPrescriptionResponseMetadata metadata;
+  private final Map<String, Optional<AddOrderPrescriptionResponseMetadataValue>> metadata;
 
   private final String orderId;
 
@@ -48,9 +49,9 @@ public final class AddOrderPrescriptionResponse {
   private final Map<String, Object> additionalProperties;
 
   private AddOrderPrescriptionResponse(String revision, AddOrderPrescriptionResponseObject object,
-      Optional<String> externalOrderId, AddOrderPrescriptionResponseMetadata metadata,
-      String orderId, String prescriptionId,
-      List<AddOrderPrescriptionResponsePrescriptionsItem> prescriptions,
+      Optional<String> externalOrderId,
+      Map<String, Optional<AddOrderPrescriptionResponseMetadataValue>> metadata, String orderId,
+      String prescriptionId, List<AddOrderPrescriptionResponsePrescriptionsItem> prescriptions,
       Map<String, Object> additionalProperties) {
     this.revision = revision;
     this.object = object;
@@ -84,7 +85,7 @@ public final class AddOrderPrescriptionResponse {
   }
 
   @JsonProperty("metadata")
-  public AddOrderPrescriptionResponseMetadata getMetadata() {
+  public Map<String, Optional<AddOrderPrescriptionResponseMetadataValue>> getMetadata() {
     return metadata;
   }
 
@@ -151,11 +152,7 @@ public final class AddOrderPrescriptionResponse {
   }
 
   public interface ObjectStage {
-    MetadataStage object(@NotNull AddOrderPrescriptionResponseObject object);
-  }
-
-  public interface MetadataStage {
-    OrderIdStage metadata(@NotNull AddOrderPrescriptionResponseMetadata metadata);
+    OrderIdStage object(@NotNull AddOrderPrescriptionResponseObject object);
   }
 
   public interface OrderIdStage {
@@ -179,6 +176,13 @@ public final class AddOrderPrescriptionResponse {
 
     _FinalStage externalOrderId(Nullable<String> externalOrderId);
 
+    _FinalStage metadata(Map<String, Optional<AddOrderPrescriptionResponseMetadataValue>> metadata);
+
+    _FinalStage putAllMetadata(
+        Map<String, Optional<AddOrderPrescriptionResponseMetadataValue>> metadata);
+
+    _FinalStage metadata(String key, Optional<AddOrderPrescriptionResponseMetadataValue> value);
+
     _FinalStage prescriptions(List<AddOrderPrescriptionResponsePrescriptionsItem> prescriptions);
 
     _FinalStage addPrescriptions(AddOrderPrescriptionResponsePrescriptionsItem prescriptions);
@@ -190,18 +194,18 @@ public final class AddOrderPrescriptionResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements RevisionStage, ObjectStage, MetadataStage, OrderIdStage, PrescriptionIdStage, _FinalStage {
+  public static final class Builder implements RevisionStage, ObjectStage, OrderIdStage, PrescriptionIdStage, _FinalStage {
     private String revision;
 
     private AddOrderPrescriptionResponseObject object;
-
-    private AddOrderPrescriptionResponseMetadata metadata;
 
     private String orderId;
 
     private String prescriptionId;
 
     private List<AddOrderPrescriptionResponsePrescriptionsItem> prescriptions = new ArrayList<>();
+
+    private Map<String, Optional<AddOrderPrescriptionResponseMetadataValue>> metadata = new LinkedHashMap<>();
 
     private Optional<String> externalOrderId = Optional.empty();
 
@@ -236,15 +240,8 @@ public final class AddOrderPrescriptionResponse {
 
     @java.lang.Override
     @JsonSetter("object")
-    public MetadataStage object(@NotNull AddOrderPrescriptionResponseObject object) {
+    public OrderIdStage object(@NotNull AddOrderPrescriptionResponseObject object) {
       this.object = Objects.requireNonNull(object, "object must not be null");
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter("metadata")
-    public OrderIdStage metadata(@NotNull AddOrderPrescriptionResponseMetadata metadata) {
-      this.metadata = Objects.requireNonNull(metadata, "metadata must not be null");
       return this;
     }
 
@@ -288,6 +285,36 @@ public final class AddOrderPrescriptionResponse {
       this.prescriptions.clear();
       if (prescriptions != null) {
         this.prescriptions.addAll(prescriptions);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage metadata(String key,
+        Optional<AddOrderPrescriptionResponseMetadataValue> value) {
+      this.metadata.put(key, value);
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage putAllMetadata(
+        Map<String, Optional<AddOrderPrescriptionResponseMetadataValue>> metadata) {
+      if (metadata != null) {
+        this.metadata.putAll(metadata);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "metadata",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage metadata(
+        Map<String, Optional<AddOrderPrescriptionResponseMetadataValue>> metadata) {
+      this.metadata.clear();
+      if (metadata != null) {
+        this.metadata.putAll(metadata);
       }
       return this;
     }
@@ -346,7 +373,7 @@ public final class AddOrderPrescriptionResponse {
 
   public Optional<String> externalOrderId() { return getExternalOrderId(); }
 
-  public AddOrderPrescriptionResponseMetadata metadata() { return getMetadata(); }
+  public Map<String, Optional<AddOrderPrescriptionResponseMetadataValue>> metadata() { return getMetadata(); }
 
   public String orderId() { return getOrderId(); }
 
