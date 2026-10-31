@@ -9,9 +9,21 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public final class ListPracticesRequestSort {
     public static final ListPracticesRequestSort LOCATION = new ListPracticesRequestSort(Value.LOCATION, "location");
 
+    public static final ListPracticesRequestSort CREATED_DESCENDING =
+            new ListPracticesRequestSort(Value.CREATED_DESCENDING, "-created");
+
     public static final ListPracticesRequestSort MODE = new ListPracticesRequestSort(Value.MODE, "mode");
 
+    public static final ListPracticesRequestSort LOCATION_DESCENDING =
+            new ListPracticesRequestSort(Value.LOCATION_DESCENDING, "-location");
+
     public static final ListPracticesRequestSort NAME = new ListPracticesRequestSort(Value.NAME, "name");
+
+    public static final ListPracticesRequestSort NAME_DESCENDING =
+            new ListPracticesRequestSort(Value.NAME_DESCENDING, "-name");
+
+    public static final ListPracticesRequestSort MODE_DESCENDING =
+            new ListPracticesRequestSort(Value.MODE_DESCENDING, "-mode");
 
     public static final ListPracticesRequestSort CREATED = new ListPracticesRequestSort(Value.CREATED, "created");
 
@@ -50,10 +62,18 @@ public final class ListPracticesRequestSort {
         switch (value) {
             case LOCATION:
                 return visitor.visitLocation();
+            case CREATED_DESCENDING:
+                return visitor.visitCreatedDescending();
             case MODE:
                 return visitor.visitMode();
+            case LOCATION_DESCENDING:
+                return visitor.visitLocationDescending();
             case NAME:
                 return visitor.visitName();
+            case NAME_DESCENDING:
+                return visitor.visitNameDescending();
+            case MODE_DESCENDING:
+                return visitor.visitModeDescending();
             case CREATED:
                 return visitor.visitCreated();
             case UNKNOWN:
@@ -67,10 +87,18 @@ public final class ListPracticesRequestSort {
         switch (value) {
             case "location":
                 return LOCATION;
+            case "-created":
+                return CREATED_DESCENDING;
             case "mode":
                 return MODE;
+            case "-location":
+                return LOCATION_DESCENDING;
             case "name":
                 return NAME;
+            case "-name":
+                return NAME_DESCENDING;
+            case "-mode":
+                return MODE_DESCENDING;
             case "created":
                 return CREATED;
             default:
@@ -81,11 +109,19 @@ public final class ListPracticesRequestSort {
     public enum Value {
         NAME,
 
+        NAME_DESCENDING,
+
         LOCATION,
+
+        LOCATION_DESCENDING,
 
         MODE,
 
+        MODE_DESCENDING,
+
         CREATED,
+
+        CREATED_DESCENDING,
 
         UNKNOWN
     }
@@ -93,11 +129,19 @@ public final class ListPracticesRequestSort {
     public interface Visitor<T> {
         T visitName();
 
+        T visitNameDescending();
+
         T visitLocation();
+
+        T visitLocationDescending();
 
         T visitMode();
 
+        T visitModeDescending();
+
         T visitCreated();
+
+        T visitCreatedDescending();
 
         T visitUnknown(String unknownType);
     }

@@ -85,10 +85,6 @@ public class RawOrdersClient {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("v1/orders");
-        if (request.getEndingBefore().isPresent()) {
-            QueryStringMapper.addQueryParameter(
-                    httpUrl, "endingBefore", request.getEndingBefore().get(), false);
-        }
         if (request.getLimit().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "limit", request.getLimit().get(), false);

@@ -19,6 +19,7 @@ import com.affinity.api.resources.orders.requests.OrderInput;
 import com.affinity.api.resources.orders.types.OrderInputShipping;
 import com.affinity.api.resources.practices.requests.CreatePracticesRequest;
 import com.affinity.api.resources.practices.requests.ListPracticesRequest;
+import com.affinity.api.resources.practices.types.ListPracticesRequestSort;
 import com.affinity.api.resources.practices.requests.UpdatePracticesRequest;
 import com.affinity.api.resources.webhooks.requests.CreateWebhooksRequest;
 import com.affinity.api.resources.webhooks.requests.ResendFailedWebhooksRequest;
@@ -267,6 +268,20 @@ public final class Smoke {
                 ids.add(p.getId());
             if (!ids.contains(practice.getId())) throw new IllegalStateException("the new practice is not listed");
             return ids.size();
+        }, n -> n + " practices");
+        check("practices.list sort -created (every page)", () -> {
+            List<String> newest = new ArrayList<>();
+            for (Practice p : client.practices().list(ListPracticesRequest.builder().limit(1)
+                    .sort(ListPracticesRequestSort.CREATED_DESCENDING).build()))
+                newest.add(p.getId());
+            List<String> oldest = new ArrayList<>();
+            for (Practice p : client.practices().list(ListPracticesRequest.builder().limit(1)
+                    .sort(ListPracticesRequestSort.CREATED).build()))
+                oldest.add(p.getId());
+            Collections.reverse(oldest);
+            if (newest.isEmpty() || !newest.equals(oldest))
+                throw new IllegalStateException("sort -created is not the reverse of sort created");
+            return newest.size();
         }, n -> n + " practices");
 
         check("medications.list (one page)", () -> {

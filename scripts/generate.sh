@@ -10,7 +10,7 @@ root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$root"
 
 fern_version="$(jq -r .version fern/fern.config.json)"
-sdk_version="0.4.0"
+sdk_version="0.4.1"
 output="$root/.fern-output"
 # The paths Fern owns in the repository.
 generated=(src sample-app gradle build.gradle settings.gradle gradlew gradlew.bat)

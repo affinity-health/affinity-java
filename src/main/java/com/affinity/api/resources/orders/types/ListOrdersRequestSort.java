@@ -7,6 +7,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class ListOrdersRequestSort {
+    public static final ListOrdersRequestSort PATIENT_DESCENDING =
+            new ListOrdersRequestSort(Value.PATIENT_DESCENDING, "-patient");
+
+    public static final ListOrdersRequestSort CREATED_DESCENDING =
+            new ListOrdersRequestSort(Value.CREATED_DESCENDING, "-created");
+
     public static final ListOrdersRequestSort PATIENT = new ListOrdersRequestSort(Value.PATIENT, "patient");
 
     public static final ListOrdersRequestSort CREATED = new ListOrdersRequestSort(Value.CREATED, "created");
@@ -44,6 +50,10 @@ public final class ListOrdersRequestSort {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
+            case PATIENT_DESCENDING:
+                return visitor.visitPatientDescending();
+            case CREATED_DESCENDING:
+                return visitor.visitCreatedDescending();
             case PATIENT:
                 return visitor.visitPatient();
             case CREATED:
@@ -57,6 +67,10 @@ public final class ListOrdersRequestSort {
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static ListOrdersRequestSort valueOf(String value) {
         switch (value) {
+            case "-patient":
+                return PATIENT_DESCENDING;
+            case "-created":
+                return CREATED_DESCENDING;
             case "patient":
                 return PATIENT;
             case "created":
@@ -69,7 +83,11 @@ public final class ListOrdersRequestSort {
     public enum Value {
         PATIENT,
 
+        PATIENT_DESCENDING,
+
         CREATED,
+
+        CREATED_DESCENDING,
 
         UNKNOWN
     }
@@ -77,7 +95,11 @@ public final class ListOrdersRequestSort {
     public interface Visitor<T> {
         T visitPatient();
 
+        T visitPatientDescending();
+
         T visitCreated();
+
+        T visitCreatedDescending();
 
         T visitUnknown(String unknownType);
     }

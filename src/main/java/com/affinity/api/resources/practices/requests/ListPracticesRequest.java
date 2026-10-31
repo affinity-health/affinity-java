@@ -21,8 +21,6 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ListPracticesRequest.Builder.class)
 public final class ListPracticesRequest {
-    private final Optional<String> endingBefore;
-
     private final Optional<Integer> limit;
 
     private final Optional<String> startingAfter;
@@ -36,28 +34,18 @@ public final class ListPracticesRequest {
     private final Map<String, Object> additionalProperties;
 
     private ListPracticesRequest(
-            Optional<String> endingBefore,
             Optional<Integer> limit,
             Optional<String> startingAfter,
             Optional<String> externalId,
             Optional<String> query,
             Optional<ListPracticesRequestSort> sort,
             Map<String, Object> additionalProperties) {
-        this.endingBefore = endingBefore;
         this.limit = limit;
         this.startingAfter = startingAfter;
         this.externalId = externalId;
         this.query = query;
         this.sort = sort;
         this.additionalProperties = additionalProperties;
-    }
-
-    /**
-     * @return Page backward before this opaque cursor. Keep the same filters, sort, organization and mode. Send either startingAfter or endingBefore.
-     */
-    @JsonProperty("endingBefore")
-    public Optional<String> getEndingBefore() {
-        return endingBefore;
     }
 
     /**
@@ -112,8 +100,7 @@ public final class ListPracticesRequest {
     }
 
     private boolean equalTo(ListPracticesRequest other) {
-        return endingBefore.equals(other.endingBefore)
-                && limit.equals(other.limit)
+        return limit.equals(other.limit)
                 && startingAfter.equals(other.startingAfter)
                 && externalId.equals(other.externalId)
                 && query.equals(other.query)
@@ -122,7 +109,7 @@ public final class ListPracticesRequest {
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.endingBefore, this.limit, this.startingAfter, this.externalId, this.query, this.sort);
+        return Objects.hash(this.limit, this.startingAfter, this.externalId, this.query, this.sort);
     }
 
     @java.lang.Override
@@ -136,8 +123,6 @@ public final class ListPracticesRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> endingBefore = Optional.empty();
-
         private Optional<Integer> limit = Optional.empty();
 
         private Optional<String> startingAfter = Optional.empty();
@@ -153,26 +138,11 @@ public final class ListPracticesRequest {
         private Builder() {}
 
         public Builder from(ListPracticesRequest other) {
-            endingBefore(other.getEndingBefore());
             limit(other.getLimit());
             startingAfter(other.getStartingAfter());
             externalId(other.getExternalId());
             query(other.getQuery());
             sort(other.getSort());
-            return this;
-        }
-
-        /**
-         * <p>Page backward before this opaque cursor. Keep the same filters, sort, organization and mode. Send either startingAfter or endingBefore.</p>
-         */
-        @JsonSetter(value = "endingBefore", nulls = Nulls.SKIP)
-        public Builder endingBefore(Optional<String> endingBefore) {
-            this.endingBefore = endingBefore;
-            return this;
-        }
-
-        public Builder endingBefore(String endingBefore) {
-            this.endingBefore = Optional.ofNullable(endingBefore);
             return this;
         }
 
@@ -247,14 +217,12 @@ public final class ListPracticesRequest {
         }
 
         public ListPracticesRequest build() {
-            return new ListPracticesRequest(
-                    endingBefore, limit, startingAfter, externalId, query, sort, additionalProperties);
+            return new ListPracticesRequest(limit, startingAfter, externalId, query, sort, additionalProperties);
         }
 
         @JsonAnySetter
         private void putAdditionalPropertyFromJson(String key, Object value) {
-            if (key.equalsIgnoreCase("endingBefore")
-                    || key.equalsIgnoreCase("limit")
+            if (key.equalsIgnoreCase("limit")
                     || key.equalsIgnoreCase("startingAfter")
                     || key.equalsIgnoreCase("externalId")
                     || key.equalsIgnoreCase("query")

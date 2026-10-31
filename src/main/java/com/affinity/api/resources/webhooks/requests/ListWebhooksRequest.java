@@ -20,8 +20,6 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ListWebhooksRequest.Builder.class)
 public final class ListWebhooksRequest {
-    private final Optional<String> endingBefore;
-
     private final Optional<Integer> limit;
 
     private final Optional<String> startingAfter;
@@ -29,22 +27,10 @@ public final class ListWebhooksRequest {
     private final Map<String, Object> additionalProperties;
 
     private ListWebhooksRequest(
-            Optional<String> endingBefore,
-            Optional<Integer> limit,
-            Optional<String> startingAfter,
-            Map<String, Object> additionalProperties) {
-        this.endingBefore = endingBefore;
+            Optional<Integer> limit, Optional<String> startingAfter, Map<String, Object> additionalProperties) {
         this.limit = limit;
         this.startingAfter = startingAfter;
         this.additionalProperties = additionalProperties;
-    }
-
-    /**
-     * @return Page backward before this opaque cursor. Keep the same filters, sort, organization and mode. Send either startingAfter or endingBefore.
-     */
-    @JsonProperty("endingBefore")
-    public Optional<String> getEndingBefore() {
-        return endingBefore;
     }
 
     /**
@@ -75,14 +61,12 @@ public final class ListWebhooksRequest {
     }
 
     private boolean equalTo(ListWebhooksRequest other) {
-        return endingBefore.equals(other.endingBefore)
-                && limit.equals(other.limit)
-                && startingAfter.equals(other.startingAfter);
+        return limit.equals(other.limit) && startingAfter.equals(other.startingAfter);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.endingBefore, this.limit, this.startingAfter);
+        return Objects.hash(this.limit, this.startingAfter);
     }
 
     @java.lang.Override
@@ -96,8 +80,6 @@ public final class ListWebhooksRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> endingBefore = Optional.empty();
-
         private Optional<Integer> limit = Optional.empty();
 
         private Optional<String> startingAfter = Optional.empty();
@@ -107,23 +89,8 @@ public final class ListWebhooksRequest {
         private Builder() {}
 
         public Builder from(ListWebhooksRequest other) {
-            endingBefore(other.getEndingBefore());
             limit(other.getLimit());
             startingAfter(other.getStartingAfter());
-            return this;
-        }
-
-        /**
-         * <p>Page backward before this opaque cursor. Keep the same filters, sort, organization and mode. Send either startingAfter or endingBefore.</p>
-         */
-        @JsonSetter(value = "endingBefore", nulls = Nulls.SKIP)
-        public Builder endingBefore(Optional<String> endingBefore) {
-            this.endingBefore = endingBefore;
-            return this;
-        }
-
-        public Builder endingBefore(String endingBefore) {
-            this.endingBefore = Optional.ofNullable(endingBefore);
             return this;
         }
 
@@ -156,14 +123,12 @@ public final class ListWebhooksRequest {
         }
 
         public ListWebhooksRequest build() {
-            return new ListWebhooksRequest(endingBefore, limit, startingAfter, additionalProperties);
+            return new ListWebhooksRequest(limit, startingAfter, additionalProperties);
         }
 
         @JsonAnySetter
         private void putAdditionalPropertyFromJson(String key, Object value) {
-            if (key.equalsIgnoreCase("endingBefore")
-                    || key.equalsIgnoreCase("limit")
-                    || key.equalsIgnoreCase("startingAfter")) {
+            if (key.equalsIgnoreCase("limit") || key.equalsIgnoreCase("startingAfter")) {
                 return;
             }
             this.additionalProperties.put(key, value);

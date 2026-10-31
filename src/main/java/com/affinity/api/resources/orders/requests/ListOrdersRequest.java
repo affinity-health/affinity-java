@@ -25,8 +25,6 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ListOrdersRequest.Builder.class)
 public final class ListOrdersRequest {
-    private final Optional<String> endingBefore;
-
     private final Optional<Integer> limit;
 
     private final Optional<String> startingAfter;
@@ -52,7 +50,6 @@ public final class ListOrdersRequest {
     private final Map<String, Object> additionalProperties;
 
     private ListOrdersRequest(
-            Optional<String> endingBefore,
             Optional<Integer> limit,
             Optional<String> startingAfter,
             Optional<String> externalOrderId,
@@ -65,7 +62,6 @@ public final class ListOrdersRequest {
             Optional<ListOrdersRequestRecentlyShipped> recentlyShipped,
             Optional<ListOrdersRequestSort> sort,
             Map<String, Object> additionalProperties) {
-        this.endingBefore = endingBefore;
         this.limit = limit;
         this.startingAfter = startingAfter;
         this.externalOrderId = externalOrderId;
@@ -78,14 +74,6 @@ public final class ListOrdersRequest {
         this.recentlyShipped = recentlyShipped;
         this.sort = sort;
         this.additionalProperties = additionalProperties;
-    }
-
-    /**
-     * @return Page backward before this opaque cursor. Keep the same filters, sort, organization and mode. Send either startingAfter or endingBefore.
-     */
-    @JsonProperty("endingBefore")
-    public Optional<String> getEndingBefore() {
-        return endingBefore;
     }
 
     /**
@@ -188,8 +176,7 @@ public final class ListOrdersRequest {
     }
 
     private boolean equalTo(ListOrdersRequest other) {
-        return endingBefore.equals(other.endingBefore)
-                && limit.equals(other.limit)
+        return limit.equals(other.limit)
                 && startingAfter.equals(other.startingAfter)
                 && externalOrderId.equals(other.externalOrderId)
                 && updatedAfter.equals(other.updatedAfter)
@@ -205,7 +192,6 @@ public final class ListOrdersRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.endingBefore,
                 this.limit,
                 this.startingAfter,
                 this.externalOrderId,
@@ -230,8 +216,6 @@ public final class ListOrdersRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> endingBefore = Optional.empty();
-
         private Optional<Integer> limit = Optional.empty();
 
         private Optional<String> startingAfter = Optional.empty();
@@ -259,7 +243,6 @@ public final class ListOrdersRequest {
         private Builder() {}
 
         public Builder from(ListOrdersRequest other) {
-            endingBefore(other.getEndingBefore());
             limit(other.getLimit());
             startingAfter(other.getStartingAfter());
             externalOrderId(other.getExternalOrderId());
@@ -271,20 +254,6 @@ public final class ListOrdersRequest {
             cancelRequested(other.getCancelRequested());
             recentlyShipped(other.getRecentlyShipped());
             sort(other.getSort());
-            return this;
-        }
-
-        /**
-         * <p>Page backward before this opaque cursor. Keep the same filters, sort, organization and mode. Send either startingAfter or endingBefore.</p>
-         */
-        @JsonSetter(value = "endingBefore", nulls = Nulls.SKIP)
-        public Builder endingBefore(Optional<String> endingBefore) {
-            this.endingBefore = endingBefore;
-            return this;
-        }
-
-        public Builder endingBefore(String endingBefore) {
-            this.endingBefore = Optional.ofNullable(endingBefore);
             return this;
         }
 
@@ -444,7 +413,6 @@ public final class ListOrdersRequest {
 
         public ListOrdersRequest build() {
             return new ListOrdersRequest(
-                    endingBefore,
                     limit,
                     startingAfter,
                     externalOrderId,
@@ -461,8 +429,7 @@ public final class ListOrdersRequest {
 
         @JsonAnySetter
         private void putAdditionalPropertyFromJson(String key, Object value) {
-            if (key.equalsIgnoreCase("endingBefore")
-                    || key.equalsIgnoreCase("limit")
+            if (key.equalsIgnoreCase("limit")
                     || key.equalsIgnoreCase("startingAfter")
                     || key.equalsIgnoreCase("externalOrderId")
                     || key.equalsIgnoreCase("updatedAfter")

@@ -4,6 +4,19 @@ All notable changes to `io.github.affinity-health:affinity-java` are documented 
 uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html); before 1.0, a minor version can
 break callers.
 
+## 0.4.1 - 2026-11-01
+
+### Fixed
+
+- Descending sorts are in the sort types: `-created` and `-patient` for orders, and `-name`,
+  `-location`, `-mode` and `-created` for practices. Before, the generator dropped each `-` value,
+  so a typed call could not reverse a sort.
+
+### Removed
+
+- The `endingBefore` list parameter. Lists page forward only. After a page fetched with
+  `endingBefore`, the next page also sent the forward cursor, and the API refused it with a 400.
+
 ## 0.4.0 - 2026-10-31
 
 This version is regenerated with [Fern](https://buildwithfern.com) from API version `2026-10-28`.
