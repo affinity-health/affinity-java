@@ -1,0 +1,3 @@
+rootProject.name = 'affinity-java'
+
+include 'sample-app'

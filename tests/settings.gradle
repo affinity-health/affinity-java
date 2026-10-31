@@ -1,0 +1,4 @@
+// Hand-written. Builds the smoke test and the webhook signature test against the SDK in the
+// parent directory (a Gradle composite build), so they use exactly the code in this checkout.
+rootProject.name = 'affinity-java-tests'
+includeBuild('..')

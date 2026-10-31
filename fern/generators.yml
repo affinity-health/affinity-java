@@ -1,0 +1,21 @@
+# Fern generates the Java SDK from spec/affinity.openapi.json; scripts/generate.sh adds the
+# x-fern names and pagination first (scripts/prepare-spec.jq). Pinned: change a version only with
+# a regenerated, tested SDK.
+api:
+  specs:
+    - openapi: ./openapi.json
+      settings:
+        respect-nullable-schemas: true
+groups:
+  java:
+    generators:
+      - name: fernapi/fern-java-sdk
+        version: 4.37.6
+        output:
+          location: local-file-system
+          path: ../.fern-output
+        config:
+          package-prefix: com.affinity.api
+          client-class-name: AffinityClient
+          group: io.github.affinity-health
+          artifact: affinity-java

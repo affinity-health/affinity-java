@@ -6,9 +6,17 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-java@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
-      - run: ./tests/with-fixtures.sh mvn -B test package
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build and run Fern's unit tests
+        run: ./gradlew --no-daemon build
+      - name: Compile the smoke test and run the webhook signature test
+        run: ./gradlew --no-daemon -p tests test installDist
+      - name: Generated code matches the contract
+        run: ./scripts/generate-check.sh

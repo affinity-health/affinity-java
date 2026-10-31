@@ -1,0 +1,28 @@
+// Hand-written. `../gradlew -p tests test` runs the webhook signature test (no credentials).
+// `../gradlew -p tests run` runs the staging smoke test (needs a Test key; see README).
+plugins {
+    id 'java'
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'io.github.affinity-health:affinity-java:0.4.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 11
+}
+
+application {
+    mainClass = 'smoke.Smoke'
+}
+
+test {
+    useJUnitPlatform()
+}
