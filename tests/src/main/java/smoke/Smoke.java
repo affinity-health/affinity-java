@@ -269,10 +269,10 @@ public final class Smoke {
             if (!ids.contains(practice.getId())) throw new IllegalStateException("the new practice is not listed");
             return ids.size();
         }, n -> n + " practices");
-        check("practices.list sort -created (every page)", () -> {
+        check("practices.list sort created_desc (every page)", () -> {
             List<String> newest = new ArrayList<>();
             for (Practice p : client.practices().list(ListPracticesRequest.builder().limit(1)
-                    .sort(ListPracticesRequestSort.CREATED_DESCENDING).build()))
+                    .sort(ListPracticesRequestSort.CREATED_DESC).build()))
                 newest.add(p.getId());
             List<String> oldest = new ArrayList<>();
             for (Practice p : client.practices().list(ListPracticesRequest.builder().limit(1)
@@ -280,7 +280,7 @@ public final class Smoke {
                 oldest.add(p.getId());
             Collections.reverse(oldest);
             if (newest.isEmpty() || !newest.equals(oldest))
-                throw new IllegalStateException("sort -created is not the reverse of sort created");
+                throw new IllegalStateException("sort created_desc is not the reverse of sort created");
             return newest.size();
         }, n -> n + " practices");
 

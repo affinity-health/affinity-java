@@ -57,7 +57,7 @@ public final class ListPracticesRequest {
     }
 
     /**
-     * @return Page forward using the previous response's nextCursor. Keep the same filters, sort, organization and mode. Use only one cursor parameter.
+     * @return Page forward using the previous response's nextCursor. Keep the same filters, sort, organization and mode.
      */
     @JsonProperty("startingAfter")
     public Optional<String> getStartingAfter() {
@@ -81,7 +81,7 @@ public final class ListPracticesRequest {
     }
 
     /**
-     * @return name and location sort A to Z; mode sorts Test before Live; created sorts oldest first. A leading - reverses the order. Defaults to -created. Missing locations sort last. Restart pagination after changing sort.
+     * @return name and location sort A to Z; mode sorts Test before Live; created sorts oldest first. A _desc suffix reverses the order. Defaults to created_desc. Missing locations sort last. Restart pagination after changing sort.
      */
     @JsonProperty("sort")
     public Optional<ListPracticesRequestSort> getSort() {
@@ -161,7 +161,7 @@ public final class ListPracticesRequest {
         }
 
         /**
-         * <p>Page forward using the previous response's nextCursor. Keep the same filters, sort, organization and mode. Use only one cursor parameter.</p>
+         * <p>Page forward using the previous response's nextCursor. Keep the same filters, sort, organization and mode.</p>
          */
         @JsonSetter(value = "startingAfter", nulls = Nulls.SKIP)
         public Builder startingAfter(Optional<String> startingAfter) {
@@ -203,7 +203,7 @@ public final class ListPracticesRequest {
         }
 
         /**
-         * <p>name and location sort A to Z; mode sorts Test before Live; created sorts oldest first. A leading - reverses the order. Defaults to -created. Missing locations sort last. Restart pagination after changing sort.</p>
+         * <p>name and location sort A to Z; mode sorts Test before Live; created sorts oldest first. A _desc suffix reverses the order. Defaults to created_desc. Missing locations sort last. Restart pagination after changing sort.</p>
          */
         @JsonSetter(value = "sort", nulls = Nulls.SKIP)
         public Builder sort(Optional<ListPracticesRequestSort> sort) {

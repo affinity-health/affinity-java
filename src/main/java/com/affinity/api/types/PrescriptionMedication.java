@@ -55,6 +55,9 @@ public final class PrescriptionMedication {
         this.additionalProperties = additionalProperties;
     }
 
+    /**
+     * @return What the pharmacy dispenses for one price, or null when the complete fill is unknown.
+     */
     @JsonIgnore
     public Optional<Fill> getFill() {
         if (fill == null) {
@@ -193,6 +196,9 @@ public final class PrescriptionMedication {
 
         _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+        /**
+         * <p>What the pharmacy dispenses for one price, or null when the complete fill is unknown.</p>
+         */
         _FinalStage fill(Optional<Fill> fill);
 
         _FinalStage fill(Fill fill);
@@ -386,6 +392,10 @@ public final class PrescriptionMedication {
             return this;
         }
 
+        /**
+         * <p>What the pharmacy dispenses for one price, or null when the complete fill is unknown.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         public _FinalStage fill(Nullable<Fill> fill) {
             if (fill.isNull()) {
@@ -398,12 +408,19 @@ public final class PrescriptionMedication {
             return this;
         }
 
+        /**
+         * <p>What the pharmacy dispenses for one price, or null when the complete fill is unknown.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         public _FinalStage fill(Fill fill) {
             this.fill = Optional.ofNullable(fill);
             return this;
         }
 
+        /**
+         * <p>What the pharmacy dispenses for one price, or null when the complete fill is unknown.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "fill", nulls = Nulls.SKIP)
         public _FinalStage fill(Optional<Fill> fill) {

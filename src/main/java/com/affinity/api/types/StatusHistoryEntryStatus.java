@@ -16,6 +16,9 @@ public final class StatusHistoryEntryStatus {
     public static final StatusHistoryEntryStatus PROCESSING =
             new StatusHistoryEntryStatus(Value.PROCESSING, "processing");
 
+    public static final StatusHistoryEntryStatus AWAITING_APPROVAL =
+            new StatusHistoryEntryStatus(Value.AWAITING_APPROVAL, "awaiting_approval");
+
     public static final StatusHistoryEntryStatus CANCELLED = new StatusHistoryEntryStatus(Value.CANCELLED, "cancelled");
 
     public static final StatusHistoryEntryStatus SUBMITTED = new StatusHistoryEntryStatus(Value.SUBMITTED, "submitted");
@@ -61,6 +64,8 @@ public final class StatusHistoryEntryStatus {
                 return visitor.visitDelivered();
             case PROCESSING:
                 return visitor.visitProcessing();
+            case AWAITING_APPROVAL:
+                return visitor.visitAwaitingApproval();
             case CANCELLED:
                 return visitor.visitCancelled();
             case SUBMITTED:
@@ -82,6 +87,8 @@ public final class StatusHistoryEntryStatus {
                 return DELIVERED;
             case "processing":
                 return PROCESSING;
+            case "awaiting_approval":
+                return AWAITING_APPROVAL;
             case "cancelled":
                 return CANCELLED;
             case "submitted":
@@ -92,6 +99,8 @@ public final class StatusHistoryEntryStatus {
     }
 
     public enum Value {
+        AWAITING_APPROVAL,
+
         SUBMITTED,
 
         PROCESSING,
@@ -108,6 +117,8 @@ public final class StatusHistoryEntryStatus {
     }
 
     public interface Visitor<T> {
+        T visitAwaitingApproval();
+
         T visitSubmitted();
 
         T visitProcessing();

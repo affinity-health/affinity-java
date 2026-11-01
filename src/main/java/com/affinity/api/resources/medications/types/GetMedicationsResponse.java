@@ -148,6 +148,9 @@ public final class GetMedicationsResponse {
         return defaultDirections;
     }
 
+    /**
+     * @return What the pharmacy dispenses for one price, or null when the complete fill is unknown.
+     */
     @JsonIgnore
     public Optional<Fill> getFill() {
         if (fill == null) {
@@ -450,6 +453,9 @@ public final class GetMedicationsResponse {
 
         _FinalStage defaultDirections(Nullable<String> defaultDirections);
 
+        /**
+         * <p>What the pharmacy dispenses for one price, or null when the complete fill is unknown.</p>
+         */
         _FinalStage fill(Optional<Fill> fill);
 
         _FinalStage fill(Fill fill);
@@ -956,6 +962,10 @@ public final class GetMedicationsResponse {
             return this;
         }
 
+        /**
+         * <p>What the pharmacy dispenses for one price, or null when the complete fill is unknown.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         public _FinalStage fill(Nullable<Fill> fill) {
             if (fill.isNull()) {
@@ -968,12 +978,19 @@ public final class GetMedicationsResponse {
             return this;
         }
 
+        /**
+         * <p>What the pharmacy dispenses for one price, or null when the complete fill is unknown.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         public _FinalStage fill(Fill fill) {
             this.fill = Optional.ofNullable(fill);
             return this;
         }
 
+        /**
+         * <p>What the pharmacy dispenses for one price, or null when the complete fill is unknown.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "fill", nulls = Nulls.SKIP)
         public _FinalStage fill(Optional<Fill> fill) {

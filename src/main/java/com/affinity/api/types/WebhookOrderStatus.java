@@ -15,6 +15,9 @@ public final class WebhookOrderStatus {
 
     public static final WebhookOrderStatus PROCESSING = new WebhookOrderStatus(Value.PROCESSING, "processing");
 
+    public static final WebhookOrderStatus AWAITING_APPROVAL =
+            new WebhookOrderStatus(Value.AWAITING_APPROVAL, "awaiting_approval");
+
     public static final WebhookOrderStatus CANCELLED = new WebhookOrderStatus(Value.CANCELLED, "cancelled");
 
     public static final WebhookOrderStatus SUBMITTED = new WebhookOrderStatus(Value.SUBMITTED, "submitted");
@@ -59,6 +62,8 @@ public final class WebhookOrderStatus {
                 return visitor.visitDelivered();
             case PROCESSING:
                 return visitor.visitProcessing();
+            case AWAITING_APPROVAL:
+                return visitor.visitAwaitingApproval();
             case CANCELLED:
                 return visitor.visitCancelled();
             case SUBMITTED:
@@ -80,6 +85,8 @@ public final class WebhookOrderStatus {
                 return DELIVERED;
             case "processing":
                 return PROCESSING;
+            case "awaiting_approval":
+                return AWAITING_APPROVAL;
             case "cancelled":
                 return CANCELLED;
             case "submitted":
@@ -90,6 +97,8 @@ public final class WebhookOrderStatus {
     }
 
     public enum Value {
+        AWAITING_APPROVAL,
+
         SUBMITTED,
 
         PROCESSING,
@@ -106,6 +115,8 @@ public final class WebhookOrderStatus {
     }
 
     public interface Visitor<T> {
+        T visitAwaitingApproval();
+
         T visitSubmitted();
 
         T visitProcessing();

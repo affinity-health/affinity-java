@@ -15,6 +15,8 @@ public final class OrderStatus {
 
     public static final OrderStatus PROCESSING = new OrderStatus(Value.PROCESSING, "processing");
 
+    public static final OrderStatus AWAITING_APPROVAL = new OrderStatus(Value.AWAITING_APPROVAL, "awaiting_approval");
+
     public static final OrderStatus CANCELLED = new OrderStatus(Value.CANCELLED, "cancelled");
 
     public static final OrderStatus SUBMITTED = new OrderStatus(Value.SUBMITTED, "submitted");
@@ -58,6 +60,8 @@ public final class OrderStatus {
                 return visitor.visitDelivered();
             case PROCESSING:
                 return visitor.visitProcessing();
+            case AWAITING_APPROVAL:
+                return visitor.visitAwaitingApproval();
             case CANCELLED:
                 return visitor.visitCancelled();
             case SUBMITTED:
@@ -79,6 +83,8 @@ public final class OrderStatus {
                 return DELIVERED;
             case "processing":
                 return PROCESSING;
+            case "awaiting_approval":
+                return AWAITING_APPROVAL;
             case "cancelled":
                 return CANCELLED;
             case "submitted":
@@ -89,6 +95,8 @@ public final class OrderStatus {
     }
 
     public enum Value {
+        AWAITING_APPROVAL,
+
         SUBMITTED,
 
         PROCESSING,
@@ -105,6 +113,8 @@ public final class OrderStatus {
     }
 
     public interface Visitor<T> {
+        T visitAwaitingApproval();
+
         T visitSubmitted();
 
         T visitProcessing();

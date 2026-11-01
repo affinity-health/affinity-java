@@ -13,18 +13,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = ShippingDestinationInputPatient.Builder.class)
-public final class ShippingDestinationInputPatient {
+@JsonDeserialize(builder = ShippingDestinationPatientInput.Builder.class)
+public final class ShippingDestinationPatientInput {
     private final Map<String, Object> additionalProperties;
 
-    private ShippingDestinationInputPatient(Map<String, Object> additionalProperties) {
+    private ShippingDestinationPatientInput(Map<String, Object> additionalProperties) {
         this.additionalProperties = additionalProperties;
     }
 
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof ShippingDestinationInputPatient;
+        return other instanceof ShippingDestinationPatientInput;
     }
 
     @JsonAnyGetter
@@ -47,12 +47,12 @@ public final class ShippingDestinationInputPatient {
 
         private Builder() {}
 
-        public Builder from(ShippingDestinationInputPatient other) {
+        public Builder from(ShippingDestinationPatientInput other) {
             return this;
         }
 
-        public ShippingDestinationInputPatient build() {
-            return new ShippingDestinationInputPatient(additionalProperties);
+        public ShippingDestinationPatientInput build() {
+            return new ShippingDestinationPatientInput(additionalProperties);
         }
 
         @JsonAnySetter

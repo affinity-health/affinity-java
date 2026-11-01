@@ -37,7 +37,7 @@ public class AsyncAffinityClientBuilder {
 
     private String token = null;
 
-    private String affinityVersion = "2026-10-28";
+    private String affinityVersion = "2026-11-01";
 
     private Environment environment = Environment.DEFAULT;
 

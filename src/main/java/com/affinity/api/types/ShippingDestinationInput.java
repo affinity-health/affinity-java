@@ -26,15 +26,15 @@ public final class ShippingDestinationInput {
         return value.visit(visitor);
     }
 
-    public static ShippingDestinationInput patient(ShippingDestinationInputPatient value) {
+    public static ShippingDestinationInput patient(ShippingDestinationPatientInput value) {
         return new ShippingDestinationInput(new PatientValue(value));
     }
 
-    public static ShippingDestinationInput practice(ShippingDestinationInputPractice value) {
+    public static ShippingDestinationInput practice(ShippingDestinationPracticeInput value) {
         return new ShippingDestinationInput(new PracticeValue(value));
     }
 
-    public static ShippingDestinationInput address(ShippingDestinationInputAddress value) {
+    public static ShippingDestinationInput address(ShippingDestinationAddressInput value) {
         return new ShippingDestinationInput(new AddressValue(value));
     }
 
@@ -54,21 +54,21 @@ public final class ShippingDestinationInput {
         return value instanceof _UnknownValue;
     }
 
-    public Optional<ShippingDestinationInputPatient> getPatient() {
+    public Optional<ShippingDestinationPatientInput> getPatient() {
         if (isPatient()) {
             return Optional.of(((PatientValue) value).value);
         }
         return Optional.empty();
     }
 
-    public Optional<ShippingDestinationInputPractice> getPractice() {
+    public Optional<ShippingDestinationPracticeInput> getPractice() {
         if (isPractice()) {
             return Optional.of(((PracticeValue) value).value);
         }
         return Optional.empty();
     }
 
-    public Optional<ShippingDestinationInputAddress> getAddress() {
+    public Optional<ShippingDestinationAddressInput> getAddress() {
         if (isAddress()) {
             return Optional.of(((AddressValue) value).value);
         }
@@ -104,11 +104,11 @@ public final class ShippingDestinationInput {
     }
 
     public interface Visitor<T> {
-        T visitPatient(ShippingDestinationInputPatient patient);
+        T visitPatient(ShippingDestinationPatientInput patient);
 
-        T visitPractice(ShippingDestinationInputPractice practice);
+        T visitPractice(ShippingDestinationPracticeInput practice);
 
-        T visitAddress(ShippingDestinationInputAddress address);
+        T visitAddress(ShippingDestinationAddressInput address);
 
         T _visitUnknown(Object unknownType);
     }
@@ -129,12 +129,12 @@ public final class ShippingDestinationInput {
     private static final class PatientValue implements Value {
         @JsonUnwrapped
         @JsonIgnoreProperties(value = "type", allowSetters = true)
-        private ShippingDestinationInputPatient value;
+        private ShippingDestinationPatientInput value;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
         private PatientValue() {}
 
-        private PatientValue(ShippingDestinationInputPatient value) {
+        private PatientValue(ShippingDestinationPatientInput value) {
             this.value = value;
         }
 
@@ -169,12 +169,12 @@ public final class ShippingDestinationInput {
     private static final class PracticeValue implements Value {
         @JsonUnwrapped
         @JsonIgnoreProperties(value = "type", allowSetters = true)
-        private ShippingDestinationInputPractice value;
+        private ShippingDestinationPracticeInput value;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
         private PracticeValue() {}
 
-        private PracticeValue(ShippingDestinationInputPractice value) {
+        private PracticeValue(ShippingDestinationPracticeInput value) {
             this.value = value;
         }
 
@@ -209,12 +209,12 @@ public final class ShippingDestinationInput {
     private static final class AddressValue implements Value {
         @JsonUnwrapped
         @JsonIgnoreProperties(value = "type", allowSetters = true)
-        private ShippingDestinationInputAddress value;
+        private ShippingDestinationAddressInput value;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
         private AddressValue() {}
 
-        private AddressValue(ShippingDestinationInputAddress value) {
+        private AddressValue(ShippingDestinationAddressInput value) {
             this.value = value;
         }
 

@@ -42,7 +42,7 @@ public final class ListWebhooksRequest {
     }
 
     /**
-     * @return Page forward using the previous response's nextCursor. Keep the same filters, sort, organization and mode. Use only one cursor parameter.
+     * @return Page forward using the previous response's nextCursor. Keep the same filters, sort, organization and mode.
      */
     @JsonProperty("startingAfter")
     public Optional<String> getStartingAfter() {
@@ -109,7 +109,7 @@ public final class ListWebhooksRequest {
         }
 
         /**
-         * <p>Page forward using the previous response's nextCursor. Keep the same filters, sort, organization and mode. Use only one cursor parameter.</p>
+         * <p>Page forward using the previous response's nextCursor. Keep the same filters, sort, organization and mode.</p>
          */
         @JsonSetter(value = "startingAfter", nulls = Nulls.SKIP)
         public Builder startingAfter(Optional<String> startingAfter) {

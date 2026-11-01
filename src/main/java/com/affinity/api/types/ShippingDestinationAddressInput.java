@@ -17,13 +17,13 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = ShippingDestinationInputAddress.Builder.class)
-public final class ShippingDestinationInputAddress {
+@JsonDeserialize(builder = ShippingDestinationAddressInput.Builder.class)
+public final class ShippingDestinationAddressInput {
     private final AddressInput address;
 
     private final Map<String, Object> additionalProperties;
 
-    private ShippingDestinationInputAddress(AddressInput address, Map<String, Object> additionalProperties) {
+    private ShippingDestinationAddressInput(AddressInput address, Map<String, Object> additionalProperties) {
         this.address = address;
         this.additionalProperties = additionalProperties;
     }
@@ -36,7 +36,7 @@ public final class ShippingDestinationInputAddress {
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof ShippingDestinationInputAddress && equalTo((ShippingDestinationInputAddress) other);
+        return other instanceof ShippingDestinationAddressInput && equalTo((ShippingDestinationAddressInput) other);
     }
 
     @JsonAnyGetter
@@ -44,7 +44,7 @@ public final class ShippingDestinationInputAddress {
         return this.additionalProperties;
     }
 
-    private boolean equalTo(ShippingDestinationInputAddress other) {
+    private boolean equalTo(ShippingDestinationAddressInput other) {
         return address.equals(other.address);
     }
 
@@ -65,11 +65,11 @@ public final class ShippingDestinationInputAddress {
     public interface AddressStage {
         _FinalStage address(@NotNull AddressInput address);
 
-        Builder from(ShippingDestinationInputAddress other);
+        Builder from(ShippingDestinationAddressInput other);
     }
 
     public interface _FinalStage {
-        ShippingDestinationInputAddress build();
+        ShippingDestinationAddressInput build();
 
         _FinalStage additionalProperty(String key, Object value);
 
@@ -85,7 +85,7 @@ public final class ShippingDestinationInputAddress {
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(ShippingDestinationInputAddress other) {
+        public Builder from(ShippingDestinationAddressInput other) {
             address(other.getAddress());
             return this;
         }
@@ -98,8 +98,8 @@ public final class ShippingDestinationInputAddress {
         }
 
         @java.lang.Override
-        public ShippingDestinationInputAddress build() {
-            return new ShippingDestinationInputAddress(address, additionalProperties);
+        public ShippingDestinationAddressInput build() {
+            return new ShippingDestinationAddressInput(address, additionalProperties);
         }
 
         @JsonAnySetter

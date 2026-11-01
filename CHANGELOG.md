@@ -4,6 +4,26 @@ All notable changes to `io.github.affinity-health:affinity-java` are documented 
 uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html); before 1.0, a minor version can
 break callers.
 
+## 0.5.0 - 2026-11-01
+
+This release targets API `2026-11-01`, which breaks `2026-10-28`.
+
+### Changed
+
+- Every request sends `Affinity-Version: 2026-11-01`.
+- A descending sort is `<field>_desc`, such as `ListPracticesRequestSort.CREATED_DESC`: `created_desc` and `patient_desc`
+  for orders, and `name_desc`, `location_desc`, `mode_desc` and `created_desc` for practices. The
+  `-created` values are gone; the API refuses them.
+- The shipping destination input types are renamed: `ShippingDestinationInputAddress`,
+  `ShippingDestinationInputPatient` and `ShippingDestinationInputPractice` are now
+  `ShippingDestinationAddressInput`, `ShippingDestinationPatientInput` and
+  `ShippingDestinationPracticeInput`.
+
+### Added
+
+- The `awaiting_approval` order status, in orders, webhook orders and the `orders.list` status
+  filter.
+
 ## 0.4.1 - 2026-11-01
 
 ### Fixed

@@ -62,14 +62,14 @@ public class AsyncRawOrdersClient {
     }
 
     /**
-     * List accessible orders in the current mode, newest first. <code>externalOrderId</code> matches exactly, including case. <code>updatedAfter</code> accepts an ISO 8601 timestamp with a timezone and returns strictly later updates. Keep filters fixed while paging. <code>sort</code> takes <code>patient</code> (lowercase firstName + space + lastName A to Z, then order ID) or <code>created</code> (oldest first); a leading <code>-</code> reverses. Creation time or patient name and the order ID determine cursor order, even when updatedAt changes.
+     * List accessible orders in the current mode, newest first. <code>externalOrderId</code> matches exactly, including case. <code>updatedAfter</code> accepts an ISO 8601 timestamp with a timezone and returns strictly later updates. Keep filters fixed while paging. <code>sort</code> takes <code>patient</code> (lowercase firstName + space + lastName A to Z, then order ID) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses. Creation time or patient name and the order ID determine cursor order, even when updatedAt changes.
      */
     public CompletableFuture<AffinityClientHttpResponse<SyncPagingIterable<Order>>> list() {
         return list(ListOrdersRequest.builder().build());
     }
 
     /**
-     * List accessible orders in the current mode, newest first. <code>externalOrderId</code> matches exactly, including case. <code>updatedAfter</code> accepts an ISO 8601 timestamp with a timezone and returns strictly later updates. Keep filters fixed while paging. <code>sort</code> takes <code>patient</code> (lowercase firstName + space + lastName A to Z, then order ID) or <code>created</code> (oldest first); a leading <code>-</code> reverses. Creation time or patient name and the order ID determine cursor order, even when updatedAt changes.
+     * List accessible orders in the current mode, newest first. <code>externalOrderId</code> matches exactly, including case. <code>updatedAfter</code> accepts an ISO 8601 timestamp with a timezone and returns strictly later updates. Keep filters fixed while paging. <code>sort</code> takes <code>patient</code> (lowercase firstName + space + lastName A to Z, then order ID) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses. Creation time or patient name and the order ID determine cursor order, even when updatedAt changes.
      */
     public CompletableFuture<AffinityClientHttpResponse<SyncPagingIterable<Order>>> list(
             RequestOptions requestOptions) {
@@ -77,14 +77,14 @@ public class AsyncRawOrdersClient {
     }
 
     /**
-     * List accessible orders in the current mode, newest first. <code>externalOrderId</code> matches exactly, including case. <code>updatedAfter</code> accepts an ISO 8601 timestamp with a timezone and returns strictly later updates. Keep filters fixed while paging. <code>sort</code> takes <code>patient</code> (lowercase firstName + space + lastName A to Z, then order ID) or <code>created</code> (oldest first); a leading <code>-</code> reverses. Creation time or patient name and the order ID determine cursor order, even when updatedAt changes.
+     * List accessible orders in the current mode, newest first. <code>externalOrderId</code> matches exactly, including case. <code>updatedAfter</code> accepts an ISO 8601 timestamp with a timezone and returns strictly later updates. Keep filters fixed while paging. <code>sort</code> takes <code>patient</code> (lowercase firstName + space + lastName A to Z, then order ID) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses. Creation time or patient name and the order ID determine cursor order, even when updatedAt changes.
      */
     public CompletableFuture<AffinityClientHttpResponse<SyncPagingIterable<Order>>> list(ListOrdersRequest request) {
         return list(request, null);
     }
 
     /**
-     * List accessible orders in the current mode, newest first. <code>externalOrderId</code> matches exactly, including case. <code>updatedAfter</code> accepts an ISO 8601 timestamp with a timezone and returns strictly later updates. Keep filters fixed while paging. <code>sort</code> takes <code>patient</code> (lowercase firstName + space + lastName A to Z, then order ID) or <code>created</code> (oldest first); a leading <code>-</code> reverses. Creation time or patient name and the order ID determine cursor order, even when updatedAt changes.
+     * List accessible orders in the current mode, newest first. <code>externalOrderId</code> matches exactly, including case. <code>updatedAfter</code> accepts an ISO 8601 timestamp with a timezone and returns strictly later updates. Keep filters fixed while paging. <code>sort</code> takes <code>patient</code> (lowercase firstName + space + lastName A to Z, then order ID) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses. Creation time or patient name and the order ID determine cursor order, even when updatedAt changes.
      */
     public CompletableFuture<AffinityClientHttpResponse<SyncPagingIterable<Order>>> list(
             ListOrdersRequest request, RequestOptions requestOptions) {

@@ -16,6 +16,9 @@ public final class ListOrdersRequestStatus {
     public static final ListOrdersRequestStatus PROCESSING =
             new ListOrdersRequestStatus(Value.PROCESSING, "processing");
 
+    public static final ListOrdersRequestStatus AWAITING_APPROVAL =
+            new ListOrdersRequestStatus(Value.AWAITING_APPROVAL, "awaiting_approval");
+
     public static final ListOrdersRequestStatus CANCELLED = new ListOrdersRequestStatus(Value.CANCELLED, "cancelled");
 
     public static final ListOrdersRequestStatus SUBMITTED = new ListOrdersRequestStatus(Value.SUBMITTED, "submitted");
@@ -61,6 +64,8 @@ public final class ListOrdersRequestStatus {
                 return visitor.visitDelivered();
             case PROCESSING:
                 return visitor.visitProcessing();
+            case AWAITING_APPROVAL:
+                return visitor.visitAwaitingApproval();
             case CANCELLED:
                 return visitor.visitCancelled();
             case SUBMITTED:
@@ -82,6 +87,8 @@ public final class ListOrdersRequestStatus {
                 return DELIVERED;
             case "processing":
                 return PROCESSING;
+            case "awaiting_approval":
+                return AWAITING_APPROVAL;
             case "cancelled":
                 return CANCELLED;
             case "submitted":
@@ -92,6 +99,8 @@ public final class ListOrdersRequestStatus {
     }
 
     public enum Value {
+        AWAITING_APPROVAL,
+
         SUBMITTED,
 
         PROCESSING,
@@ -108,6 +117,8 @@ public final class ListOrdersRequestStatus {
     }
 
     public interface Visitor<T> {
+        T visitAwaitingApproval();
+
         T visitSubmitted();
 
         T visitProcessing();

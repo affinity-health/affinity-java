@@ -15,6 +15,9 @@ public final class PrescriptionStatus {
 
     public static final PrescriptionStatus PROCESSING = new PrescriptionStatus(Value.PROCESSING, "processing");
 
+    public static final PrescriptionStatus AWAITING_APPROVAL =
+            new PrescriptionStatus(Value.AWAITING_APPROVAL, "awaiting_approval");
+
     public static final PrescriptionStatus CANCELLED = new PrescriptionStatus(Value.CANCELLED, "cancelled");
 
     public static final PrescriptionStatus SUBMITTED = new PrescriptionStatus(Value.SUBMITTED, "submitted");
@@ -59,6 +62,8 @@ public final class PrescriptionStatus {
                 return visitor.visitDelivered();
             case PROCESSING:
                 return visitor.visitProcessing();
+            case AWAITING_APPROVAL:
+                return visitor.visitAwaitingApproval();
             case CANCELLED:
                 return visitor.visitCancelled();
             case SUBMITTED:
@@ -80,6 +85,8 @@ public final class PrescriptionStatus {
                 return DELIVERED;
             case "processing":
                 return PROCESSING;
+            case "awaiting_approval":
+                return AWAITING_APPROVAL;
             case "cancelled":
                 return CANCELLED;
             case "submitted":
@@ -90,6 +97,8 @@ public final class PrescriptionStatus {
     }
 
     public enum Value {
+        AWAITING_APPROVAL,
+
         SUBMITTED,
 
         PROCESSING,
@@ -106,6 +115,8 @@ public final class PrescriptionStatus {
     }
 
     public interface Visitor<T> {
+        T visitAwaitingApproval();
+
         T visitSubmitted();
 
         T visitProcessing();

@@ -62,14 +62,14 @@ public class AsyncRawPracticesClient {
     }
 
     /**
-     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (Test before Live) or <code>created</code> (oldest first); a leading <code>-</code> reverses.
+     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (Test before Live) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
      */
     public CompletableFuture<AffinityClientHttpResponse<SyncPagingIterable<Practice>>> list() {
         return list(ListPracticesRequest.builder().build());
     }
 
     /**
-     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (Test before Live) or <code>created</code> (oldest first); a leading <code>-</code> reverses.
+     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (Test before Live) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
      */
     public CompletableFuture<AffinityClientHttpResponse<SyncPagingIterable<Practice>>> list(
             RequestOptions requestOptions) {
@@ -77,7 +77,7 @@ public class AsyncRawPracticesClient {
     }
 
     /**
-     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (Test before Live) or <code>created</code> (oldest first); a leading <code>-</code> reverses.
+     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (Test before Live) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
      */
     public CompletableFuture<AffinityClientHttpResponse<SyncPagingIterable<Practice>>> list(
             ListPracticesRequest request) {
@@ -85,7 +85,7 @@ public class AsyncRawPracticesClient {
     }
 
     /**
-     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (Test before Live) or <code>created</code> (oldest first); a leading <code>-</code> reverses.
+     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (Test before Live) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
      */
     public CompletableFuture<AffinityClientHttpResponse<SyncPagingIterable<Practice>>> list(
             ListPracticesRequest request, RequestOptions requestOptions) {

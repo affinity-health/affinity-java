@@ -85,7 +85,7 @@ public final class ListOrdersRequest {
     }
 
     /**
-     * @return Page forward using the previous response's nextCursor. Keep the same filters, sort, organization and mode. Use only one cursor parameter.
+     * @return Page forward using the previous response's nextCursor. Keep the same filters, sort, organization and mode.
      */
     @JsonProperty("startingAfter")
     public Optional<String> getStartingAfter() {
@@ -157,7 +157,7 @@ public final class ListOrdersRequest {
     }
 
     /**
-     * @return patient sorts the lowercase text firstName + space + lastName A to Z, then order ID; created sorts oldest first. A leading - reverses the order. Defaults to -created. Restart pagination after changing sort.
+     * @return patient sorts the lowercase text firstName + space + lastName A to Z, then order ID; created sorts oldest first. A _desc suffix reverses the order. Defaults to created_desc. Restart pagination after changing sort.
      */
     @JsonProperty("sort")
     public Optional<ListOrdersRequestSort> getSort() {
@@ -272,7 +272,7 @@ public final class ListOrdersRequest {
         }
 
         /**
-         * <p>Page forward using the previous response's nextCursor. Keep the same filters, sort, organization and mode. Use only one cursor parameter.</p>
+         * <p>Page forward using the previous response's nextCursor. Keep the same filters, sort, organization and mode.</p>
          */
         @JsonSetter(value = "startingAfter", nulls = Nulls.SKIP)
         public Builder startingAfter(Optional<String> startingAfter) {
@@ -398,7 +398,7 @@ public final class ListOrdersRequest {
         }
 
         /**
-         * <p>patient sorts the lowercase text firstName + space + lastName A to Z, then order ID; created sorts oldest first. A leading - reverses the order. Defaults to -created. Restart pagination after changing sort.</p>
+         * <p>patient sorts the lowercase text firstName + space + lastName A to Z, then order ID; created sorts oldest first. A _desc suffix reverses the order. Defaults to created_desc. Restart pagination after changing sort.</p>
          */
         @JsonSetter(value = "sort", nulls = Nulls.SKIP)
         public Builder sort(Optional<ListOrdersRequestSort> sort) {

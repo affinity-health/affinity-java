@@ -31,6 +31,9 @@ public final class RemoveWebhooksResponse {
         this.additionalProperties = additionalProperties;
     }
 
+    /**
+     * @return Always true.
+     */
     @JsonProperty("deleted")
     public boolean getDeleted() {
         return deleted;
@@ -71,6 +74,9 @@ public final class RemoveWebhooksResponse {
     }
 
     public interface DeletedStage {
+        /**
+         * <p>Always true.</p>
+         */
         IdStage deleted(boolean deleted);
 
         Builder from(RemoveWebhooksResponse other);
@@ -105,6 +111,10 @@ public final class RemoveWebhooksResponse {
             return this;
         }
 
+        /**
+         * <p>Always true.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("deleted")
         public IdStage deleted(boolean deleted) {

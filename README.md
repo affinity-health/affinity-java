@@ -1,23 +1,23 @@
 # Affinity Java SDK
 
 Typed server-side client for the Affinity API. It is compiled for Java 8 and later and tested on
-Java 17. It targets API version `2026-10-28` and sends it in `Affinity-Version` on every request.
+Java 17. It targets API version `2026-11-01` and sends it in `Affinity-Version` on every request.
 
 Keep API keys on the server. Never put them in browser code, Android or other mobile applications,
 or anything you ship to users.
 
 ## Install
 
-Registry publishing is not done yet. Build version 0.4.1 from GitHub and install it in your local
+Registry publishing is not done yet. Build version 0.5.0 from GitHub and install it in your local
 Maven repository:
 
 ```sh
-git clone --branch v0.4.1 https://github.com/affinity-health/affinity-java.git
+git clone --branch v0.5.0 https://github.com/affinity-health/affinity-java.git
 cd affinity-java
 ./gradlew publishToMavenLocal
 ```
 
-Then depend on `io.github.affinity-health:affinity-java:0.4.1` with `mavenLocal()` in your
+Then depend on `io.github.affinity-health:affinity-java:0.5.0` with `mavenLocal()` in your
 repositories:
 
 ```groovy
@@ -27,12 +27,12 @@ repositories {
 }
 
 dependencies {
-    implementation 'io.github.affinity-health:affinity-java:0.4.1'
+    implementation 'io.github.affinity-health:affinity-java:0.5.0'
 }
 ```
 
 For Maven, add the same coordinates (`groupId` `io.github.affinity-health`, `artifactId`
-`affinity-java`, `version` `0.4.1`).
+`affinity-java`, `version` `0.5.0`).
 
 ## Quickstart
 
@@ -103,7 +103,7 @@ The key sets the organization and the Test or Live mode.
 
   Network failures throw `AffinityClientException`.
 - **Defaults.** Base URL `https://api.affinityrx.com` (change it with `.url(...)`),
-  `Affinity-Version` `2026-10-28`, 2 retries with exponential backoff for 408, 429 and 5xx
+  `Affinity-Version` `2026-11-01`, 2 retries with exponential backoff for 408, 429 and 5xx
   responses (`Retry-After` is respected; change with `.maxRetries(...)`), and a 60-second timeout
   (`.timeout(seconds)`).
 - **Raw responses.** `affinity.orders().withRawResponse().get(orderId)` returns the body
@@ -188,7 +188,7 @@ All commands run from the repository root. They use the official `gradle:8-jdk17
 Docker is needed (plus Node and jq to regenerate):
 
 ```sh
-# Build the jar and run Fern's unit tests (build/libs/affinity-java-0.4.1.jar)
+# Build the jar and run Fern's unit tests (build/libs/affinity-java-0.5.0.jar)
 docker run --rm -u "$(id -u):$(id -g)" -e GRADLE_USER_HOME=/tmp/gradle -v "$PWD":/work -w /work \
   gradle:8-jdk17 ./gradlew --no-daemon build
 

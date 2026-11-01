@@ -3,12 +3,9 @@
  */
 package com.affinity.api.resources.medications.requests;
 
-import com.affinity.api.core.Nullable;
-import com.affinity.api.core.NullableNonemptyFilter;
 import com.affinity.api.core.ObjectMappers;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -59,19 +56,10 @@ public final class ListMedicationsRequest {
     }
 
     /**
-     * @return Page forward using the previous response's nextCursor. Keep the same filters, sort, organization and mode. Use only one cursor parameter.
+     * @return Page forward using the previous response's nextCursor. Keep the same filters, sort, organization and mode.
      */
-    @JsonIgnore
-    public Optional<String> getStartingAfter() {
-        if (startingAfter == null) {
-            return Optional.empty();
-        }
-        return startingAfter;
-    }
-
-    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
     @JsonProperty("startingAfter")
-    private Optional<String> _getStartingAfter() {
+    public Optional<String> getStartingAfter() {
         return startingAfter;
     }
 
@@ -154,7 +142,7 @@ public final class ListMedicationsRequest {
         }
 
         /**
-         * <p>Page forward using the previous response's nextCursor. Keep the same filters, sort, organization and mode. Use only one cursor parameter.</p>
+         * <p>Page forward using the previous response's nextCursor. Keep the same filters, sort, organization and mode.</p>
          */
         @JsonSetter(value = "startingAfter", nulls = Nulls.SKIP)
         public Builder startingAfter(Optional<String> startingAfter) {
@@ -164,17 +152,6 @@ public final class ListMedicationsRequest {
 
         public Builder startingAfter(String startingAfter) {
             this.startingAfter = Optional.ofNullable(startingAfter);
-            return this;
-        }
-
-        public Builder startingAfter(Nullable<String> startingAfter) {
-            if (startingAfter.isNull()) {
-                this.startingAfter = null;
-            } else if (startingAfter.isEmpty()) {
-                this.startingAfter = Optional.empty();
-            } else {
-                this.startingAfter = Optional.of(startingAfter.get());
-            }
             return this;
         }
 
