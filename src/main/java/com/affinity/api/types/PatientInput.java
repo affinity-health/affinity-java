@@ -79,7 +79,7 @@ public final class PatientInput {
     }
 
     /**
-     * @return The reported allergies; an empty list means no new allergies reported.
+     * @return The reported allergies. Send <code>[]</code> when the patient reports no new allergies.
      */
     @JsonProperty("allergies")
     public List<PatientInputAllergiesItem> getAllergies() {
@@ -260,7 +260,7 @@ public final class PatientInput {
         _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
         /**
-         * <p>The reported allergies; an empty list means no new allergies reported.</p>
+         * <p>The reported allergies. Send <code>[]</code> when the patient reports no new allergies.</p>
          */
         _FinalStage allergies(List<PatientInputAllergiesItem> allergies);
 
@@ -474,7 +474,7 @@ public final class PatientInput {
         }
 
         /**
-         * <p>The reported allergies; an empty list means no new allergies reported.</p>
+         * <p>The reported allergies. Send <code>[]</code> when the patient reports no new allergies.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -486,7 +486,7 @@ public final class PatientInput {
         }
 
         /**
-         * <p>The reported allergies; an empty list means no new allergies reported.</p>
+         * <p>The reported allergies. Send <code>[]</code> when the patient reports no new allergies.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -496,7 +496,7 @@ public final class PatientInput {
         }
 
         /**
-         * <p>The reported allergies; an empty list means no new allergies reported.</p>
+         * <p>The reported allergies. Send <code>[]</code> when the patient reports no new allergies.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "allergies", nulls = Nulls.SKIP)

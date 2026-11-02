@@ -8,16 +8,16 @@ or anything you ship to users.
 
 ## Install
 
-Registry publishing is not done yet. Build version 0.5.0 from GitHub and install it in your local
+Registry publishing is not done yet. Build version 0.6.0 from GitHub and install it in your local
 Maven repository:
 
 ```sh
-git clone --branch v0.5.0 https://github.com/affinity-health/affinity-java.git
+git clone --branch v0.6.0 https://github.com/affinity-health/affinity-java.git
 cd affinity-java
 ./gradlew publishToMavenLocal
 ```
 
-Then depend on `io.github.affinity-health:affinity-java:0.5.0` with `mavenLocal()` in your
+Then depend on `io.github.affinity-health:affinity-java:0.6.0` with `mavenLocal()` in your
 repositories:
 
 ```groovy
@@ -27,12 +27,12 @@ repositories {
 }
 
 dependencies {
-    implementation 'io.github.affinity-health:affinity-java:0.5.0'
+    implementation 'io.github.affinity-health:affinity-java:0.6.0'
 }
 ```
 
 For Maven, add the same coordinates (`groupId` `io.github.affinity-health`, `artifactId`
-`affinity-java`, `version` `0.5.0`).
+`affinity-java`, `version` `0.6.0`).
 
 ## Quickstart
 
@@ -188,7 +188,7 @@ All commands run from the repository root. They use the official `gradle:8-jdk17
 Docker is needed (plus Node and jq to regenerate):
 
 ```sh
-# Build the jar and run Fern's unit tests (build/libs/affinity-java-0.5.0.jar)
+# Build the jar and run Fern's unit tests (build/libs/affinity-java-0.6.0.jar)
 docker run --rm -u "$(id -u):$(id -g)" -e GRADLE_USER_HOME=/tmp/gradle -v "$PWD":/work -w /work \
   gradle:8-jdk17 ./gradlew --no-daemon build
 

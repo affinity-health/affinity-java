@@ -56,7 +56,7 @@ public final class UpdatePracticesRequestAddress {
     }
 
     /**
-     * @return The apartment or suite, or null when there is none. Empty text counts as null.
+     * @return The apartment or suite. Send null or empty text to remove it. An omitted <code>line2</code> keeps the saved suite, also when <code>line1</code> changes.
      */
     @JsonIgnore
     public Optional<String> getLine2() {
@@ -163,7 +163,7 @@ public final class UpdatePracticesRequestAddress {
         }
 
         /**
-         * <p>The apartment or suite, or null when there is none. Empty text counts as null.</p>
+         * <p>The apartment or suite. Send null or empty text to remove it. An omitted <code>line2</code> keeps the saved suite, also when <code>line1</code> changes.</p>
          */
         @JsonSetter(value = "line2", nulls = Nulls.SKIP)
         public Builder line2(Optional<String> line2) {

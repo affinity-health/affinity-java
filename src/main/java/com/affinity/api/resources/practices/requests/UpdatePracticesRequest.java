@@ -75,6 +75,9 @@ public final class UpdatePracticesRequest {
         return externalId;
     }
 
+    /**
+     * @return Affinity merges the address parts you send into the saved address. An omitted part keeps its saved value. To move to an address with no suite, send <code>&quot;line2&quot;: null</code> with the new <code>line1</code>, <code>city</code>, <code>state</code> and <code>postalCode</code>.
+     */
     @JsonIgnore
     public Optional<UpdatePracticesRequestAddress> getAddress() {
         if (address == null) {
@@ -83,8 +86,14 @@ public final class UpdatePracticesRequest {
         return address;
     }
 
-    @JsonProperty("liveEnabled")
+    /**
+     * @return Omit it or send null to leave Live unchanged.
+     */
+    @JsonIgnore
     public Optional<Boolean> getLiveEnabled() {
+        if (liveEnabled == null) {
+            return Optional.empty();
+        }
         return liveEnabled;
     }
 
@@ -114,6 +123,12 @@ public final class UpdatePracticesRequest {
     @JsonProperty("address")
     private Optional<UpdatePracticesRequestAddress> _getAddress() {
         return address;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("liveEnabled")
+    private Optional<Boolean> _getLiveEnabled() {
+        return liveEnabled;
     }
 
     @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
@@ -182,15 +197,23 @@ public final class UpdatePracticesRequest {
 
         _FinalStage externalId(Nullable<String> externalId);
 
+        /**
+         * <p>Affinity merges the address parts you send into the saved address. An omitted part keeps its saved value. To move to an address with no suite, send <code>&quot;line2&quot;: null</code> with the new <code>line1</code>, <code>city</code>, <code>state</code> and <code>postalCode</code>.</p>
+         */
         _FinalStage address(Optional<UpdatePracticesRequestAddress> address);
 
         _FinalStage address(UpdatePracticesRequestAddress address);
 
         _FinalStage address(Nullable<UpdatePracticesRequestAddress> address);
 
+        /**
+         * <p>Omit it or send null to leave Live unchanged.</p>
+         */
         _FinalStage liveEnabled(Optional<Boolean> liveEnabled);
 
         _FinalStage liveEnabled(Boolean liveEnabled);
+
+        _FinalStage liveEnabled(Nullable<Boolean> liveEnabled);
 
         _FinalStage name(Optional<String> name);
 
@@ -294,12 +317,35 @@ public final class UpdatePracticesRequest {
             return this;
         }
 
+        /**
+         * <p>Omit it or send null to leave Live unchanged.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage liveEnabled(Nullable<Boolean> liveEnabled) {
+            if (liveEnabled.isNull()) {
+                this.liveEnabled = null;
+            } else if (liveEnabled.isEmpty()) {
+                this.liveEnabled = Optional.empty();
+            } else {
+                this.liveEnabled = Optional.of(liveEnabled.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>Omit it or send null to leave Live unchanged.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         public _FinalStage liveEnabled(Boolean liveEnabled) {
             this.liveEnabled = Optional.ofNullable(liveEnabled);
             return this;
         }
 
+        /**
+         * <p>Omit it or send null to leave Live unchanged.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "liveEnabled", nulls = Nulls.SKIP)
         public _FinalStage liveEnabled(Optional<Boolean> liveEnabled) {
@@ -307,6 +353,10 @@ public final class UpdatePracticesRequest {
             return this;
         }
 
+        /**
+         * <p>Affinity merges the address parts you send into the saved address. An omitted part keeps its saved value. To move to an address with no suite, send <code>&quot;line2&quot;: null</code> with the new <code>line1</code>, <code>city</code>, <code>state</code> and <code>postalCode</code>.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         public _FinalStage address(Nullable<UpdatePracticesRequestAddress> address) {
             if (address.isNull()) {
@@ -319,12 +369,19 @@ public final class UpdatePracticesRequest {
             return this;
         }
 
+        /**
+         * <p>Affinity merges the address parts you send into the saved address. An omitted part keeps its saved value. To move to an address with no suite, send <code>&quot;line2&quot;: null</code> with the new <code>line1</code>, <code>city</code>, <code>state</code> and <code>postalCode</code>.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         public _FinalStage address(UpdatePracticesRequestAddress address) {
             this.address = Optional.ofNullable(address);
             return this;
         }
 
+        /**
+         * <p>Affinity merges the address parts you send into the saved address. An omitted part keeps its saved value. To move to an address with no suite, send <code>&quot;line2&quot;: null</code> with the new <code>line1</code>, <code>city</code>, <code>state</code> and <code>postalCode</code>.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "address", nulls = Nulls.SKIP)
         public _FinalStage address(Optional<UpdatePracticesRequestAddress> address) {

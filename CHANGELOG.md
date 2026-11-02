@@ -4,6 +4,18 @@ All notable changes to `io.github.affinity-health:affinity-java` are documented 
 uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html); before 1.0, a minor version can
 break callers.
 
+## 0.6.0 - 2026-11-02
+
+This release is generated from the API `2026-11-01` contract that production serves. That contract
+marks each response object and response value list as open: a later API version can add a field or
+a value.
+
+### Changed
+
+- Response values keep their known-value types, such as `OrderStatus` and `AllergyCategory`. A response with an
+  unknown value or an added field, at the root or nested, decodes without an error: `getEnumValue()` is `UNKNOWN` and `toString()` returns the value; added fields are in `getAdditionalProperties()`.
+- `practices.update` accepts `liveEnabled(null)` for `liveEnabled`; it leaves Live unchanged, the same as omitting it.
+
 ## 0.5.0 - 2026-11-01
 
 This release targets API `2026-11-01`, which breaks `2026-10-28`.
