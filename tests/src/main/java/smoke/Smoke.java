@@ -29,6 +29,7 @@ import com.affinity.api.types.Account;
 import com.affinity.api.types.AccountMode;
 import com.affinity.api.types.AccountType;
 import com.affinity.api.types.AddressInput;
+import com.affinity.api.types.PracticeAddressInput;
 import com.affinity.api.types.Medication;
 import com.affinity.api.types.Order;
 import com.affinity.api.types.PatientInput;
@@ -157,6 +158,15 @@ public final class Smoke {
                 .build();
     }
 
+    private static PracticeAddressInput practiceAddress(String line1) {
+        return PracticeAddressInput.builder()
+                .line1(line1)
+                .city("Austin")
+                .state("TX")
+                .postalCode("78701")
+                .build();
+    }
+
     private static OrderInput orderInput(Practice practice, Medication medication, int quantity) {
         PrescriptionInput._FinalStage prescription = PrescriptionInput.builder()
                 .directions("SDK smoke test. TEST ONLY. DO NOT FILL.")
@@ -251,7 +261,7 @@ public final class Smoke {
         Practice practice = check("practices.create", () -> client.practices()
                 .create(CreatePracticesRequest.builder()
                         .idempotencyKey(id())
-                        .address(address("100 Congress Ave"))
+                        .address(practiceAddress("100 Congress Ave"))
                         .name(label)
                         .phone("+15125550100")
                         .build()), Practice::getId);
