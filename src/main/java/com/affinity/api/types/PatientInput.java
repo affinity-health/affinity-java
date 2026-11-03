@@ -102,6 +102,9 @@ public final class PatientInput {
         return email;
     }
 
+    /**
+     * @return The first name.
+     */
     @JsonProperty("firstName")
     public String getFirstName() {
         return firstName;
@@ -115,6 +118,9 @@ public final class PatientInput {
         return sex;
     }
 
+    /**
+     * @return The last name.
+     */
     @JsonProperty("lastName")
     public String getLastName() {
         return lastName;
@@ -231,6 +237,9 @@ public final class PatientInput {
     }
 
     public interface FirstNameStage {
+        /**
+         * <p>The first name.</p>
+         */
         SexStage firstName(@NotNull String firstName);
     }
 
@@ -242,6 +251,9 @@ public final class PatientInput {
     }
 
     public interface LastNameStage {
+        /**
+         * <p>The last name.</p>
+         */
         PhoneStage lastName(@NotNull String lastName);
     }
 
@@ -365,6 +377,10 @@ public final class PatientInput {
             return this;
         }
 
+        /**
+         * <p>The first name.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("firstName")
         public SexStage firstName(@NotNull String firstName) {
@@ -383,6 +399,10 @@ public final class PatientInput {
             return this;
         }
 
+        /**
+         * <p>The last name.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("lastName")
         public PhoneStage lastName(@NotNull String lastName) {

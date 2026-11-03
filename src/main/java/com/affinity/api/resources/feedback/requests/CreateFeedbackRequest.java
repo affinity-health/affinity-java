@@ -53,6 +53,9 @@ public final class CreateFeedbackRequest {
         return idempotencyKey;
     }
 
+    /**
+     * @return Text with at least one visible character.
+     */
     @JsonProperty("message")
     public String getMessage() {
         return message;
@@ -64,7 +67,7 @@ public final class CreateFeedbackRequest {
     }
 
     /**
-     * @return The <code>requestId</code> of the response, as the API returned it.
+     * @return The <code>requestId</code> of the response, as the API returned it: a UUID or its <code>req_</code> form.
      */
     @JsonProperty("requestId")
     public Optional<String> getRequestId() {
@@ -113,6 +116,9 @@ public final class CreateFeedbackRequest {
     }
 
     public interface MessageStage {
+        /**
+         * <p>Text with at least one visible character.</p>
+         */
         _FinalStage message(@NotNull String message);
     }
 
@@ -128,7 +134,7 @@ public final class CreateFeedbackRequest {
         _FinalStage pageUrl(String pageUrl);
 
         /**
-         * <p>The <code>requestId</code> of the response, as the API returned it.</p>
+         * <p>The <code>requestId</code> of the response, as the API returned it: a UUID or its <code>req_</code> form.</p>
          */
         _FinalStage requestId(Optional<String> requestId);
 
@@ -168,6 +174,10 @@ public final class CreateFeedbackRequest {
             return this;
         }
 
+        /**
+         * <p>Text with at least one visible character.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("message")
         public _FinalStage message(@NotNull String message) {
@@ -176,7 +186,7 @@ public final class CreateFeedbackRequest {
         }
 
         /**
-         * <p>The <code>requestId</code> of the response, as the API returned it.</p>
+         * <p>The <code>requestId</code> of the response, as the API returned it: a UUID or its <code>req_</code> form.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -186,7 +196,7 @@ public final class CreateFeedbackRequest {
         }
 
         /**
-         * <p>The <code>requestId</code> of the response, as the API returned it.</p>
+         * <p>The <code>requestId</code> of the response, as the API returned it: a UUID or its <code>req_</code> form.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "requestId", nulls = Nulls.SKIP)

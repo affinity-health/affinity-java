@@ -51,7 +51,7 @@ public final class OrderShippingOption {
     }
 
     /**
-     * @return The price in integer cents.
+     * @return The shipping price charged, in integer cents.
      */
     @JsonProperty("price")
     public int getPrice() {
@@ -105,7 +105,7 @@ public final class OrderShippingOption {
 
     public interface PriceStage {
         /**
-         * <p>The price in integer cents.</p>
+         * <p>The shipping price charged, in integer cents.</p>
          */
         _FinalStage price(int price);
     }
@@ -161,7 +161,7 @@ public final class OrderShippingOption {
         }
 
         /**
-         * <p>The price in integer cents.</p>
+         * <p>The shipping price charged, in integer cents.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

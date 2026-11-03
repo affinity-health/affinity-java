@@ -20,7 +20,6 @@ import com.affinity.api.errors.ConflictError;
 import com.affinity.api.errors.ContentTooLargeError;
 import com.affinity.api.errors.ForbiddenError;
 import com.affinity.api.errors.InternalServerError;
-import com.affinity.api.errors.MethodNotAllowedError;
 import com.affinity.api.errors.NotFoundError;
 import com.affinity.api.errors.ServiceUnavailableError;
 import com.affinity.api.errors.TooManyRequestsError;
@@ -38,7 +37,6 @@ import com.affinity.api.resources.webhooks.types.ResendFailedWebhooksResponse;
 import com.affinity.api.types.Problem;
 import com.affinity.api.types.Problem409;
 import com.affinity.api.types.Problem429;
-import com.affinity.api.types.ServiceUnavailableErrorBody;
 import com.affinity.api.types.WebhookEndpoint;
 import com.affinity.api.types.WebhookEndpointList;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -185,14 +183,9 @@ public class AsyncRawWebhooksClient {
                                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
-                            case 405:
-                                future.completeExceptionally(new MethodNotAllowedError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
-                                        response));
-                                return;
                             case 413:
                                 future.completeExceptionally(new ContentTooLargeError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
                             case 429:
@@ -207,8 +200,7 @@ public class AsyncRawWebhooksClient {
                                 return;
                             case 503:
                                 future.completeExceptionally(new ServiceUnavailableError(
-                                        ObjectMappers.JSON_MAPPER.readValue(
-                                                responseBodyString, ServiceUnavailableErrorBody.class),
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
                         }
@@ -326,11 +318,6 @@ public class AsyncRawWebhooksClient {
                                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
-                            case 405:
-                                future.completeExceptionally(new MethodNotAllowedError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
-                                        response));
-                                return;
                             case 409:
                                 future.completeExceptionally(new ConflictError(
                                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem409.class),
@@ -338,7 +325,7 @@ public class AsyncRawWebhooksClient {
                                 return;
                             case 413:
                                 future.completeExceptionally(new ContentTooLargeError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
                             case 415:
@@ -363,8 +350,7 @@ public class AsyncRawWebhooksClient {
                                 return;
                             case 503:
                                 future.completeExceptionally(new ServiceUnavailableError(
-                                        ObjectMappers.JSON_MAPPER.readValue(
-                                                responseBodyString, ServiceUnavailableErrorBody.class),
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
                         }
@@ -491,14 +477,9 @@ public class AsyncRawWebhooksClient {
                                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
-                            case 405:
-                                future.completeExceptionally(new MethodNotAllowedError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
-                                        response));
-                                return;
                             case 413:
                                 future.completeExceptionally(new ContentTooLargeError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
                             case 429:
@@ -513,8 +494,7 @@ public class AsyncRawWebhooksClient {
                                 return;
                             case 503:
                                 future.completeExceptionally(new ServiceUnavailableError(
-                                        ObjectMappers.JSON_MAPPER.readValue(
-                                                responseBodyString, ServiceUnavailableErrorBody.class),
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
                         }
@@ -634,11 +614,6 @@ public class AsyncRawWebhooksClient {
                                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
-                            case 405:
-                                future.completeExceptionally(new MethodNotAllowedError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
-                                        response));
-                                return;
                             case 409:
                                 future.completeExceptionally(new ConflictError(
                                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem409.class),
@@ -646,7 +621,7 @@ public class AsyncRawWebhooksClient {
                                 return;
                             case 413:
                                 future.completeExceptionally(new ContentTooLargeError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
                             case 415:
@@ -671,8 +646,7 @@ public class AsyncRawWebhooksClient {
                                 return;
                             case 503:
                                 future.completeExceptionally(new ServiceUnavailableError(
-                                        ObjectMappers.JSON_MAPPER.readValue(
-                                                responseBodyString, ServiceUnavailableErrorBody.class),
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
                         }
@@ -788,11 +762,6 @@ public class AsyncRawWebhooksClient {
                                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
-                            case 405:
-                                future.completeExceptionally(new MethodNotAllowedError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
-                                        response));
-                                return;
                             case 409:
                                 future.completeExceptionally(new ConflictError(
                                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem409.class),
@@ -800,7 +769,7 @@ public class AsyncRawWebhooksClient {
                                 return;
                             case 413:
                                 future.completeExceptionally(new ContentTooLargeError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
                             case 415:
@@ -820,8 +789,7 @@ public class AsyncRawWebhooksClient {
                                 return;
                             case 503:
                                 future.completeExceptionally(new ServiceUnavailableError(
-                                        ObjectMappers.JSON_MAPPER.readValue(
-                                                responseBodyString, ServiceUnavailableErrorBody.class),
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
                         }

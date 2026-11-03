@@ -14,7 +14,6 @@ import com.affinity.api.errors.BadRequestError;
 import com.affinity.api.errors.ContentTooLargeError;
 import com.affinity.api.errors.ForbiddenError;
 import com.affinity.api.errors.InternalServerError;
-import com.affinity.api.errors.MethodNotAllowedError;
 import com.affinity.api.errors.NotFoundError;
 import com.affinity.api.errors.ServiceUnavailableError;
 import com.affinity.api.errors.TooManyRequestsError;
@@ -22,7 +21,6 @@ import com.affinity.api.errors.UnauthorizedError;
 import com.affinity.api.types.Account;
 import com.affinity.api.types.Problem;
 import com.affinity.api.types.Problem429;
-import com.affinity.api.types.ServiceUnavailableErrorBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
 import okhttp3.Headers;
@@ -98,12 +96,9 @@ public class RawAccountClient {
                     case 404:
                         throw new NotFoundError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
-                    case 405:
-                        throw new MethodNotAllowedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 413:
                         throw new ContentTooLargeError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 429:
                         throw new TooManyRequestsError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem429.class), response);
@@ -112,9 +107,7 @@ public class RawAccountClient {
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 503:
                         throw new ServiceUnavailableError(
-                                ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBodyString, ServiceUnavailableErrorBody.class),
-                                response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                 }
             } catch (JsonProcessingException ignored) {
                 // unable to map error response, throwing generic error

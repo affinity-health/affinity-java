@@ -98,7 +98,7 @@ client.feedback().create(
 <dl>
 <dd>
 
-**message:** `String` 
+**message:** `String` — Text with at least one visible character.
     
 </dd>
 </dl>
@@ -114,7 +114,7 @@ client.feedback().create(
 <dl>
 <dd>
 
-**requestId:** `Optional<String>` — The `requestId` of the response, as the API returned it.
+**requestId:** `Optional<String>` — The `requestId` of the response, as the API returned it: a UUID or its `req_` form.
     
 </dd>
 </dl>
@@ -139,7 +139,7 @@ client.feedback().create(
 <dl>
 <dd>
 
-Every medication you can order in the current mode, A to Z by name, then by ID. The list has no search or filters: read every page and choose by name, strength, form and pharmacy. Prices are in cents. `requirements` names the optional prescription fields this pharmacy requires; `compoundingReasons` and `quantities` list the accepted values when the pharmacy limits them, counted in `quantityUnit`. With a `fill`, `price` is per fill and each quantity counts `quantityUnit`, not fills: it is a whole number of fills in units. For a fill of 30 tablets, quantity 60 is two fills. For vials, quantity 1 is one vial and quantity 2 is two vials. A 2 mL vial lists quantities 1–10; its volume is separate from its quantity.
+Every medication you can order in the current mode, A to Z by name, then by ID. The list has no text search: read every page and choose by name, strength, form and pharmacy. Send practiceId to list what that practice can order, at its prices; without it, the caller's organization is used. Prices are in cents. `requirements` names the optional prescription fields this pharmacy requires; `compoundingReasons` and `quantities` list the accepted values when the pharmacy limits them, counted in `quantityUnit`. With a `fill`, `price` is per fill and each quantity counts `quantityUnit`, not fills: it is a whole number of fills in units. For a fill of 30 tablets, quantity 60 is two fills. For vials, quantity 1 is one vial and quantity 2 is two vials. A 2 mL vial lists quantities 1–10; its volume is separate from its quantity.
 </dd>
 </dl>
 </dd>
@@ -250,7 +250,7 @@ client.medications().get(
 <dl>
 <dd>
 
-**medicationId:** `String` 
+**medicationId:** `String` — The medication ID.
     
 </dd>
 </dl>
@@ -431,7 +431,7 @@ client.orders().list(
 <dl>
 <dd>
 
-One request creates the order, signs it and sends it to the pharmacy. Platforms must send practiceId; practice callers can omit it to use their own practice. With an API key, name the prescriber and send signatureAttestation. Optional prescriber phone and address each default to the practice; no account is looked up by NPI. In the app, the signed-in member signs with the NPI in their settings, or names the prescriber with the same attestation. The patient is found by patient.externalId and updated from the order. Live orders require Live access on the practice and its platform. No payment method is required.
+One request creates the order, signs it and sends it to the pharmacy. Platforms must send practiceId; practice callers can omit it to use their own practice. With an API key, name the prescriber and send signatureAttestation. Optional prescriber phone and address each default to the practice; no account is looked up by NPI. In the app, the signed-in member signs with the NPI in their settings, or names the prescriber with the same attestation. With patient.externalId, the order reuses that patient of the practice and mode and updates the saved record; without it, each order creates a new patient. When the pharmacy already holds the patient's name, a different firstName or lastName returns 422 invalid_order. Live orders require Live access on the practice and its platform. No payment method is required.
 </dd>
 </dl>
 </dd>
@@ -521,7 +521,7 @@ client.orders().create(
 <dl>
 <dd>
 
-**externalOrderId:** `Optional<String>` — Your order identifier, unique within the practice and mode.
+**externalOrderId:** `Optional<String>` — Your order identifier, unique within the practice and mode. A failed or cancelled order keeps it, so send a new one for a replacement order.
     
 </dd>
 </dl>
@@ -628,7 +628,7 @@ client.orders().get(
 <dl>
 <dd>
 
-**orderId:** `String` 
+**orderId:** `String` — The order ID.
     
 </dd>
 </dl>
@@ -652,7 +652,7 @@ client.orders().get(
 <dl>
 <dd>
 
-200 with status cancelled when the cancel is confirmed. 202 with cancelRequestedAt when the pharmacy has not confirmed yet: you get order.cancelled when it confirms, or, when it refuses, cancelRequestedAt becomes null and you get order.updated. If an earlier ask may have reached the pharmacy, a refusal keeps cancelRequestedAt and sends no event until the pharmacy ends the order (order.cancelled or order.shipped). 409 when the pharmacy refuses or the order has shipped.
+200 with status cancelled when the cancel is confirmed. 202 with cancelRequestedAt when the pharmacy has not confirmed yet: you get order.cancelled when it confirms, or, when it refuses, cancelRequestedAt becomes null and you get order.updated. If an earlier ask may have reached the pharmacy, a refusal keeps cancelRequestedAt and sends no event until the pharmacy ends the order (order.cancelled or order.shipped). 409 cannot_cancel when the order is shipped, delivered or failed. 409 cancel_refused when the pharmacy refused the cancel, or when Affinity could not reach the pharmacy; only the second says to retry with a new Idempotency-Key.
 </dd>
 </dl>
 </dd>
@@ -688,7 +688,7 @@ client.orders().cancel(
 <dl>
 <dd>
 
-**orderId:** `String` 
+**orderId:** `String` — The order ID.
     
 </dd>
 </dl>
@@ -721,7 +721,7 @@ client.orders().cancel(
 <dl>
 <dd>
 
-List the platform's practices, newest first. Available to platforms only. `sort` takes `name` or `location` (A to Z, practices without a location last), `mode` (Test before Live) or `created` (oldest first); a `_desc` suffix reverses.
+List the platform's practices, newest first. Available to platforms only. `sort` takes `name` or `location` (A to Z, practices without a location last), `mode` (without Live access, then with it) or `created` (oldest first); a `_desc` suffix reverses.
 </dd>
 </dl>
 </dd>
@@ -787,7 +787,7 @@ client.practices().list(
 <dl>
 <dd>
 
-**sort:** `Optional<ListPracticesRequestSort>` — name and location sort A to Z; mode sorts Test before Live; created sorts oldest first. A _desc suffix reverses the order. Defaults to created_desc. Missing locations sort last. Restart pagination after changing sort.
+**sort:** `Optional<ListPracticesRequestSort>` — name and location sort A to Z; mode sorts practices without Live access before those with it; created sorts oldest first. A _desc suffix reverses the order. Defaults to created_desc. Missing locations sort last. Restart pagination after changing sort.
     
 </dd>
 </dl>
@@ -889,7 +889,7 @@ client.practices().create(
 <dl>
 <dd>
 
-**name:** `String` 
+**name:** `String` — Text with at least one visible character.
     
 </dd>
 </dl>
@@ -956,7 +956,7 @@ client.practices().get(
 <dl>
 <dd>
 
-**practiceId:** `String` 
+**practiceId:** `String` — The practice ID.
     
 </dd>
 </dl>
@@ -980,7 +980,7 @@ client.practices().get(
 <dl>
 <dd>
 
-`liveEnabled` allows or refuses new Live orders. Existing records, cancellation, webhooks and billing keep working. Only its platform changes it; enabling requires platform Live access, and either change needs a Live caller: a Live key (403 live_key_required otherwise) or a session in Live mode (403 live_mode_required otherwise). Live orders send `name`, `phone` and `address` to the pharmacy, so a practice with Live access changes them only with a Live key (403 live_mode_required otherwise). A retry with the same key and body returns the stored first response, even if the practice has changed. Use GET /v1/practices/{practiceId} to read the current practice.
+`liveEnabled` allows or refuses new Live orders. Existing records, cancellation, webhooks and billing keep working. Only its platform changes it; enabling requires platform Live access, and either change needs a Live caller: a Live key (403 live_key_required otherwise) or a session in Live mode (403 live_mode_required otherwise). Live orders send `name`, `phone` and `address` to the pharmacy, so a practice with Live access changes them only in Live mode, with a Live key or a session in Live mode (403 live_mode_required otherwise). A retry with the same key and body returns the stored first response, even if the practice has changed. Use GET /v1/practices/{practiceId} to read the current practice.
 </dd>
 </dl>
 </dd>
@@ -1016,7 +1016,7 @@ client.practices().update(
 <dl>
 <dd>
 
-**practiceId:** `String` 
+**practiceId:** `String` — The practice ID.
     
 </dd>
 </dl>
@@ -1056,7 +1056,7 @@ client.practices().update(
 <dl>
 <dd>
 
-**name:** `Optional<String>` 
+**name:** `Optional<String>` — Text with at least one visible character.
     
 </dd>
 </dl>
@@ -1258,7 +1258,7 @@ client.webhooks().remove(
 <dl>
 <dd>
 
-**webhookEndpointId:** `String` 
+**webhookEndpointId:** `String` — The webhook endpoint ID.
     
 </dd>
 </dl>
@@ -1319,7 +1319,7 @@ client.webhooks().update(
 <dl>
 <dd>
 
-**webhookEndpointId:** `String` 
+**webhookEndpointId:** `String` — The webhook endpoint ID.
     
 </dd>
 </dl>
@@ -1395,7 +1395,7 @@ client.webhooks().resendFailed(
 <dl>
 <dd>
 
-**webhookEndpointId:** `String` 
+**webhookEndpointId:** `String` — The webhook endpoint ID.
     
 </dd>
 </dl>

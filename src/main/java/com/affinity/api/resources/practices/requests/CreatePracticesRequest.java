@@ -85,6 +85,9 @@ public final class CreatePracticesRequest {
         return liveEnabled;
     }
 
+    /**
+     * @return Text with at least one visible character.
+     */
     @JsonProperty("name")
     public String getName() {
         return name;
@@ -153,6 +156,9 @@ public final class CreatePracticesRequest {
     }
 
     public interface NameStage {
+        /**
+         * <p>Text with at least one visible character.</p>
+         */
         PhoneStage name(@NotNull String name);
     }
 
@@ -230,6 +236,10 @@ public final class CreatePracticesRequest {
             return this;
         }
 
+        /**
+         * <p>Text with at least one visible character.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("name")
         public PhoneStage name(@NotNull String name) {

@@ -4,20 +4,21 @@
 package com.affinity.api.errors;
 
 import com.affinity.api.core.AffinityClientApiException;
+import com.affinity.api.types.Problem;
 import okhttp3.Response;
 
 public final class ContentTooLargeError extends AffinityClientApiException {
     /**
      * The body of the response that triggered the exception.
      */
-    private final Object body;
+    private final Problem body;
 
-    public ContentTooLargeError(Object body) {
+    public ContentTooLargeError(Problem body) {
         super("ContentTooLargeError", 413, body);
         this.body = body;
     }
 
-    public ContentTooLargeError(Object body, Response rawResponse) {
+    public ContentTooLargeError(Problem body, Response rawResponse) {
         super("ContentTooLargeError", 413, body, rawResponse);
         this.body = body;
     }
@@ -26,7 +27,7 @@ public final class ContentTooLargeError extends AffinityClientApiException {
      * @return the body
      */
     @java.lang.Override
-    public Object body() {
+    public Problem body() {
         return this.body;
     }
 }

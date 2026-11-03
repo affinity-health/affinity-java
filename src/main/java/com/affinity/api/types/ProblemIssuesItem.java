@@ -45,21 +45,33 @@ public final class ProblemIssuesItem {
         this.additionalProperties = additionalProperties;
     }
 
+    /**
+     * @return A stable code for this field's problem.
+     */
     @JsonProperty("code")
     public String getCode() {
         return code;
     }
 
+    /**
+     * @return The field as one string, such as <code>patient.address.state</code> or <code>prescriptions[0].quantity</code>.
+     */
     @JsonProperty("field")
     public String getField() {
         return field;
     }
 
+    /**
+     * @return What is wrong with the field and what to send, for a person to read.
+     */
     @JsonProperty("message")
     public String getMessage() {
         return message;
     }
 
+    /**
+     * @return The field as a list of property names and array indexes.
+     */
     @JsonProperty("path")
     public List<ProblemIssuesItemPathItem> getPath() {
         return path;
@@ -98,16 +110,25 @@ public final class ProblemIssuesItem {
     }
 
     public interface CodeStage {
+        /**
+         * <p>A stable code for this field's problem.</p>
+         */
         FieldStage code(@NotNull String code);
 
         Builder from(ProblemIssuesItem other);
     }
 
     public interface FieldStage {
+        /**
+         * <p>The field as one string, such as <code>patient.address.state</code> or <code>prescriptions[0].quantity</code>.</p>
+         */
         MessageStage field(@NotNull String field);
     }
 
     public interface MessageStage {
+        /**
+         * <p>What is wrong with the field and what to send, for a person to read.</p>
+         */
         _FinalStage message(@NotNull String message);
     }
 
@@ -118,6 +139,9 @@ public final class ProblemIssuesItem {
 
         _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+        /**
+         * <p>The field as a list of property names and array indexes.</p>
+         */
         _FinalStage path(List<ProblemIssuesItemPathItem> path);
 
         _FinalStage addPath(ProblemIssuesItemPathItem path);
@@ -148,6 +172,10 @@ public final class ProblemIssuesItem {
             return this;
         }
 
+        /**
+         * <p>A stable code for this field's problem.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("code")
         public FieldStage code(@NotNull String code) {
@@ -155,6 +183,10 @@ public final class ProblemIssuesItem {
             return this;
         }
 
+        /**
+         * <p>The field as one string, such as <code>patient.address.state</code> or <code>prescriptions[0].quantity</code>.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("field")
         public MessageStage field(@NotNull String field) {
@@ -162,6 +194,10 @@ public final class ProblemIssuesItem {
             return this;
         }
 
+        /**
+         * <p>What is wrong with the field and what to send, for a person to read.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("message")
         public _FinalStage message(@NotNull String message) {
@@ -169,6 +205,10 @@ public final class ProblemIssuesItem {
             return this;
         }
 
+        /**
+         * <p>The field as a list of property names and array indexes.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         public _FinalStage addAllPath(List<ProblemIssuesItemPathItem> path) {
             if (path != null) {
@@ -177,12 +217,19 @@ public final class ProblemIssuesItem {
             return this;
         }
 
+        /**
+         * <p>The field as a list of property names and array indexes.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         public _FinalStage addPath(ProblemIssuesItemPathItem path) {
             this.path.add(path);
             return this;
         }
 
+        /**
+         * <p>The field as a list of property names and array indexes.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "path", nulls = Nulls.SKIP)
         public _FinalStage path(List<ProblemIssuesItemPathItem> path) {

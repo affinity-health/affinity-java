@@ -14,7 +14,6 @@ import com.affinity.api.errors.BadRequestError;
 import com.affinity.api.errors.ContentTooLargeError;
 import com.affinity.api.errors.ForbiddenError;
 import com.affinity.api.errors.InternalServerError;
-import com.affinity.api.errors.MethodNotAllowedError;
 import com.affinity.api.errors.NotFoundError;
 import com.affinity.api.errors.ServiceUnavailableError;
 import com.affinity.api.errors.TooManyRequestsError;
@@ -22,7 +21,6 @@ import com.affinity.api.errors.UnauthorizedError;
 import com.affinity.api.types.Account;
 import com.affinity.api.types.Problem;
 import com.affinity.api.types.Problem429;
-import com.affinity.api.types.ServiceUnavailableErrorBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -115,14 +113,9 @@ public class AsyncRawAccountClient {
                                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
-                            case 405:
-                                future.completeExceptionally(new MethodNotAllowedError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
-                                        response));
-                                return;
                             case 413:
                                 future.completeExceptionally(new ContentTooLargeError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
                             case 429:
@@ -137,8 +130,7 @@ public class AsyncRawAccountClient {
                                 return;
                             case 503:
                                 future.completeExceptionally(new ServiceUnavailableError(
-                                        ObjectMappers.JSON_MAPPER.readValue(
-                                                responseBodyString, ServiceUnavailableErrorBody.class),
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
                         }

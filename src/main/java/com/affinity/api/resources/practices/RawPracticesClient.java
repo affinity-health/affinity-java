@@ -20,7 +20,6 @@ import com.affinity.api.errors.ConflictError;
 import com.affinity.api.errors.ContentTooLargeError;
 import com.affinity.api.errors.ForbiddenError;
 import com.affinity.api.errors.InternalServerError;
-import com.affinity.api.errors.MethodNotAllowedError;
 import com.affinity.api.errors.NotFoundError;
 import com.affinity.api.errors.ServiceUnavailableError;
 import com.affinity.api.errors.TooManyRequestsError;
@@ -36,7 +35,6 @@ import com.affinity.api.types.PracticeList;
 import com.affinity.api.types.Problem;
 import com.affinity.api.types.Problem409;
 import com.affinity.api.types.Problem429;
-import com.affinity.api.types.ServiceUnavailableErrorBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
 import java.util.List;
@@ -57,28 +55,28 @@ public class RawPracticesClient {
     }
 
     /**
-     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (Test before Live) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
+     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (without Live access, then with it) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
      */
     public AffinityClientHttpResponse<SyncPagingIterable<Practice>> list() {
         return list(ListPracticesRequest.builder().build());
     }
 
     /**
-     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (Test before Live) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
+     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (without Live access, then with it) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
      */
     public AffinityClientHttpResponse<SyncPagingIterable<Practice>> list(RequestOptions requestOptions) {
         return list(ListPracticesRequest.builder().build(), requestOptions);
     }
 
     /**
-     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (Test before Live) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
+     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (without Live access, then with it) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
      */
     public AffinityClientHttpResponse<SyncPagingIterable<Practice>> list(ListPracticesRequest request) {
         return list(request, null);
     }
 
     /**
-     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (Test before Live) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
+     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (without Live access, then with it) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
      */
     public AffinityClientHttpResponse<SyncPagingIterable<Practice>> list(
             ListPracticesRequest request, RequestOptions requestOptions) {
@@ -164,12 +162,9 @@ public class RawPracticesClient {
                     case 404:
                         throw new NotFoundError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
-                    case 405:
-                        throw new MethodNotAllowedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 413:
                         throw new ContentTooLargeError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 429:
                         throw new TooManyRequestsError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem429.class), response);
@@ -178,9 +173,7 @@ public class RawPracticesClient {
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 503:
                         throw new ServiceUnavailableError(
-                                ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBodyString, ServiceUnavailableErrorBody.class),
-                                response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                 }
             } catch (JsonProcessingException ignored) {
                 // unable to map error response, throwing generic error
@@ -265,15 +258,12 @@ public class RawPracticesClient {
                     case 404:
                         throw new NotFoundError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
-                    case 405:
-                        throw new MethodNotAllowedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 409:
                         throw new ConflictError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem409.class), response);
                     case 413:
                         throw new ContentTooLargeError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 415:
                         throw new UnsupportedMediaTypeError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
@@ -288,9 +278,7 @@ public class RawPracticesClient {
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 503:
                         throw new ServiceUnavailableError(
-                                ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBodyString, ServiceUnavailableErrorBody.class),
-                                response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                 }
             } catch (JsonProcessingException ignored) {
                 // unable to map error response, throwing generic error
@@ -380,12 +368,9 @@ public class RawPracticesClient {
                     case 404:
                         throw new NotFoundError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
-                    case 405:
-                        throw new MethodNotAllowedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 413:
                         throw new ContentTooLargeError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 429:
                         throw new TooManyRequestsError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem429.class), response);
@@ -394,9 +379,7 @@ public class RawPracticesClient {
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 503:
                         throw new ServiceUnavailableError(
-                                ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBodyString, ServiceUnavailableErrorBody.class),
-                                response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                 }
             } catch (JsonProcessingException ignored) {
                 // unable to map error response, throwing generic error
@@ -412,14 +395,14 @@ public class RawPracticesClient {
     }
 
     /**
-     * <code>liveEnabled</code> allows or refuses new Live orders. Existing records, cancellation, webhooks and billing keep working. Only its platform changes it; enabling requires platform Live access, and either change needs a Live caller: a Live key (403 live_key_required otherwise) or a session in Live mode (403 live_mode_required otherwise). Live orders send <code>name</code>, <code>phone</code> and <code>address</code> to the pharmacy, so a practice with Live access changes them only with a Live key (403 live_mode_required otherwise). A retry with the same key and body returns the stored first response, even if the practice has changed. Use GET /v1/practices/{practiceId} to read the current practice.
+     * <code>liveEnabled</code> allows or refuses new Live orders. Existing records, cancellation, webhooks and billing keep working. Only its platform changes it; enabling requires platform Live access, and either change needs a Live caller: a Live key (403 live_key_required otherwise) or a session in Live mode (403 live_mode_required otherwise). Live orders send <code>name</code>, <code>phone</code> and <code>address</code> to the pharmacy, so a practice with Live access changes them only in Live mode, with a Live key or a session in Live mode (403 live_mode_required otherwise). A retry with the same key and body returns the stored first response, even if the practice has changed. Use GET /v1/practices/{practiceId} to read the current practice.
      */
     public AffinityClientHttpResponse<Practice> update(String practiceId, UpdatePracticesRequest request) {
         return update(practiceId, request, null);
     }
 
     /**
-     * <code>liveEnabled</code> allows or refuses new Live orders. Existing records, cancellation, webhooks and billing keep working. Only its platform changes it; enabling requires platform Live access, and either change needs a Live caller: a Live key (403 live_key_required otherwise) or a session in Live mode (403 live_mode_required otherwise). Live orders send <code>name</code>, <code>phone</code> and <code>address</code> to the pharmacy, so a practice with Live access changes them only with a Live key (403 live_mode_required otherwise). A retry with the same key and body returns the stored first response, even if the practice has changed. Use GET /v1/practices/{practiceId} to read the current practice.
+     * <code>liveEnabled</code> allows or refuses new Live orders. Existing records, cancellation, webhooks and billing keep working. Only its platform changes it; enabling requires platform Live access, and either change needs a Live caller: a Live key (403 live_key_required otherwise) or a session in Live mode (403 live_mode_required otherwise). Live orders send <code>name</code>, <code>phone</code> and <code>address</code> to the pharmacy, so a practice with Live access changes them only in Live mode, with a Live key or a session in Live mode (403 live_mode_required otherwise). A retry with the same key and body returns the stored first response, even if the practice has changed. Use GET /v1/practices/{practiceId} to read the current practice.
      */
     public AffinityClientHttpResponse<Practice> update(
             String practiceId, UpdatePracticesRequest request, RequestOptions requestOptions) {
@@ -483,15 +466,12 @@ public class RawPracticesClient {
                     case 404:
                         throw new NotFoundError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
-                    case 405:
-                        throw new MethodNotAllowedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 409:
                         throw new ConflictError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem409.class), response);
                     case 413:
                         throw new ContentTooLargeError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 415:
                         throw new UnsupportedMediaTypeError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
@@ -506,9 +486,7 @@ public class RawPracticesClient {
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 503:
                         throw new ServiceUnavailableError(
-                                ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBodyString, ServiceUnavailableErrorBody.class),
-                                response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                 }
             } catch (JsonProcessingException ignored) {
                 // unable to map error response, throwing generic error

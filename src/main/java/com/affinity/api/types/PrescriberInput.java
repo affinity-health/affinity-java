@@ -67,11 +67,17 @@ public final class PrescriberInput {
         return address;
     }
 
+    /**
+     * @return The first name.
+     */
     @JsonProperty("firstName")
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     * @return The last name.
+     */
     @JsonProperty("lastName")
     public String getLastName() {
         return lastName;
@@ -125,12 +131,18 @@ public final class PrescriberInput {
     }
 
     public interface FirstNameStage {
+        /**
+         * <p>The first name.</p>
+         */
         LastNameStage firstName(@NotNull String firstName);
 
         Builder from(PrescriberInput other);
     }
 
     public interface LastNameStage {
+        /**
+         * <p>The last name.</p>
+         */
         NpiStage lastName(@NotNull String lastName);
     }
 
@@ -188,6 +200,10 @@ public final class PrescriberInput {
             return this;
         }
 
+        /**
+         * <p>The first name.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("firstName")
         public LastNameStage firstName(@NotNull String firstName) {
@@ -195,6 +211,10 @@ public final class PrescriberInput {
             return this;
         }
 
+        /**
+         * <p>The last name.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("lastName")
         public NpiStage lastName(@NotNull String lastName) {

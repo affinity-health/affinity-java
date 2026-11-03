@@ -70,6 +70,9 @@ public final class PrescriptionInput {
         return compoundingReason;
     }
 
+    /**
+     * @return The prescriber's directions for use.
+     */
     @JsonProperty("directions")
     public String getDirections() {
         return directions;
@@ -173,6 +176,9 @@ public final class PrescriptionInput {
     }
 
     public interface DirectionsStage {
+        /**
+         * <p>The prescriber's directions for use.</p>
+         */
         MedicationIdStage directions(@NotNull String directions);
 
         Builder from(PrescriptionInput other);
@@ -265,6 +271,10 @@ public final class PrescriptionInput {
             return this;
         }
 
+        /**
+         * <p>The prescriber's directions for use.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("directions")
         public MedicationIdStage directions(@NotNull String directions) {

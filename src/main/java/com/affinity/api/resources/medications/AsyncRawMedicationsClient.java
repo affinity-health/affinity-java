@@ -17,7 +17,6 @@ import com.affinity.api.errors.BadRequestError;
 import com.affinity.api.errors.ContentTooLargeError;
 import com.affinity.api.errors.ForbiddenError;
 import com.affinity.api.errors.InternalServerError;
-import com.affinity.api.errors.MethodNotAllowedError;
 import com.affinity.api.errors.NotFoundError;
 import com.affinity.api.errors.ServiceUnavailableError;
 import com.affinity.api.errors.TooManyRequestsError;
@@ -29,7 +28,6 @@ import com.affinity.api.types.Medication;
 import com.affinity.api.types.MedicationList;
 import com.affinity.api.types.Problem;
 import com.affinity.api.types.Problem429;
-import com.affinity.api.types.ServiceUnavailableErrorBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
 import java.util.List;
@@ -54,14 +52,14 @@ public class AsyncRawMedicationsClient {
     }
 
     /**
-     * Every medication you can order in the current mode, A to Z by name, then by ID. The list has no search or filters: read every page and choose by name, strength, form and pharmacy. Prices are in cents. <code>requirements</code> names the optional prescription fields this pharmacy requires; <code>compoundingReasons</code> and <code>quantities</code> list the accepted values when the pharmacy limits them, counted in <code>quantityUnit</code>. With a <code>fill</code>, <code>price</code> is per fill and each quantity counts <code>quantityUnit</code>, not fills: it is a whole number of fills in units. For a fill of 30 tablets, quantity 60 is two fills. For vials, quantity 1 is one vial and quantity 2 is two vials. A 2 mL vial lists quantities 1–10; its volume is separate from its quantity.
+     * Every medication you can order in the current mode, A to Z by name, then by ID. The list has no text search: read every page and choose by name, strength, form and pharmacy. Send practiceId to list what that practice can order, at its prices; without it, the caller's organization is used. Prices are in cents. <code>requirements</code> names the optional prescription fields this pharmacy requires; <code>compoundingReasons</code> and <code>quantities</code> list the accepted values when the pharmacy limits them, counted in <code>quantityUnit</code>. With a <code>fill</code>, <code>price</code> is per fill and each quantity counts <code>quantityUnit</code>, not fills: it is a whole number of fills in units. For a fill of 30 tablets, quantity 60 is two fills. For vials, quantity 1 is one vial and quantity 2 is two vials. A 2 mL vial lists quantities 1–10; its volume is separate from its quantity.
      */
     public CompletableFuture<AffinityClientHttpResponse<SyncPagingIterable<Medication>>> list() {
         return list(ListMedicationsRequest.builder().build());
     }
 
     /**
-     * Every medication you can order in the current mode, A to Z by name, then by ID. The list has no search or filters: read every page and choose by name, strength, form and pharmacy. Prices are in cents. <code>requirements</code> names the optional prescription fields this pharmacy requires; <code>compoundingReasons</code> and <code>quantities</code> list the accepted values when the pharmacy limits them, counted in <code>quantityUnit</code>. With a <code>fill</code>, <code>price</code> is per fill and each quantity counts <code>quantityUnit</code>, not fills: it is a whole number of fills in units. For a fill of 30 tablets, quantity 60 is two fills. For vials, quantity 1 is one vial and quantity 2 is two vials. A 2 mL vial lists quantities 1–10; its volume is separate from its quantity.
+     * Every medication you can order in the current mode, A to Z by name, then by ID. The list has no text search: read every page and choose by name, strength, form and pharmacy. Send practiceId to list what that practice can order, at its prices; without it, the caller's organization is used. Prices are in cents. <code>requirements</code> names the optional prescription fields this pharmacy requires; <code>compoundingReasons</code> and <code>quantities</code> list the accepted values when the pharmacy limits them, counted in <code>quantityUnit</code>. With a <code>fill</code>, <code>price</code> is per fill and each quantity counts <code>quantityUnit</code>, not fills: it is a whole number of fills in units. For a fill of 30 tablets, quantity 60 is two fills. For vials, quantity 1 is one vial and quantity 2 is two vials. A 2 mL vial lists quantities 1–10; its volume is separate from its quantity.
      */
     public CompletableFuture<AffinityClientHttpResponse<SyncPagingIterable<Medication>>> list(
             RequestOptions requestOptions) {
@@ -69,7 +67,7 @@ public class AsyncRawMedicationsClient {
     }
 
     /**
-     * Every medication you can order in the current mode, A to Z by name, then by ID. The list has no search or filters: read every page and choose by name, strength, form and pharmacy. Prices are in cents. <code>requirements</code> names the optional prescription fields this pharmacy requires; <code>compoundingReasons</code> and <code>quantities</code> list the accepted values when the pharmacy limits them, counted in <code>quantityUnit</code>. With a <code>fill</code>, <code>price</code> is per fill and each quantity counts <code>quantityUnit</code>, not fills: it is a whole number of fills in units. For a fill of 30 tablets, quantity 60 is two fills. For vials, quantity 1 is one vial and quantity 2 is two vials. A 2 mL vial lists quantities 1–10; its volume is separate from its quantity.
+     * Every medication you can order in the current mode, A to Z by name, then by ID. The list has no text search: read every page and choose by name, strength, form and pharmacy. Send practiceId to list what that practice can order, at its prices; without it, the caller's organization is used. Prices are in cents. <code>requirements</code> names the optional prescription fields this pharmacy requires; <code>compoundingReasons</code> and <code>quantities</code> list the accepted values when the pharmacy limits them, counted in <code>quantityUnit</code>. With a <code>fill</code>, <code>price</code> is per fill and each quantity counts <code>quantityUnit</code>, not fills: it is a whole number of fills in units. For a fill of 30 tablets, quantity 60 is two fills. For vials, quantity 1 is one vial and quantity 2 is two vials. A 2 mL vial lists quantities 1–10; its volume is separate from its quantity.
      */
     public CompletableFuture<AffinityClientHttpResponse<SyncPagingIterable<Medication>>> list(
             ListMedicationsRequest request) {
@@ -77,7 +75,7 @@ public class AsyncRawMedicationsClient {
     }
 
     /**
-     * Every medication you can order in the current mode, A to Z by name, then by ID. The list has no search or filters: read every page and choose by name, strength, form and pharmacy. Prices are in cents. <code>requirements</code> names the optional prescription fields this pharmacy requires; <code>compoundingReasons</code> and <code>quantities</code> list the accepted values when the pharmacy limits them, counted in <code>quantityUnit</code>. With a <code>fill</code>, <code>price</code> is per fill and each quantity counts <code>quantityUnit</code>, not fills: it is a whole number of fills in units. For a fill of 30 tablets, quantity 60 is two fills. For vials, quantity 1 is one vial and quantity 2 is two vials. A 2 mL vial lists quantities 1–10; its volume is separate from its quantity.
+     * Every medication you can order in the current mode, A to Z by name, then by ID. The list has no text search: read every page and choose by name, strength, form and pharmacy. Send practiceId to list what that practice can order, at its prices; without it, the caller's organization is used. Prices are in cents. <code>requirements</code> names the optional prescription fields this pharmacy requires; <code>compoundingReasons</code> and <code>quantities</code> list the accepted values when the pharmacy limits them, counted in <code>quantityUnit</code>. With a <code>fill</code>, <code>price</code> is per fill and each quantity counts <code>quantityUnit</code>, not fills: it is a whole number of fills in units. For a fill of 30 tablets, quantity 60 is two fills. For vials, quantity 1 is one vial and quantity 2 is two vials. A 2 mL vial lists quantities 1–10; its volume is separate from its quantity.
      */
     public CompletableFuture<AffinityClientHttpResponse<SyncPagingIterable<Medication>>> list(
             ListMedicationsRequest request, RequestOptions requestOptions) {
@@ -177,14 +175,9 @@ public class AsyncRawMedicationsClient {
                                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
-                            case 405:
-                                future.completeExceptionally(new MethodNotAllowedError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
-                                        response));
-                                return;
                             case 413:
                                 future.completeExceptionally(new ContentTooLargeError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
                             case 429:
@@ -199,8 +192,7 @@ public class AsyncRawMedicationsClient {
                                 return;
                             case 503:
                                 future.completeExceptionally(new ServiceUnavailableError(
-                                        ObjectMappers.JSON_MAPPER.readValue(
-                                                responseBodyString, ServiceUnavailableErrorBody.class),
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
                         }
@@ -332,14 +324,9 @@ public class AsyncRawMedicationsClient {
                                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
-                            case 405:
-                                future.completeExceptionally(new MethodNotAllowedError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
-                                        response));
-                                return;
                             case 413:
                                 future.completeExceptionally(new ContentTooLargeError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
                             case 429:
@@ -354,8 +341,7 @@ public class AsyncRawMedicationsClient {
                                 return;
                             case 503:
                                 future.completeExceptionally(new ServiceUnavailableError(
-                                        ObjectMappers.JSON_MAPPER.readValue(
-                                                responseBodyString, ServiceUnavailableErrorBody.class),
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
                         }

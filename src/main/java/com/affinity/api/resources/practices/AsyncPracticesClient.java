@@ -32,7 +32,7 @@ public class AsyncPracticesClient {
     }
 
     /**
-     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (Test before Live) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
+     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (without Live access, then with it) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
      */
     public CompletableFuture<SyncPagingIterable<Practice>> list() {
         CompletableFuture<AffinityClientHttpResponse<SyncPagingIterable<Practice>>> rawFuture = this.rawClient.list();
@@ -46,7 +46,7 @@ public class AsyncPracticesClient {
     }
 
     /**
-     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (Test before Live) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
+     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (without Live access, then with it) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
      */
     public CompletableFuture<SyncPagingIterable<Practice>> list(RequestOptions requestOptions) {
         CompletableFuture<AffinityClientHttpResponse<SyncPagingIterable<Practice>>> rawFuture =
@@ -61,7 +61,7 @@ public class AsyncPracticesClient {
     }
 
     /**
-     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (Test before Live) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
+     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (without Live access, then with it) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
      */
     public CompletableFuture<SyncPagingIterable<Practice>> list(ListPracticesRequest request) {
         CompletableFuture<AffinityClientHttpResponse<SyncPagingIterable<Practice>>> rawFuture =
@@ -76,7 +76,7 @@ public class AsyncPracticesClient {
     }
 
     /**
-     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (Test before Live) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
+     * List the platform's practices, newest first. Available to platforms only. <code>sort</code> takes <code>name</code> or <code>location</code> (A to Z, practices without a location last), <code>mode</code> (without Live access, then with it) or <code>created</code> (oldest first); a <code>_desc</code> suffix reverses.
      */
     public CompletableFuture<SyncPagingIterable<Practice>> list(
             ListPracticesRequest request, RequestOptions requestOptions) {
@@ -180,7 +180,7 @@ public class AsyncPracticesClient {
     }
 
     /**
-     * <code>liveEnabled</code> allows or refuses new Live orders. Existing records, cancellation, webhooks and billing keep working. Only its platform changes it; enabling requires platform Live access, and either change needs a Live caller: a Live key (403 live_key_required otherwise) or a session in Live mode (403 live_mode_required otherwise). Live orders send <code>name</code>, <code>phone</code> and <code>address</code> to the pharmacy, so a practice with Live access changes them only with a Live key (403 live_mode_required otherwise). A retry with the same key and body returns the stored first response, even if the practice has changed. Use GET /v1/practices/{practiceId} to read the current practice.
+     * <code>liveEnabled</code> allows or refuses new Live orders. Existing records, cancellation, webhooks and billing keep working. Only its platform changes it; enabling requires platform Live access, and either change needs a Live caller: a Live key (403 live_key_required otherwise) or a session in Live mode (403 live_mode_required otherwise). Live orders send <code>name</code>, <code>phone</code> and <code>address</code> to the pharmacy, so a practice with Live access changes them only in Live mode, with a Live key or a session in Live mode (403 live_mode_required otherwise). A retry with the same key and body returns the stored first response, even if the practice has changed. Use GET /v1/practices/{practiceId} to read the current practice.
      */
     public CompletableFuture<Practice> update(String practiceId, UpdatePracticesRequest request) {
         CompletableFuture<AffinityClientHttpResponse<Practice>> rawFuture = this.rawClient.update(practiceId, request);
@@ -194,7 +194,7 @@ public class AsyncPracticesClient {
     }
 
     /**
-     * <code>liveEnabled</code> allows or refuses new Live orders. Existing records, cancellation, webhooks and billing keep working. Only its platform changes it; enabling requires platform Live access, and either change needs a Live caller: a Live key (403 live_key_required otherwise) or a session in Live mode (403 live_mode_required otherwise). Live orders send <code>name</code>, <code>phone</code> and <code>address</code> to the pharmacy, so a practice with Live access changes them only with a Live key (403 live_mode_required otherwise). A retry with the same key and body returns the stored first response, even if the practice has changed. Use GET /v1/practices/{practiceId} to read the current practice.
+     * <code>liveEnabled</code> allows or refuses new Live orders. Existing records, cancellation, webhooks and billing keep working. Only its platform changes it; enabling requires platform Live access, and either change needs a Live caller: a Live key (403 live_key_required otherwise) or a session in Live mode (403 live_mode_required otherwise). Live orders send <code>name</code>, <code>phone</code> and <code>address</code> to the pharmacy, so a practice with Live access changes them only in Live mode, with a Live key or a session in Live mode (403 live_mode_required otherwise). A retry with the same key and body returns the stored first response, even if the practice has changed. Use GET /v1/practices/{practiceId} to read the current practice.
      */
     public CompletableFuture<Practice> update(
             String practiceId, UpdatePracticesRequest request, RequestOptions requestOptions) {

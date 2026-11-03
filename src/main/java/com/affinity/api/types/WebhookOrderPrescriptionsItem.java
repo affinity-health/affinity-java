@@ -60,7 +60,7 @@ public final class WebhookOrderPrescriptionsItem {
     }
 
     /**
-     * @return The failure or cancellation refusal reason, or null when there is none.
+     * @return Why the order failed, for a person to read. Null unless the order failed; a refused cancel leaves it null.
      */
     @JsonIgnore
     public Optional<String> getFailureReason() {
@@ -129,7 +129,7 @@ public final class WebhookOrderPrescriptionsItem {
         _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
         /**
-         * <p>The failure or cancellation refusal reason, or null when there is none.</p>
+         * <p>Why the order failed, for a person to read. Null unless the order failed; a refused cancel leaves it null.</p>
          */
         _FinalStage failureReason(Optional<String> failureReason);
 
@@ -181,7 +181,7 @@ public final class WebhookOrderPrescriptionsItem {
         }
 
         /**
-         * <p>The failure or cancellation refusal reason, or null when there is none.</p>
+         * <p>Why the order failed, for a person to read. Null unless the order failed; a refused cancel leaves it null.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -197,7 +197,7 @@ public final class WebhookOrderPrescriptionsItem {
         }
 
         /**
-         * <p>The failure or cancellation refusal reason, or null when there is none.</p>
+         * <p>Why the order failed, for a person to read. Null unless the order failed; a refused cancel leaves it null.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -207,7 +207,7 @@ public final class WebhookOrderPrescriptionsItem {
         }
 
         /**
-         * <p>The failure or cancellation refusal reason, or null when there is none.</p>
+         * <p>Why the order failed, for a person to read. Null unless the order failed; a refused cancel leaves it null.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "failureReason", nulls = Nulls.SKIP)

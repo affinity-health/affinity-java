@@ -40,6 +40,9 @@ public final class PatientInputAllergiesItem {
         return category;
     }
 
+    /**
+     * @return The reported allergy name.
+     */
     @JsonProperty("display")
     public String getDisplay() {
         return display;
@@ -84,6 +87,9 @@ public final class PatientInputAllergiesItem {
     }
 
     public interface DisplayStage {
+        /**
+         * <p>The reported allergy name.</p>
+         */
         _FinalStage display(@NotNull String display);
     }
 
@@ -123,6 +129,10 @@ public final class PatientInputAllergiesItem {
             return this;
         }
 
+        /**
+         * <p>The reported allergy name.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("display")
         public _FinalStage display(@NotNull String display) {

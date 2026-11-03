@@ -16,7 +16,6 @@ import com.affinity.api.errors.BadRequestError;
 import com.affinity.api.errors.ConflictError;
 import com.affinity.api.errors.ContentTooLargeError;
 import com.affinity.api.errors.InternalServerError;
-import com.affinity.api.errors.MethodNotAllowedError;
 import com.affinity.api.errors.ServiceUnavailableError;
 import com.affinity.api.errors.TooManyRequestsError;
 import com.affinity.api.errors.UnauthorizedError;
@@ -26,7 +25,6 @@ import com.affinity.api.resources.feedback.types.CreateFeedbackResponse;
 import com.affinity.api.types.Problem;
 import com.affinity.api.types.Problem409;
 import com.affinity.api.types.Problem429;
-import com.affinity.api.types.ServiceUnavailableErrorBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -123,11 +121,6 @@ public class AsyncRawFeedbackClient {
                                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
-                            case 405:
-                                future.completeExceptionally(new MethodNotAllowedError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
-                                        response));
-                                return;
                             case 409:
                                 future.completeExceptionally(new ConflictError(
                                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem409.class),
@@ -135,7 +128,7 @@ public class AsyncRawFeedbackClient {
                                 return;
                             case 413:
                                 future.completeExceptionally(new ContentTooLargeError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
                             case 415:
@@ -155,8 +148,7 @@ public class AsyncRawFeedbackClient {
                                 return;
                             case 503:
                                 future.completeExceptionally(new ServiceUnavailableError(
-                                        ObjectMappers.JSON_MAPPER.readValue(
-                                                responseBodyString, ServiceUnavailableErrorBody.class),
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
                         }

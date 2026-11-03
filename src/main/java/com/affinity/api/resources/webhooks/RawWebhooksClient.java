@@ -20,7 +20,6 @@ import com.affinity.api.errors.ConflictError;
 import com.affinity.api.errors.ContentTooLargeError;
 import com.affinity.api.errors.ForbiddenError;
 import com.affinity.api.errors.InternalServerError;
-import com.affinity.api.errors.MethodNotAllowedError;
 import com.affinity.api.errors.NotFoundError;
 import com.affinity.api.errors.ServiceUnavailableError;
 import com.affinity.api.errors.TooManyRequestsError;
@@ -38,7 +37,6 @@ import com.affinity.api.resources.webhooks.types.ResendFailedWebhooksResponse;
 import com.affinity.api.types.Problem;
 import com.affinity.api.types.Problem409;
 import com.affinity.api.types.Problem429;
-import com.affinity.api.types.ServiceUnavailableErrorBody;
 import com.affinity.api.types.WebhookEndpoint;
 import com.affinity.api.types.WebhookEndpointList;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -156,12 +154,9 @@ public class RawWebhooksClient {
                     case 404:
                         throw new NotFoundError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
-                    case 405:
-                        throw new MethodNotAllowedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 413:
                         throw new ContentTooLargeError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 429:
                         throw new TooManyRequestsError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem429.class), response);
@@ -170,9 +165,7 @@ public class RawWebhooksClient {
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 503:
                         throw new ServiceUnavailableError(
-                                ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBodyString, ServiceUnavailableErrorBody.class),
-                                response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                 }
             } catch (JsonProcessingException ignored) {
                 // unable to map error response, throwing generic error
@@ -259,15 +252,12 @@ public class RawWebhooksClient {
                     case 404:
                         throw new NotFoundError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
-                    case 405:
-                        throw new MethodNotAllowedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 409:
                         throw new ConflictError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem409.class), response);
                     case 413:
                         throw new ContentTooLargeError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 415:
                         throw new UnsupportedMediaTypeError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
@@ -282,9 +272,7 @@ public class RawWebhooksClient {
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 503:
                         throw new ServiceUnavailableError(
-                                ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBodyString, ServiceUnavailableErrorBody.class),
-                                response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                 }
             } catch (JsonProcessingException ignored) {
                 // unable to map error response, throwing generic error
@@ -380,12 +368,9 @@ public class RawWebhooksClient {
                     case 404:
                         throw new NotFoundError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
-                    case 405:
-                        throw new MethodNotAllowedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 413:
                         throw new ContentTooLargeError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 429:
                         throw new TooManyRequestsError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem429.class), response);
@@ -394,9 +379,7 @@ public class RawWebhooksClient {
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 503:
                         throw new ServiceUnavailableError(
-                                ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBodyString, ServiceUnavailableErrorBody.class),
-                                response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                 }
             } catch (JsonProcessingException ignored) {
                 // unable to map error response, throwing generic error
@@ -483,15 +466,12 @@ public class RawWebhooksClient {
                     case 404:
                         throw new NotFoundError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
-                    case 405:
-                        throw new MethodNotAllowedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 409:
                         throw new ConflictError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem409.class), response);
                     case 413:
                         throw new ContentTooLargeError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 415:
                         throw new UnsupportedMediaTypeError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
@@ -506,9 +486,7 @@ public class RawWebhooksClient {
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 503:
                         throw new ServiceUnavailableError(
-                                ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBodyString, ServiceUnavailableErrorBody.class),
-                                response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                 }
             } catch (JsonProcessingException ignored) {
                 // unable to map error response, throwing generic error
@@ -592,15 +570,12 @@ public class RawWebhooksClient {
                     case 404:
                         throw new NotFoundError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
-                    case 405:
-                        throw new MethodNotAllowedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 409:
                         throw new ConflictError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem409.class), response);
                     case 413:
                         throw new ContentTooLargeError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 415:
                         throw new UnsupportedMediaTypeError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
@@ -612,9 +587,7 @@ public class RawWebhooksClient {
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 503:
                         throw new ServiceUnavailableError(
-                                ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBodyString, ServiceUnavailableErrorBody.class),
-                                response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                 }
             } catch (JsonProcessingException ignored) {
                 // unable to map error response, throwing generic error

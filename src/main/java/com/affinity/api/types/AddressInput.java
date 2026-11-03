@@ -51,6 +51,9 @@ public final class AddressInput {
         this.additionalProperties = additionalProperties;
     }
 
+    /**
+     * @return The street address.
+     */
     @JsonProperty("line1")
     public String getLine1() {
         return line1;
@@ -67,6 +70,9 @@ public final class AddressInput {
         return line2;
     }
 
+    /**
+     * @return The city name.
+     */
     @JsonProperty("city")
     public String getCity() {
         return city;
@@ -128,12 +134,18 @@ public final class AddressInput {
     }
 
     public interface Line1Stage {
+        /**
+         * <p>The street address.</p>
+         */
         CityStage line1(@NotNull String line1);
 
         Builder from(AddressInput other);
     }
 
     public interface CityStage {
+        /**
+         * <p>The city name.</p>
+         */
         StateStage city(@NotNull String city);
     }
 
@@ -194,6 +206,10 @@ public final class AddressInput {
             return this;
         }
 
+        /**
+         * <p>The street address.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("line1")
         public CityStage line1(@NotNull String line1) {
@@ -201,6 +217,10 @@ public final class AddressInput {
             return this;
         }
 
+        /**
+         * <p>The city name.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("city")
         public StateStage city(@NotNull String city) {

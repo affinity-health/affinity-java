@@ -50,6 +50,9 @@ public final class UpdatePracticesRequestAddress {
         this.additionalProperties = additionalProperties;
     }
 
+    /**
+     * @return The street address.
+     */
     @JsonProperty("line1")
     public Optional<String> getLine1() {
         return line1;
@@ -66,6 +69,9 @@ public final class UpdatePracticesRequestAddress {
         return line2;
     }
 
+    /**
+     * @return The city name.
+     */
     @JsonProperty("city")
     public Optional<String> getCity() {
         return city;
@@ -151,6 +157,9 @@ public final class UpdatePracticesRequestAddress {
             return this;
         }
 
+        /**
+         * <p>The street address.</p>
+         */
         @JsonSetter(value = "line1", nulls = Nulls.SKIP)
         public Builder line1(Optional<String> line1) {
             this.line1 = line1;
@@ -187,6 +196,9 @@ public final class UpdatePracticesRequestAddress {
             return this;
         }
 
+        /**
+         * <p>The city name.</p>
+         */
         @JsonSetter(value = "city", nulls = Nulls.SKIP)
         public Builder city(Optional<String> city) {
             this.city = city;

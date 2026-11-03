@@ -17,7 +17,6 @@ import com.affinity.api.errors.BadRequestError;
 import com.affinity.api.errors.ContentTooLargeError;
 import com.affinity.api.errors.ForbiddenError;
 import com.affinity.api.errors.InternalServerError;
-import com.affinity.api.errors.MethodNotAllowedError;
 import com.affinity.api.errors.NotFoundError;
 import com.affinity.api.errors.ServiceUnavailableError;
 import com.affinity.api.errors.TooManyRequestsError;
@@ -29,7 +28,6 @@ import com.affinity.api.types.Medication;
 import com.affinity.api.types.MedicationList;
 import com.affinity.api.types.Problem;
 import com.affinity.api.types.Problem429;
-import com.affinity.api.types.ServiceUnavailableErrorBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
 import java.util.List;
@@ -49,28 +47,28 @@ public class RawMedicationsClient {
     }
 
     /**
-     * Every medication you can order in the current mode, A to Z by name, then by ID. The list has no search or filters: read every page and choose by name, strength, form and pharmacy. Prices are in cents. <code>requirements</code> names the optional prescription fields this pharmacy requires; <code>compoundingReasons</code> and <code>quantities</code> list the accepted values when the pharmacy limits them, counted in <code>quantityUnit</code>. With a <code>fill</code>, <code>price</code> is per fill and each quantity counts <code>quantityUnit</code>, not fills: it is a whole number of fills in units. For a fill of 30 tablets, quantity 60 is two fills. For vials, quantity 1 is one vial and quantity 2 is two vials. A 2 mL vial lists quantities 1–10; its volume is separate from its quantity.
+     * Every medication you can order in the current mode, A to Z by name, then by ID. The list has no text search: read every page and choose by name, strength, form and pharmacy. Send practiceId to list what that practice can order, at its prices; without it, the caller's organization is used. Prices are in cents. <code>requirements</code> names the optional prescription fields this pharmacy requires; <code>compoundingReasons</code> and <code>quantities</code> list the accepted values when the pharmacy limits them, counted in <code>quantityUnit</code>. With a <code>fill</code>, <code>price</code> is per fill and each quantity counts <code>quantityUnit</code>, not fills: it is a whole number of fills in units. For a fill of 30 tablets, quantity 60 is two fills. For vials, quantity 1 is one vial and quantity 2 is two vials. A 2 mL vial lists quantities 1–10; its volume is separate from its quantity.
      */
     public AffinityClientHttpResponse<SyncPagingIterable<Medication>> list() {
         return list(ListMedicationsRequest.builder().build());
     }
 
     /**
-     * Every medication you can order in the current mode, A to Z by name, then by ID. The list has no search or filters: read every page and choose by name, strength, form and pharmacy. Prices are in cents. <code>requirements</code> names the optional prescription fields this pharmacy requires; <code>compoundingReasons</code> and <code>quantities</code> list the accepted values when the pharmacy limits them, counted in <code>quantityUnit</code>. With a <code>fill</code>, <code>price</code> is per fill and each quantity counts <code>quantityUnit</code>, not fills: it is a whole number of fills in units. For a fill of 30 tablets, quantity 60 is two fills. For vials, quantity 1 is one vial and quantity 2 is two vials. A 2 mL vial lists quantities 1–10; its volume is separate from its quantity.
+     * Every medication you can order in the current mode, A to Z by name, then by ID. The list has no text search: read every page and choose by name, strength, form and pharmacy. Send practiceId to list what that practice can order, at its prices; without it, the caller's organization is used. Prices are in cents. <code>requirements</code> names the optional prescription fields this pharmacy requires; <code>compoundingReasons</code> and <code>quantities</code> list the accepted values when the pharmacy limits them, counted in <code>quantityUnit</code>. With a <code>fill</code>, <code>price</code> is per fill and each quantity counts <code>quantityUnit</code>, not fills: it is a whole number of fills in units. For a fill of 30 tablets, quantity 60 is two fills. For vials, quantity 1 is one vial and quantity 2 is two vials. A 2 mL vial lists quantities 1–10; its volume is separate from its quantity.
      */
     public AffinityClientHttpResponse<SyncPagingIterable<Medication>> list(RequestOptions requestOptions) {
         return list(ListMedicationsRequest.builder().build(), requestOptions);
     }
 
     /**
-     * Every medication you can order in the current mode, A to Z by name, then by ID. The list has no search or filters: read every page and choose by name, strength, form and pharmacy. Prices are in cents. <code>requirements</code> names the optional prescription fields this pharmacy requires; <code>compoundingReasons</code> and <code>quantities</code> list the accepted values when the pharmacy limits them, counted in <code>quantityUnit</code>. With a <code>fill</code>, <code>price</code> is per fill and each quantity counts <code>quantityUnit</code>, not fills: it is a whole number of fills in units. For a fill of 30 tablets, quantity 60 is two fills. For vials, quantity 1 is one vial and quantity 2 is two vials. A 2 mL vial lists quantities 1–10; its volume is separate from its quantity.
+     * Every medication you can order in the current mode, A to Z by name, then by ID. The list has no text search: read every page and choose by name, strength, form and pharmacy. Send practiceId to list what that practice can order, at its prices; without it, the caller's organization is used. Prices are in cents. <code>requirements</code> names the optional prescription fields this pharmacy requires; <code>compoundingReasons</code> and <code>quantities</code> list the accepted values when the pharmacy limits them, counted in <code>quantityUnit</code>. With a <code>fill</code>, <code>price</code> is per fill and each quantity counts <code>quantityUnit</code>, not fills: it is a whole number of fills in units. For a fill of 30 tablets, quantity 60 is two fills. For vials, quantity 1 is one vial and quantity 2 is two vials. A 2 mL vial lists quantities 1–10; its volume is separate from its quantity.
      */
     public AffinityClientHttpResponse<SyncPagingIterable<Medication>> list(ListMedicationsRequest request) {
         return list(request, null);
     }
 
     /**
-     * Every medication you can order in the current mode, A to Z by name, then by ID. The list has no search or filters: read every page and choose by name, strength, form and pharmacy. Prices are in cents. <code>requirements</code> names the optional prescription fields this pharmacy requires; <code>compoundingReasons</code> and <code>quantities</code> list the accepted values when the pharmacy limits them, counted in <code>quantityUnit</code>. With a <code>fill</code>, <code>price</code> is per fill and each quantity counts <code>quantityUnit</code>, not fills: it is a whole number of fills in units. For a fill of 30 tablets, quantity 60 is two fills. For vials, quantity 1 is one vial and quantity 2 is two vials. A 2 mL vial lists quantities 1–10; its volume is separate from its quantity.
+     * Every medication you can order in the current mode, A to Z by name, then by ID. The list has no text search: read every page and choose by name, strength, form and pharmacy. Send practiceId to list what that practice can order, at its prices; without it, the caller's organization is used. Prices are in cents. <code>requirements</code> names the optional prescription fields this pharmacy requires; <code>compoundingReasons</code> and <code>quantities</code> list the accepted values when the pharmacy limits them, counted in <code>quantityUnit</code>. With a <code>fill</code>, <code>price</code> is per fill and each quantity counts <code>quantityUnit</code>, not fills: it is a whole number of fills in units. For a fill of 30 tablets, quantity 60 is two fills. For vials, quantity 1 is one vial and quantity 2 is two vials. A 2 mL vial lists quantities 1–10; its volume is separate from its quantity.
      */
     public AffinityClientHttpResponse<SyncPagingIterable<Medication>> list(
             ListMedicationsRequest request, RequestOptions requestOptions) {
@@ -148,12 +146,9 @@ public class RawMedicationsClient {
                     case 404:
                         throw new NotFoundError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
-                    case 405:
-                        throw new MethodNotAllowedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 413:
                         throw new ContentTooLargeError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 429:
                         throw new TooManyRequestsError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem429.class), response);
@@ -162,9 +157,7 @@ public class RawMedicationsClient {
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 503:
                         throw new ServiceUnavailableError(
-                                ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBodyString, ServiceUnavailableErrorBody.class),
-                                response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                 }
             } catch (JsonProcessingException ignored) {
                 // unable to map error response, throwing generic error
@@ -263,12 +256,9 @@ public class RawMedicationsClient {
                     case 404:
                         throw new NotFoundError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
-                    case 405:
-                        throw new MethodNotAllowedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 413:
                         throw new ContentTooLargeError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 429:
                         throw new TooManyRequestsError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem429.class), response);
@@ -277,9 +267,7 @@ public class RawMedicationsClient {
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 503:
                         throw new ServiceUnavailableError(
-                                ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBodyString, ServiceUnavailableErrorBody.class),
-                                response);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                 }
             } catch (JsonProcessingException ignored) {
                 // unable to map error response, throwing generic error

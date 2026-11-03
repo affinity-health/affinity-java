@@ -130,7 +130,7 @@ public final class Order {
     }
 
     /**
-     * @return Your order identifier, unique within the practice and mode.
+     * @return Your order identifier, unique within the practice and mode. A failed or cancelled order keeps it.
      */
     @JsonIgnore
     public Optional<String> getExternalOrderId() {
@@ -141,7 +141,7 @@ public final class Order {
     }
 
     /**
-     * @return The failure or cancellation refusal reason, or null when there is none.
+     * @return Why the order failed, for a person to read. Null unless the order failed; a refused cancel leaves it null.
      */
     @JsonIgnore
     public Optional<String> getFailureReason() {
@@ -243,7 +243,7 @@ public final class Order {
     }
 
     /**
-     * @return The carrier's tracking page for the newest package, or null before the order ships.
+     * @return The carrier's tracking page for the newest package. Null when there is no package yet or the carrier has no tracking page.
      */
     @JsonIgnore
     public Optional<String> getTrackingUrl() {
@@ -465,7 +465,7 @@ public final class Order {
         _FinalStage cancelRequestedAt(Nullable<OffsetDateTime> cancelRequestedAt);
 
         /**
-         * <p>Your order identifier, unique within the practice and mode.</p>
+         * <p>Your order identifier, unique within the practice and mode. A failed or cancelled order keeps it.</p>
          */
         _FinalStage externalOrderId(Optional<String> externalOrderId);
 
@@ -474,7 +474,7 @@ public final class Order {
         _FinalStage externalOrderId(Nullable<String> externalOrderId);
 
         /**
-         * <p>The failure or cancellation refusal reason, or null when there is none.</p>
+         * <p>Why the order failed, for a person to read. Null unless the order failed; a refused cancel leaves it null.</p>
          */
         _FinalStage failureReason(Optional<String> failureReason);
 
@@ -519,7 +519,7 @@ public final class Order {
         _FinalStage addAllShipments(List<Shipment> shipments);
 
         /**
-         * <p>The carrier's tracking page for the newest package, or null before the order ships.</p>
+         * <p>The carrier's tracking page for the newest package. Null when there is no package yet or the carrier has no tracking page.</p>
          */
         _FinalStage trackingUrl(Optional<String> trackingUrl);
 
@@ -758,7 +758,7 @@ public final class Order {
         }
 
         /**
-         * <p>The carrier's tracking page for the newest package, or null before the order ships.</p>
+         * <p>The carrier's tracking page for the newest package. Null when there is no package yet or the carrier has no tracking page.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -774,7 +774,7 @@ public final class Order {
         }
 
         /**
-         * <p>The carrier's tracking page for the newest package, or null before the order ships.</p>
+         * <p>The carrier's tracking page for the newest package. Null when there is no package yet or the carrier has no tracking page.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -784,7 +784,7 @@ public final class Order {
         }
 
         /**
-         * <p>The carrier's tracking page for the newest package, or null before the order ships.</p>
+         * <p>The carrier's tracking page for the newest package. Null when there is no package yet or the carrier has no tracking page.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "trackingUrl", nulls = Nulls.SKIP)
@@ -936,7 +936,7 @@ public final class Order {
         }
 
         /**
-         * <p>The failure or cancellation refusal reason, or null when there is none.</p>
+         * <p>Why the order failed, for a person to read. Null unless the order failed; a refused cancel leaves it null.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -952,7 +952,7 @@ public final class Order {
         }
 
         /**
-         * <p>The failure or cancellation refusal reason, or null when there is none.</p>
+         * <p>Why the order failed, for a person to read. Null unless the order failed; a refused cancel leaves it null.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -962,7 +962,7 @@ public final class Order {
         }
 
         /**
-         * <p>The failure or cancellation refusal reason, or null when there is none.</p>
+         * <p>Why the order failed, for a person to read. Null unless the order failed; a refused cancel leaves it null.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "failureReason", nulls = Nulls.SKIP)
@@ -972,7 +972,7 @@ public final class Order {
         }
 
         /**
-         * <p>Your order identifier, unique within the practice and mode.</p>
+         * <p>Your order identifier, unique within the practice and mode. A failed or cancelled order keeps it.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -988,7 +988,7 @@ public final class Order {
         }
 
         /**
-         * <p>Your order identifier, unique within the practice and mode.</p>
+         * <p>Your order identifier, unique within the practice and mode. A failed or cancelled order keeps it.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -998,7 +998,7 @@ public final class Order {
         }
 
         /**
-         * <p>Your order identifier, unique within the practice and mode.</p>
+         * <p>Your order identifier, unique within the practice and mode. A failed or cancelled order keeps it.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "externalOrderId", nulls = Nulls.SKIP)

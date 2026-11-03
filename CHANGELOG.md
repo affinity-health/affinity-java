@@ -4,6 +4,20 @@ All notable changes to `io.github.affinity-health:affinity-java` are documented 
 uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html); before 1.0, a minor version can
 break callers.
 
+## 0.7.0 - 2026-11-03
+
+Generated from the corrected API `2026-11-01` document. Requests and responses on the wire are
+unchanged.
+
+### Removed
+
+- `com.affinity.api.errors.MethodNotAllowedError`. The API does not answer `405` to an SDK call. A `405` from a proxy raises `AffinityClientApiException`.
+- The `ContentTooLargeErrorBody`, `ServiceUnavailableErrorBody` and their `…Code` and `…CodeCode` types. `ContentTooLargeError.body()` and `ServiceUnavailableError.body()` are now `Problem`, like the other errors.
+
+### Changed
+
+- Clearer descriptions in the types and reference. Every enum member keeps its name.
+
 ## 0.6.0 - 2026-11-02
 
 This release is generated from the API `2026-11-01` contract that production serves. That contract

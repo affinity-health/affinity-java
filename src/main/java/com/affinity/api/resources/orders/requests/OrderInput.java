@@ -78,7 +78,7 @@ public final class OrderInput {
     }
 
     /**
-     * @return Your order identifier, unique within the practice and mode.
+     * @return Your order identifier, unique within the practice and mode. A failed or cancelled order keeps it, so send a new one for a replacement order.
      */
     @JsonIgnore
     public Optional<String> getExternalOrderId() {
@@ -215,7 +215,7 @@ public final class OrderInput {
         _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
         /**
-         * <p>Your order identifier, unique within the practice and mode.</p>
+         * <p>Your order identifier, unique within the practice and mode. A failed or cancelled order keeps it, so send a new one for a replacement order.</p>
          */
         _FinalStage externalOrderId(Optional<String> externalOrderId);
 
@@ -388,7 +388,7 @@ public final class OrderInput {
         }
 
         /**
-         * <p>Your order identifier, unique within the practice and mode.</p>
+         * <p>Your order identifier, unique within the practice and mode. A failed or cancelled order keeps it, so send a new one for a replacement order.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -404,7 +404,7 @@ public final class OrderInput {
         }
 
         /**
-         * <p>Your order identifier, unique within the practice and mode.</p>
+         * <p>Your order identifier, unique within the practice and mode. A failed or cancelled order keeps it, so send a new one for a replacement order.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -414,7 +414,7 @@ public final class OrderInput {
         }
 
         /**
-         * <p>Your order identifier, unique within the practice and mode.</p>
+         * <p>Your order identifier, unique within the practice and mode. A failed or cancelled order keeps it, so send a new one for a replacement order.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "externalOrderId", nulls = Nulls.SKIP)

@@ -97,6 +97,9 @@ public final class UpdatePracticesRequest {
         return liveEnabled;
     }
 
+    /**
+     * @return Text with at least one visible character.
+     */
     @JsonProperty("name")
     public Optional<String> getName() {
         return name;
@@ -215,6 +218,9 @@ public final class UpdatePracticesRequest {
 
         _FinalStage liveEnabled(Nullable<Boolean> liveEnabled);
 
+        /**
+         * <p>Text with at least one visible character.</p>
+         */
         _FinalStage name(Optional<String> name);
 
         _FinalStage name(String name);
@@ -304,12 +310,19 @@ public final class UpdatePracticesRequest {
             return this;
         }
 
+        /**
+         * <p>Text with at least one visible character.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         public _FinalStage name(String name) {
             this.name = Optional.ofNullable(name);
             return this;
         }
 
+        /**
+         * <p>Text with at least one visible character.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public _FinalStage name(Optional<String> name) {

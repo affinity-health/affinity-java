@@ -4,21 +4,21 @@
 package com.affinity.api.errors;
 
 import com.affinity.api.core.AffinityClientApiException;
-import com.affinity.api.types.ServiceUnavailableErrorBody;
+import com.affinity.api.types.Problem;
 import okhttp3.Response;
 
 public final class ServiceUnavailableError extends AffinityClientApiException {
     /**
      * The body of the response that triggered the exception.
      */
-    private final ServiceUnavailableErrorBody body;
+    private final Problem body;
 
-    public ServiceUnavailableError(ServiceUnavailableErrorBody body) {
+    public ServiceUnavailableError(Problem body) {
         super("ServiceUnavailableError", 503, body);
         this.body = body;
     }
 
-    public ServiceUnavailableError(ServiceUnavailableErrorBody body, Response rawResponse) {
+    public ServiceUnavailableError(Problem body, Response rawResponse) {
         super("ServiceUnavailableError", 503, body, rawResponse);
         this.body = body;
     }
@@ -27,7 +27,7 @@ public final class ServiceUnavailableError extends AffinityClientApiException {
      * @return the body
      */
     @java.lang.Override
-    public ServiceUnavailableErrorBody body() {
+    public Problem body() {
         return this.body;
     }
 }

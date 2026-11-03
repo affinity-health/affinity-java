@@ -112,7 +112,7 @@ public final class Prescription {
     }
 
     /**
-     * @return The current fulfillment status.
+     * @return The order's current status; every prescription of the order has the same value.
      */
     @JsonProperty("status")
     public PrescriptionStatus getStatus() {
@@ -120,7 +120,7 @@ public final class Prescription {
     }
 
     /**
-     * @return The failure or cancellation refusal reason, or null when there is none.
+     * @return Why the order failed, for a person to read; every prescription of the order has the same value. Null unless the order failed; a refused cancel leaves it null.
      */
     @JsonIgnore
     public Optional<String> getFailureReason() {
@@ -150,7 +150,7 @@ public final class Prescription {
     }
 
     /**
-     * @return The price in integer cents.
+     * @return The prescription's price in integer cents: with a fill, the price per fill times the number of fills.
      */
     @JsonProperty("price")
     public int getPrice() {
@@ -273,7 +273,7 @@ public final class Prescription {
 
     public interface StatusStage {
         /**
-         * <p>The current fulfillment status.</p>
+         * <p>The order's current status; every prescription of the order has the same value.</p>
          */
         MedicationStage status(@NotNull PrescriptionStatus status);
     }
@@ -287,7 +287,7 @@ public final class Prescription {
 
     public interface PriceStage {
         /**
-         * <p>The price in integer cents.</p>
+         * <p>The prescription's price in integer cents: with a fill, the price per fill times the number of fills.</p>
          */
         QuantityStage price(int price);
     }
@@ -330,7 +330,7 @@ public final class Prescription {
         _FinalStage compoundingReason(Nullable<String> compoundingReason);
 
         /**
-         * <p>The failure or cancellation refusal reason, or null when there is none.</p>
+         * <p>Why the order failed, for a person to read; every prescription of the order has the same value. Null unless the order failed; a refused cancel leaves it null.</p>
          */
         _FinalStage failureReason(Optional<String> failureReason);
 
@@ -435,7 +435,7 @@ public final class Prescription {
         }
 
         /**
-         * <p>The current fulfillment status.</p>
+         * <p>The order's current status; every prescription of the order has the same value.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -457,7 +457,7 @@ public final class Prescription {
         }
 
         /**
-         * <p>The price in integer cents.</p>
+         * <p>The prescription's price in integer cents: with a fill, the price per fill times the number of fills.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -537,7 +537,7 @@ public final class Prescription {
         }
 
         /**
-         * <p>The failure or cancellation refusal reason, or null when there is none.</p>
+         * <p>Why the order failed, for a person to read; every prescription of the order has the same value. Null unless the order failed; a refused cancel leaves it null.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -553,7 +553,7 @@ public final class Prescription {
         }
 
         /**
-         * <p>The failure or cancellation refusal reason, or null when there is none.</p>
+         * <p>Why the order failed, for a person to read; every prescription of the order has the same value. Null unless the order failed; a refused cancel leaves it null.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -563,7 +563,7 @@ public final class Prescription {
         }
 
         /**
-         * <p>The failure or cancellation refusal reason, or null when there is none.</p>
+         * <p>Why the order failed, for a person to read; every prescription of the order has the same value. Null unless the order failed; a refused cancel leaves it null.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "failureReason", nulls = Nulls.SKIP)

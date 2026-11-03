@@ -81,7 +81,7 @@ public final class ListPracticesRequest {
     }
 
     /**
-     * @return name and location sort A to Z; mode sorts Test before Live; created sorts oldest first. A _desc suffix reverses the order. Defaults to created_desc. Missing locations sort last. Restart pagination after changing sort.
+     * @return name and location sort A to Z; mode sorts practices without Live access before those with it; created sorts oldest first. A _desc suffix reverses the order. Defaults to created_desc. Missing locations sort last. Restart pagination after changing sort.
      */
     @JsonProperty("sort")
     public Optional<ListPracticesRequestSort> getSort() {
@@ -203,7 +203,7 @@ public final class ListPracticesRequest {
         }
 
         /**
-         * <p>name and location sort A to Z; mode sorts Test before Live; created sorts oldest first. A _desc suffix reverses the order. Defaults to created_desc. Missing locations sort last. Restart pagination after changing sort.</p>
+         * <p>name and location sort A to Z; mode sorts practices without Live access before those with it; created sorts oldest first. A _desc suffix reverses the order. Defaults to created_desc. Missing locations sort last. Restart pagination after changing sort.</p>
          */
         @JsonSetter(value = "sort", nulls = Nulls.SKIP)
         public Builder sort(Optional<ListPracticesRequestSort> sort) {

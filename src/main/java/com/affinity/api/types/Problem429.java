@@ -69,53 +69,80 @@ public final class Problem429 implements IProblem {
         this.additionalProperties = additionalProperties;
     }
 
+    /**
+     * @return A stable code for the problem. Branch on it, not on detail.
+     */
     @JsonProperty("code")
     @java.lang.Override
     public String getCode() {
         return code;
     }
 
+    /**
+     * @return What went wrong and what to do, for a person to read.
+     */
     @JsonProperty("detail")
     @java.lang.Override
     public String getDetail() {
         return detail;
     }
 
+    /**
+     * @return A short summary of the problem's type.
+     */
     @JsonProperty("title")
     @java.lang.Override
     public String getTitle() {
         return title;
     }
 
+    /**
+     * @return A URI that names the problem's type.
+     */
     @JsonProperty("type")
     @java.lang.Override
     public String getType() {
         return type;
     }
 
+    /**
+     * @return One entry for each field that the request got wrong, when the problem is about fields.
+     */
     @JsonProperty("issues")
     public Optional<List<ProblemIssuesItem>> getIssues() {
         return issues;
     }
 
+    /**
+     * @return The path of the request.
+     */
     @JsonProperty("instance")
     @java.lang.Override
     public String getInstance() {
         return instance;
     }
 
+    /**
+     * @return Identifies the request, as its X-Request-Id header does. Send it when you report a problem.
+     */
     @JsonProperty("requestId")
     @java.lang.Override
     public String getRequestId() {
         return requestId;
     }
 
+    /**
+     * @return The HTTP status code of the response.
+     */
     @JsonProperty("status")
     @java.lang.Override
     public int getStatus() {
         return status;
     }
 
+    /**
+     * @return The request trace ID.
+     */
     @JsonProperty("traceId")
     @java.lang.Override
     public Optional<String> getTraceId() {
@@ -176,32 +203,53 @@ public final class Problem429 implements IProblem {
     }
 
     public interface CodeStage {
+        /**
+         * <p>A stable code for the problem. Branch on it, not on detail.</p>
+         */
         DetailStage code(@NotNull String code);
 
         Builder from(Problem429 other);
     }
 
     public interface DetailStage {
+        /**
+         * <p>What went wrong and what to do, for a person to read.</p>
+         */
         TitleStage detail(@NotNull String detail);
     }
 
     public interface TitleStage {
+        /**
+         * <p>A short summary of the problem's type.</p>
+         */
         TypeStage title(@NotNull String title);
     }
 
     public interface TypeStage {
+        /**
+         * <p>A URI that names the problem's type.</p>
+         */
         InstanceStage type(@NotNull String type);
     }
 
     public interface InstanceStage {
+        /**
+         * <p>The path of the request.</p>
+         */
         RequestIdStage instance(@NotNull String instance);
     }
 
     public interface RequestIdStage {
+        /**
+         * <p>Identifies the request, as its X-Request-Id header does. Send it when you report a problem.</p>
+         */
         StatusStage requestId(@NotNull String requestId);
     }
 
     public interface StatusStage {
+        /**
+         * <p>The HTTP status code of the response.</p>
+         */
         _FinalStage status(int status);
     }
 
@@ -212,10 +260,16 @@ public final class Problem429 implements IProblem {
 
         _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+        /**
+         * <p>One entry for each field that the request got wrong, when the problem is about fields.</p>
+         */
         _FinalStage issues(Optional<List<ProblemIssuesItem>> issues);
 
         _FinalStage issues(List<ProblemIssuesItem> issues);
 
+        /**
+         * <p>The request trace ID.</p>
+         */
         _FinalStage traceId(Optional<String> traceId);
 
         _FinalStage traceId(String traceId);
@@ -274,6 +328,10 @@ public final class Problem429 implements IProblem {
             return this;
         }
 
+        /**
+         * <p>A stable code for the problem. Branch on it, not on detail.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("code")
         public DetailStage code(@NotNull String code) {
@@ -281,6 +339,10 @@ public final class Problem429 implements IProblem {
             return this;
         }
 
+        /**
+         * <p>What went wrong and what to do, for a person to read.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("detail")
         public TitleStage detail(@NotNull String detail) {
@@ -288,6 +350,10 @@ public final class Problem429 implements IProblem {
             return this;
         }
 
+        /**
+         * <p>A short summary of the problem's type.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("title")
         public TypeStage title(@NotNull String title) {
@@ -295,6 +361,10 @@ public final class Problem429 implements IProblem {
             return this;
         }
 
+        /**
+         * <p>A URI that names the problem's type.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("type")
         public InstanceStage type(@NotNull String type) {
@@ -302,6 +372,10 @@ public final class Problem429 implements IProblem {
             return this;
         }
 
+        /**
+         * <p>The path of the request.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("instance")
         public RequestIdStage instance(@NotNull String instance) {
@@ -309,6 +383,10 @@ public final class Problem429 implements IProblem {
             return this;
         }
 
+        /**
+         * <p>Identifies the request, as its X-Request-Id header does. Send it when you report a problem.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("requestId")
         public StatusStage requestId(@NotNull String requestId) {
@@ -316,6 +394,10 @@ public final class Problem429 implements IProblem {
             return this;
         }
 
+        /**
+         * <p>The HTTP status code of the response.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("status")
         public _FinalStage status(int status) {
@@ -336,12 +418,19 @@ public final class Problem429 implements IProblem {
             return this;
         }
 
+        /**
+         * <p>The request trace ID.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         public _FinalStage traceId(String traceId) {
             this.traceId = Optional.ofNullable(traceId);
             return this;
         }
 
+        /**
+         * <p>The request trace ID.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "traceId", nulls = Nulls.SKIP)
         public _FinalStage traceId(Optional<String> traceId) {
@@ -349,12 +438,19 @@ public final class Problem429 implements IProblem {
             return this;
         }
 
+        /**
+         * <p>One entry for each field that the request got wrong, when the problem is about fields.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         public _FinalStage issues(List<ProblemIssuesItem> issues) {
             this.issues = Optional.ofNullable(issues);
             return this;
         }
 
+        /**
+         * <p>One entry for each field that the request got wrong, when the problem is about fields.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "issues", nulls = Nulls.SKIP)
         public _FinalStage issues(Optional<List<ProblemIssuesItem>> issues) {

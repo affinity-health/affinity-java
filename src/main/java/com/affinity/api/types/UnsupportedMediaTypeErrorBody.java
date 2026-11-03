@@ -60,41 +60,65 @@ public final class UnsupportedMediaTypeErrorBody {
         this.additionalProperties = additionalProperties;
     }
 
+    /**
+     * @return A stable code for the problem. Branch on it, not on detail.
+     */
     @JsonProperty("code")
     public UnsupportedMediaTypeErrorBodyCode getCode() {
         return code;
     }
 
+    /**
+     * @return What went wrong and what to do, for a person to read.
+     */
     @JsonProperty("detail")
     public String getDetail() {
         return detail;
     }
 
+    /**
+     * @return A short summary of the problem's type.
+     */
     @JsonProperty("title")
     public String getTitle() {
         return title;
     }
 
+    /**
+     * @return A URI that names the problem's type.
+     */
     @JsonProperty("type")
     public String getType() {
         return type;
     }
 
+    /**
+     * @return The path of the request.
+     */
     @JsonProperty("instance")
     public String getInstance() {
         return instance;
     }
 
+    /**
+     * @return Identifies the request, as its X-Request-Id header does. Send it when you report a problem.
+     */
     @JsonProperty("requestId")
     public String getRequestId() {
         return requestId;
     }
 
+    /**
+     * @return The HTTP status code of the response.
+     */
     @JsonProperty("status")
     public int getStatus() {
         return status;
     }
 
+    /**
+     * @return The request trace ID.
+     */
     @JsonProperty("traceId")
     public Optional<String> getTraceId() {
         return traceId;
@@ -145,32 +169,53 @@ public final class UnsupportedMediaTypeErrorBody {
     }
 
     public interface CodeStage {
+        /**
+         * <p>A stable code for the problem. Branch on it, not on detail.</p>
+         */
         DetailStage code(@NotNull UnsupportedMediaTypeErrorBodyCode code);
 
         Builder from(UnsupportedMediaTypeErrorBody other);
     }
 
     public interface DetailStage {
+        /**
+         * <p>What went wrong and what to do, for a person to read.</p>
+         */
         TitleStage detail(@NotNull String detail);
     }
 
     public interface TitleStage {
+        /**
+         * <p>A short summary of the problem's type.</p>
+         */
         TypeStage title(@NotNull String title);
     }
 
     public interface TypeStage {
+        /**
+         * <p>A URI that names the problem's type.</p>
+         */
         InstanceStage type(@NotNull String type);
     }
 
     public interface InstanceStage {
+        /**
+         * <p>The path of the request.</p>
+         */
         RequestIdStage instance(@NotNull String instance);
     }
 
     public interface RequestIdStage {
+        /**
+         * <p>Identifies the request, as its X-Request-Id header does. Send it when you report a problem.</p>
+         */
         StatusStage requestId(@NotNull String requestId);
     }
 
     public interface StatusStage {
+        /**
+         * <p>The HTTP status code of the response.</p>
+         */
         _FinalStage status(int status);
     }
 
@@ -181,6 +226,9 @@ public final class UnsupportedMediaTypeErrorBody {
 
         _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+        /**
+         * <p>The request trace ID.</p>
+         */
         _FinalStage traceId(Optional<String> traceId);
 
         _FinalStage traceId(String traceId);
@@ -229,6 +277,10 @@ public final class UnsupportedMediaTypeErrorBody {
             return this;
         }
 
+        /**
+         * <p>A stable code for the problem. Branch on it, not on detail.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("code")
         public DetailStage code(@NotNull UnsupportedMediaTypeErrorBodyCode code) {
@@ -236,6 +288,10 @@ public final class UnsupportedMediaTypeErrorBody {
             return this;
         }
 
+        /**
+         * <p>What went wrong and what to do, for a person to read.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("detail")
         public TitleStage detail(@NotNull String detail) {
@@ -243,6 +299,10 @@ public final class UnsupportedMediaTypeErrorBody {
             return this;
         }
 
+        /**
+         * <p>A short summary of the problem's type.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("title")
         public TypeStage title(@NotNull String title) {
@@ -250,6 +310,10 @@ public final class UnsupportedMediaTypeErrorBody {
             return this;
         }
 
+        /**
+         * <p>A URI that names the problem's type.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("type")
         public InstanceStage type(@NotNull String type) {
@@ -257,6 +321,10 @@ public final class UnsupportedMediaTypeErrorBody {
             return this;
         }
 
+        /**
+         * <p>The path of the request.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("instance")
         public RequestIdStage instance(@NotNull String instance) {
@@ -264,6 +332,10 @@ public final class UnsupportedMediaTypeErrorBody {
             return this;
         }
 
+        /**
+         * <p>Identifies the request, as its X-Request-Id header does. Send it when you report a problem.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("requestId")
         public StatusStage requestId(@NotNull String requestId) {
@@ -271,6 +343,10 @@ public final class UnsupportedMediaTypeErrorBody {
             return this;
         }
 
+        /**
+         * <p>The HTTP status code of the response.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("status")
         public _FinalStage status(int status) {
@@ -278,12 +354,19 @@ public final class UnsupportedMediaTypeErrorBody {
             return this;
         }
 
+        /**
+         * <p>The request trace ID.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         public _FinalStage traceId(String traceId) {
             this.traceId = Optional.ofNullable(traceId);
             return this;
         }
 
+        /**
+         * <p>The request trace ID.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "traceId", nulls = Nulls.SKIP)
         public _FinalStage traceId(Optional<String> traceId) {
