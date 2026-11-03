@@ -235,7 +235,7 @@ public final class GetMedicationsResponse {
     }
 
     /**
-     * @return The states where this medication cannot ship; other states are permitted subject to pharmacy coverage.
+     * @return Every state where this medication cannot ship, including states the pharmacy does not cover. It can ship to every other state.
      */
     @JsonProperty("restrictedStates")
     public List<String> getRestrictedStates() {
@@ -499,7 +499,7 @@ public final class GetMedicationsResponse {
         _FinalStage addAllRequirements(List<String> requirements);
 
         /**
-         * <p>The states where this medication cannot ship; other states are permitted subject to pharmacy coverage.</p>
+         * <p>Every state where this medication cannot ship, including states the pharmacy does not cover. It can ship to every other state.</p>
          */
         _FinalStage restrictedStates(List<String> restrictedStates);
 
@@ -786,7 +786,7 @@ public final class GetMedicationsResponse {
         }
 
         /**
-         * <p>The states where this medication cannot ship; other states are permitted subject to pharmacy coverage.</p>
+         * <p>Every state where this medication cannot ship, including states the pharmacy does not cover. It can ship to every other state.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -798,7 +798,7 @@ public final class GetMedicationsResponse {
         }
 
         /**
-         * <p>The states where this medication cannot ship; other states are permitted subject to pharmacy coverage.</p>
+         * <p>Every state where this medication cannot ship, including states the pharmacy does not cover. It can ship to every other state.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -808,7 +808,7 @@ public final class GetMedicationsResponse {
         }
 
         /**
-         * <p>The states where this medication cannot ship; other states are permitted subject to pharmacy coverage.</p>
+         * <p>Every state where this medication cannot ship, including states the pharmacy does not cover. It can ship to every other state.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "restrictedStates", nulls = Nulls.SKIP)

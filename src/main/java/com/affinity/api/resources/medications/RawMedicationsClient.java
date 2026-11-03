@@ -14,7 +14,6 @@ import com.affinity.api.core.RequestOptions;
 import com.affinity.api.core.RetryInterceptor;
 import com.affinity.api.core.pagination.SyncPagingIterable;
 import com.affinity.api.errors.BadRequestError;
-import com.affinity.api.errors.ContentTooLargeError;
 import com.affinity.api.errors.ForbiddenError;
 import com.affinity.api.errors.InternalServerError;
 import com.affinity.api.errors.NotFoundError;
@@ -146,9 +145,6 @@ public class RawMedicationsClient {
                     case 404:
                         throw new NotFoundError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
-                    case 413:
-                        throw new ContentTooLargeError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 429:
                         throw new TooManyRequestsError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem429.class), response);
@@ -255,9 +251,6 @@ public class RawMedicationsClient {
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 404:
                         throw new NotFoundError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
-                    case 413:
-                        throw new ContentTooLargeError(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class), response);
                     case 429:
                         throw new TooManyRequestsError(

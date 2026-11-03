@@ -6,7 +6,7 @@ package com.affinity.api.resources.practices.requests;
 import com.affinity.api.core.Nullable;
 import com.affinity.api.core.NullableNonemptyFilter;
 import com.affinity.api.core.ObjectMappers;
-import com.affinity.api.types.AddressInput;
+import com.affinity.api.types.PracticeAddressInput;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -29,7 +29,7 @@ public final class CreatePracticesRequest {
 
     private final Optional<String> externalId;
 
-    private final AddressInput address;
+    private final PracticeAddressInput address;
 
     private final Optional<Boolean> liveEnabled;
 
@@ -42,7 +42,7 @@ public final class CreatePracticesRequest {
     private CreatePracticesRequest(
             String idempotencyKey,
             Optional<String> externalId,
-            AddressInput address,
+            PracticeAddressInput address,
             Optional<Boolean> liveEnabled,
             String name,
             String phone,
@@ -76,7 +76,7 @@ public final class CreatePracticesRequest {
     }
 
     @JsonProperty("address")
-    public AddressInput getAddress() {
+    public PracticeAddressInput getAddress() {
         return address;
     }
 
@@ -86,7 +86,7 @@ public final class CreatePracticesRequest {
     }
 
     /**
-     * @return Text with at least one visible character.
+     * @return The practice name. PerfectRx prints it: use Windows-1252 characters, without &lt; or &gt;.
      */
     @JsonProperty("name")
     public String getName() {
@@ -152,12 +152,12 @@ public final class CreatePracticesRequest {
     }
 
     public interface AddressStage {
-        NameStage address(@NotNull AddressInput address);
+        NameStage address(@NotNull PracticeAddressInput address);
     }
 
     public interface NameStage {
         /**
-         * <p>Text with at least one visible character.</p>
+         * <p>The practice name. PerfectRx prints it: use Windows-1252 characters, without &lt; or &gt;.</p>
          */
         PhoneStage name(@NotNull String name);
     }
@@ -194,7 +194,7 @@ public final class CreatePracticesRequest {
     public static final class Builder implements IdempotencyKeyStage, AddressStage, NameStage, PhoneStage, _FinalStage {
         private String idempotencyKey;
 
-        private AddressInput address;
+        private PracticeAddressInput address;
 
         private String name;
 
@@ -231,13 +231,13 @@ public final class CreatePracticesRequest {
 
         @java.lang.Override
         @JsonSetter("address")
-        public NameStage address(@NotNull AddressInput address) {
+        public NameStage address(@NotNull PracticeAddressInput address) {
             this.address = Objects.requireNonNull(address, "address must not be null");
             return this;
         }
 
         /**
-         * <p>Text with at least one visible character.</p>
+         * <p>The practice name. PerfectRx prints it: use Windows-1252 characters, without &lt; or &gt;.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

@@ -213,11 +213,6 @@ public class AsyncRawOrdersClient {
                                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
-                            case 413:
-                                future.completeExceptionally(new ContentTooLargeError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
-                                        response));
-                                return;
                             case 429:
                                 future.completeExceptionally(new TooManyRequestsError(
                                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem429.class),
@@ -497,11 +492,6 @@ public class AsyncRawOrdersClient {
                                 return;
                             case 404:
                                 future.completeExceptionally(new NotFoundError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
-                                        response));
-                                return;
-                            case 413:
-                                future.completeExceptionally(new ContentTooLargeError(
                                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;

@@ -60,7 +60,7 @@ public final class AddressInput {
     }
 
     /**
-     * @return The apartment or suite, or null when there is none. Empty text counts as null.
+     * @return The apartment or suite, or null when there is none. Empty text, N/A, NA, none and - count as null. See notes, TBD and unknown return 422.
      */
     @JsonIgnore
     public Optional<String> getLine2() {
@@ -171,7 +171,7 @@ public final class AddressInput {
         _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
         /**
-         * <p>The apartment or suite, or null when there is none. Empty text counts as null.</p>
+         * <p>The apartment or suite, or null when there is none. Empty text, N/A, NA, none and - count as null. See notes, TBD and unknown return 422.</p>
          */
         _FinalStage line2(Optional<String> line2);
 
@@ -251,7 +251,7 @@ public final class AddressInput {
         }
 
         /**
-         * <p>The apartment or suite, or null when there is none. Empty text counts as null.</p>
+         * <p>The apartment or suite, or null when there is none. Empty text, N/A, NA, none and - count as null. See notes, TBD and unknown return 422.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -267,7 +267,7 @@ public final class AddressInput {
         }
 
         /**
-         * <p>The apartment or suite, or null when there is none. Empty text counts as null.</p>
+         * <p>The apartment or suite, or null when there is none. Empty text, N/A, NA, none and - count as null. See notes, TBD and unknown return 422.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -277,7 +277,7 @@ public final class AddressInput {
         }
 
         /**
-         * <p>The apartment or suite, or null when there is none. Empty text counts as null.</p>
+         * <p>The apartment or suite, or null when there is none. Empty text, N/A, NA, none and - count as null. See notes, TBD and unknown return 422.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "line2", nulls = Nulls.SKIP)

@@ -831,7 +831,7 @@ client.practices().create(
         .builder()
         .idempotencyKey("Idempotency-Key")
         .address(
-            AddressInput
+            PracticeAddressInput
                 .builder()
                 .line1("line1")
                 .city("city")
@@ -873,7 +873,7 @@ client.practices().create(
 <dl>
 <dd>
 
-**address:** `AddressInput` 
+**address:** `PracticeAddressInput` 
     
 </dd>
 </dl>
@@ -889,7 +889,7 @@ client.practices().create(
 <dl>
 <dd>
 
-**name:** `String` — Text with at least one visible character.
+**name:** `String` — The practice name. PerfectRx prints it: use Windows-1252 characters, without < or >.
     
 </dd>
 </dl>
@@ -1040,7 +1040,7 @@ client.practices().update(
 <dl>
 <dd>
 
-**address:** `Optional<UpdatePracticesRequestAddress>` — Affinity merges the address parts you send into the saved address. An omitted part keeps its saved value. To move to an address with no suite, send `"line2": null` with the new `line1`, `city`, `state` and `postalCode`.
+**address:** `Optional<UpdatePracticesRequestAddress>` — Affinity merges the address parts you send into the saved address. An omitted part keeps its saved value. To move to an address with no suite, send `"line2": null` with the new `line1`, `city`, `state` and `postalCode`. PerfectRx prints it: use Windows-1252 characters, without < or >. Line 1 and line 2 together: 70 characters or fewer.
     
 </dd>
 </dl>
@@ -1056,7 +1056,7 @@ client.practices().update(
 <dl>
 <dd>
 
-**name:** `Optional<String>` — Text with at least one visible character.
+**name:** `Optional<String>` — The practice name. PerfectRx prints it: use Windows-1252 characters, without < or >.
     
 </dd>
 </dl>

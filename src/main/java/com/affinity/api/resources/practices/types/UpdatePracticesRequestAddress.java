@@ -51,7 +51,7 @@ public final class UpdatePracticesRequestAddress {
     }
 
     /**
-     * @return The street address.
+     * @return The street address. Line 1 and line 2 together: 70 characters or fewer.
      */
     @JsonProperty("line1")
     public Optional<String> getLine1() {
@@ -59,7 +59,7 @@ public final class UpdatePracticesRequestAddress {
     }
 
     /**
-     * @return The apartment or suite. Send null or empty text to remove it. An omitted <code>line2</code> keeps the saved suite, also when <code>line1</code> changes.
+     * @return The apartment or suite. Send null, empty text, N/A, NA, none or - to remove it. See notes, TBD and unknown return 422. An omitted <code>line2</code> keeps the saved suite, also when <code>line1</code> changes.
      */
     @JsonIgnore
     public Optional<String> getLine2() {
@@ -78,7 +78,7 @@ public final class UpdatePracticesRequestAddress {
     }
 
     /**
-     * @return The two-letter US state or territory code, such as TX, in any letter case. Affinity stores and returns it in upper case.
+     * @return The two-letter code of a US state, DC or PR, in any letter case. Affinity stores and returns it in upper case.
      */
     @JsonProperty("state")
     public Optional<String> getState() {
@@ -158,7 +158,7 @@ public final class UpdatePracticesRequestAddress {
         }
 
         /**
-         * <p>The street address.</p>
+         * <p>The street address. Line 1 and line 2 together: 70 characters or fewer.</p>
          */
         @JsonSetter(value = "line1", nulls = Nulls.SKIP)
         public Builder line1(Optional<String> line1) {
@@ -172,7 +172,7 @@ public final class UpdatePracticesRequestAddress {
         }
 
         /**
-         * <p>The apartment or suite. Send null or empty text to remove it. An omitted <code>line2</code> keeps the saved suite, also when <code>line1</code> changes.</p>
+         * <p>The apartment or suite. Send null, empty text, N/A, NA, none or - to remove it. See notes, TBD and unknown return 422. An omitted <code>line2</code> keeps the saved suite, also when <code>line1</code> changes.</p>
          */
         @JsonSetter(value = "line2", nulls = Nulls.SKIP)
         public Builder line2(Optional<String> line2) {
@@ -211,7 +211,7 @@ public final class UpdatePracticesRequestAddress {
         }
 
         /**
-         * <p>The two-letter US state or territory code, such as TX, in any letter case. Affinity stores and returns it in upper case.</p>
+         * <p>The two-letter code of a US state, DC or PR, in any letter case. Affinity stores and returns it in upper case.</p>
          */
         @JsonSetter(value = "state", nulls = Nulls.SKIP)
         public Builder state(Optional<String> state) {

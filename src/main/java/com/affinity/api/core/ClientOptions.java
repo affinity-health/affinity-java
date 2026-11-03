@@ -73,7 +73,7 @@ public final class ClientOptions {
             {
                 put("X-Fern-Language", "JAVA");
                 put("X-Fern-SDK-Name", "io.github.affinity-health:affinity-java");
-                put("X-Fern-SDK-Version", "0.7.0");
+                put("X-Fern-SDK-Version", "0.8.0");
             }
         });
         this.headerSuppliers = headerSuppliers;

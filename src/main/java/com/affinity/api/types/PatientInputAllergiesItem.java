@@ -41,7 +41,7 @@ public final class PatientInputAllergiesItem {
     }
 
     /**
-     * @return The reported allergy name.
+     * @return The reported allergy name. A whole-value no-allergy statement (NKDA, NKFA, none, unknown, denies, no, N/A and the same kind of phrase) returns 422, ignoring case, dots, hyphens, slashes, spaces and a trailing period. Send <code>[]</code> instead.
      */
     @JsonProperty("display")
     public String getDisplay() {
@@ -88,7 +88,7 @@ public final class PatientInputAllergiesItem {
 
     public interface DisplayStage {
         /**
-         * <p>The reported allergy name.</p>
+         * <p>The reported allergy name. A whole-value no-allergy statement (NKDA, NKFA, none, unknown, denies, no, N/A and the same kind of phrase) returns 422, ignoring case, dots, hyphens, slashes, spaces and a trailing period. Send <code>[]</code> instead.</p>
          */
         _FinalStage display(@NotNull String display);
     }
@@ -130,7 +130,7 @@ public final class PatientInputAllergiesItem {
         }
 
         /**
-         * <p>The reported allergy name.</p>
+         * <p>The reported allergy name. A whole-value no-allergy statement (NKDA, NKFA, none, unknown, denies, no, N/A and the same kind of phrase) returns 422, ignoring case, dots, hyphens, slashes, spaces and a trailing period. Send <code>[]</code> instead.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

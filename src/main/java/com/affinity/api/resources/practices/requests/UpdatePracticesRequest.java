@@ -76,7 +76,7 @@ public final class UpdatePracticesRequest {
     }
 
     /**
-     * @return Affinity merges the address parts you send into the saved address. An omitted part keeps its saved value. To move to an address with no suite, send <code>&quot;line2&quot;: null</code> with the new <code>line1</code>, <code>city</code>, <code>state</code> and <code>postalCode</code>.
+     * @return Affinity merges the address parts you send into the saved address. An omitted part keeps its saved value. To move to an address with no suite, send <code>&quot;line2&quot;: null</code> with the new <code>line1</code>, <code>city</code>, <code>state</code> and <code>postalCode</code>. PerfectRx prints it: use Windows-1252 characters, without &lt; or &gt;. Line 1 and line 2 together: 70 characters or fewer.
      */
     @JsonIgnore
     public Optional<UpdatePracticesRequestAddress> getAddress() {
@@ -98,7 +98,7 @@ public final class UpdatePracticesRequest {
     }
 
     /**
-     * @return Text with at least one visible character.
+     * @return The practice name. PerfectRx prints it: use Windows-1252 characters, without &lt; or &gt;.
      */
     @JsonProperty("name")
     public Optional<String> getName() {
@@ -201,7 +201,7 @@ public final class UpdatePracticesRequest {
         _FinalStage externalId(Nullable<String> externalId);
 
         /**
-         * <p>Affinity merges the address parts you send into the saved address. An omitted part keeps its saved value. To move to an address with no suite, send <code>&quot;line2&quot;: null</code> with the new <code>line1</code>, <code>city</code>, <code>state</code> and <code>postalCode</code>.</p>
+         * <p>Affinity merges the address parts you send into the saved address. An omitted part keeps its saved value. To move to an address with no suite, send <code>&quot;line2&quot;: null</code> with the new <code>line1</code>, <code>city</code>, <code>state</code> and <code>postalCode</code>. PerfectRx prints it: use Windows-1252 characters, without &lt; or &gt;. Line 1 and line 2 together: 70 characters or fewer.</p>
          */
         _FinalStage address(Optional<UpdatePracticesRequestAddress> address);
 
@@ -219,7 +219,7 @@ public final class UpdatePracticesRequest {
         _FinalStage liveEnabled(Nullable<Boolean> liveEnabled);
 
         /**
-         * <p>Text with at least one visible character.</p>
+         * <p>The practice name. PerfectRx prints it: use Windows-1252 characters, without &lt; or &gt;.</p>
          */
         _FinalStage name(Optional<String> name);
 
@@ -311,7 +311,7 @@ public final class UpdatePracticesRequest {
         }
 
         /**
-         * <p>Text with at least one visible character.</p>
+         * <p>The practice name. PerfectRx prints it: use Windows-1252 characters, without &lt; or &gt;.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -321,7 +321,7 @@ public final class UpdatePracticesRequest {
         }
 
         /**
-         * <p>Text with at least one visible character.</p>
+         * <p>The practice name. PerfectRx prints it: use Windows-1252 characters, without &lt; or &gt;.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
@@ -367,7 +367,7 @@ public final class UpdatePracticesRequest {
         }
 
         /**
-         * <p>Affinity merges the address parts you send into the saved address. An omitted part keeps its saved value. To move to an address with no suite, send <code>&quot;line2&quot;: null</code> with the new <code>line1</code>, <code>city</code>, <code>state</code> and <code>postalCode</code>.</p>
+         * <p>Affinity merges the address parts you send into the saved address. An omitted part keeps its saved value. To move to an address with no suite, send <code>&quot;line2&quot;: null</code> with the new <code>line1</code>, <code>city</code>, <code>state</code> and <code>postalCode</code>. PerfectRx prints it: use Windows-1252 characters, without &lt; or &gt;. Line 1 and line 2 together: 70 characters or fewer.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -383,7 +383,7 @@ public final class UpdatePracticesRequest {
         }
 
         /**
-         * <p>Affinity merges the address parts you send into the saved address. An omitted part keeps its saved value. To move to an address with no suite, send <code>&quot;line2&quot;: null</code> with the new <code>line1</code>, <code>city</code>, <code>state</code> and <code>postalCode</code>.</p>
+         * <p>Affinity merges the address parts you send into the saved address. An omitted part keeps its saved value. To move to an address with no suite, send <code>&quot;line2&quot;: null</code> with the new <code>line1</code>, <code>city</code>, <code>state</code> and <code>postalCode</code>. PerfectRx prints it: use Windows-1252 characters, without &lt; or &gt;. Line 1 and line 2 together: 70 characters or fewer.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -393,7 +393,7 @@ public final class UpdatePracticesRequest {
         }
 
         /**
-         * <p>Affinity merges the address parts you send into the saved address. An omitted part keeps its saved value. To move to an address with no suite, send <code>&quot;line2&quot;: null</code> with the new <code>line1</code>, <code>city</code>, <code>state</code> and <code>postalCode</code>.</p>
+         * <p>Affinity merges the address parts you send into the saved address. An omitted part keeps its saved value. To move to an address with no suite, send <code>&quot;line2&quot;: null</code> with the new <code>line1</code>, <code>city</code>, <code>state</code> and <code>postalCode</code>. PerfectRx prints it: use Windows-1252 characters, without &lt; or &gt;. Line 1 and line 2 together: 70 characters or fewer.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "address", nulls = Nulls.SKIP)

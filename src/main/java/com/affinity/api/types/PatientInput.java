@@ -103,7 +103,7 @@ public final class PatientInput {
     }
 
     /**
-     * @return The first name.
+     * @return The first name. N/A, TBD, unknown and none return 422.
      */
     @JsonProperty("firstName")
     public String getFirstName() {
@@ -119,7 +119,7 @@ public final class PatientInput {
     }
 
     /**
-     * @return The last name.
+     * @return The last name. N/A, TBD, unknown and none return 422.
      */
     @JsonProperty("lastName")
     public String getLastName() {
@@ -238,7 +238,7 @@ public final class PatientInput {
 
     public interface FirstNameStage {
         /**
-         * <p>The first name.</p>
+         * <p>The first name. N/A, TBD, unknown and none return 422.</p>
          */
         SexStage firstName(@NotNull String firstName);
     }
@@ -252,7 +252,7 @@ public final class PatientInput {
 
     public interface LastNameStage {
         /**
-         * <p>The last name.</p>
+         * <p>The last name. N/A, TBD, unknown and none return 422.</p>
          */
         PhoneStage lastName(@NotNull String lastName);
     }
@@ -378,7 +378,7 @@ public final class PatientInput {
         }
 
         /**
-         * <p>The first name.</p>
+         * <p>The first name. N/A, TBD, unknown and none return 422.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -400,7 +400,7 @@ public final class PatientInput {
         }
 
         /**
-         * <p>The last name.</p>
+         * <p>The last name. N/A, TBD, unknown and none return 422.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

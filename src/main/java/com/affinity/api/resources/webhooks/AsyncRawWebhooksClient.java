@@ -183,11 +183,6 @@ public class AsyncRawWebhooksClient {
                                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
                                         response));
                                 return;
-                            case 413:
-                                future.completeExceptionally(new ContentTooLargeError(
-                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem.class),
-                                        response));
-                                return;
                             case 429:
                                 future.completeExceptionally(new TooManyRequestsError(
                                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Problem429.class),

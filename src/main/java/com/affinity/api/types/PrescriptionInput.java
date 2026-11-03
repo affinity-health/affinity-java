@@ -60,7 +60,7 @@ public final class PrescriptionInput {
     }
 
     /**
-     * @return The reason for compounding, required when the medication's requirements include it. Empty text counts as null.
+     * @return One of the medication's compoundingReasons values, required when the medication's requirements include it. Another value returns 422. Empty text counts as null.
      */
     @JsonIgnore
     public Optional<String> getCompoundingReason() {
@@ -71,7 +71,7 @@ public final class PrescriptionInput {
     }
 
     /**
-     * @return The prescriber's directions for use.
+     * @return The prescriber's directions for use, as the clinician wrote them. None, N/A, NA, TBD, unknown and see notes return 422.
      */
     @JsonProperty("directions")
     public String getDirections() {
@@ -177,7 +177,7 @@ public final class PrescriptionInput {
 
     public interface DirectionsStage {
         /**
-         * <p>The prescriber's directions for use.</p>
+         * <p>The prescriber's directions for use, as the clinician wrote them. None, N/A, NA, TBD, unknown and see notes return 422.</p>
          */
         MedicationIdStage directions(@NotNull String directions);
 
@@ -213,7 +213,7 @@ public final class PrescriptionInput {
         _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
         /**
-         * <p>The reason for compounding, required when the medication's requirements include it. Empty text counts as null.</p>
+         * <p>One of the medication's compoundingReasons values, required when the medication's requirements include it. Another value returns 422. Empty text counts as null.</p>
          */
         _FinalStage compoundingReason(Optional<String> compoundingReason);
 
@@ -272,7 +272,7 @@ public final class PrescriptionInput {
         }
 
         /**
-         * <p>The prescriber's directions for use.</p>
+         * <p>The prescriber's directions for use, as the clinician wrote them. None, N/A, NA, TBD, unknown and see notes return 422.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -372,7 +372,7 @@ public final class PrescriptionInput {
         }
 
         /**
-         * <p>The reason for compounding, required when the medication's requirements include it. Empty text counts as null.</p>
+         * <p>One of the medication's compoundingReasons values, required when the medication's requirements include it. Another value returns 422. Empty text counts as null.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -388,7 +388,7 @@ public final class PrescriptionInput {
         }
 
         /**
-         * <p>The reason for compounding, required when the medication's requirements include it. Empty text counts as null.</p>
+         * <p>One of the medication's compoundingReasons values, required when the medication's requirements include it. Another value returns 422. Empty text counts as null.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -398,7 +398,7 @@ public final class PrescriptionInput {
         }
 
         /**
-         * <p>The reason for compounding, required when the medication's requirements include it. Empty text counts as null.</p>
+         * <p>One of the medication's compoundingReasons values, required when the medication's requirements include it. Another value returns 422. Empty text counts as null.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "compoundingReason", nulls = Nulls.SKIP)
