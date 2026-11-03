@@ -26,16 +26,20 @@ public final class ListMedicationsRequest {
 
     private final Optional<String> startingAfter;
 
+    private final Optional<String> query;
+
     private final Map<String, Object> additionalProperties;
 
     private ListMedicationsRequest(
             Optional<String> practiceId,
             Optional<Integer> limit,
             Optional<String> startingAfter,
+            Optional<String> query,
             Map<String, Object> additionalProperties) {
         this.practiceId = practiceId;
         this.limit = limit;
         this.startingAfter = startingAfter;
+        this.query = query;
         this.additionalProperties = additionalProperties;
     }
 
@@ -63,6 +67,14 @@ public final class ListMedicationsRequest {
         return startingAfter;
     }
 
+    /**
+     * @return Match medication names that contain every word of this text, in any order, ignoring case and accents. Each word must appear in the name, so a misspelled word matches nothing. Strength, form and pharmacy are not searched. An empty query lists every medication. Restart pagination after changing query.
+     */
+    @JsonProperty("query")
+    public Optional<String> getQuery() {
+        return query;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -77,12 +89,13 @@ public final class ListMedicationsRequest {
     private boolean equalTo(ListMedicationsRequest other) {
         return practiceId.equals(other.practiceId)
                 && limit.equals(other.limit)
-                && startingAfter.equals(other.startingAfter);
+                && startingAfter.equals(other.startingAfter)
+                && query.equals(other.query);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.practiceId, this.limit, this.startingAfter);
+        return Objects.hash(this.practiceId, this.limit, this.startingAfter, this.query);
     }
 
     @java.lang.Override
@@ -102,6 +115,8 @@ public final class ListMedicationsRequest {
 
         private Optional<String> startingAfter = Optional.empty();
 
+        private Optional<String> query = Optional.empty();
+
         private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {}
@@ -110,6 +125,7 @@ public final class ListMedicationsRequest {
             practiceId(other.getPracticeId());
             limit(other.getLimit());
             startingAfter(other.getStartingAfter());
+            query(other.getQuery());
             return this;
         }
 
@@ -155,15 +171,30 @@ public final class ListMedicationsRequest {
             return this;
         }
 
+        /**
+         * <p>Match medication names that contain every word of this text, in any order, ignoring case and accents. Each word must appear in the name, so a misspelled word matches nothing. Strength, form and pharmacy are not searched. An empty query lists every medication. Restart pagination after changing query.</p>
+         */
+        @JsonSetter(value = "query", nulls = Nulls.SKIP)
+        public Builder query(Optional<String> query) {
+            this.query = query;
+            return this;
+        }
+
+        public Builder query(String query) {
+            this.query = Optional.ofNullable(query);
+            return this;
+        }
+
         public ListMedicationsRequest build() {
-            return new ListMedicationsRequest(practiceId, limit, startingAfter, additionalProperties);
+            return new ListMedicationsRequest(practiceId, limit, startingAfter, query, additionalProperties);
         }
 
         @JsonAnySetter
         private void putAdditionalPropertyFromJson(String key, Object value) {
             if (key.equalsIgnoreCase("practiceId")
                     || key.equalsIgnoreCase("limit")
-                    || key.equalsIgnoreCase("startingAfter")) {
+                    || key.equalsIgnoreCase("startingAfter")
+                    || key.equalsIgnoreCase("query")) {
                 return;
             }
             this.additionalProperties.put(key, value);

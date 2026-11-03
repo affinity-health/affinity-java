@@ -46,6 +46,8 @@ public final class PatientInput {
 
     private final Optional<String> externalId;
 
+    private final Optional<String> id;
+
     private final Map<String, Object> additionalProperties;
 
     private PatientInput(
@@ -59,6 +61,7 @@ public final class PatientInput {
             Optional<String> middleName,
             String phone,
             Optional<String> externalId,
+            Optional<String> id,
             Map<String, Object> additionalProperties) {
         this.address = address;
         this.allergies = allergies;
@@ -70,6 +73,7 @@ public final class PatientInput {
         this.middleName = middleName;
         this.phone = phone;
         this.externalId = externalId;
+        this.id = id;
         this.additionalProperties = additionalProperties;
     }
 
@@ -146,7 +150,7 @@ public final class PatientInput {
     }
 
     /**
-     * @return Your patient identifier within the practice and mode; omit it to create a new patient for each order.
+     * @return Your patient identifier within the practice and mode. Omit it and id to create a new patient for each order. With id, send the saved patient's externalId or omit it. If the saved patient has none, this value is added to it.
      */
     @JsonIgnore
     public Optional<String> getExternalId() {
@@ -154,6 +158,14 @@ public final class PatientInput {
             return Optional.empty();
         }
         return externalId;
+    }
+
+    /**
+     * @return The pat_ ID of a saved patient of the order's practice, in the same Test or Live mode. The order reuses that patient and updates it from the sent fields. Send all other patient fields as usual. GET /v1/orders returns the patientId of each order. An unknown ID, or an ID of a different practice or mode, returns 404 not_found.
+     */
+    @JsonProperty("id")
+    public Optional<String> getId() {
+        return id;
     }
 
     @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
@@ -189,7 +201,8 @@ public final class PatientInput {
                 && lastName.equals(other.lastName)
                 && middleName.equals(other.middleName)
                 && phone.equals(other.phone)
-                && externalId.equals(other.externalId);
+                && externalId.equals(other.externalId)
+                && id.equals(other.id);
     }
 
     @java.lang.Override
@@ -204,7 +217,8 @@ public final class PatientInput {
                 this.lastName,
                 this.middleName,
                 this.phone,
-                this.externalId);
+                this.externalId,
+                this.id);
     }
 
     @java.lang.Override
@@ -290,13 +304,20 @@ public final class PatientInput {
         _FinalStage middleName(Nullable<String> middleName);
 
         /**
-         * <p>Your patient identifier within the practice and mode; omit it to create a new patient for each order.</p>
+         * <p>Your patient identifier within the practice and mode. Omit it and id to create a new patient for each order. With id, send the saved patient's externalId or omit it. If the saved patient has none, this value is added to it.</p>
          */
         _FinalStage externalId(Optional<String> externalId);
 
         _FinalStage externalId(String externalId);
 
         _FinalStage externalId(Nullable<String> externalId);
+
+        /**
+         * <p>The pat_ ID of a saved patient of the order's practice, in the same Test or Live mode. The order reuses that patient and updates it from the sent fields. Send all other patient fields as usual. GET /v1/orders returns the patientId of each order. An unknown ID, or an ID of a different practice or mode, returns 404 not_found.</p>
+         */
+        _FinalStage id(Optional<String> id);
+
+        _FinalStage id(String id);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -323,6 +344,8 @@ public final class PatientInput {
 
         private String phone;
 
+        private Optional<String> id = Optional.empty();
+
         private Optional<String> externalId = Optional.empty();
 
         private Optional<String> middleName = Optional.empty();
@@ -345,6 +368,7 @@ public final class PatientInput {
             middleName(other.getMiddleName());
             phone(other.getPhone());
             externalId(other.getExternalId());
+            id(other.getId());
             return this;
         }
 
@@ -422,7 +446,27 @@ public final class PatientInput {
         }
 
         /**
-         * <p>Your patient identifier within the practice and mode; omit it to create a new patient for each order.</p>
+         * <p>The pat_ ID of a saved patient of the order's practice, in the same Test or Live mode. The order reuses that patient and updates it from the sent fields. Send all other patient fields as usual. GET /v1/orders returns the patientId of each order. An unknown ID, or an ID of a different practice or mode, returns 404 not_found.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage id(String id) {
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * <p>The pat_ ID of a saved patient of the order's practice, in the same Test or Live mode. The order reuses that patient and updates it from the sent fields. Send all other patient fields as usual. GET /v1/orders returns the patientId of each order. An unknown ID, or an ID of a different practice or mode, returns 404 not_found.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "id", nulls = Nulls.SKIP)
+        public _FinalStage id(Optional<String> id) {
+            this.id = id;
+            return this;
+        }
+
+        /**
+         * <p>Your patient identifier within the practice and mode. Omit it and id to create a new patient for each order. With id, send the saved patient's externalId or omit it. If the saved patient has none, this value is added to it.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -438,7 +482,7 @@ public final class PatientInput {
         }
 
         /**
-         * <p>Your patient identifier within the practice and mode; omit it to create a new patient for each order.</p>
+         * <p>Your patient identifier within the practice and mode. Omit it and id to create a new patient for each order. With id, send the saved patient's externalId or omit it. If the saved patient has none, this value is added to it.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -448,7 +492,7 @@ public final class PatientInput {
         }
 
         /**
-         * <p>Your patient identifier within the practice and mode; omit it to create a new patient for each order.</p>
+         * <p>Your patient identifier within the practice and mode. Omit it and id to create a new patient for each order. With id, send the saved patient's externalId or omit it. If the saved patient has none, this value is added to it.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "externalId", nulls = Nulls.SKIP)
@@ -541,6 +585,7 @@ public final class PatientInput {
                     middleName,
                     phone,
                     externalId,
+                    id,
                     additionalProperties);
         }
 
@@ -555,7 +600,8 @@ public final class PatientInput {
                     || key.equalsIgnoreCase("lastName")
                     || key.equalsIgnoreCase("middleName")
                     || key.equalsIgnoreCase("phone")
-                    || key.equalsIgnoreCase("externalId")) {
+                    || key.equalsIgnoreCase("externalId")
+                    || key.equalsIgnoreCase("id")) {
                 return;
             }
             this.additionalProperties.put(key, value);

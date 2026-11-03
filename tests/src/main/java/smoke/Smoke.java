@@ -337,6 +337,26 @@ public final class Smoke {
                 .list(ListMedicationsRequest.builder().limit(5).practiceId(practice.getId()).build())
                 .getItems()
                 .size(), n -> n + "");
+        // query matches names that contain every word, ignoring case. Search for the chosen
+        // medication's longest word.
+        String word = "";
+        for (String w : chosen.getName().split("[^A-Za-z]+"))
+            if (w.length() > word.length()) word = w;
+        final String query = word.toLowerCase(java.util.Locale.ROOT);
+        final int total = medications.size();
+        check("medications.list query", () -> {
+            List<Medication> found = new ArrayList<>();
+            for (Medication m : client.medications().list(ListMedicationsRequest.builder().query(query).build()))
+                found.add(m);
+            boolean listed = false;
+            for (Medication m : found) {
+                listed = listed || m.getId().equals(chosen.getId());
+                if (!m.getName().toLowerCase(java.util.Locale.ROOT).contains(query))
+                    throw new IllegalStateException("\"" + m.getName() + "\" does not contain \"" + query + "\"");
+            }
+            if (!listed) throw new IllegalStateException(chosen.getId() + " is not in the results");
+            return found.size();
+        }, n -> "\"" + query + "\": " + n + " of " + total);
 
         int quantity = chosen.getQuantities().isEmpty() ? 1 : chosen.getQuantities().get(0);
         OrderInput input = orderInput(practice, chosen, quantity);
